@@ -1,4 +1,4 @@
-import React, {Suspense, useContext, useState} from 'react';
+import React from 'react';
 import './styles/index.scss'
 import {classNames} from "shared/lib/classNames";
 import {useTheme} from "app/providers/ThemeProvider";
@@ -11,9 +11,9 @@ const App = () => {
 
     return (
         <div className={classNames('app', {}, [theme])}>
-            <button onClick={toggleTheme}>{theme}</button>
             <Navbar />
             <AppRouter />
+            <button onClick={toggleTheme}>{theme}</button>
         </div>
     );
 };
