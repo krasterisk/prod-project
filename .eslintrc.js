@@ -5,7 +5,8 @@ module.exports = {
   },
   extends: [
     'plugin:react/recommended',
-    'standard-with-typescript'
+    'standard-with-typescript',
+    'plugin:i18next/recommended'
   ],
   overrides: [
   ],
@@ -16,7 +17,8 @@ module.exports = {
 
   },
   plugins: [
-    'react'
+    'react',
+    'i18next'
   ],
   rules: {
     'react/jsx-indent': [2, 4],
