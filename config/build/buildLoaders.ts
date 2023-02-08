@@ -4,6 +4,16 @@ import {buildOptions} from "./types/config";
 
 export function buildLoaders({isDev}: buildOptions): webpack.RuleSetRule[] {
 
+    const svgLoader = {
+        test: /\.svg$/,
+        use: ['@svgr/webpack'],
+    }
+
+    const imgLoader = {
+        test: /\.(png|jpg|jpeg|gif)$/i,
+        type: 'asset/resource',
+    }
+
     const cssLoader = {
         test: /\.[cs][ac]?ss$/i,
         use: [
@@ -34,5 +44,7 @@ export function buildLoaders({isDev}: buildOptions): webpack.RuleSetRule[] {
     return [
         typeScriptLoader,
         cssLoader,
+        svgLoader,
+        imgLoader,
     ]
 }
