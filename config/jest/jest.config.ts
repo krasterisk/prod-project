@@ -4,25 +4,25 @@
  */
 
 export default {
-  clearMocks: true,
-  coverageProvider: 'v8',
-  coveragePathIgnorePatterns: [
-    '\\\\node_modules\\\\'
-  ],
-  moduleFileExtensions: [
-    'js',
-    'mjs',
-    'cjs',
-    'jsx',
-    'ts',
-    'tsx',
-    'json',
-    'node'
-  ],
-  rootDir: '../../',
-  testEnvironment: 'jsdom',
-  testMatch: [
-    '<rootDir>src/**/*(*.)@(spec|test).[tj]s?(x)'
-  ],
-  preset: 'ts-jest'
+    clearMocks: true,
+    coverageProvider: 'v8',
+    coveragePathIgnorePatterns: [
+        '\\\\node_modules\\\\'
+    ],
+    moduleFileExtensions: [
+        'js',
+        'mjs',
+        'cjs',
+        'jsx',
+        'ts',
+        'tsx',
+        'json',
+        'node'
+    ],
+    rootDir: '../../',
+    testEnvironment: 'jsdom',
+    testMatch: [
+        '<rootDir>src/**/*(*.)@(spec|test).[tj]s?(x)'
+    ],
+    preset: 'ts-jest'
 }

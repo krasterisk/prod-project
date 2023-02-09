@@ -14,7 +14,6 @@ module.exports = {
     ecmaVersion: 'latest',
     sourceType: 'module',
     project: ['./tsconfig.json']
-
   },
   plugins: [
     'react',
@@ -22,6 +21,7 @@ module.exports = {
   ],
   rules: {
     'react/jsx-indent': [2, 4],
+    '@typescript-eslint/indent': [2, 4],
     'react/jsx-indent-props': [2, 4],
     'react/react-in-jsx-scope': 'off',
     '@typescript-eslint/prefer-nullish-coalescing': 'off',
