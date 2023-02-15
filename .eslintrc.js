@@ -8,8 +8,6 @@ module.exports = {
     'standard-with-typescript',
     'plugin:i18next/recommended'
   ],
-  overrides: [
-  ],
   parserOptions: {
     ecmaVersion: 'latest',
     sourceType: 'module',
@@ -30,10 +28,30 @@ module.exports = {
     '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/ban-ts-comment': 'off',
     '@typescript-eslint/no-floating-promises': 'off',
-    '@typescript-eslint/naming-convention': 'off'
+    '@typescript-eslint/naming-convention': 'off',
+    'i18next/no-literal-string': [
+      'error',
+      {
+        markupOnly: true,
+        ignoreAttribute: ['data-testid']
+      }
+    ]
   },
   globals: {
     __IS_DEV__: true
-  }
-
+  },
+  overrides: [
+    {
+      files: ['**/src/**/*.test.{ts.tsx}'],
+      rules: {
+        'i18next/no-literal-string': 'off'
+      }
+    },
+    {
+      files: ['.eslintrc.js'],
+      rules: {
+        '@typescript-eslint/indent': 'off'
+      }
+    }
+  ]
 }
