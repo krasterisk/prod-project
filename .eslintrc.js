@@ -3,20 +3,13 @@ module.exports = {
     browser: true,
     es2021: true
   },
-  extends: [
-    'plugin:react/recommended',
-    'standard-with-typescript',
-    'plugin:i18next/recommended'
-  ],
+  extends: ['plugin:react/recommended', 'standard-with-typescript', 'plugin:i18next/recommended', 'plugin:storybook/recommended'],
   parserOptions: {
     ecmaVersion: 'latest',
     sourceType: 'module',
     project: ['./tsconfig.json']
   },
-  plugins: [
-    'react',
-    'i18next'
-  ],
+  plugins: ['react', 'i18next'],
   rules: {
     'react/jsx-indent': [2, 4],
     '@typescript-eslint/indent': [2, 4],
@@ -29,29 +22,24 @@ module.exports = {
     '@typescript-eslint/ban-ts-comment': 'off',
     '@typescript-eslint/no-floating-promises': 'off',
     '@typescript-eslint/naming-convention': 'off',
-    'i18next/no-literal-string': [
-      'error',
-      {
-        markupOnly: true,
-        ignoreAttribute: ['data-testid']
-      }
-    ]
+    '@typescript-eslint/consistent-type-imports': 'off',
+    'i18next/no-literal-string': ['error', {
+      markupOnly: true,
+      ignoreAttribute: ['data-testid']
+    }]
   },
   globals: {
     __IS_DEV__: true
   },
-  overrides: [
-    {
-      files: ['**/src/**/*.test.{ts.tsx}'],
-      rules: {
-        'i18next/no-literal-string': 'off'
-      }
-    },
-    {
-      files: ['.eslintrc.js'],
-      rules: {
-        '@typescript-eslint/indent': 'off'
-      }
+  overrides: [{
+    files: ['**/src/**/*.test.{ts.tsx}'],
+    rules: {
+      'i18next/no-literal-string': 'off'
     }
-  ]
+  }, {
+    files: ['.eslintrc.js'],
+    rules: {
+      '@typescript-eslint/indent': 'off'
+    }
+  }]
 }
