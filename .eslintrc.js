@@ -23,6 +23,8 @@ module.exports = {
     '@typescript-eslint/no-floating-promises': 'off',
     '@typescript-eslint/naming-convention': 'off',
     '@typescript-eslint/consistent-type-imports': 'off',
+    '@typescript-eslint/consistent-type-assertions': 'off',
+    'react/display-name': 'off',
     'i18next/no-literal-string': ['error', {
       markupOnly: true,
       ignoreAttribute: ['data-testid']
