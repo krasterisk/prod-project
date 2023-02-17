@@ -6,7 +6,7 @@ on:
     branches: [master]
 jobs:
   pipeline:
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         node-version: [ 18.x ]
@@ -36,7 +36,7 @@ jobs:
         run: npm run storybook:build
         if: always()
       - name: loki screenshot ui ci test
-        run: npm run test:ui:ci:mac
+        run: npm run test:ui:ci
 
 
 
