@@ -37,9 +37,3 @@ jobs:
         if: always()
       - name: loki screenshot ui ci test
         run: npm run test:ui:ci
-
-
-
-
-
-
