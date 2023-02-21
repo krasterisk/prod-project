@@ -8,5 +8,9 @@
   "Язык": "Russian",
   "Обновить страницу": "Refresh Page",
   "Ошибка": "Error",
-  "Яз": "Ru"
+  "Яз": "Ru",
+  "decrement": "decrement",
+  "increment": "increment",
+  "plus 5": "plus 5"
+
 }

@@ -1,3 +1,6 @@
 {
-    "Главная": "Main"
+    "Главная": "Main",
+    "decrement": "decrement",
+    "increment": "increment",
+    "plus 5": "plus 5"
 }
