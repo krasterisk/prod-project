@@ -13,30 +13,24 @@ import { getLoginUsername } from '../../model/selectors/getLoginUsername/getLogi
 import { getLoginPassword } from '../../model/selectors/getLoginPassword/getLoginPassword'
 import { getLoginIsLoading } from '../../model/selectors/getLoginIsLoading/getLoginIsLoading'
 import { getLoginError } from '../../model/selectors/getLoginError/getLoginError'
+import { DynamicModuleLoader, ReducersList } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader'
 
 export interface LoginFormProps {
     className?: string
 
 }
 
+const initialReducers: ReducersList = {
+    loginForm: loginReducer
+}
+
 const LoginForm = memo(({ className }: LoginFormProps) => {
     const { t } = useTranslation()
     const dispatch = useDispatch()
-    const store = useStore() as ReduxStoreWithManager
     const username = useSelector(getLoginUsername)
     const password = useSelector(getLoginPassword)
     const isLoading = useSelector(getLoginIsLoading)
     const error = useSelector(getLoginError)
-
-    useEffect(() => {
-        store.reducerManager.add('loginForm', loginReducer)
-        dispatch({ type: '@INIT loginForm reducer' })
-        return () => {
-            store.reducerManager.remove('loginForm')
-            dispatch({ type: '@DESTROY loginForm reducer' })
-        }
-        // eslint-disable-next-line
-    }, [])
 
     const onChangeUsername = useCallback((value: string) => {
         dispatch(loginActions.setUsername(value))
@@ -51,36 +45,41 @@ const LoginForm = memo(({ className }: LoginFormProps) => {
     }, [dispatch, password, username])
 
     return (
-        <div className={classNames(cls.LoginForm, {}, [className])}>
+        <DynamicModuleLoader
+            removeAfterUnmount={true}
+            reducers={initialReducers}
+        >
+            <div className={classNames(cls.LoginForm, {}, [className])}>
 
-            <Text title={t('Авторизация')}></Text>
-            {error && <Text text={t('Неправильные имя пользователя или пароль')} theme={TextTheme.ERROR} />}
+                <Text title={t('Авторизация')}></Text>
+                {error && <Text text={t('Неправильные имя пользователя или пароль')} theme={TextTheme.ERROR}/>}
 
-            <Input
-                type="text"
-                className={cls.input}
-                placeholder={t('Имя пользователя')}
-                onChange={onChangeUsername}
-                value={username}
-            />
-            <Input
-                type="text"
-                className={cls.input}
-                placeholder={t('Пароль')}
-                onChange={onChangePassword}
-                value={password}
-            />
-            <Button
-                theme={ButtonTheme.OUTLINE}
-                className={cls.loginBtn}
-                onClick={onLoginClick}
-                disabled={isLoading}
-            >
+                <Input
+                    type="text"
+                    className={cls.input}
+                    placeholder={t('Имя пользователя')}
+                    onChange={onChangeUsername}
+                    value={username}
+                />
+                <Input
+                    type="text"
+                    className={cls.input}
+                    placeholder={t('Пароль')}
+                    onChange={onChangePassword}
+                    value={password}
+                />
+                <Button
+                    theme={ButtonTheme.OUTLINE}
+                    className={cls.loginBtn}
+                    onClick={onLoginClick}
+                    disabled={isLoading}
+                >
 
-                {t('Вход')}
-            </Button>
+                    {t('Вход')}
+                </Button>
 
-        </div>
+            </div>
+        </DynamicModuleLoader>
     )
 })
 

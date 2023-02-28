@@ -22,8 +22,6 @@ jobs:
       - name: build project
         run: npm run build:prod
         if: always()
-      - name: build project
-        run: npm run build:prod
       - name: lint test
         run: npm run lint:ts
         if: always()
