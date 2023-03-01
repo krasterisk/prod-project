@@ -39,7 +39,7 @@ const LoginForm = memo(({ className }: LoginFormProps) => {
         dispatch(loginActions.setPassword(value))
     }, [dispatch])
 
-    const onLoginClick = useCallback(() => {
+    const onLoginClick = useCallback(async () => {
         dispatch(loginByUsername({ username, password }))
     }, [dispatch, password, username])
 
