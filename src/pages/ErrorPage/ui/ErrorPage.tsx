@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { classNames } from 'shared/lib/classNames/classNames'
 import cls from './ErrorPage.module.scss'
@@ -7,7 +7,7 @@ interface ErrorPageProps {
     className?: string
 }
 
-const ErrorPage = ({ className }: ErrorPageProps) => {
+const ErrorPage = memo(({ className }: ErrorPageProps) => {
     const { t } = useTranslation()
 
     return (
@@ -15,6 +15,6 @@ const ErrorPage = ({ className }: ErrorPageProps) => {
             {t('Страница не найдена')}
         </div>
     )
-}
+})
 
 export default ErrorPage

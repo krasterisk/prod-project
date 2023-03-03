@@ -1,7 +1,7 @@
 {
   "Главная": "Main",
   "Изменить": "Change",
-  "О сайте": "About page",
+  "О Сайте": "About page",
   "Перевод": "Translate",
   "Произошла непредвиденная ошибка": "Undefined error",
   "Страница не найдена": "Page not found",
@@ -17,5 +17,6 @@
   "Авторизация": "Authorization",
   "Неправильные имя пользователя или пароль": "Wrong username or password",
   "Выход": "Logout",
-  "Вход": "Login"
+  "Вход": "Login",
+  "Профиль": "Profile"
 }

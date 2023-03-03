@@ -20,7 +20,6 @@ export const loginByUsername = createAsyncThunk<User, loginByUsernameProps, { re
             thunkAPI.dispatch(userActions.setAuthData(response.data))
             return response.data
         } catch (e) {
-            console.log(e)
             return thunkAPI.rejectWithValue('error')
         }
     }
