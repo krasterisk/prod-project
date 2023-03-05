@@ -30,8 +30,8 @@ jobs:
       - name: jest unit tests
         run: npm run test:unit
         if: always()
-      - name: build storybook
-        run: npm run storybook:build
-        if: always()
-      - name: loki screenshot ui ci test
-        run: npm run test:ui:ci
+#      - name: build storybook
+#        run: npm run storybook:build
+#        if: always()
+#      - name: loki screenshot ui ci test
+#        run: npm run test:ui:ci

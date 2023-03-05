@@ -8,7 +8,10 @@ interface loginByUsernameProps {
     password: string
 }
 
-export const loginByUsername = createAsyncThunk<User, loginByUsernameProps, ThunkConfig<string>>(
+export const loginByUsername = createAsyncThunk<
+User,
+loginByUsernameProps,
+ThunkConfig<string>>(
     'login/loginByUsername',
     async (authData, thunkAPI) => {
         const {
@@ -18,7 +21,7 @@ export const loginByUsername = createAsyncThunk<User, loginByUsernameProps, Thun
         } = thunkAPI
 
         try {
-            const response = await extra.api.post<User>('auth/login', authData)
+            const response = await extra.api.post<User>('/auth/login', authData)
             if (!response.data) {
                 throw new Error()
             }
