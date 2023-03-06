@@ -26,6 +26,10 @@ export const ProfilePageHeader = ({ className }: ProfilePageHeaderProps) => {
         dispatch(profileActions.cancelEdit())
     }, [dispatch])
 
+    const onSave = useCallback(() => {
+        dispatch(profileActions.saveProfile())
+    }, [dispatch])
+
     return (
         <div className={classNames(cls.ProfilePageHeader, {}, [className])}>
             <Text title={t('Профиль')}/>
@@ -41,13 +45,22 @@ export const ProfilePageHeader = ({ className }: ProfilePageHeaderProps) => {
                     </Button>
                 )
                 : (
-                    <Button
-                        theme={ButtonTheme.OUTLINE}
-                        className={cls.editBtn}
-                        onClick={onCancelEdit}
-                    >
-                        {t('Отменить')}
-                    </Button>
+                    <>
+                        <Button
+                            theme={ButtonTheme.OUTLINE_RED}
+                            className={cls.editBtn}
+                            onClick={onCancelEdit}
+                        >
+                            {t('Отменить')}
+                        </Button>
+                        <Button
+                            theme={ButtonTheme.OUTLINE}
+                            className={cls.saveBtn}
+                            onClick={onSave}
+                        >
+                            {t('Сохранить')}
+                        </Button>
+                    </>
                 )
             }
         </div>

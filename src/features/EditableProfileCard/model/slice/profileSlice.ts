@@ -25,6 +25,12 @@ export const profileSlice = createSlice({
                 ...state.form,
                 ...action.payload
             }
+        },
+        saveProfile: (state) => {
+            state.data = {
+                ...state.data
+            }
+            state.readonly = true
         }
     },
     extraReducers: (builder) => {
