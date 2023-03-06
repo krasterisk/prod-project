@@ -2,5 +2,8 @@
     "Профиль": "Profile",
     "Изменить": "Change",
     "Ваше имя": "Firstname",
-    "Ваша фамилия": "Lastname"
+    "Ваша фамилия": "Lastname",
+    "Ошибка получения данных профиля!": "Get profile data error!",
+    "Попробуйте обновить страницу": "Try refresh the page",
+    "Отменить": "Cancel"
 }
