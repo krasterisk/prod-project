@@ -5,6 +5,7 @@ import { Text, TextAlign, TextTheme } from 'shared/ui/Text/Text'
 import { Input } from 'shared/ui/Input/Input'
 import { Profile } from 'features/EditableProfileCard'
 import { Loader } from 'shared/ui/Loader/Loader'
+import { Country } from 'shared/const/common'
 
 interface ProfileCardProps {
     className?: string
@@ -13,6 +14,8 @@ interface ProfileCardProps {
     isLoading?: boolean
     onChangeFirstname: (value?: string) => void
     onChangeLastname: (value?: string) => void
+    onChangeCountry: (value?: Country) => void
+    onChangeAge: (value?: string) => void
     readonly?: boolean
 }
 
@@ -24,6 +27,8 @@ export const ProfileCard = (props: ProfileCardProps) => {
         isLoading,
         onChangeLastname,
         onChangeFirstname,
+        onChangeCountry,
+        onChangeAge,
         readonly
     } = props
 
@@ -57,7 +62,7 @@ export const ProfileCard = (props: ProfileCardProps) => {
             <div className={cls.data}>
                 <Input
                     value={data?.firstname}
-                    // placeholder={t('Ваше имя')}
+                    placeholder={t('Ваше имя')}
                     className={cls.input}
                     onChange={onChangeFirstname}
                     readonly={readonly}
@@ -65,12 +70,32 @@ export const ProfileCard = (props: ProfileCardProps) => {
                 />
                 <Input
                     value={data?.lastname}
-                    // placeholder={t('Ваша фамилия')}
+                    placeholder={t('Ваша фамилия')}
                     className={cls.input}
                     onChange={onChangeLastname}
                     readonly={readonly}
                     disabled={readonly}
-
+                />
+                <Input
+                    value={data?.age}
+                    placeholder={t('Ваш возраст')}
+                    onKeyPress={(event) => {
+                        if (!/[0-9]/.test(event.key)) {
+                            event.preventDefault()
+                        }
+                    }}
+                    className={cls.input}
+                    onChange={onChangeAge}
+                    readonly={readonly}
+                    disabled={readonly}
+                />
+                <Input
+                    value={data?.country}
+                    placeholder={t('Ваша страна')}
+                    className={cls.input}
+                    onChange={onChangeCountry}
+                    readonly={readonly}
+                    disabled={readonly}
                 />
             </div>
         </div>

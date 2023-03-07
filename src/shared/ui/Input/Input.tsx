@@ -2,13 +2,14 @@ import { classNames, Mods } from 'shared/lib/classNames/classNames'
 import cls from './Input.module.scss'
 import { InputHTMLAttributes, memo } from 'react'
 
-type HTMLInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'value' | 'onChange' | 'readOnly'>
+type HTMLInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'value' | 'onChange' | 'readOnly' | 'placeholder'>
 
 interface InputProps extends HTMLInputProps {
     className?: string
-    value?: string
-    onChange?: (value: string) => void
+    value?: string | number
+    onChange?: (value: any) => void
     readonly?: boolean
+    placeholder?: string | null
 }
 
 export const Input = memo((props: InputProps) => {

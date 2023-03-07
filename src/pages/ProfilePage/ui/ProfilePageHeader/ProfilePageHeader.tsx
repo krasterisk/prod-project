@@ -3,7 +3,7 @@ import cls from './ProfilePageHeader.module.scss'
 import { useTranslation } from 'react-i18next'
 import { Text } from 'shared/ui/Text/Text'
 import { Button, ButtonTheme } from 'shared/ui/Button/Button'
-import { getProfileReadonly, profileActions } from 'features/EditableProfileCard'
+import { getProfileReadonly, profileActions, updateProfileData } from 'features/EditableProfileCard'
 import { useSelector } from 'react-redux'
 import { useCallback } from 'react'
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch'
@@ -27,7 +27,8 @@ export const ProfilePageHeader = ({ className }: ProfilePageHeaderProps) => {
     }, [dispatch])
 
     const onSave = useCallback(() => {
-        dispatch(profileActions.saveProfile())
+        dispatch(updateProfileData())
+        dispatch(profileActions.setReadonly(true))
     }, [dispatch])
 
     return (

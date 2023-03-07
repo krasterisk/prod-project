@@ -14,6 +14,7 @@ import {
     profileReducer
 } from 'features/EditableProfileCard'
 import { ProfilePageHeader } from './ProfilePageHeader/ProfilePageHeader'
+import { Country } from 'shared/const/common'
 
 const reducers: ReducersList = {
     profileForm: profileReducer
@@ -37,7 +38,12 @@ const ProfilePage = memo(({ className }: ProfilePageProps) => {
     const onChangeFirstname = useCallback((value?: string) => {
         dispatch(profileActions.updateProfile({ firstname: value || '' }))
     }, [dispatch])
-
+    const onChangeCountry = useCallback((value?: Country) => {
+        dispatch(profileActions.updateProfile({ country: value || undefined }))
+    }, [dispatch])
+    const onChangeAge = useCallback((value?: string) => {
+        dispatch(profileActions.updateProfile({ age: Number(value || 0) }))
+    }, [dispatch])
     const onChangeLastname = useCallback((value?: string) => {
         dispatch(profileActions.updateProfile({ lastname: value || '' }))
     }, [dispatch])
@@ -53,6 +59,8 @@ const ProfilePage = memo(({ className }: ProfilePageProps) => {
                 error={error}
                 onChangeFirstname={onChangeFirstname}
                 onChangeLastname={onChangeLastname}
+                onChangeCountry={onChangeCountry}
+                onChangeAge={onChangeAge}
                 readonly={readonly}
             />
         </DynamicModuleLoader>
