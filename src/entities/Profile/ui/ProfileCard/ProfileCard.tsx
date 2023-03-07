@@ -6,17 +6,22 @@ import { Input } from 'shared/ui/Input/Input'
 import { Profile } from 'features/EditableProfileCard'
 import { Loader } from 'shared/ui/Loader/Loader'
 import { Country } from 'shared/const/common'
+import { Avatar } from 'shared/ui/Avatar/Avatar'
 
 interface ProfileCardProps {
     className?: string
     data?: Profile
     error?: string
     isLoading?: boolean
-    onChangeFirstname: (value?: string) => void
-    onChangeLastname: (value?: string) => void
-    onChangeCountry: (value?: Country) => void
-    onChangeAge: (value?: string) => void
     readonly?: boolean
+    onChangeFirstname?: (value?: string) => void
+    onChangeLastname?: (value?: string) => void
+    onChangeCountry?: (value?: Country) => void
+    onChangeAge?: (value?: string) => void
+    onChangeUsername?: (value?: string) => void
+    onChangeEmail?: (value?: string) => void
+    onChangeAvatar?: (value?: string) => void
+
 }
 
 export const ProfileCard = (props: ProfileCardProps) => {
@@ -29,6 +34,9 @@ export const ProfileCard = (props: ProfileCardProps) => {
         onChangeFirstname,
         onChangeCountry,
         onChangeAge,
+        onChangeUsername,
+        onChangeEmail,
+        onChangeAvatar,
         readonly
     } = props
 
@@ -60,6 +68,13 @@ export const ProfileCard = (props: ProfileCardProps) => {
     return (
         <div className={classNames(cls.ProfileCard, {}, [className])}>
             <div className={cls.data}>
+                {data?.avatar && <div className={cls.avatarWrapper}>
+                    <Avatar
+                        src={data?.avatar}
+                    />
+                </div>
+                }
+
                 <Input
                     value={data?.firstname}
                     placeholder={t('Ваше имя')}
@@ -94,6 +109,30 @@ export const ProfileCard = (props: ProfileCardProps) => {
                     placeholder={t('Ваша страна')}
                     className={cls.input}
                     onChange={onChangeCountry}
+                    readonly={readonly}
+                    disabled={readonly}
+                />
+                <Input
+                    value={data?.username}
+                    placeholder={t('Имя пользователя')}
+                    className={cls.input}
+                    onChange={onChangeUsername}
+                    readonly={readonly}
+                    disabled={readonly}
+                />
+                <Input
+                    value={data?.email}
+                    placeholder={t('Электронная почта')}
+                    className={cls.input}
+                    onChange={onChangeEmail}
+                    readonly={readonly}
+                    disabled={readonly}
+                />
+                <Input
+                    value={data?.avatar}
+                    placeholder={t('Ссылка на ваш аватар')}
+                    className={cls.input}
+                    onChange={onChangeAvatar}
                     readonly={readonly}
                     disabled={readonly}
                 />

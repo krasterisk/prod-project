@@ -38,14 +38,23 @@ const ProfilePage = memo(({ className }: ProfilePageProps) => {
     const onChangeFirstname = useCallback((value?: string) => {
         dispatch(profileActions.updateProfile({ firstname: value || '' }))
     }, [dispatch])
+    const onChangeLastname = useCallback((value?: string) => {
+        dispatch(profileActions.updateProfile({ lastname: value || '' }))
+    }, [dispatch])
     const onChangeCountry = useCallback((value?: Country) => {
         dispatch(profileActions.updateProfile({ country: value || undefined }))
     }, [dispatch])
     const onChangeAge = useCallback((value?: string) => {
         dispatch(profileActions.updateProfile({ age: Number(value || 0) }))
     }, [dispatch])
-    const onChangeLastname = useCallback((value?: string) => {
-        dispatch(profileActions.updateProfile({ lastname: value || '' }))
+    const onChangeUsername = useCallback((value?: string) => {
+        dispatch(profileActions.updateProfile({ username: value || '' }))
+    }, [dispatch])
+    const onChangeEmail = useCallback((value?: string) => {
+        dispatch(profileActions.updateProfile({ email: value || '' }))
+    }, [dispatch])
+    const onChangeAvatar = useCallback((value?: string) => {
+        dispatch(profileActions.updateProfile({ avatar: value || '' }))
     }, [dispatch])
 
     return (
@@ -61,6 +70,9 @@ const ProfilePage = memo(({ className }: ProfilePageProps) => {
                 onChangeLastname={onChangeLastname}
                 onChangeCountry={onChangeCountry}
                 onChangeAge={onChangeAge}
+                onChangeUsername={onChangeUsername}
+                onChangeEmail={onChangeEmail}
+                onChangeAvatar={onChangeAvatar}
                 readonly={readonly}
             />
         </DynamicModuleLoader>
