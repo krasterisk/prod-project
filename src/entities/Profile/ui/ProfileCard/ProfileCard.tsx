@@ -1,12 +1,14 @@
-import { classNames } from 'shared/lib/classNames/classNames'
+import { classNames, Mods } from 'shared/lib/classNames/classNames'
 import cls from './ProfileCard.module.scss'
 import { useTranslation } from 'react-i18next'
 import { Text, TextAlign, TextTheme } from 'shared/ui/Text/Text'
 import { Input } from 'shared/ui/Input/Input'
 import { Profile } from 'features/EditableProfileCard'
 import { Loader } from 'shared/ui/Loader/Loader'
-import { Country } from 'shared/const/common'
 import { Avatar } from 'shared/ui/Avatar/Avatar'
+import { Currency } from 'entities/Currency/model/types/Currency'
+import { CurrencySelect } from 'entities/Currency'
+import { Country, CountrySelect } from 'entities/Country'
 
 interface ProfileCardProps {
     className?: string
@@ -21,6 +23,7 @@ interface ProfileCardProps {
     onChangeUsername?: (value?: string) => void
     onChangeEmail?: (value?: string) => void
     onChangeAvatar?: (value?: string) => void
+    onChangeCurrency?: (currency?: Currency) => void
 
 }
 
@@ -37,6 +40,7 @@ export const ProfileCard = (props: ProfileCardProps) => {
         onChangeUsername,
         onChangeEmail,
         onChangeAvatar,
+        onChangeCurrency,
         readonly
     } = props
 
@@ -65,8 +69,12 @@ export const ProfileCard = (props: ProfileCardProps) => {
         )
     }
 
+    const mods: Mods = {
+        [cls.editing]: !readonly
+    }
+
     return (
-        <div className={classNames(cls.ProfileCard, {}, [className])}>
+        <div className={classNames(cls.ProfileCard, mods, [className])}>
             <div className={cls.data}>
                 {data?.avatar && <div className={cls.avatarWrapper}>
                     <Avatar
@@ -105,14 +113,6 @@ export const ProfileCard = (props: ProfileCardProps) => {
                     disabled={readonly}
                 />
                 <Input
-                    value={data?.country}
-                    placeholder={t('Ваша страна')}
-                    className={cls.input}
-                    onChange={onChangeCountry}
-                    readonly={readonly}
-                    disabled={readonly}
-                />
-                <Input
                     value={data?.username}
                     placeholder={t('Имя пользователя')}
                     className={cls.input}
@@ -135,6 +135,18 @@ export const ProfileCard = (props: ProfileCardProps) => {
                     onChange={onChangeAvatar}
                     readonly={readonly}
                     disabled={readonly}
+                />
+                <CountrySelect
+                    className={cls.input}
+                    value={data?.country}
+                    readonly={readonly}
+                    onChange={onChangeCountry}
+                />
+                <CurrencySelect
+                    className={cls.input}
+                    value={data?.currency}
+                    readonly={readonly}
+                    onChange={onChangeCurrency}
                 />
             </div>
         </div>

@@ -14,7 +14,8 @@ import {
     profileReducer
 } from 'features/EditableProfileCard'
 import { ProfilePageHeader } from './ProfilePageHeader/ProfilePageHeader'
-import { Country } from 'shared/const/common'
+import { Currency } from 'entities/Currency'
+import { Country } from 'entities/Country'
 
 const reducers: ReducersList = {
     profileForm: profileReducer
@@ -41,8 +42,8 @@ const ProfilePage = memo(({ className }: ProfilePageProps) => {
     const onChangeLastname = useCallback((value?: string) => {
         dispatch(profileActions.updateProfile({ lastname: value || '' }))
     }, [dispatch])
-    const onChangeCountry = useCallback((value?: Country) => {
-        dispatch(profileActions.updateProfile({ country: value || undefined }))
+    const onChangeCountry = useCallback((country?: Country) => {
+        dispatch(profileActions.updateProfile({ country }))
     }, [dispatch])
     const onChangeAge = useCallback((value?: string) => {
         dispatch(profileActions.updateProfile({ age: Number(value || 0) }))
@@ -55,6 +56,9 @@ const ProfilePage = memo(({ className }: ProfilePageProps) => {
     }, [dispatch])
     const onChangeAvatar = useCallback((value?: string) => {
         dispatch(profileActions.updateProfile({ avatar: value || '' }))
+    }, [dispatch])
+    const onChangeCurrency = useCallback((currency?: Currency) => {
+        dispatch(profileActions.updateProfile({ currency }))
     }, [dispatch])
 
     return (
@@ -69,6 +73,7 @@ const ProfilePage = memo(({ className }: ProfilePageProps) => {
                 onChangeFirstname={onChangeFirstname}
                 onChangeLastname={onChangeLastname}
                 onChangeCountry={onChangeCountry}
+                onChangeCurrency={onChangeCurrency}
                 onChangeAge={onChangeAge}
                 onChangeUsername={onChangeUsername}
                 onChangeEmail={onChangeEmail}
