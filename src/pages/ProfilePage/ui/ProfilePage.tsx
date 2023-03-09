@@ -10,12 +10,15 @@ import {
     getProfileForm,
     getProfileIsLoading,
     getProfileReadonly,
+    getProfileValidateErrors,
     profileActions,
-    profileReducer
+    profileReducer, ValidateProfileError
 } from 'features/EditableProfileCard'
 import { ProfilePageHeader } from './ProfilePageHeader/ProfilePageHeader'
 import { Currency } from 'entities/Currency'
 import { Country } from 'entities/Country'
+import { Text, TextTheme } from 'shared/ui/Text/Text'
+import { useTranslation } from 'react-i18next'
 
 const reducers: ReducersList = {
     profileForm: profileReducer
@@ -26,11 +29,21 @@ interface ProfilePageProps {
 }
 
 const ProfilePage = memo(({ className }: ProfilePageProps) => {
+    const { t } = useTranslation('profile')
     const dispatch = useAppDispatch()
     const formData = useSelector(getProfileForm)
     const error = useSelector(getProfileError)
     const isLoading = useSelector(getProfileIsLoading)
     const readonly = useSelector(getProfileReadonly)
+    const validateErrors = useSelector(getProfileValidateErrors)
+
+    const validateErrorTranslates = {
+        [ValidateProfileError.INCORRECT_USER_DATA]: t('Некорректное имя или фамилия'),
+        [ValidateProfileError.INCORRECT_USER_AGE]: t('Некорректный возраст'),
+        [ValidateProfileError.INCORRECT_COUNTRY]: t('Некорректная страна'),
+        [ValidateProfileError.SERVER_ERROR]: t('Ошибка сервера'),
+        [ValidateProfileError.NO_DATA]: t('Нет данных')
+    }
 
     useEffect(() => {
         dispatch(fetchProfileData())
@@ -66,6 +79,12 @@ const ProfilePage = memo(({ className }: ProfilePageProps) => {
             <div className={classNames('', {}, [className])}>
             </div>
             <ProfilePageHeader />
+            {validateErrors?.length && validateErrors.map(err => (
+                <Text
+                    theme={TextTheme.ERROR}
+                    text={validateErrorTranslates[err]}
+                    key={err}/>
+            ))}
             <ProfileCard
                 data={formData}
                 isLoading={isLoading}

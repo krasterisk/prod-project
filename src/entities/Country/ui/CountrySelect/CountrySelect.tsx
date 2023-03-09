@@ -25,10 +25,6 @@ const options = [
         content: Country.Kazakhstan
     },
     {
-        value: Country.Armenia,
-        content: Country.Armenia
-    },
-    {
         value: Country.Ukraine,
         content: Country.Ukraine
     },
