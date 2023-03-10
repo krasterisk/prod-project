@@ -4,6 +4,8 @@ import ProfilePage from './ProfilePage'
 import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator'
 import { Theme } from 'app/providers/ThemeProvider'
 import { StoreDecorator } from 'shared/config/storybook/StoreDecorator/StoreDecorator'
+import { Country } from '../../../entities/Country'
+import { Currency } from '../../../entities/Currency'
 
 export default {
     title: 'pages/ProfilePage',
@@ -20,8 +22,13 @@ Normal.args = {}
 Normal.decorators = [StoreDecorator({
     profileForm: {
         data: {
-            firstname: 'Ivan',
-            lastname: 'Ivanov'
+            firstname: 'First',
+            lastname: 'Last',
+            age: 20,
+            username: 'Username',
+            email: 'mail@email.com',
+            country: Country.Russia,
+            currency: Currency.RUB
         }
     }
 })]
@@ -33,8 +40,13 @@ Dark.decorators = [
     StoreDecorator({
         profileForm: {
             data: {
-                firstname: 'Ivan',
-                lastname: 'Ivanov'
+                firstname: 'First',
+                lastname: 'Last',
+                age: 20,
+                username: 'Username',
+                email: 'mail@email.com',
+                country: Country.Russia,
+                currency: Currency.RUB
             }
         }
     })]
