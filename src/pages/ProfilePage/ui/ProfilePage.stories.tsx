@@ -21,7 +21,7 @@ export const Normal = Template.bind({})
 Normal.args = {}
 Normal.decorators = [StoreDecorator({
     profileForm: {
-        data: {
+        form: {
             firstname: 'First',
             lastname: 'Last',
             age: 20,
@@ -39,7 +39,7 @@ Dark.decorators = [
     ThemeDecorator(Theme.DARK),
     StoreDecorator({
         profileForm: {
-            data: {
+            form: {
                 firstname: 'First',
                 lastname: 'Last',
                 age: 20,
@@ -48,6 +48,24 @@ Dark.decorators = [
                 country: Country.Russia,
                 currency: Currency.RUB
             }
+        }
+    })]
+
+export const Readonly = Template.bind({})
+Readonly.args = {}
+Readonly.decorators = [
+    StoreDecorator({
+        profileForm: {
+            form: {
+                firstname: 'First',
+                lastname: 'Last',
+                age: 20,
+                username: 'Username',
+                email: 'mail@email.com',
+                country: Country.Russia,
+                currency: Currency.RUB
+            },
+            readonly: true
         }
     })]
 

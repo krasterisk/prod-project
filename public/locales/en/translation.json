@@ -12,13 +12,7 @@
   "decrement": "decrement",
   "increment": "increment",
   "plus 5": "plus 5",
-  "Имя пользователя": "Username",
-  "Пароль": "Password",
-  "Авторизация": "Authorization",
-  "Неправильные имя пользователя или пароль": "Wrong username or password",
-  "Выход": "Logout",
-  "Вход": "Login",
   "Профиль": "Profile",
-    "Страна": "Страна",
-    "Валюта": "Валюта"
+  "Страна": "Страна",
+  "Валюта": "Валюта"
 }
