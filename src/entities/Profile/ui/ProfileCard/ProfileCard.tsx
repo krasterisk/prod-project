@@ -112,6 +112,7 @@ export const ProfileCard = (props: ProfileCardProps) => {
                     readonly={readonly}
                     disabled={readonly}
                 />
+
                 <Input
                     value={data?.username}
                     placeholder={t('Имя пользователя')}

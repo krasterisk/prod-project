@@ -25,7 +25,7 @@ Primary.args = {
         email: 'mail@email.com',
         country: Country.Russia,
         currency: Currency.RUB,
-        avatar
+        avatar: 'https://spbx.krasterisk.ru/avatar.jpg'
     }
 }
 
@@ -49,7 +49,7 @@ Readonly.args = {
         email: 'mail@email.com',
         country: Country.Russia,
         currency: Currency.RUB,
-        avatar
+        avatar: 'https://spbx.krasterisk.ru/avatar.jpg'
     },
     readonly: true
 }
