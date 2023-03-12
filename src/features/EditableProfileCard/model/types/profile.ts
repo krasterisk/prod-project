@@ -17,7 +17,7 @@ export interface Profile {
     currency?: Currency
     country?: Country
     username?: string
-    avatar?: string
+    avatar?: string | 'https://spbx.krasterisk.ru/avatar.jpg'
 }
 
 export interface ProfileSchema {
