@@ -1,7 +1,7 @@
 {
+  "Авторизация": "Authorization",
   "Имя пользователя": "Username",
   "Пароль": "Password",
   "Неправильные имя пользователя или пароль": "Wrong username or password",
-  "Выход": "Logout",
   "Вход": "Login"
 }
