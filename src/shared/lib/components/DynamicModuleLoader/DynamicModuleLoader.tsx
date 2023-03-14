@@ -9,8 +9,8 @@ export type ReducersList = {
 
 interface DynamicModuleLoaderProps {
     reducers: ReducersList
-    children: ReactNode
     removeAfterUnmount?: boolean
+    children: ReactNode
 }
 
 export const DynamicModuleLoader: FC<DynamicModuleLoaderProps> = (props) => {
@@ -26,7 +26,7 @@ export const DynamicModuleLoader: FC<DynamicModuleLoaderProps> = (props) => {
         Object.entries(reducers).forEach(([name, reducer]) => {
             store.reducerManager.add(name as StateSchemaKey, reducer)
             dispatch({ type: `@INIT ${name} reducer` })
-        })
+        }, [])
 
         return () => {
             if (removeAfterUnmount) {
@@ -36,8 +36,7 @@ export const DynamicModuleLoader: FC<DynamicModuleLoaderProps> = (props) => {
                 })
             }
         }
-        // eslint-disable-next-line
-    }, []);
+    }, [])
 
     return (
         <>

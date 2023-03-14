@@ -5,6 +5,7 @@ import { AnyAction, CombinedState, EnhancedStore, Reducer, ReducersMapObject } f
 import { ProfileSchema } from 'features/EditableProfileCard'
 import { NavigateOptions, To } from 'react-router'
 import { AxiosInstance } from 'axios'
+import { ManualDetailsSchema } from 'entities/manual'
 
 export interface StateSchema {
     counter: CounterSchema
@@ -13,6 +14,7 @@ export interface StateSchema {
     // Async reducers
     loginForm?: LoginSchema
     profileForm?: ProfileSchema
+    manualDetails?: ManualDetailsSchema
 }
 
 export type StateSchemaKey = keyof StateSchema
