@@ -12,6 +12,8 @@ import {
     getManualDetailsError,
     getManualDetailsIsLoading
 } from '../../model/selectors/manualDetails'
+import { Text, TextAlign } from 'shared/ui/Text/Text'
+import { Skeleton } from 'shared/ui/Skeleton/Skeleton'
 
 interface ManualDetailsProps {
     className?: string
@@ -23,9 +25,10 @@ const reducers = {
 }
 
 export const ManualDetails = memo(({ className, id }: ManualDetailsProps) => {
-    const { t } = useTranslation()
+    const { t } = useTranslation('manuals')
     const dispatch = useAppDispatch()
-    const isLoading = useSelector(getManualDetailsIsLoading)
+    //    const isLoading = useSelector(getManualDetailsIsLoading)
+    const isLoading = true
     const manual = useSelector(getManualDetailsData)
     const error = useSelector(getManualDetailsError)
 
@@ -33,10 +36,35 @@ export const ManualDetails = memo(({ className, id }: ManualDetailsProps) => {
         dispatch(fetchManualById(id))
     }, [dispatch, id])
 
+    let content
+    if (isLoading) {
+        content = (
+            <div>
+                <Skeleton className={cls.avatar} width={200} height={200} border={'50%'}/>
+                <Skeleton className={cls.title} width={300} height={32}/>
+                <Skeleton className={cls.skeleton} width={600} height={24}/>
+                <Skeleton className={cls.skeleton} width={'100%'} height={200}/>
+                <Skeleton className={cls.skeleton} width={'100%'} height={500}/>
+                <Skeleton className={cls.skeleton} width={'100%'} height={300}/>
+            </div>
+        )
+    } else if (error) {
+        content = (
+            <Text
+                align={TextAlign.CENTER}
+                text={t('Произошла ошибка при загрузке страницы')}
+            />
+        )
+    } else {
+        content = (
+            <div>Manual Details</div>
+        )
+    }
+
     return (
         <DynamicModuleLoader reducers={reducers} removeAfterUnmount>
             <div className={classNames(cls.ManualDetails, {}, [className])}>
-                ManualDetails
+                {content}
             </div>
         </DynamicModuleLoader>
     )
