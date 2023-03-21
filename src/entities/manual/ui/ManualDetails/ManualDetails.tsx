@@ -42,19 +42,21 @@ export const ManualDetails = memo(({ className, id }: ManualDetailsProps) => {
     const renderBlock = useCallback((block: ManualBlock) => {
         switch (block.type) {
             case ManualBlockTypes.TEXT:
-                return <ManualBlockTextComponent className={cls.block} block={block} />
+                return <ManualBlockTextComponent className={cls.block} block={block} key={Math.random() * 123}/>
 
             case ManualBlockTypes.CODE:
-                return <ManualBlockCodeComponent className={cls.block}/>
+                return <ManualBlockCodeComponent className={cls.block} block={block} key={block.code}/>
             case ManualBlockTypes.IMAGE:
-                return <ManualBlockImageComponent className={cls.block}/>
+                return <ManualBlockImageComponent className={cls.block} block={block} key={block.src}/>
             default:
                 return null
         }
     }, [])
 
     useEffect(() => {
-        dispatch(fetchManualById(id))
+        if (__PROJECT__ !== 'storybook') {
+            dispatch(fetchManualById(id))
+        }
     }, [dispatch, id])
 
     let content

@@ -10,7 +10,6 @@ interface ManualsPageProps {
 const ManualsPage = ({ className }: ManualsPageProps) => {
     return (
         <div className={classNames(cls.ManualsPage, {}, [className])}>
-            MANUALS LIST PAGE
         </div>
     )
 }

@@ -18,8 +18,8 @@ export const ManualBlockTextComponent = memo(({ className, block }: ManualBlockT
                 <Text title={block.title} className={cls.title} />
             )}
             <Text text={'ManualBlockTextComponent'} />
-            {block.paragraphs.length && block.paragraphs.map((par, index) => (
-                <Text key={index} text={par.paragraph} className={cls.paragraph}/>
+            {block.paragraphs.length && block.paragraphs.map((par) => (
+                <Text key={par.paragraph} text={par.paragraph} className={cls.paragraph}/>
             ))}
         </div>
     )

@@ -1,16 +1,18 @@
 import { classNames } from 'shared/lib/classNames/classNames'
 import cls from './ManualBlockCodeComponent.module.scss'
 import { memo } from 'react'
+import { ManualCodeBlock } from '../../model/types/manual'
+import { Code } from 'shared/ui/Code/Code'
 
 interface ManualBlockCodeComponentProps {
     className?: string
-
+    block: ManualCodeBlock
 }
 
-export const ManualBlockCodeComponent = memo(({ className }: ManualBlockCodeComponentProps) => {
+export const ManualBlockCodeComponent = memo(({ className, block }: ManualBlockCodeComponentProps) => {
     return (
         <div className={classNames(cls.ManualBlockCodeComponent, {}, [className])}>
-            ManualBlockCodeComponent
+            <Code text={block.code} />
         </div>
     )
 })
