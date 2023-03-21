@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next'
 import { DynamicModuleLoader } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader'
 import { manualDetailsReducer } from '../../model/slice/manualDetailsSlice'
 import { memo, useCallback, useEffect } from 'react'
-import { fetchManualById } from 'entities/manual/model/services/fetchManualById/fetchManualById'
+import { fetchManualById } from '../../model/services/fetchManualById/fetchManualById'
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch'
 import { useSelector } from 'react-redux'
 import {

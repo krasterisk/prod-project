@@ -1,4 +1,4 @@
-import { Manual, ManualDetailsSchema } from 'entities/manual'
+import { Manual, ManualDetailsSchema } from 'entities/Manual'
 import { ManualBlockTypes, ManualHashtags } from '../../model/types/manual'
 import { manualDetailsReducer } from './manualDetailsSlice'
 import { fetchManualById } from '../services/fetchManualById/fetchManualById'
@@ -66,7 +66,7 @@ describe('profileSlice.test', () => {
         ]
     }
 
-    test('test get manual fulfilled', () => {
+    test('test get Manual fulfilled', () => {
         const state: DeepPartial<ManualDetailsSchema> = {
             isLoading: true
         }

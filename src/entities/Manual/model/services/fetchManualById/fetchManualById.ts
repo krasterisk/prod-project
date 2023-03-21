@@ -7,7 +7,7 @@ Manual,
 string,
 ThunkConfig<string>
 >(
-    'manual/fetchManualById',
+    'Manual/fetchManualById',
     async (manualId, thunkAPI) => {
         const { extra, rejectWithValue } = thunkAPI
 

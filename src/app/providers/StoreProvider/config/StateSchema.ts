@@ -5,7 +5,7 @@ import { AnyAction, CombinedState, EnhancedStore, Reducer, ReducersMapObject } f
 import { ProfileSchema } from 'features/EditableProfileCard'
 import { NavigateOptions, To } from 'react-router'
 import { AxiosInstance } from 'axios'
-import { ManualDetailsSchema } from 'entities/manual'
+import { ManualDetailsSchema } from 'entities/Manual'
 
 export interface StateSchema {
     counter: CounterSchema
