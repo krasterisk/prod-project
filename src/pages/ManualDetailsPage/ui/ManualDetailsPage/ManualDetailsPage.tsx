@@ -11,7 +11,7 @@ interface ManualDetailsPageProps {
 }
 
 const ManualDetailsPage = ({ className }: ManualDetailsPageProps) => {
-    const { t } = useTranslation('manual')
+    const { t } = useTranslation('manuals')
     const { id } = useParams<{ id: string }>()
 
     if (!id) {

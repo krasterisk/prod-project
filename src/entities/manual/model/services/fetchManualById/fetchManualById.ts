@@ -12,7 +12,7 @@ ThunkConfig<string>
         const { extra, rejectWithValue } = thunkAPI
 
         try {
-            const response = await extra.api.get<Manual>(`/posts/${manualId}`)
+            const response = await extra.api.get<Manual>(`/manuals/${manualId}`)
             if (!response.data) {
                 throw new Error()
             }

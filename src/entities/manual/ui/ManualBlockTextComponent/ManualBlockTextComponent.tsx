@@ -1,18 +1,26 @@
 import { classNames } from 'shared/lib/classNames/classNames'
 import cls from './ManualBlockTextComponent.module.scss'
-import { useTranslation } from 'react-i18next'
+import { memo } from 'react'
+import { ManualTextBlock } from '../../model/types/manual'
+import { Text } from 'shared/ui/Text/Text'
 
 interface ManualBlockTextComponentProps {
     className?: string
+    block: ManualTextBlock
 
 }
 
-export const ManualBlockTextComponent = ({ className }: ManualBlockTextComponentProps) => {
-    const { t } = useTranslation()
-
+export const ManualBlockTextComponent = memo(({ className, block }: ManualBlockTextComponentProps) => {
     return (
         <div className={classNames(cls.ManualBlockTextComponent, {}, [className])}>
-            ManualBlockTextComponent
+
+            {block.title && (
+                <Text title={block.title} className={cls.title} />
+            )}
+            <Text text={'ManualBlockTextComponent'} />
+            {block.paragraphs.length && block.paragraphs.map((par, index) => (
+                <Text key={index} text={par.paragraph} className={cls.paragraph}/>
+            ))}
         </div>
     )
-}
+})

@@ -36,7 +36,8 @@ export const DynamicModuleLoader: FC<DynamicModuleLoaderProps> = (props) => {
                 })
             }
         }
-    }, [])
+        // @ts-next-lint
+    }, [dispatch, reducers, removeAfterUnmount, store.reducerManager])
 
     return (
         <>

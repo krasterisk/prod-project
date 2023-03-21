@@ -3,7 +3,7 @@ import cls from './ManualDetails.module.scss'
 import { useTranslation } from 'react-i18next'
 import { DynamicModuleLoader } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader'
 import { manualDetailsReducer } from '../../model/slice/manualDetailsSlice'
-import { memo, useEffect } from 'react'
+import { memo, useCallback, useEffect } from 'react'
 import { fetchManualById } from 'entities/manual/model/services/fetchManualById/fetchManualById'
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch'
 import { useSelector } from 'react-redux'
@@ -12,8 +12,16 @@ import {
     getManualDetailsError,
     getManualDetailsIsLoading
 } from '../../model/selectors/manualDetails'
-import { Text, TextAlign } from 'shared/ui/Text/Text'
+import { Text, TextAlign, TextSize } from 'shared/ui/Text/Text'
 import { Skeleton } from 'shared/ui/Skeleton/Skeleton'
+import { Avatar } from 'shared/ui/Avatar/Avatar'
+import EyeIcon from 'shared/assets/icons/eye-20-20.svg'
+import CalendarIcon from 'shared/assets/icons/calendar-20-20.svg'
+import { Icon } from 'shared/ui/Icon/Icon'
+import { ManualBlock, ManualBlockTypes } from '../../model/types/manual'
+import { ManualBlockCodeComponent } from '../../ui/ManualBlockCodeComponent/ManualBlockCodeComponent'
+import { ManualBlockImageComponent } from '../../ui/ManualBlockImageComponent/ManualBlockImageComponent'
+import { ManualBlockTextComponent } from '../../ui/ManualBlockTextComponent/ManualBlockTextComponent'
 
 interface ManualDetailsProps {
     className?: string
@@ -27,10 +35,23 @@ const reducers = {
 export const ManualDetails = memo(({ className, id }: ManualDetailsProps) => {
     const { t } = useTranslation('manuals')
     const dispatch = useAppDispatch()
-    //    const isLoading = useSelector(getManualDetailsIsLoading)
-    const isLoading = true
+    const isLoading = useSelector(getManualDetailsIsLoading)
     const manual = useSelector(getManualDetailsData)
     const error = useSelector(getManualDetailsError)
+
+    const renderBlock = useCallback((block: ManualBlock) => {
+        switch (block.type) {
+            case ManualBlockTypes.TEXT:
+                return <ManualBlockTextComponent className={cls.block} block={block} />
+
+            case ManualBlockTypes.CODE:
+                return <ManualBlockCodeComponent className={cls.block}/>
+            case ManualBlockTypes.IMAGE:
+                return <ManualBlockImageComponent className={cls.block}/>
+            default:
+                return null
+        }
+    }, [])
 
     useEffect(() => {
         dispatch(fetchManualById(id))
@@ -39,14 +60,14 @@ export const ManualDetails = memo(({ className, id }: ManualDetailsProps) => {
     let content
     if (isLoading) {
         content = (
-            <div>
+            <>
                 <Skeleton className={cls.avatar} width={200} height={200} border={'50%'}/>
                 <Skeleton className={cls.title} width={300} height={32}/>
                 <Skeleton className={cls.skeleton} width={600} height={24}/>
                 <Skeleton className={cls.skeleton} width={'100%'} height={200}/>
                 <Skeleton className={cls.skeleton} width={'100%'} height={500}/>
                 <Skeleton className={cls.skeleton} width={'100%'} height={300}/>
-            </div>
+            </>
         )
     } else if (error) {
         content = (
@@ -57,7 +78,33 @@ export const ManualDetails = memo(({ className, id }: ManualDetailsProps) => {
         )
     } else {
         content = (
-            <div>Manual Details</div>
+            <>
+
+                <Avatar
+                    className={classNames(cls.avatar, {}, [cls.avatarWrapper])}
+                    size={200}
+                    src={manual?.image}
+                />
+                <Text
+                    className={cls.title}
+                    title={manual?.title}
+                    text={manual?.subtitle}
+                    size={TextSize.L}
+                />
+                <div className={cls.articleInfo}>
+                    <Icon Svg={EyeIcon} className={cls.icon}/>
+                    <Text
+                        text={String(manual?.views)}
+                    />
+                </div>
+                <div className={cls.articleInfo}>
+                    <Icon Svg={CalendarIcon} className={cls.icon}/>
+                    <Text
+                        text={manual?.createdAt}
+                    />
+                </div>
+                {manual?.blocks.map(renderBlock)}
+            </>
         )
     }
 

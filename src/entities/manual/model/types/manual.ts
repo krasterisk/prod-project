@@ -22,10 +22,16 @@ export interface ManualImageBlock extends ManualBlockBase {
     title: string
 }
 
+export interface ManualTextParagraph {
+    id: string
+    paragraph: string
+    blockTextId: string
+}
+
 export interface ManualTextBlock extends ManualBlockBase {
     type: ManualBlockTypes.TEXT
     title?: string
-    paragraphs: string[]
+    paragraphs: ManualTextParagraph[]
 }
 
 export type ManualBlock = ManualCodeBlock | ManualImageBlock | ManualTextBlock
@@ -42,8 +48,9 @@ export interface Manual {
     id: string
     title: string
     subtitle: string
-    img: string
+    image: string
     views: number
+    createdAt: string
     hashtags: ManualHashtags[]
     blocks: ManualBlock[]
 }
