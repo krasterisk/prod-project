@@ -6,6 +6,7 @@ import { ProfileSchema } from 'features/EditableProfileCard'
 import { NavigateOptions, To } from 'react-router'
 import { AxiosInstance } from 'axios'
 import { ManualDetailsSchema } from 'entities/Manual'
+import { ManualDetailsCommentsSchema } from 'pages/ManualDetailsPage'
 
 export interface StateSchema {
     counter: CounterSchema
@@ -15,6 +16,7 @@ export interface StateSchema {
     loginForm?: LoginSchema
     profileForm?: ProfileSchema
     manualDetails?: ManualDetailsSchema
+    manualDetailsComments?: ManualDetailsCommentsSchema
 }
 
 export type StateSchemaKey = keyof StateSchema

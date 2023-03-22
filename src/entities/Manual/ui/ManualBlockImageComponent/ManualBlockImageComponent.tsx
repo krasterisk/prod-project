@@ -12,7 +12,7 @@ interface ManualBlockImageComponentProps {
 export const ManualBlockImageComponent = memo(({ className, block }: ManualBlockImageComponentProps) => {
     return (
         <div className={classNames(cls.ManualBlockImageComponent, {}, [className])}>
-            <img src={block.src} className={cls.img} alt={block.title} />
+            <img src={block.src} className={cls.img} alt={block.title}/>
             {block.title && (
                 <Text title={block.title} align={TextAlign.CENTER} size={TextSize.S}/>
             )}

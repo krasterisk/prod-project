@@ -9,13 +9,14 @@ import { Comments } from '../../model/types/comments'
 interface CommentListProps {
     className?: string
     comments?: Comments[]
-
+    isLoading?: boolean
 }
 
 export const CommentList = memo((props: CommentListProps) => {
     const {
         className,
-        comments
+        comments,
+        isLoading
     } = props
     const { t } = useTranslation()
 
@@ -23,7 +24,10 @@ export const CommentList = memo((props: CommentListProps) => {
         <div className={classNames(cls.CommentList, {}, [className])}>
             {comments?.length
                 ? comments.map(comment => (
-                    <CommentCard comment={comment} />
+                    <CommentCard
+                        isLoading={isLoading}
+                        comment={comment}
+                        className={cls.comment} key={comment.id} />
                 ))
                 : <Text text={t('Пока нет комментариев')}/>
             }

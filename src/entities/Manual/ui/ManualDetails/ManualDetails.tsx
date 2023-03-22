@@ -3,10 +3,8 @@ import cls from './ManualDetails.module.scss'
 import { useTranslation } from 'react-i18next'
 import { DynamicModuleLoader } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader'
 import { manualDetailsReducer } from '../../model/slice/manualDetailsSlice'
-import { memo, useCallback, useEffect } from 'react'
-import { fetchManualById } from '../../model/services/fetchManualById/fetchManualById'
-import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch'
-import { useSelector } from 'react-redux'
+import { memo, useCallback } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import {
     getManualDetailsData,
     getManualDetailsError,
@@ -22,6 +20,8 @@ import { ManualBlock, ManualBlockTypes } from '../../model/types/manual'
 import { ManualBlockCodeComponent } from '../../ui/ManualBlockCodeComponent/ManualBlockCodeComponent'
 import { ManualBlockImageComponent } from '../../ui/ManualBlockImageComponent/ManualBlockImageComponent'
 import { ManualBlockTextComponent } from '../../ui/ManualBlockTextComponent/ManualBlockTextComponent'
+import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect/useInitialEffect'
+import { fetchManualById } from '../../model/services/fetchManualById/fetchManualById'
 
 interface ManualDetailsProps {
     className?: string
@@ -34,10 +34,14 @@ const reducers = {
 
 export const ManualDetails = memo(({ className, id }: ManualDetailsProps) => {
     const { t } = useTranslation('manuals')
-    const dispatch = useAppDispatch()
     const isLoading = useSelector(getManualDetailsIsLoading)
     const manual = useSelector(getManualDetailsData)
     const error = useSelector(getManualDetailsError)
+    const dispatch = useDispatch()
+
+    useInitialEffect(() => {
+        dispatch(fetchManualById(id))
+    })
 
     const renderBlock = useCallback((block: ManualBlock) => {
         switch (block.type) {
@@ -52,12 +56,6 @@ export const ManualDetails = memo(({ className, id }: ManualDetailsProps) => {
                 return null
         }
     }, [])
-
-    useEffect(() => {
-        if (__PROJECT__ !== 'storybook') {
-            dispatch(fetchManualById(id))
-        }
-    }, [dispatch, id])
 
     let content
     if (isLoading) {

@@ -7,7 +7,6 @@ import { Text } from 'shared/ui/Text/Text'
 interface ManualBlockTextComponentProps {
     className?: string
     block: ManualTextBlock
-
 }
 
 export const ManualBlockTextComponent = memo(({ className, block }: ManualBlockTextComponentProps) => {
