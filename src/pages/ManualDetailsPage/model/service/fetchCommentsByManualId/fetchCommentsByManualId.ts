@@ -16,7 +16,7 @@ ThunkConfig<string>
         }
 
         try {
-            const response = await extra.api.get<Comments[]>(`/manuals/comments/${manualId}`)
+            const response = await extra.api.get<Comments[]>(`/comments/${manualId}`)
             if (!response.data) {
                 throw new Error()
             }
