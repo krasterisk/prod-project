@@ -12,7 +12,8 @@ describe('profileSlice.test', () => {
         username: 'Username',
         email: 'mail@email.com',
         country: Country.Russia,
-        currency: Currency.RUB
+        currency: Currency.RUB,
+        id: '1'
     }
     test('test set readonly', () => {
         const state: DeepPartial<ProfileSchema> = { readonly: false }

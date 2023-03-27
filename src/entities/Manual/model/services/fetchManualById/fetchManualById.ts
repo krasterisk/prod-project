@@ -13,6 +13,7 @@ ThunkConfig<string>
 
         try {
             const response = await extra.api.get<Manual>(`/manuals/${manualId}`)
+            console.log(response)
             if (!response.data) {
                 throw new Error()
             }

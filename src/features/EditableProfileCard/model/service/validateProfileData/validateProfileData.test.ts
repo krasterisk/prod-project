@@ -10,7 +10,8 @@ const data = {
     username: 'Username',
     email: 'mail@email.com',
     country: Country.Russia,
-    currency: Currency.RUB
+    currency: Currency.RUB,
+    id: '1'
 }
 
 describe('validateProfileData.test', () => {

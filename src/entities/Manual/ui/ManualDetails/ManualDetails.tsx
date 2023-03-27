@@ -1,7 +1,7 @@
 import { classNames } from 'shared/lib/classNames/classNames'
 import cls from './ManualDetails.module.scss'
 import { useTranslation } from 'react-i18next'
-import { DynamicModuleLoader } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader'
+import { DynamicModuleLoader, ReducersList } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader'
 import { manualDetailsReducer } from '../../model/slice/manualDetailsSlice'
 import { memo, useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
@@ -28,7 +28,7 @@ interface ManualDetailsProps {
     id: string
 }
 
-const reducers = {
+const reducers: ReducersList = {
     manualDetails: manualDetailsReducer
 }
 

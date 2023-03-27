@@ -1,7 +1,7 @@
 import { classNames } from 'shared/lib/classNames/classNames'
 import cls from './ManualDetailsPage.module.scss'
 import { useTranslation } from 'react-i18next'
-import { memo } from 'react'
+import { memo, useCallback } from 'react'
 import { ManualDetails } from 'entities/Manual'
 import { useParams } from 'react-router-dom'
 import { Text } from 'shared/ui/Text/Text'
@@ -12,6 +12,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getManualCommentsIsLoading } from '../../model/selectors/comments'
 import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect/useInitialEffect'
 import { fetchCommentsByManualId } from '../../model/service/fetchCommentsByManualId/fetchCommentsByManualId'
+import { AddCommentForm } from 'features/AddCommentForm'
+import { addCommentForManual } from '../../model/service/addCommentForManual/addCommentForManual'
 
 interface ManualDetailsPageProps {
     className?: string
@@ -28,6 +30,10 @@ const ManualDetailsPage = ({ className }: ManualDetailsPageProps) => {
     const comments = useSelector(getManualComments.selectAll)
     const commentsIsLoading = useSelector(getManualCommentsIsLoading)
     const dispatch = useDispatch()
+
+    const onSendComment = useCallback((text: string) => {
+        dispatch(addCommentForManual(text))
+    }, [dispatch])
 
     useInitialEffect(() => {
         dispatch(fetchCommentsByManualId(id))
@@ -46,6 +52,7 @@ const ManualDetailsPage = ({ className }: ManualDetailsPageProps) => {
             <div className={classNames(cls.ManualDetailsPage, {}, [className])}>
                 <ManualDetails id={id}/>
                 <Text className={cls.commentTitle} title={t('Комментарии')} />
+                <AddCommentForm onSendComment={onSendComment}/>
                 <CommentList isLoading={commentsIsLoading} comments={comments}/>
             </div>
         </DynamicModuleLoader>
