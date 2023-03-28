@@ -6,6 +6,11 @@ export enum ManualBlockTypes {
     NOTE = 'NOTE'
 }
 
+export enum ManualView {
+    BIG = 'BIG',
+    SMALL = 'SMALL'
+}
+
 export interface ManualBlockBase {
     id: string
     type: ManualBlockTypes
