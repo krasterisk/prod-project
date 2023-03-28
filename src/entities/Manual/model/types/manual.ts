@@ -1,3 +1,4 @@
+import { User } from '../../../User/model/types/user'
 
 export enum ManualBlockTypes {
     TEXT = 'TEXT',
@@ -6,10 +7,7 @@ export enum ManualBlockTypes {
     NOTE = 'NOTE'
 }
 
-export enum ManualView {
-    BIG = 'BIG',
-    SMALL = 'SMALL'
-}
+export type ManualView = 'SMALL' | 'BIG'
 
 export interface ManualBlockBase {
     id: string
@@ -54,6 +52,7 @@ export interface Manual {
     title: string
     subtitle: string
     image: string
+    user: User
     views: number
     createdAt: string
     hashtags: ManualHashtags[]

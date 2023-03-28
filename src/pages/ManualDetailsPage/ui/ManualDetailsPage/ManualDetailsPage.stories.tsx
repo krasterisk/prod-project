@@ -22,6 +22,11 @@ const manual: Manual = {
     subtitle: 'Testing',
     image: 'https://krasterisk.ru/logos/logo.svg',
     views: 1022,
+    user: {
+        id: '2',
+        username: 'Ivan',
+        avatar: 'https://krasterisk.ru/logos/logo.svg'
+    },
     hashtags: [ManualHashtags.IT, ManualHashtags.IP_PHONES],
     blocks: [
         {

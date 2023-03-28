@@ -10,6 +10,10 @@ describe('profileSlice.test', () => {
         subtitle: 'Testing',
         image: 'https://krasterisk.ru/logos/logo.svg',
         views: 1022,
+        user: {
+            id: '2',
+            username: 'Ivan'
+        },
         createdAt: '2023-03-21',
         hashtags: [ManualHashtags.IT, ManualHashtags.IP_PHONES],
         blocks: [

@@ -3,7 +3,7 @@ import cls from './ManualDetailsPage.module.scss'
 import { useTranslation } from 'react-i18next'
 import { memo, useCallback } from 'react'
 import { ManualDetails } from 'entities/Manual'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { Text } from 'shared/ui/Text/Text'
 import { CommentList } from 'entities/Comment'
 import { DynamicModuleLoader, ReducersList } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader'
@@ -14,10 +14,11 @@ import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect/useInitialEf
 import { fetchCommentsByManualId } from '../../model/service/fetchCommentsByManualId/fetchCommentsByManualId'
 import { AddCommentForm } from 'features/AddCommentForm'
 import { addCommentForManual } from '../../model/service/addCommentForManual/addCommentForManual'
+import { Button, ButtonTheme } from 'shared/ui/Button/Button'
+import { RoutePath } from 'shared/config/routeConfig/routeConfig'
 
 interface ManualDetailsPageProps {
     className?: string
-
 }
 
 const reducers: ReducersList = {
@@ -30,10 +31,15 @@ const ManualDetailsPage = ({ className }: ManualDetailsPageProps) => {
     const comments = useSelector(getManualComments.selectAll)
     const commentsIsLoading = useSelector(getManualCommentsIsLoading)
     const dispatch = useDispatch()
+    const navigate = useNavigate()
 
     const onSendComment = useCallback((text: string) => {
         dispatch(addCommentForManual(text))
     }, [dispatch])
+
+    const onBackToList = useCallback(() => {
+        navigate(RoutePath.manuals)
+    }, [navigate])
 
     useInitialEffect(() => {
         dispatch(fetchCommentsByManualId(id))
@@ -50,6 +56,9 @@ const ManualDetailsPage = ({ className }: ManualDetailsPageProps) => {
     return (
         <DynamicModuleLoader reducers={reducers} removeAfterUnmount>
             <div className={classNames(cls.ManualDetailsPage, {}, [className])}>
+                <Button theme={ButtonTheme.OUTLINE} onClick={onBackToList}>
+                    {t('Назад к списку')}
+                </Button>
                 <ManualDetails id={id}/>
                 <Text className={cls.commentTitle} title={t('Комментарии')} />
                 <AddCommentForm onSendComment={onSendComment}/>

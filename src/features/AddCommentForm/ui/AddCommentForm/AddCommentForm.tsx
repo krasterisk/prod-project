@@ -5,7 +5,7 @@ import { memo, useCallback } from 'react'
 import { Input } from 'shared/ui/Input/Input'
 import { Button, ButtonTheme } from 'shared/ui/Button/Button'
 import { useSelector } from 'react-redux'
-import { addCommentFormError, addCommentFormText } from '../../model/selectors/addCommentFormSelectors'
+import { addCommentFormText } from '../../model/selectors/addCommentFormSelectors'
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch'
 import { AddCommentFormActions, AddCommentFormReducer } from '../../model/slice/AddCommentFormSlice'
 import { DynamicModuleLoader, ReducersList } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader'
@@ -27,7 +27,7 @@ const AddCommentForm = memo((props: AddCommentFormProps) => {
 
     const { t } = useTranslation('manuals')
     const text = useSelector(addCommentFormText)
-    const error = useSelector(addCommentFormError)
+    //    const error = useSelector(addCommentFormError)
     const dispatch = useAppDispatch()
 
     const onCommentTextChange = useCallback((value: string) => {

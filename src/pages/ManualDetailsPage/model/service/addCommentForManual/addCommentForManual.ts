@@ -2,11 +2,8 @@ import { createAsyncThunk } from '@reduxjs/toolkit'
 import { ThunkConfig } from 'app/providers/StoreProvider'
 import { getUserAuthData } from 'entities/User'
 import { getManualDetailsData } from 'entities/Manual/model/selectors/manualDetails'
-import jwtDecode from 'jwt-decode'
 import { Comments } from 'entities/Comment'
-import {
-    fetchCommentsByManualId
-} from '../../service/fetchCommentsByManualId/fetchCommentsByManualId'
+import { fetchCommentsByManualId } from '../../service/fetchCommentsByManualId/fetchCommentsByManualId'
 import { getTokenData } from 'shared/api/getTokenData/getTokenData'
 
 export const addCommentForManual = createAsyncThunk<

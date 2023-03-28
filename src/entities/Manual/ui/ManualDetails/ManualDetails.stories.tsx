@@ -6,7 +6,7 @@ import { Manual } from 'entities/Manual'
 import { ManualBlockTypes, ManualHashtags } from '../../model/types/manual'
 
 export default {
-    title: 'entities/ManualDetails',
+    title: 'entities/Manual/ManualDetails',
     component: ManualDetails,
     argTypes: {
         backgroundColor: { control: 'color' }
@@ -22,6 +22,11 @@ const manual: Manual = {
     subtitle: 'Testing',
     image: 'https://krasterisk.ru/logos/logo.svg',
     views: 1022,
+    user: {
+        id: '2',
+        username: 'Ivan',
+        avatar: 'https://krasterisk.ru/logos/logo.svg'
+    },
     hashtags: [ManualHashtags.IT, ManualHashtags.IP_PHONES],
     blocks: [
         {
