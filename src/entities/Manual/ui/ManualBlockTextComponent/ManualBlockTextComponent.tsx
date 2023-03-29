@@ -16,7 +16,6 @@ export const ManualBlockTextComponent = memo(({ className, block }: ManualBlockT
             {block.title && (
                 <Text title={block.title} className={cls.title} />
             )}
-            <Text text={'ManualBlockTextComponent'} />
             {block.paragraphs.length && block.paragraphs.map((par) => (
                 <Text key={par.paragraph} text={par.paragraph} className={cls.paragraph}/>
             ))}

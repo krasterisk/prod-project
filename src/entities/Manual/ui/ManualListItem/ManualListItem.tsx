@@ -32,17 +32,17 @@ export const ManualListItem = memo((props: ManualListItemProps) => {
     }, [manual.id, navigate])
 
     const { t } = useTranslation('manuals')
-    const hashtags = <Text text={manual.hashtags.join(', ')} className={cls.types}/>
+
+    const hashtags = <Text text={manual.hashtags.map((hashtag) => hashtag.title).join(', ')} className={cls.types}/>
     const views = (
         <>
-            <Text text={String(manual.views)} className={cls.views}/>
+            <Text text={String(manual.views)} className={cls.views} />
             <Icon Svg={EyeLogo}></Icon>
         </>
     )
 
     if (view === 'BIG') {
-        const textBlock = manual.blocks.find(
-            (block) => block.type === ManualBlockTypes.TEXT
+        const textBlock = manual.blocks.find((block) => block.type === ManualBlockTypes.TEXT
         ) as ManualTextBlock
 
         return (

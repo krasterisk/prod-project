@@ -22,14 +22,14 @@ jobs:
       - name: build project
         run: npm run build:prod
         if: always()
-#      - name: lint test
-#        run: npm run lint:ts
-#        if: always()
-#      - name: lint css test
-#        run: npm run lint:scss
-#      - name: jest unit tests
-#        run: npm run test:unit
-#        if: always()
+      - name: lint test
+        run: npm run lint:ts
+        if: always()
+      - name: lint css test
+        run: npm run lint:scss
+      - name: jest unit tests
+        run: npm run test:unit
+        if: always()
 #      - name: build storybook
 #        run: npm run storybook:build
 #        if: always()

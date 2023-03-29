@@ -12,3 +12,5 @@ export type {
 } from './model/types/manualDetailsSchema'
 
 export { ManualList } from './ui/ManualList/ManualList'
+
+export { ManualViewSelector } from './ui/ManualViewSelector/ManualViewSelector'

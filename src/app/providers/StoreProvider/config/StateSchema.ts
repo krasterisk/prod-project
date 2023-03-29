@@ -8,6 +8,7 @@ import { AxiosInstance } from 'axios'
 import { ManualDetailsSchema } from 'entities/Manual'
 import { ManualDetailsCommentsSchema } from 'pages/ManualDetailsPage'
 import { AddCommentFormSchema } from 'features/AddCommentForm/model/types/addCommentForm'
+import { ManualsPageSchema } from 'pages/ManualsPage'
 
 export interface StateSchema {
     counter: CounterSchema
@@ -19,6 +20,7 @@ export interface StateSchema {
     manualDetails?: ManualDetailsSchema
     manualDetailsComments?: ManualDetailsCommentsSchema
     addCommentForm?: AddCommentFormSchema
+    manualsPage?: ManualsPageSchema
 }
 
 export type StateSchemaKey = keyof StateSchema

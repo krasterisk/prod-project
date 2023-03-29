@@ -39,7 +39,12 @@ export interface ManualTextBlock extends ManualBlockBase {
 
 export type ManualBlock = ManualCodeBlock | ManualImageBlock | ManualTextBlock
 
-export enum ManualHashtags {
+export interface ManualHashtags {
+    title: ManualHashtagsTypes
+    postId: number
+}
+
+export enum ManualHashtagsTypes {
     IT = 'IT',
     INBOUND_CALL_CENTER = 'INBOUND_CALL_CENTER',
     PBX = 'PBX',

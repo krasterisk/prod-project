@@ -1,221 +1,50 @@
 import { classNames } from 'shared/lib/classNames/classNames'
 import cls from './ManualsPage.module.scss'
-import { memo } from 'react'
-import { ManualList } from 'entities/Manual'
-import { ManualBlockTypes, ManualHashtags } from 'entities/Manual/model/types/manual'
+import { memo, useCallback } from 'react'
+import { ManualList, ManualView, ManualViewSelector } from 'entities/Manual'
+import { DynamicModuleLoader, ReducersList } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader'
+import { getManuals, manualPageActions, manualPageReducer } from '../../model/slice/manualPageSlice'
+import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect/useInitialEffect'
+import { fetchManualsList } from '../../model/services/fetchManualsList/fetchManualsList'
+import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch'
+import { useSelector } from 'react-redux'
+import { getManualsPageIsLoading, getManualsPageView } from '../../model/selectors/manualsPageSelectors'
 
 interface ManualsPageProps {
     className?: string
+}
 
+const reducers: ReducersList = {
+    manualsPage: manualPageReducer
 }
 
 const ManualsPage = ({ className }: ManualsPageProps) => {
+    const dispatch = useAppDispatch()
+    const manuals = useSelector(getManuals.selectAll)
+    const isLoading = useSelector(getManualsPageIsLoading)
+    //    const error = useSelector(getManualsPageError)
+    const view = useSelector(getManualsPageView)
+
+    useInitialEffect(() => {
+        dispatch(fetchManualsList())
+        dispatch(manualPageActions.initState())
+    })
+
+    const onChangeView = useCallback((view: ManualView) => {
+        dispatch(manualPageActions.setView(view))
+    }, [dispatch])
+
     return (
-        <div className={classNames(cls.ManualsPage, {}, [className])}>
-            <ManualList
-                view={'SMALL'}
-                manuals={[
-                    {
-                        id: '2',
-                        title: 'TEST ADMIN MANUAL PAGE',
-                        subtitle: 'Testing',
-                        image: 'https://krasterisk.ru/logos/logo.svg',
-                        user: {
-                            id: '2',
-                            username: 'Ivan',
-                            avatar: 'https://krasterisk.ru/logos/logo.svg'
-                        },
-                        hashtags: [ManualHashtags.IT, ManualHashtags.PBX, ManualHashtags.IP_PHONES, ManualHashtags.INBOUND_CALL_CENTER, ManualHashtags.OUTBOUND_CALL_CENTER],
-                        views: 1022,
-                        createdAt: '2023-03-21T05:17:51.000Z',
-                        blocks: [
-                            {
-                                id: '3',
-                                title: 'Заголовок этого блока',
-                                type: ManualBlockTypes.TEXT,
-                                paragraphs: [
-                                    {
-                                        id: '5',
-                                        paragraph: 'Программа, которую по традиции называют «Hello, world!», очень проста. Она выводит куда-либо фразу «Hello, world!», или другую подобную, средствами некоего языка.',
-                                        blockTextId: '3'
-                                    },
-                                    {
-                                        id: '6',
-                                        paragraph: 'Программа2, которую по традиции называют «Hello, world!», очень проста. Она выводит куда-либо фразу «Hello, world!», или другую подобную, средствами некоего языка.',
-                                        blockTextId: '3'
-                                    }
-                                ]
-                            },
-                            {
-                                id: '4',
-                                title: 'Заголовок второго блока',
-                                type: ManualBlockTypes.TEXT,
-                                paragraphs: [
-                                    {
-                                        id: '7',
-                                        paragraph: 'Программа5, которую по традиции называют «Hello, world!», очень проста. Она выводит куда-либо фразу «Hello, world!», или другую подобную, средствами некоего языка.',
-                                        blockTextId: '4'
-                                    },
-                                    {
-                                        id: '8',
-                                        paragraph: 'Программа4, которую по традиции называют «Hello, world!», очень проста. Она выводит куда-либо фразу «Hello, world!», или другую подобную, средствами некоего языка.',
-                                        blockTextId: '4'
-                                    }
-                                ]
-                            },
-                            {
-                                id: '2',
-                                title: 'super image',
-                                type: ManualBlockTypes.IMAGE,
-                                src: 'https://krasterisk.ru/logos/logo.svg'
-                            },
-                            {
-                                id: '3',
-                                type: ManualBlockTypes.CODE,
-                                code: '<!DOCTYPE html>\n<html>\n  <body>\n    <p id="hello"></p>\n\n    <script>\n      document.getElementById("hello").innerHTML = "Hello, world!";\n    </script>\n  </body>\n</html>;'
-                            },
-                            {
-                                id: '4',
-                                type: ManualBlockTypes.CODE,
-                                code: '2<!DOCTYPE html>\n<html>\n  <body>\n    <p id="hello"></p>\n\n    <script>\n      document.getElementById("hello").innerHTML = "Hello, world!";\n    </script>\n  </body>\n</html>;'
-                            }
-                        ]
-                    },
-                    {
-                        id: '3',
-                        title: 'TEST ADMIN MANUAL PAGE',
-                        subtitle: 'Testing',
-                        image: 'https://krasterisk.ru/logos/logo.svg',
-                        hashtags: [ManualHashtags.IT, ManualHashtags.PBX, ManualHashtags.IP_PHONES, ManualHashtags.INBOUND_CALL_CENTER, ManualHashtags.OUTBOUND_CALL_CENTER],
-                        views: 1022,
-                        user: {
-                            id: '2',
-                            username: 'Ivan',
-                            avatar: 'https://krasterisk.ru/logos/logo.svg'
-                        },
-                        createdAt: '2023-03-21T05:17:51.000Z',
-                        blocks: [
-                            {
-                                id: '30',
-                                title: 'Заголовок этого блока',
-                                type: ManualBlockTypes.TEXT,
-                                paragraphs: [
-                                    {
-                                        id: '5',
-                                        paragraph: 'Программа, которую по традиции называют «Hello, world!», очень проста. Она выводит куда-либо фразу «Hello, world!», или другую подобную, средствами некоего языка.',
-                                        blockTextId: '3'
-                                    },
-                                    {
-                                        id: '6',
-                                        paragraph: 'Программа2, которую по традиции называют «Hello, world!», очень проста. Она выводит куда-либо фразу «Hello, world!», или другую подобную, средствами некоего языка.',
-                                        blockTextId: '3'
-                                    }
-                                ]
-                            },
-                            {
-                                id: '4',
-                                title: 'Заголовок второго блока',
-                                type: ManualBlockTypes.TEXT,
-                                paragraphs: [
-                                    {
-                                        id: '7',
-                                        paragraph: 'Программа5, которую по традиции называют «Hello, world!», очень проста. Она выводит куда-либо фразу «Hello, world!», или другую подобную, средствами некоего языка.',
-                                        blockTextId: '4'
-                                    },
-                                    {
-                                        id: '8',
-                                        paragraph: 'Программа4, которую по традиции называют «Hello, world!», очень проста. Она выводит куда-либо фразу «Hello, world!», или другую подобную, средствами некоего языка.',
-                                        blockTextId: '4'
-                                    }
-                                ]
-                            },
-                            {
-                                id: '2',
-                                title: 'super image',
-                                type: ManualBlockTypes.IMAGE,
-                                src: 'https://krasterisk.ru/logos/logo.svg'
-                            },
-                            {
-                                id: '3',
-                                type: ManualBlockTypes.CODE,
-                                code: '<!DOCTYPE html>\n<html>\n  <body>\n    <p id="hello"></p>\n\n    <script>\n      document.getElementById("hello").innerHTML = "Hello, world!";\n    </script>\n  </body>\n</html>;'
-                            },
-                            {
-                                id: '4',
-                                type: ManualBlockTypes.CODE,
-                                code: '2<!DOCTYPE html>\n<html>\n  <body>\n    <p id="hello"></p>\n\n    <script>\n      document.getElementById("hello").innerHTML = "Hello, world!";\n    </script>\n  </body>\n</html>;'
-                            }
-                        ]
-                    },
-                    {
-                        id: '5',
-                        title: 'TEST ADMIN MANUAL PAGE',
-                        subtitle: 'Testing',
-                        image: 'https://krasterisk.ru/logos/logo.svg',
-                        hashtags: [ManualHashtags.IT, ManualHashtags.PBX, ManualHashtags.IP_PHONES, ManualHashtags.INBOUND_CALL_CENTER, ManualHashtags.OUTBOUND_CALL_CENTER],
-                        views: 1022,
-                        user: {
-                            id: '2',
-                            username: 'Ivan',
-                            avatar: 'https://krasterisk.ru/logos/logo.svg'
-                        },
-                        createdAt: '2023-03-21T05:17:51.000Z',
-                        blocks: [
-                            {
-                                id: '3',
-                                title: 'Заголовок этого блока',
-                                type: ManualBlockTypes.TEXT,
-                                paragraphs: [
-                                    {
-                                        id: '5',
-                                        paragraph: 'Программа, которую по традиции называют «Hello, world!», очень проста. Она выводит куда-либо фразу «Hello, world!», или другую подобную, средствами некоего языка.',
-                                        blockTextId: '3'
-                                    },
-                                    {
-                                        id: '6',
-                                        paragraph: 'Программа2, которую по традиции называют «Hello, world!», очень проста. Она выводит куда-либо фразу «Hello, world!», или другую подобную, средствами некоего языка.',
-                                        blockTextId: '3'
-                                    }
-                                ]
-                            },
-                            {
-                                id: '4',
-                                title: 'Заголовок второго блока',
-                                type: ManualBlockTypes.TEXT,
-                                paragraphs: [
-                                    {
-                                        id: '7',
-                                        paragraph: 'Программа5, которую по традиции называют «Hello, world!», очень проста. Она выводит куда-либо фразу «Hello, world!», или другую подобную, средствами некоего языка.',
-                                        blockTextId: '4'
-                                    },
-                                    {
-                                        id: '8',
-                                        paragraph: 'Программа4, которую по традиции называют «Hello, world!», очень проста. Она выводит куда-либо фразу «Hello, world!», или другую подобную, средствами некоего языка.',
-                                        blockTextId: '4'
-                                    }
-                                ]
-                            },
-                            {
-                                id: '2',
-                                title: 'super image',
-                                type: ManualBlockTypes.IMAGE,
-                                src: 'https://krasterisk.ru/logos/logo.svg'
-                            },
-                            {
-                                id: '3',
-                                type: ManualBlockTypes.CODE,
-                                code: '<!DOCTYPE html>\n<html>\n  <body>\n    <p id="hello"></p>\n\n    <script>\n      document.getElementById("hello").innerHTML = "Hello, world!";\n    </script>\n  </body>\n</html>;'
-                            },
-                            {
-                                id: '4',
-                                type: ManualBlockTypes.CODE,
-                                code: '2<!DOCTYPE html>\n<html>\n  <body>\n    <p id="hello"></p>\n\n    <script>\n      document.getElementById("hello").innerHTML = "Hello, world!";\n    </script>\n  </body>\n</html>;'
-                            }
-                        ]
-                    }
-                ]
-                } />
-        </div>
+        <DynamicModuleLoader reducers={reducers}>
+            <div className={classNames(cls.ManualsPage, {}, [className])}>
+                <ManualViewSelector view={view} onViewClick={onChangeView} />
+                <ManualList
+                    isLoading={isLoading}
+                    view={view}
+                    manuals={manuals}
+                />
+            </div>
+        </DynamicModuleLoader>
     )
 }
 

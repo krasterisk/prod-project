@@ -1,8 +1,8 @@
 import React from 'react'
-import { ComponentStory, ComponentMeta } from '@storybook/react'
+import { ComponentMeta, ComponentStory } from '@storybook/react'
 import ManualDetailsPage from './ManualDetailsPage'
 import { Manual } from 'entities/Manual'
-import { ManualBlockTypes, ManualHashtags } from 'entities/Manual/model/types/manual'
+import { ManualBlockTypes } from 'entities/Manual/model/types/manual'
 import { StoreDecorator } from 'shared/config/storybook/StoreDecorator/StoreDecorator'
 
 export default {
@@ -27,7 +27,7 @@ const manual: Manual = {
         username: 'Ivan',
         avatar: 'https://krasterisk.ru/logos/logo.svg'
     },
-    hashtags: [ManualHashtags.IT, ManualHashtags.IP_PHONES],
+    hashtags: [],
     blocks: [
         {
             id: '1',

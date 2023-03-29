@@ -3,7 +3,7 @@ import cls from './ManualList.module.scss'
 import { memo } from 'react'
 import { Manual, ManualView } from '../../model/types/manual'
 import { ManualListItem } from '../ManualListItem/ManualListItem'
-import { ManualListItemSkeleton } from 'entities/Manual/ui/ManualListItem/ManualListItemSkeleton'
+import { ManualListItemSkeleton } from '../ManualListItem/ManualListItemSkeleton'
 
 interface ManualListProps {
     className?: string
@@ -16,7 +16,7 @@ const getSkeletons = (view: ManualView) => {
     return new Array(view === 'SMALL' ? 9 : 3)
         .fill(0)
         .map((item, index) => (
-            <ManualListItemSkeleton className={cls.card} key={index} view={view}/>
+            <ManualListItemSkeleton className={cls.card} key={index} view={view} />
         ))
 }
 export const ManualList = memo((props: ManualListProps) => {

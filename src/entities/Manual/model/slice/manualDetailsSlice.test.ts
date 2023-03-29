@@ -1,5 +1,5 @@
 import { Manual, ManualDetailsSchema } from 'entities/Manual'
-import { ManualBlockTypes, ManualHashtags } from '../../model/types/manual'
+import { ManualBlockTypes } from '../../model/types/manual'
 import { manualDetailsReducer } from './manualDetailsSlice'
 import { fetchManualById } from '../services/fetchManualById/fetchManualById'
 
@@ -15,7 +15,7 @@ describe('profileSlice.test', () => {
             username: 'Ivan'
         },
         createdAt: '2023-03-21',
-        hashtags: [ManualHashtags.IT, ManualHashtags.IP_PHONES],
+        hashtags: [],
         blocks: [
             {
                 id: '1',

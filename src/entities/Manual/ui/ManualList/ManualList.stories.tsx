@@ -1,7 +1,7 @@
 import React from 'react'
 import { ComponentMeta, ComponentStory } from '@storybook/react'
 import { ManualList } from './ManualList'
-import { Manual, ManualBlockTypes, ManualHashtags } from 'entities/Manual/model/types/manual'
+import { Manual, ManualBlockTypes } from 'entities/Manual/model/types/manual'
 
 export default {
     title: 'entities/Manual/ManualList',
@@ -23,7 +23,6 @@ const manual = {
         username: 'Ivan',
         avatar: 'https://krasterisk.ru/logos/logo.svg'
     },
-    hashtags: [ManualHashtags.IT, ManualHashtags.PBX, ManualHashtags.IP_PHONES, ManualHashtags.INBOUND_CALL_CENTER, ManualHashtags.OUTBOUND_CALL_CENTER],
     views: 1022,
     createdAt: '2023-03-21T05:17:51.000Z',
     blocks: [

@@ -1,18 +1,18 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import { ThunkConfig } from 'app/providers/StoreProvider'
-import { Manual } from '../../types/manual'
+import { Manual } from '../../../../../entities/Manual/model/types/manual'
 
-export const fetchManualById = createAsyncThunk<
-Manual,
-string,
+export const fetchManualsList = createAsyncThunk<
+Manual[],
+void | never,
 ThunkConfig<string>
 >(
-    'Manual/fetchManualById',
-    async (manualId, thunkAPI) => {
+    'Manual/fetchManualsList',
+    async (_, thunkAPI) => {
         const { extra, rejectWithValue } = thunkAPI
 
         try {
-            const response = await extra.api.get<Manual>(`/manuals/${manualId}`)
+            const response = await extra.api.get<Manual[]>('/manuals')
             if (!response.data) {
                 throw new Error()
             }
