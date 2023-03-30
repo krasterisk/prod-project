@@ -16,7 +16,7 @@ describe('fetchNextManualsList.test', () => {
             }
         })
 
-        const result = await thunk.callThunk()
+        await thunk.callThunk()
         expect(thunk.dispatch).toBeCalledTimes(4)
         expect(fetchManualsList).toHaveBeenCalledWith({ page: 3 })
     })
@@ -32,7 +32,7 @@ describe('fetchNextManualsList.test', () => {
             }
         })
 
-        const result = await thunk.callThunk()
+        await thunk.callThunk()
         expect(thunk.dispatch).toBeCalledTimes(2)
         expect(fetchManualsList).not.toHaveBeenCalled()
     })

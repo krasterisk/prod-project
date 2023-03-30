@@ -10,13 +10,12 @@ import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch'
 import { useSelector } from 'react-redux'
 import {
     getManualsPageError,
-    getManualsPageHasMore,
     getManualsPageIsLoading,
-    getManualsPageNum,
     getManualsPageView
 } from '../../model/selectors/manualsPageSelectors'
 import { Page } from 'shared/ui/Page/Page'
 import { fetchNextManualPage } from 'pages/ManualsPage/model/services/fetchNextManualPage/fetchNextManualPage'
+import ErrorPage from '../../../ErrorPage/ui/ErrorPage'
 
 interface ManualsPageProps {
     className?: string
@@ -45,6 +44,10 @@ const ManualsPage = ({ className }: ManualsPageProps) => {
     const onLoadNextPart = useCallback(() => {
         dispatch(fetchNextManualPage())
     }, [dispatch])
+
+    if (error) {
+        return <ErrorPage />
+    }
 
     return (
         <DynamicModuleLoader reducers={reducers}>
