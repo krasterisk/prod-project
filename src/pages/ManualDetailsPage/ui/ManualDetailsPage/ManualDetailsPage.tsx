@@ -16,6 +16,7 @@ import { AddCommentForm } from 'features/AddCommentForm'
 import { addCommentForManual } from '../../model/service/addCommentForManual/addCommentForManual'
 import { Button, ButtonTheme } from 'shared/ui/Button/Button'
 import { RoutePath } from 'shared/config/routeConfig/routeConfig'
+import { Page } from 'shared/ui/Page/Page'
 
 interface ManualDetailsPageProps {
     className?: string
@@ -47,15 +48,15 @@ const ManualDetailsPage = ({ className }: ManualDetailsPageProps) => {
 
     if (!id) {
         return (
-            <div className={classNames(cls.ManualDetailsPage, {}, [className])}>
+            <Page className={classNames(cls.ManualDetailsPage, {}, [className])}>
                 {t('Страница не найдена')}
-            </div>
+            </Page>
         )
     }
 
     return (
         <DynamicModuleLoader reducers={reducers} removeAfterUnmount>
-            <div className={classNames(cls.ManualDetailsPage, {}, [className])}>
+            <Page className={classNames(cls.ManualDetailsPage, {}, [className])}>
                 <Button theme={ButtonTheme.OUTLINE} onClick={onBackToList}>
                     {t('Назад к списку')}
                 </Button>
@@ -63,7 +64,7 @@ const ManualDetailsPage = ({ className }: ManualDetailsPageProps) => {
                 <Text className={cls.commentTitle} title={t('Комментарии')} />
                 <AddCommentForm onSendComment={onSendComment}/>
                 <CommentList isLoading={commentsIsLoading} comments={comments}/>
-            </div>
+            </Page>
         </DynamicModuleLoader>
 
     )

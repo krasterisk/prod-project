@@ -8,7 +8,15 @@ import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect/useInitialEf
 import { fetchManualsList } from '../../model/services/fetchManualsList/fetchManualsList'
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch'
 import { useSelector } from 'react-redux'
-import { getManualsPageIsLoading, getManualsPageView } from '../../model/selectors/manualsPageSelectors'
+import {
+    getManualsPageError,
+    getManualsPageHasMore,
+    getManualsPageIsLoading,
+    getManualsPageNum,
+    getManualsPageView
+} from '../../model/selectors/manualsPageSelectors'
+import { Page } from 'shared/ui/Page/Page'
+import { fetchNextManualPage } from 'pages/ManualsPage/model/services/fetchNextManualPage/fetchNextManualPage'
 
 interface ManualsPageProps {
     className?: string
@@ -22,28 +30,35 @@ const ManualsPage = ({ className }: ManualsPageProps) => {
     const dispatch = useAppDispatch()
     const manuals = useSelector(getManuals.selectAll)
     const isLoading = useSelector(getManualsPageIsLoading)
-    //    const error = useSelector(getManualsPageError)
+    const error = useSelector(getManualsPageError)
     const view = useSelector(getManualsPageView)
 
     useInitialEffect(() => {
-        dispatch(fetchManualsList())
         dispatch(manualPageActions.initState())
+        dispatch(fetchManualsList({ page: 1 }))
     })
 
     const onChangeView = useCallback((view: ManualView) => {
         dispatch(manualPageActions.setView(view))
     }, [dispatch])
 
+    const onLoadNextPart = useCallback(() => {
+        dispatch(fetchNextManualPage())
+    }, [dispatch])
+
     return (
         <DynamicModuleLoader reducers={reducers}>
-            <div className={classNames(cls.ManualsPage, {}, [className])}>
-                <ManualViewSelector view={view} onViewClick={onChangeView} />
+            <Page
+                onScrollEnd={onLoadNextPart}
+                className={classNames(cls.ManualsPage, {}, [className])}
+            >
+                <ManualViewSelector view={view} onViewClick={onChangeView}/>
                 <ManualList
                     isLoading={isLoading}
                     view={view}
                     manuals={manuals}
                 />
-            </div>
+            </Page>
         </DynamicModuleLoader>
     )
 }

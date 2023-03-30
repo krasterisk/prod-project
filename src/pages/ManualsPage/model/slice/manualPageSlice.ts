@@ -21,15 +21,22 @@ export const manualPageSlice = createSlice({
         error: undefined,
         ids: [],
         entities: {},
-        view: 'SMALL'
+        view: 'SMALL',
+        page: 1,
+        hasMore: true
     }),
     reducers: {
         setView: (state, action: PayloadAction<ManualView>) => {
             state.view = action.payload
             localStorage.setItem(MANUAL_VIEW_LOCALSTORAGE_KEY, action.payload)
         },
+        setPage: (state, action: PayloadAction<number>) => {
+            state.page = action.payload
+        },
         initState: (state) => {
-            state.view = localStorage.getItem(MANUAL_VIEW_LOCALSTORAGE_KEY) as ManualView
+            const view = localStorage.getItem(MANUAL_VIEW_LOCALSTORAGE_KEY) as ManualView
+            state.view = view
+            state.limit = view === 'BIG' ? 10 : 9
         }
     },
     extraReducers: (builder) => {
@@ -43,7 +50,9 @@ export const manualPageSlice = createSlice({
                 action: PayloadAction<Manual[]>
             ) => {
                 state.isLoading = false
-                manualsAdapter.setAll(state, action.payload)
+                manualsAdapter.addMany(state, action.payload)
+                console.log(action.payload)
+                //                state.hasMore = action.payload.length > 0
             })
             .addCase(fetchManualsList.rejected, (state, action) => {
                 state.isLoading = false

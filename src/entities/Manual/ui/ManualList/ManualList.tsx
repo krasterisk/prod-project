@@ -27,14 +27,6 @@ export const ManualList = memo((props: ManualListProps) => {
         isLoading
     } = props
 
-    if (isLoading) {
-        return (
-            <div className={classNames(cls.ManualList, {}, [className, cls[view]])}>
-                {getSkeletons(view)}
-            </div>
-        )
-    }
-
     const renderManual = (manual: Manual) => {
         return (
             <ManualListItem
@@ -52,6 +44,7 @@ export const ManualList = memo((props: ManualListProps) => {
                 ? manuals.map(renderManual)
                 : null
             }
+            {isLoading && getSkeletons(view)}
         </div>
     )
 })

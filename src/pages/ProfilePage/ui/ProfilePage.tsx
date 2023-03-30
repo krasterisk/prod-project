@@ -21,6 +21,7 @@ import { Text, TextTheme } from 'shared/ui/Text/Text'
 import { useTranslation } from 'react-i18next'
 import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect/useInitialEffect'
 import { useParams } from 'react-router-dom'
+import { Page } from 'shared/ui/Page/Page'
 
 const reducers: ReducersList = {
     profileForm: profileReducer
@@ -81,29 +82,29 @@ const ProfilePage = memo(({ className }: ProfilePageProps) => {
 
     return (
         <DynamicModuleLoader reducers={reducers} removeAfterUnmount>
-            <div className={classNames('', {}, [className])}>
-            </div>
-            <ProfilePageHeader />
-            {validateErrors?.length && validateErrors.map(err => (
-                <Text
-                    theme={TextTheme.ERROR}
-                    text={validateErrorTranslates[err]}
-                    key={err}/>
-            ))}
-            <ProfileCard
-                data={formData}
-                isLoading={isLoading}
-                error={error}
-                onChangeFirstname={onChangeFirstname}
-                onChangeLastname={onChangeLastname}
-                onChangeCountry={onChangeCountry}
-                onChangeCurrency={onChangeCurrency}
-                onChangeAge={onChangeAge}
-                onChangeUsername={onChangeUsername}
-                onChangeEmail={onChangeEmail}
-                onChangeAvatar={onChangeAvatar}
-                readonly={readonly}
-            />
+            <Page className={classNames('', {}, [className])}>
+                <ProfilePageHeader/>
+                {validateErrors?.length && validateErrors.map(err => (
+                    <Text
+                        theme={TextTheme.ERROR}
+                        text={validateErrorTranslates[err]}
+                        key={err}/>
+                ))}
+                <ProfileCard
+                    data={formData}
+                    isLoading={isLoading}
+                    error={error}
+                    onChangeFirstname={onChangeFirstname}
+                    onChangeLastname={onChangeLastname}
+                    onChangeCountry={onChangeCountry}
+                    onChangeCurrency={onChangeCurrency}
+                    onChangeAge={onChangeAge}
+                    onChangeUsername={onChangeUsername}
+                    onChangeEmail={onChangeEmail}
+                    onChangeAvatar={onChangeAvatar}
+                    readonly={readonly}
+                />
+            </Page>
         </DynamicModuleLoader>
     )
 })

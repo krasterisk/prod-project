@@ -53,7 +53,7 @@ export const ManualListItem = memo((props: ManualListItemProps) => {
                         <Text text={manual.user.username} className={cls.username}/>
                         <Text text={manual.createdAt} className={cls.date}/>
                     </div>
-                    <Text title={manual.title} className={cls.title}/>
+                    <Text text={manual.id + '. ' + manual.title} className={cls.title}/>
                     {hashtags}
                     <img src={manual.image} className={cls.img} alt={manual.title}/>
                     {textBlock && (
@@ -81,7 +81,7 @@ export const ManualListItem = memo((props: ManualListItemProps) => {
                     {hashtags}
                     {views}
                 </div>
-                <Text text={manual.title} className={cls.title}/>
+                <Text text={manual.id + '. ' + manual.title} className={cls.title}/>
                 <div/>
             </Card>
         </div>
