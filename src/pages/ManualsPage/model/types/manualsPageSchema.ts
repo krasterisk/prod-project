@@ -5,6 +5,7 @@ export interface ManualsPageSchema extends EntityState<Manual> {
     isLoading?: boolean
     error?: string
     view: ManualView
+    _inited?: boolean
     // pagination
     page: number
     limit?: number

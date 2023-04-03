@@ -17,7 +17,7 @@ class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundarySta
 
     // eslint-disable-next-line n/handle-callback-err
     static getDerivedStateFromError (error: Error) {
-        // Update state so the next render will show the fallback UI.
+        // Update state so the next render will show the fallback ScrollSave.
         return { hasError: true }
     }
 
@@ -31,7 +31,7 @@ class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundarySta
         const { children } = this.props
 
         if (hasError) {
-            // You can render any custom fallback UI
+            // You can render any custom fallback ScrollSave
             return (
                 <Suspense fallback="">
                     <PageError />

@@ -16,7 +16,7 @@ import { AddCommentForm } from 'features/AddCommentForm'
 import { addCommentForManual } from '../../model/service/addCommentForManual/addCommentForManual'
 import { Button, ButtonTheme } from 'shared/ui/Button/Button'
 import { RoutePath } from 'shared/config/routeConfig/routeConfig'
-import { Page } from 'shared/ui/Page/Page'
+import { Page } from 'widgets/Page/Page'
 
 interface ManualDetailsPageProps {
     className?: string

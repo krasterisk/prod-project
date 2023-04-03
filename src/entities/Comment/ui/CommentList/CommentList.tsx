@@ -37,7 +37,9 @@ export const CommentList = memo((props: CommentListProps) => {
                     <CommentCard
                         isLoading={isLoading}
                         comment={comment}
-                        className={cls.comment} key={comment.id} />
+                        className={cls.comment}
+                        key={comment.id}
+                    />
                 ))
                 : <Text text={t('Пока нет комментариев')}/>
             }

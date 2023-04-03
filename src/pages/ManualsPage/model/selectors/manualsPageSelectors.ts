@@ -6,3 +6,4 @@ export const getManualsPageView = (state: StateSchema) => state.manualsPage?.vie
 export const getManualsPageNum = (state: StateSchema) => state.manualsPage?.page || 1
 export const getManualsPageLimit = (state: StateSchema) => state.manualsPage?.limit || 9
 export const getManualsPageHasMore = (state: StateSchema) => state.manualsPage?.hasMore
+export const getManualsPageInited = (state: StateSchema) => state.manualsPage?._inited

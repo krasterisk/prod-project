@@ -31,7 +31,7 @@ export const CurrencySelect = memo((props: CurrencySelectProps) => {
 
     const {
         className,
-        value,
+        value = '',
         onChange,
         readonly
     } = props

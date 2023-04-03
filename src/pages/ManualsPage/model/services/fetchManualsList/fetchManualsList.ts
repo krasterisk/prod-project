@@ -12,7 +12,7 @@ Manual[],
 FetchManualsListProps,
 ThunkConfig<string>
 >(
-    'Manual/fetchManualsList',
+    'ManualPage/fetchManualsList',
     async (props, thunkAPI) => {
         const { extra, rejectWithValue, getState } = thunkAPI
         const { page = 1 } = props

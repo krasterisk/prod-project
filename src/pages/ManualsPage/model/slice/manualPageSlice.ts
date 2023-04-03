@@ -23,7 +23,8 @@ export const manualPageSlice = createSlice({
         entities: {},
         view: 'SMALL',
         page: 1,
-        hasMore: true
+        hasMore: true,
+        _inited: false
     }),
     reducers: {
         setView: (state, action: PayloadAction<ManualView>) => {
@@ -36,7 +37,8 @@ export const manualPageSlice = createSlice({
         initState: (state) => {
             const view = localStorage.getItem(MANUAL_VIEW_LOCALSTORAGE_KEY) as ManualView
             state.view = view
-            state.limit = view === 'BIG' ? 10 : 9
+            state.limit = view === 'BIG' ? 4 : 9
+            state._inited = true
         }
     },
     extraReducers: (builder) => {

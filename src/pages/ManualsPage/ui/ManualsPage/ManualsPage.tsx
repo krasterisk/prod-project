@@ -5,7 +5,6 @@ import { ManualList, ManualView, ManualViewSelector } from 'entities/Manual'
 import { DynamicModuleLoader, ReducersList } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader'
 import { getManuals, manualPageActions, manualPageReducer } from '../../model/slice/manualPageSlice'
 import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect/useInitialEffect'
-import { fetchManualsList } from '../../model/services/fetchManualsList/fetchManualsList'
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch'
 import { useSelector } from 'react-redux'
 import {
@@ -13,9 +12,10 @@ import {
     getManualsPageIsLoading,
     getManualsPageView
 } from '../../model/selectors/manualsPageSelectors'
-import { Page } from 'shared/ui/Page/Page'
-import { fetchNextManualPage } from 'pages/ManualsPage/model/services/fetchNextManualPage/fetchNextManualPage'
+import { Page } from 'widgets/Page/Page'
+import { fetchNextManualPage } from '../../model/services/fetchNextManualPage/fetchNextManualPage'
 import ErrorPage from '../../../ErrorPage/ui/ErrorPage'
+import { initManualPage } from '../../model/services/initManualPage/initManualPage'
 
 interface ManualsPageProps {
     className?: string
@@ -33,8 +33,7 @@ const ManualsPage = ({ className }: ManualsPageProps) => {
     const view = useSelector(getManualsPageView)
 
     useInitialEffect(() => {
-        dispatch(manualPageActions.initState())
-        dispatch(fetchManualsList({ page: 1 }))
+        dispatch(initManualPage())
     })
 
     const onChangeView = useCallback((view: ManualView) => {
@@ -50,10 +49,11 @@ const ManualsPage = ({ className }: ManualsPageProps) => {
     }
 
     return (
-        <DynamicModuleLoader reducers={reducers}>
+        <DynamicModuleLoader reducers={reducers} removeAfterUnmount={false}>
             <Page
                 onScrollEnd={onLoadNextPart}
                 className={classNames(cls.ManualsPage, {}, [className])}
+                isSaveScroll={true}
             >
                 <ManualViewSelector view={view} onViewClick={onChangeView}/>
                 <ManualList

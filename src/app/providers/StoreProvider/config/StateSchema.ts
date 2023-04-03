@@ -3,16 +3,17 @@ import { UserSchema } from 'entities/User'
 import { LoginSchema } from 'features/AuthByUsername'
 import { AnyAction, CombinedState, EnhancedStore, Reducer, ReducersMapObject } from '@reduxjs/toolkit'
 import { ProfileSchema } from 'features/EditableProfileCard'
-import { NavigateOptions, To } from 'react-router'
 import { AxiosInstance } from 'axios'
 import { ManualDetailsSchema } from 'entities/Manual'
 import { ManualDetailsCommentsSchema } from 'pages/ManualDetailsPage'
 import { AddCommentFormSchema } from 'features/AddCommentForm/model/types/addCommentForm'
 import { ManualsPageSchema } from 'pages/ManualsPage'
+import { ScrollSaveSchema } from 'features/ScrollSave'
 
 export interface StateSchema {
     counter: CounterSchema
     user: UserSchema
+    saveScroll: ScrollSaveSchema
 
     // Async reducers
     loginForm?: LoginSchema
@@ -38,7 +39,6 @@ export interface ReduxStoreWithManager extends EnhancedStore<StateSchema> {
 
 export interface ThunkExtraArg {
     api: AxiosInstance
-    navigate?: (to: To, options?: NavigateOptions) => void
 }
 
 export interface ThunkConfig<T> {

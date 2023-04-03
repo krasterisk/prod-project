@@ -39,7 +39,7 @@ export const CountrySelect = memo((props: CountrySelectProps) => {
 
     const {
         className,
-        value,
+        value = '',
         onChange,
         readonly
     } = props

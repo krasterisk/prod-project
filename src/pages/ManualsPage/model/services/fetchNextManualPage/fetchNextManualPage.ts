@@ -14,7 +14,7 @@ void | never,
 void | never,
 ThunkConfig<string>
 >(
-    'Manual/fetchNextManualsList',
+    'ManualPage/fetchNextManualsList',
     async (_, thunkAPI) => {
         const { dispatch, getState } = thunkAPI
         const hasMore = getManualsPageHasMore(getState())
