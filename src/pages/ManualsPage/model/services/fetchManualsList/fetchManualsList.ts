@@ -1,33 +1,38 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import { ThunkConfig } from 'app/providers/StoreProvider'
-import { Manual } from '../../../../../entities/Manual/model/types/manual'
-import { getManualsPageLimit } from 'pages/ManualsPage/model/selectors/manualsPageSelectors'
-
-interface FetchManualsListProps {
-    page?: number
-}
+import { Manual } from 'entities/Manual'
+import {
+    getManualsPageLimit,
+    getManualsPageNum,
+    getManualsPageOrder,
+    getManualsPageSearch,
+    getManualsPageSort
+} from '../../../model/selectors/manualsPageSelectors'
 
 export const fetchManualsList = createAsyncThunk<
 Manual[],
-FetchManualsListProps,
+void | never,
 ThunkConfig<string>
 >(
     'ManualPage/fetchManualsList',
-    async (props, thunkAPI) => {
+    async (_, thunkAPI) => {
         const { extra, rejectWithValue, getState } = thunkAPI
-        const { page = 1 } = props
         const limit = getManualsPageLimit(getState())
+        const sort = getManualsPageSort(getState())
+        const order = getManualsPageOrder(getState())
+        const search = getManualsPageSearch(getState())
+        const page = getManualsPageNum(getState())
 
         try {
             const response = await extra.api.get<Manual[]>('/manuals', {
                 params: {
                     _limit: limit,
-                    _page: page
+                    _page: page,
+                    _sort: sort,
+                    _order: order,
+                    _search: search
                 }
             })
-            if (!response.data) {
-                throw new Error()
-            }
             return response.data
         } catch (e) {
             return rejectWithValue('error')

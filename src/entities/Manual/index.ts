@@ -7,6 +7,10 @@ export type {
     ManualView
 } from './model/types/manual'
 
+export {
+    ManualSortField
+} from './model/types/manual'
+
 export type {
     ManualDetailsSchema
 } from './model/types/manualDetailsSchema'
@@ -14,3 +18,4 @@ export type {
 export { ManualList } from './ui/ManualList/ManualList'
 
 export { ManualViewSelector } from './ui/ManualViewSelector/ManualViewSelector'
+export { ManualSortSelector } from './ui/ManualSortSelector/ManualSortSelector'

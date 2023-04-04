@@ -37,10 +37,9 @@ export const ManualList = memo((props: ManualListProps) => {
             />
         )
     }
-
     return (
         <div className={classNames(cls.ManualList, {}, [className, cls[view]])}>
-            {manuals.length > 0
+            {manuals.length
                 ? manuals.map(renderManual)
                 : null
             }

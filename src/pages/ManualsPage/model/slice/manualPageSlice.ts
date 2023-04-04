@@ -4,6 +4,8 @@ import { StateSchema } from 'app/providers/StoreProvider'
 import { ManualsPageSchema } from '../types/manualsPageSchema'
 import { fetchManualsList } from '../services/fetchManualsList/fetchManualsList'
 import { MANUAL_VIEW_LOCALSTORAGE_KEY } from 'shared/const/localstorage'
+import { ManualSortField } from 'entities/Manual/model/types/manual'
+import { SortOrder } from 'shared/types'
 
 const manualsAdapter = createEntityAdapter<Manual>({
     selectId: (manual) => manual.id
@@ -24,7 +26,11 @@ export const manualPageSlice = createSlice({
         view: 'SMALL',
         page: 1,
         hasMore: true,
-        _inited: false
+        _inited: false,
+        limit: 9,
+        order: 'asc',
+        sort: ManualSortField.CREATED,
+        search: ''
     }),
     reducers: {
         setView: (state, action: PayloadAction<ManualView>) => {
@@ -33,6 +39,15 @@ export const manualPageSlice = createSlice({
         },
         setPage: (state, action: PayloadAction<number>) => {
             state.page = action.payload
+        },
+        setOrder: (state, action: PayloadAction<SortOrder>) => {
+            state.order = action.payload
+        },
+        setSort: (state, action: PayloadAction<ManualSortField>) => {
+            state.sort = action.payload
+        },
+        setSearch: (state, action: PayloadAction<string>) => {
+            state.search = action.payload
         },
         initState: (state) => {
             const view = localStorage.getItem(MANUAL_VIEW_LOCALSTORAGE_KEY) as ManualView
@@ -53,10 +68,10 @@ export const manualPageSlice = createSlice({
             ) => {
                 state.isLoading = false
                 manualsAdapter.addMany(state, action.payload)
-                console.log(action.payload)
-                //                state.hasMore = action.payload.length > 0
+                state.hasMore = action.payload.length > 0
             })
             .addCase(fetchManualsList.rejected, (state, action) => {
+                console.log('error')
                 state.isLoading = false
                 state.error = action.payload
             })

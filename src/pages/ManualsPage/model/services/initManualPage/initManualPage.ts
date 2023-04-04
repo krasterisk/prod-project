@@ -14,7 +14,7 @@ ThunkConfig<string>>(
         const inited = getManualsPageInited(getState())
         if (!inited) {
             dispatch(manualPageActions.initState())
-            dispatch(fetchManualsList({ page: 1 }))
+            dispatch(fetchManualsList())
         }
     }
 )

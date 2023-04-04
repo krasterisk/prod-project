@@ -3,8 +3,13 @@ import { User } from '../../../User/model/types/user'
 export enum ManualBlockTypes {
     TEXT = 'TEXT',
     CODE = 'CODE',
-    IMAGE = 'IMAGE',
-    NOTE = 'NOTE'
+    IMAGE = 'IMAGE'
+}
+
+export enum ManualSortField {
+    VIEW = 'views',
+    TITLE = 'title',
+    CREATED = 'createdAt'
 }
 
 export type ManualView = 'SMALL' | 'BIG'

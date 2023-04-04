@@ -1,7 +1,7 @@
 import { classNames } from 'shared/lib/classNames/classNames'
 import cls from './ManualsPage.module.scss'
 import { memo, useCallback } from 'react'
-import { ManualList, ManualView, ManualViewSelector } from 'entities/Manual'
+import { ManualList, ManualView } from 'entities/Manual'
 import { DynamicModuleLoader, ReducersList } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader'
 import { getManuals, manualPageActions, manualPageReducer } from '../../model/slice/manualPageSlice'
 import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect/useInitialEffect'
@@ -16,6 +16,7 @@ import { Page } from 'widgets/Page/Page'
 import { fetchNextManualPage } from '../../model/services/fetchNextManualPage/fetchNextManualPage'
 import ErrorPage from '../../../ErrorPage/ui/ErrorPage'
 import { initManualPage } from '../../model/services/initManualPage/initManualPage'
+import { ManualPageFilters } from 'pages/ManualPageFilters/ManualPageFilters'
 
 interface ManualsPageProps {
     className?: string
@@ -32,10 +33,6 @@ const ManualsPage = ({ className }: ManualsPageProps) => {
     const error = useSelector(getManualsPageError)
     const view = useSelector(getManualsPageView)
 
-    useInitialEffect(() => {
-        dispatch(initManualPage())
-    })
-
     const onChangeView = useCallback((view: ManualView) => {
         dispatch(manualPageActions.setView(view))
     }, [dispatch])
@@ -43,6 +40,10 @@ const ManualsPage = ({ className }: ManualsPageProps) => {
     const onLoadNextPart = useCallback(() => {
         dispatch(fetchNextManualPage())
     }, [dispatch])
+
+    useInitialEffect(() => {
+        dispatch(initManualPage())
+    })
 
     if (error) {
         return <ErrorPage />
@@ -55,11 +56,12 @@ const ManualsPage = ({ className }: ManualsPageProps) => {
                 className={classNames(cls.ManualsPage, {}, [className])}
                 isSaveScroll={true}
             >
-                <ManualViewSelector view={view} onViewClick={onChangeView}/>
+                <ManualPageFilters />
                 <ManualList
                     isLoading={isLoading}
                     view={view}
                     manuals={manuals}
+                    className={cls.list}
                 />
             </Page>
         </DynamicModuleLoader>
