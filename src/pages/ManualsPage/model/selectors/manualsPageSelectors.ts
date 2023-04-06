@@ -1,5 +1,5 @@
 import { StateSchema } from 'app/providers/StoreProvider'
-import { ManualSortField } from 'entities/Manual'
+import { ManualHashtagsTypes, ManualSortField } from 'entities/Manual'
 
 export const getManualsPageIsLoading = (state: StateSchema) => state.manualsPage?.isLoading || false
 export const getManualsPageError = (state: StateSchema) => state.manualsPage?.error
@@ -11,3 +11,4 @@ export const getManualsPageInited = (state: StateSchema) => state.manualsPage?._
 export const getManualsPageOrder = (state: StateSchema) => state.manualsPage?.order ?? 'asc'
 export const getManualsPageSort = (state: StateSchema) => state.manualsPage?.sort ?? ManualSortField.CREATED
 export const getManualsPageSearch = (state: StateSchema) => state.manualsPage?.search ?? ''
+export const getManualsPageHashtag = (state: StateSchema) => state.manualsPage?.hashtag ?? ManualHashtagsTypes.ALL

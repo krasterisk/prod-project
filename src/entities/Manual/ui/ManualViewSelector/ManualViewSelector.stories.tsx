@@ -3,7 +3,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react'
 import { ManualViewSelector } from './ManualViewSelector'
 
 export default {
-    title: 'shared/ManualViewSelector',
+    title: 'entities/Manual/ManualViewSelector',
     component: ManualViewSelector,
     argTypes: {
         backgroundColor: { control: 'color' }

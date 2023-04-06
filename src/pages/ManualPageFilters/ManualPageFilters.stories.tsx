@@ -3,7 +3,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react'
 import { ManualPageFilters } from './ManualPageFilters'
 
 export default {
-    title: 'shared/ManualPageFilters',
+    title: 'pages/Manual/ManualPageFilters',
     component: ManualPageFilters,
     argTypes: {
         backgroundColor: { control: 'color' }

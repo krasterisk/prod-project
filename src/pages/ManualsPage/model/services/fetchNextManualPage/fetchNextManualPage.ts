@@ -23,7 +23,7 @@ ThunkConfig<string>
         const error = getManualsPageError(getState())
 
         if (hasMore && !isLoading && !error) {
-            dispatch(fetchManualsList())
+            dispatch(fetchManualsList({}))
             dispatch(manualPageActions.setPage(page + 1))
         }
     }

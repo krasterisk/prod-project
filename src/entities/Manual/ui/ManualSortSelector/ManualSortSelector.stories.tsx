@@ -3,7 +3,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react'
 import { ManualSortSelector } from './ManualSortSelector'
 
 export default {
-    title: 'shared/ManualSortSelector',
+    title: 'entities/Manual/ManualSortSelector',
     component: ManualSortSelector,
     argTypes: {
         backgroundColor: { control: 'color' }

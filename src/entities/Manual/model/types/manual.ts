@@ -50,6 +50,7 @@ export interface ManualHashtags {
 }
 
 export enum ManualHashtagsTypes {
+    ALL = 'ALL',
     IT = 'IT',
     INBOUND_CALL_CENTER = 'INBOUND_CALL_CENTER',
     PBX = 'PBX',

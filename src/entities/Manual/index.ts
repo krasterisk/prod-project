@@ -8,7 +8,8 @@ export type {
 } from './model/types/manual'
 
 export {
-    ManualSortField
+    ManualSortField,
+    ManualHashtagsTypes
 } from './model/types/manual'
 
 export type {
@@ -19,3 +20,4 @@ export { ManualList } from './ui/ManualList/ManualList'
 
 export { ManualViewSelector } from './ui/ManualViewSelector/ManualViewSelector'
 export { ManualSortSelector } from './ui/ManualSortSelector/ManualSortSelector'
+export { ManualTypeTabs } from './ui/ManualTypeTabs/ManualTypeTabs'

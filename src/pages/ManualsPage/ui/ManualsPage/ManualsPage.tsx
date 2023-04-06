@@ -1,9 +1,9 @@
 import { classNames } from 'shared/lib/classNames/classNames'
 import cls from './ManualsPage.module.scss'
 import { memo, useCallback } from 'react'
-import { ManualList, ManualView } from 'entities/Manual'
+import { ManualList } from 'entities/Manual'
 import { DynamicModuleLoader, ReducersList } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader'
-import { getManuals, manualPageActions, manualPageReducer } from '../../model/slice/manualPageSlice'
+import { getManuals, manualPageReducer } from '../../model/slice/manualPageSlice'
 import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect/useInitialEffect'
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch'
 import { useSelector } from 'react-redux'
@@ -17,6 +17,7 @@ import { fetchNextManualPage } from '../../model/services/fetchNextManualPage/fe
 import ErrorPage from '../../../ErrorPage/ui/ErrorPage'
 import { initManualPage } from '../../model/services/initManualPage/initManualPage'
 import { ManualPageFilters } from 'pages/ManualPageFilters/ManualPageFilters'
+import { useSearchParams } from 'react-router-dom'
 
 interface ManualsPageProps {
     className?: string
@@ -32,17 +33,18 @@ const ManualsPage = ({ className }: ManualsPageProps) => {
     const isLoading = useSelector(getManualsPageIsLoading)
     const error = useSelector(getManualsPageError)
     const view = useSelector(getManualsPageView)
+    const [searchParams] = useSearchParams()
 
-    const onChangeView = useCallback((view: ManualView) => {
-        dispatch(manualPageActions.setView(view))
-    }, [dispatch])
+    // const onChangeView = useCallback((view: ManualView) => {
+    //     dispatch(manualPageActions.setView(view))
+    // }, [dispatch])
 
     const onLoadNextPart = useCallback(() => {
         dispatch(fetchNextManualPage())
     }, [dispatch])
 
     useInitialEffect(() => {
-        dispatch(initManualPage())
+        dispatch(initManualPage(searchParams))
     })
 
     if (error) {

@@ -1,10 +1,10 @@
 import { createEntityAdapter, createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { Manual, ManualView } from 'entities/Manual'
+import { Manual, ManualHashtagsTypes, ManualView, ManualSortField } from 'entities/Manual'
 import { StateSchema } from 'app/providers/StoreProvider'
 import { ManualsPageSchema } from '../types/manualsPageSchema'
 import { fetchManualsList } from '../services/fetchManualsList/fetchManualsList'
 import { MANUAL_VIEW_LOCALSTORAGE_KEY } from 'shared/const/localstorage'
-import { ManualSortField } from 'entities/Manual/model/types/manual'
+
 import { SortOrder } from 'shared/types'
 
 const manualsAdapter = createEntityAdapter<Manual>({
@@ -30,7 +30,8 @@ export const manualPageSlice = createSlice({
         limit: 9,
         order: 'asc',
         sort: ManualSortField.CREATED,
-        search: ''
+        search: '',
+        hashtag: ManualHashtagsTypes.ALL
     }),
     reducers: {
         setView: (state, action: PayloadAction<ManualView>) => {
@@ -49,6 +50,9 @@ export const manualPageSlice = createSlice({
         setSearch: (state, action: PayloadAction<string>) => {
             state.search = action.payload
         },
+        setHashtag: (state, action: PayloadAction<ManualHashtagsTypes>) => {
+            state.hashtag = action.payload
+        },
         initState: (state) => {
             const view = localStorage.getItem(MANUAL_VIEW_LOCALSTORAGE_KEY) as ManualView
             state.view = view
@@ -58,20 +62,28 @@ export const manualPageSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder
-            .addCase(fetchManualsList.pending, (state) => {
+            .addCase(fetchManualsList.pending, (state, action) => {
                 state.isLoading = true
                 state.error = undefined
+
+                if (action.meta.arg.replace) {
+                    manualsAdapter.removeAll(state)
+                }
             })
             .addCase(fetchManualsList.fulfilled, (
                 state,
-                action: PayloadAction<Manual[]>
+                action
             ) => {
                 state.isLoading = false
-                manualsAdapter.addMany(state, action.payload)
-                state.hasMore = action.payload.length > 0
+                state.hasMore = action.payload.length >= state.limit
+
+                if (action.meta.arg.replace) {
+                    manualsAdapter.setAll(state, action.payload)
+                } else {
+                    manualsAdapter.addMany(state, action.payload)
+                }
             })
             .addCase(fetchManualsList.rejected, (state, action) => {
-                console.log('error')
                 state.isLoading = false
                 state.error = action.payload
             })

@@ -1,7 +1,6 @@
 import { EntityState } from '@reduxjs/toolkit'
-import { Manual, ManualView } from 'entities/Manual'
+import { Manual, ManualView, ManualHashtagsTypes, ManualSortField } from 'entities/Manual'
 import { SortOrder } from 'shared/types'
-import { ManualSortField } from 'entities/Manual/model/types/manual'
 
 export interface ManualsPageSchema extends EntityState<Manual> {
     isLoading?: boolean
@@ -16,4 +15,5 @@ export interface ManualsPageSchema extends EntityState<Manual> {
     order: SortOrder
     sort: ManualSortField
     search: string
+    hashtag: ManualHashtagsTypes
 }

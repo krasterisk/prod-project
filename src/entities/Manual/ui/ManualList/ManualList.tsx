@@ -4,6 +4,8 @@ import { memo } from 'react'
 import { Manual, ManualView } from '../../model/types/manual'
 import { ManualListItem } from '../ManualListItem/ManualListItem'
 import { ManualListItemSkeleton } from '../ManualListItem/ManualListItemSkeleton'
+import { Text, TextSize } from 'shared/ui/Text/Text'
+import { useTranslation } from 'react-i18next'
 
 interface ManualListProps {
     className?: string
@@ -27,6 +29,8 @@ export const ManualList = memo((props: ManualListProps) => {
         isLoading
     } = props
 
+    const { t } = useTranslation('manuals')
+
     const renderManual = (manual: Manual) => {
         return (
             <ManualListItem
@@ -37,6 +41,18 @@ export const ManualList = memo((props: ManualListProps) => {
             />
         )
     }
+
+    if (!isLoading && !manuals.length) {
+        return (
+            <div className={classNames(cls.ManualList, {}, [className, cls[view]])}>
+                <Text
+                    size={TextSize.XL}
+                    text={t('Статьи не найдены')}
+                />
+            </div>
+        )
+    }
+
     return (
         <div className={classNames(cls.ManualList, {}, [className, cls[view]])}>
             {manuals.length
