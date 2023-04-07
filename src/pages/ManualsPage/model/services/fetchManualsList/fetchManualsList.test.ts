@@ -1,10 +1,10 @@
 import { TestAsyncThunk } from 'shared/lib/tests/TestAsyncThunk/TestAsyncThunk'
 import { fetchManualsList } from './fetchManualsList'
 
-const data = {
-    id: '1',
-    title: 'test'
-}
+// const data = {
+//     id: '1',
+//     title: 'test'
+// }
 
 describe('fetchManualsList.test', () => {
     // test('success', async () => {
