@@ -4,7 +4,7 @@ import { StateSchema } from 'app/providers/StoreProvider'
 import { ManualDetailsCommentsSchema } from '../types/ManualDetailsCommentsSchema'
 import {
     fetchCommentsByManualId
-} from 'pages/ManualDetailsPage/model/service/fetchCommentsByManualId/fetchCommentsByManualId'
+} from '../service/fetchCommentsByManualId/fetchCommentsByManualId'
 
 const commentsAdapter = createEntityAdapter<Comments>({
     selectId: (comment) => comment.id

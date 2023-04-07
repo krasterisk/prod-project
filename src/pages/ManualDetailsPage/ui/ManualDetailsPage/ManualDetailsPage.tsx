@@ -17,19 +17,25 @@ import { addCommentForManual } from '../../model/service/addCommentForManual/add
 import { Button, ButtonTheme } from 'shared/ui/Button/Button'
 import { RoutePath } from 'shared/config/routeConfig/routeConfig'
 import { Page } from 'widgets/Page/Page'
+import {
+    getManualRecommendations,
+    manualDetailsRecommendationsReducer
+} from '../../model/slices/manualDetailsRecommendationsSlice'
 
 interface ManualDetailsPageProps {
     className?: string
 }
 
 const reducers: ReducersList = {
-    manualDetailsComments: manualDetailsCommentsReducer
+    manualDetailsComments: manualDetailsCommentsReducer,
+    manualDetailsRecommendations: manualDetailsRecommendationsReducer
 }
 
 const ManualDetailsPage = ({ className }: ManualDetailsPageProps) => {
     const { t } = useTranslation('manuals')
     const { id } = useParams<{ id: string }>()
     const comments = useSelector(getManualComments.selectAll)
+    const recommendations = useSelector(getManualRecommendations.selectAll)
     const commentsIsLoading = useSelector(getManualCommentsIsLoading)
     const dispatch = useDispatch()
     const navigate = useNavigate()
