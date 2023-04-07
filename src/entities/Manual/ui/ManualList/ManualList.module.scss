@@ -5,11 +5,7 @@
 }
 
 .SMALL {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 30px;
-}
-
-.ManualList {
-    justify-content: center;
+    display: flex; // расположить в одну строку
+    gap: 30px; // отступы
+    flex-wrap: wrap; // Переностиь если не влезло
 }

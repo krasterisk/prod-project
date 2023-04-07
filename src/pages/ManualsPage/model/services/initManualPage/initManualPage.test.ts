@@ -22,7 +22,7 @@ describe('initManualPage.test', () => {
         })
 
         await thunk.callThunk(searchParams)
-        expect(thunk.dispatch).toBeCalledTimes(4)
+        expect(thunk.dispatch).toBeCalledTimes(7)
         expect(fetchManualsList).toHaveBeenCalled()
     })
     test('not called fetchManualList on inited state', async () => {

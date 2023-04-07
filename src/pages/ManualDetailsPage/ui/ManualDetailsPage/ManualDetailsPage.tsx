@@ -2,12 +2,12 @@ import { classNames } from 'shared/lib/classNames/classNames'
 import cls from './ManualDetailsPage.module.scss'
 import { useTranslation } from 'react-i18next'
 import { memo, useCallback } from 'react'
-import { ManualDetails } from 'entities/Manual'
+import { ManualDetails, ManualList } from 'entities/Manual'
 import { useNavigate, useParams } from 'react-router-dom'
-import { Text } from 'shared/ui/Text/Text'
+import { Text, TextSize } from 'shared/ui/Text/Text'
 import { CommentList } from 'entities/Comment'
 import { DynamicModuleLoader, ReducersList } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader'
-import { getManualComments, manualDetailsCommentsReducer } from '../../model/slices/manualDetailsCommentsSlice'
+import { getManualComments } from '../../model/slices/manualDetailsCommentsSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import { getManualCommentsIsLoading } from '../../model/selectors/comments'
 import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect/useInitialEffect'
@@ -17,26 +17,27 @@ import { addCommentForManual } from '../../model/service/addCommentForManual/add
 import { Button, ButtonTheme } from 'shared/ui/Button/Button'
 import { RoutePath } from 'shared/config/routeConfig/routeConfig'
 import { Page } from 'widgets/Page/Page'
-import {
-    getManualRecommendations,
-    manualDetailsRecommendationsReducer
-} from '../../model/slices/manualDetailsRecommendationsSlice'
+import { getManualRecommendations } from '../../model/slices/manualDetailsRecommendationsSlice'
+import { getManualRecommendationsIsLoading } from '../../model/selectors/recommendations'
+import { fetchManualRecommendations } from '../../model/service/fetchManualRecommendations/fetchManualRecommendations'
+import { manualDetailsPageReducer } from '../../model/slices'
 
 interface ManualDetailsPageProps {
     className?: string
 }
 
 const reducers: ReducersList = {
-    manualDetailsComments: manualDetailsCommentsReducer,
-    manualDetailsRecommendations: manualDetailsRecommendationsReducer
+    manualDetailsPage: manualDetailsPageReducer
 }
 
 const ManualDetailsPage = ({ className }: ManualDetailsPageProps) => {
     const { t } = useTranslation('manuals')
     const { id } = useParams<{ id: string }>()
     const comments = useSelector(getManualComments.selectAll)
-    const recommendations = useSelector(getManualRecommendations.selectAll)
     const commentsIsLoading = useSelector(getManualCommentsIsLoading)
+    const recommendations = useSelector(getManualRecommendations.selectAll)
+    const recommendationsIsLoading = useSelector(getManualRecommendationsIsLoading)
+
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
@@ -50,6 +51,7 @@ const ManualDetailsPage = ({ className }: ManualDetailsPageProps) => {
 
     useInitialEffect(() => {
         dispatch(fetchCommentsByManualId(id))
+        dispatch(fetchManualRecommendations())
     })
 
     if (!id) {
@@ -67,7 +69,21 @@ const ManualDetailsPage = ({ className }: ManualDetailsPageProps) => {
                     {t('Назад к списку')}
                 </Button>
                 <ManualDetails id={id}/>
-                <Text className={cls.commentTitle} title={t('Комментарии')} />
+                <Text
+                    size={TextSize.L}
+                    title={t('Рекомендуем')}
+                />
+                <ManualList
+                    className={cls.recommendations}
+                    manuals={recommendations}
+                    isLoading={recommendationsIsLoading}
+                    target={'_blank'}
+                />
+                <Text
+                    size={TextSize.L}
+                    className={cls.commentTitle}
+                    title={t('Комментарии')}
+                />
                 <AddCommentForm onSendComment={onSendComment}/>
                 <CommentList isLoading={commentsIsLoading} comments={comments}/>
             </Page>

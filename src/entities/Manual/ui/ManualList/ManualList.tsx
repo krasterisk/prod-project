@@ -1,6 +1,6 @@
 import { classNames } from 'shared/lib/classNames/classNames'
 import cls from './ManualList.module.scss'
-import { memo } from 'react'
+import { HTMLAttributeAnchorTarget, memo } from 'react'
 import { Manual, ManualView } from '../../model/types/manual'
 import { ManualListItem } from '../ManualListItem/ManualListItem'
 import { ManualListItemSkeleton } from '../ManualListItem/ManualListItemSkeleton'
@@ -12,6 +12,7 @@ interface ManualListProps {
     manuals: Manual[]
     isLoading?: boolean
     view?: ManualView
+    target?: HTMLAttributeAnchorTarget
 }
 
 const getSkeletons = (view: ManualView) => {
@@ -26,7 +27,8 @@ export const ManualList = memo((props: ManualListProps) => {
         className,
         view = 'SMALL',
         manuals,
-        isLoading
+        isLoading,
+        target
     } = props
 
     const { t } = useTranslation('manuals')
@@ -38,6 +40,7 @@ export const ManualList = memo((props: ManualListProps) => {
                 view={view}
                 key={manual.id}
                 className={cls.card}
+                target={target}
             />
         )
     }

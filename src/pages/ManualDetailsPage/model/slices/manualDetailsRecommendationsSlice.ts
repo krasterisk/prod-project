@@ -1,18 +1,17 @@
-import { createEntityAdapter, createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { createEntityAdapter, createSlice } from '@reduxjs/toolkit'
 
 import { StateSchema } from 'app/providers/StoreProvider'
 
-import {
-    ManualDetailsRecommendationsSchema
-} from '../types/ManualDetailsRecommendationsSchema'
+import { ManualDetailsRecommendationsSchema } from '../types/ManualDetailsRecommendationsSchema'
 import { Manual } from 'entities/Manual'
+import { fetchManualRecommendations } from '../service/fetchManualRecommendations/fetchManualRecommendations'
 
 const recommendationsAdapter = createEntityAdapter<Manual>({
     selectId: (manual) => manual.id
 })
 
 export const getManualRecommendations = recommendationsAdapter.getSelectors<StateSchema>(
-    (state) => state.manualDetailsRecommendations || recommendationsAdapter.getInitialState()
+    (state) => state.manualDetailsPage?.recommendations || recommendationsAdapter.getInitialState()
 )
 
 const manualDetailsRecommendationsSlice = createSlice({
@@ -23,25 +22,25 @@ const manualDetailsRecommendationsSlice = createSlice({
         ids: [],
         entities: {}
     }),
-    reducers: {}
-    // extraReducers: (builder) => {
-    //     builder
-    //         .addCase(fetchCommentsByManualId.pending, (state) => {
-    //             state.isLoading = true
-    //             state.error = undefined
-    //         })
-    //         .addCase(fetchCommentsByManualId.fulfilled, (
-    //             state,
-    //             action: PayloadAction<Comments[]>
-    //         ) => {
-    //             state.isLoading = false
-    //             recommendationsAdapter.setAll(state, action.payload)
-    //         })
-    //         .addCase(fetchCommentsByManualId.rejected, (state, action) => {
-    //             state.isLoading = false
-    //             state.error = action.payload
-    //         })
-    // }
+    reducers: {},
+    extraReducers: (builder) => {
+        builder
+            .addCase(fetchManualRecommendations.pending, (state) => {
+                state.isLoading = true
+                state.error = undefined
+            })
+            .addCase(fetchManualRecommendations.fulfilled, (
+                state,
+                action
+            ) => {
+                state.isLoading = false
+                recommendationsAdapter.setAll(state, action.payload)
+            })
+            .addCase(fetchManualRecommendations.rejected, (state, action) => {
+                state.isLoading = false
+                state.error = action.payload
+            })
+    }
 })
 
 export const { reducer: manualDetailsRecommendationsReducer } = manualDetailsRecommendationsSlice
