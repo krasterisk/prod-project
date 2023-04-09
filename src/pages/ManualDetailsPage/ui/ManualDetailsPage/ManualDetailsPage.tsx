@@ -21,6 +21,7 @@ import { getManualRecommendations } from '../../model/slices/manualDetailsRecomm
 import { getManualRecommendationsIsLoading } from '../../model/selectors/recommendations'
 import { fetchManualRecommendations } from '../../model/service/fetchManualRecommendations/fetchManualRecommendations'
 import { manualDetailsPageReducer } from '../../model/slices'
+import { ManualDetailsPageHeader } from 'pages/ManualDetailsPage/ui/ManualDetailsPageHeader/ManualDetailsPageHeader'
 
 interface ManualDetailsPageProps {
     className?: string
@@ -65,9 +66,7 @@ const ManualDetailsPage = ({ className }: ManualDetailsPageProps) => {
     return (
         <DynamicModuleLoader reducers={reducers} removeAfterUnmount>
             <Page className={classNames(cls.ManualDetailsPage, {}, [className])}>
-                <Button theme={ButtonTheme.OUTLINE} onClick={onBackToList}>
-                    {t('Назад к списку')}
-                </Button>
+                <ManualDetailsPageHeader />
                 <ManualDetails id={id}/>
                 <Text
                     size={TextSize.L}
