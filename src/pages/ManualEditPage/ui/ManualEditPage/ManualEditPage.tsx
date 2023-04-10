@@ -1,6 +1,5 @@
 import { classNames } from 'shared/lib/classNames/classNames'
 import cls from './ManualEditPage.module.scss'
-import { useTranslation } from 'react-i18next'
 import { memo } from 'react'
 import { Page } from 'widgets/Page/Page'
 import { useParams } from 'react-router-dom'
@@ -14,7 +13,7 @@ const ManualEditPage = memo((props: ManualEditPageProps) => {
     const {
         className
     } = props
-    const { t } = useTranslation('manuals')
+    //    const { t } = useTranslation('manuals')
     const { id } = useParams<{ id: string }>()
     const isEdit = Boolean(id)
 

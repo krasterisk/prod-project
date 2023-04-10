@@ -2,7 +2,7 @@ import { ProfileSchema, ValidateProfileError } from '../types/profile'
 import { profileReducer, profileActions } from './profileSlice'
 import { Country } from 'entities/Country'
 import { Currency } from 'entities/Currency'
-import { updateProfileData } from 'features/EditableProfileCard'
+import { updateProfileData } from '../service/updateProfileData/updateProfileData'
 
 describe('profileSlice.test', () => {
     const data = {

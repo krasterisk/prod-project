@@ -1,7 +1,7 @@
-import { Manual, ManualDetailsSchema } from 'entities/Manual'
-import { ManualBlockTypes } from '../../model/types/manual'
+import { ManualBlockTypes, Manual } from '../../model/types/manual'
 import { manualDetailsReducer } from './manualDetailsSlice'
 import { fetchManualById } from '../services/fetchManualById/fetchManualById'
+import { ManualDetailsSchema } from '../types/manualDetailsSchema'
 
 describe('profileSlice.test', () => {
     const data: Manual = {

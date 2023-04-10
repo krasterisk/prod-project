@@ -1,7 +1,7 @@
 import React from 'react'
 import { ComponentMeta, ComponentStory } from '@storybook/react'
 import { ManualList } from './ManualList'
-import { Manual, ManualBlockTypes } from 'entities/Manual/model/types/manual'
+import { Manual, ManualBlockTypes } from '../../model/types/manual'
 
 export default {
     title: 'entities/Manual/ManualList',

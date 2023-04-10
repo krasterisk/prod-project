@@ -6,9 +6,8 @@ import { RoutePath } from 'shared/config/routeConfig/routeConfig'
 import { Button, ButtonTheme } from 'shared/ui/Button/Button'
 import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import { getUserAuthData } from 'entities/User'
 import { getManualDetailsData } from 'entities/Manual'
-import { getCanEditManual } from 'pages/ManualDetailsPage/model/selectors/manual'
+import { getCanEditManual } from '../../model/selectors/manual'
 
 interface ManualDetailsPageHeaderProps {
     className?: string
@@ -21,7 +20,7 @@ export const ManualDetailsPageHeader = memo((props: ManualDetailsPageHeaderProps
     } = props
     const { t } = useTranslation('manuals')
     const navigate = useNavigate()
-    const userData = useSelector(getUserAuthData)
+    //    const userData = useSelector(getUserAuthData)
     const manual = useSelector(getManualDetailsData)
     const canEdit = useSelector(getCanEditManual)
 

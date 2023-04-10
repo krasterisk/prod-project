@@ -3,7 +3,7 @@ import cls from './ManualDetailsPage.module.scss'
 import { useTranslation } from 'react-i18next'
 import { memo, useCallback } from 'react'
 import { ManualDetails, ManualList } from 'entities/Manual'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { Text, TextSize } from 'shared/ui/Text/Text'
 import { CommentList } from 'entities/Comment'
 import { DynamicModuleLoader, ReducersList } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader'
@@ -14,14 +14,12 @@ import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect/useInitialEf
 import { fetchCommentsByManualId } from '../../model/service/fetchCommentsByManualId/fetchCommentsByManualId'
 import { AddCommentForm } from 'features/AddCommentForm'
 import { addCommentForManual } from '../../model/service/addCommentForManual/addCommentForManual'
-import { Button, ButtonTheme } from 'shared/ui/Button/Button'
-import { RoutePath } from 'shared/config/routeConfig/routeConfig'
 import { Page } from 'widgets/Page/Page'
 import { getManualRecommendations } from '../../model/slices/manualDetailsRecommendationsSlice'
 import { getManualRecommendationsIsLoading } from '../../model/selectors/recommendations'
 import { fetchManualRecommendations } from '../../model/service/fetchManualRecommendations/fetchManualRecommendations'
 import { manualDetailsPageReducer } from '../../model/slices'
-import { ManualDetailsPageHeader } from 'pages/ManualDetailsPage/ui/ManualDetailsPageHeader/ManualDetailsPageHeader'
+import { ManualDetailsPageHeader } from '../ManualDetailsPageHeader/ManualDetailsPageHeader'
 
 interface ManualDetailsPageProps {
     className?: string
@@ -40,15 +38,10 @@ const ManualDetailsPage = ({ className }: ManualDetailsPageProps) => {
     const recommendationsIsLoading = useSelector(getManualRecommendationsIsLoading)
 
     const dispatch = useDispatch()
-    const navigate = useNavigate()
 
     const onSendComment = useCallback((text: string) => {
         dispatch(addCommentForManual(text))
     }, [dispatch])
-
-    const onBackToList = useCallback(() => {
-        navigate(RoutePath.manuals)
-    }, [navigate])
 
     useInitialEffect(() => {
         dispatch(fetchCommentsByManualId(id))

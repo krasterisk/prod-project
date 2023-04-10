@@ -12,7 +12,8 @@ module.exports = {
   plugins: [
     'react',
     'i18next',
-    'react-hooks'
+    'react-hooks',
+    'krasterisk-plugin'
   ],
   rules: {
     'react/jsx-indent': [2, 4],
@@ -36,7 +37,8 @@ module.exports = {
     'i18next/no-literal-string': ['error', {
       markupOnly: true,
       ignoreAttribute: ['data-testid']
-    }]
+    }],
+    'krasterisk-plugin/path-checker': 'error'
   },
   globals: {
     __IS_DEV__: true,

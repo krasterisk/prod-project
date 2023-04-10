@@ -2,8 +2,7 @@ import React from 'react'
 import { ComponentMeta, ComponentStory } from '@storybook/react'
 import { ManualDetails } from './ManualDetails'
 import { StoreDecorator } from 'shared/config/storybook/StoreDecorator/StoreDecorator'
-import { Manual } from 'entities/Manual'
-import { ManualBlockTypes } from '../../model/types/manual'
+import { ManualBlockTypes, Manual } from '../../model/types/manual'
 
 export default {
     title: 'entities/Manual/ManualDetails',
