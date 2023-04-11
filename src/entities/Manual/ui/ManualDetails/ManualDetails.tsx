@@ -22,6 +22,7 @@ import { ManualBlockImageComponent } from '../../ui/ManualBlockImageComponent/Ma
 import { ManualBlockTextComponent } from '../../ui/ManualBlockTextComponent/ManualBlockTextComponent'
 import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect/useInitialEffect'
 import { fetchManualById } from '../../model/services/fetchManualById/fetchManualById'
+import { HStack, VStack } from 'shared/ui/Stack'
 
 interface ManualDetailsProps {
     className?: string
@@ -79,30 +80,33 @@ export const ManualDetails = memo(({ className, id }: ManualDetailsProps) => {
     } else {
         content = (
             <>
-
-                <Avatar
-                    className={classNames(cls.avatar, {}, [cls.avatarWrapper])}
-                    size={200}
-                    src={manual?.image}
-                />
-                <Text
-                    className={cls.title}
-                    title={manual?.title}
-                    text={manual?.subtitle}
-                    size={TextSize.L}
-                />
-                <div className={cls.articleInfo}>
-                    <Icon Svg={EyeIcon} className={cls.icon}/>
-                    <Text
-                        text={String(manual?.views)}
+                <HStack justify={'center'} max>
+                    <Avatar
+                        className={classNames(cls.avatar, {}, [cls.avatarWrapper])}
+                        size={200}
+                        src={manual?.image}
                     />
-                </div>
-                <div className={cls.articleInfo}>
-                    <Icon Svg={CalendarIcon} className={cls.icon}/>
+                </HStack>
+                <VStack gap={'4'} max>
                     <Text
-                        text={manual?.createdAt}
+                        className={cls.title}
+                        title={manual?.title}
+                        text={manual?.subtitle}
+                        size={TextSize.L}
                     />
-                </div>
+                    <HStack gap={'8'}>
+                        <Icon Svg={EyeIcon} className={cls.icon}/>
+                        <Text
+                            text={String(manual?.views)}
+                        />
+                    </HStack>
+                    <HStack gap={'8'}>
+                        <Icon Svg={CalendarIcon} className={cls.icon}/>
+                        <Text
+                            text={manual?.createdAt}
+                        />
+                    </HStack>
+                </VStack>
                 {manual?.blocks.map(renderBlock)}
             </>
         )
@@ -110,9 +114,9 @@ export const ManualDetails = memo(({ className, id }: ManualDetailsProps) => {
 
     return (
         <DynamicModuleLoader reducers={reducers} removeAfterUnmount>
-            <div className={classNames(cls.ManualDetails, {}, [className])}>
+            <VStack gap={'16'} className={classNames(cls.ManualDetails, {}, [className])}>
                 {content}
-            </div>
+            </VStack>
         </DynamicModuleLoader>
     )
 })

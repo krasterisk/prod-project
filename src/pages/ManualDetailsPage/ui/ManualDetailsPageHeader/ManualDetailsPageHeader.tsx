@@ -1,5 +1,4 @@
 import { classNames } from 'shared/lib/classNames/classNames'
-import cls from './ManualDetailsPageHeader.module.scss'
 import { useTranslation } from 'react-i18next'
 import { memo, useCallback } from 'react'
 import { RoutePath } from 'shared/config/routeConfig/routeConfig'
@@ -8,6 +7,7 @@ import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { getManualDetailsData } from 'entities/Manual'
 import { getCanEditManual } from '../../model/selectors/manual'
+import { HStack } from 'shared/ui/Stack'
 
 interface ManualDetailsPageHeaderProps {
     className?: string
@@ -37,18 +37,17 @@ export const ManualDetailsPageHeader = memo((props: ManualDetailsPageHeaderProps
     }, [manual, navigate])
 
     return (
-        <div className={classNames(cls.ManualDetailsPageHeader, {}, [className])}>
+        <HStack justify='between' max className={classNames('', {}, [className])}>
             <Button theme={ButtonTheme.OUTLINE} onClick={onBackToList}>
                 {t('Назад к списку')}
             </Button>
             {canEdit && (<Button
-                className={cls.editBtn}
                 theme={ButtonTheme.OUTLINE}
                 onClick={onEditPage}
             >
                 {t('Редактировать')}
             </Button>
             )}
-        </div>
+        </HStack>
     )
 })
