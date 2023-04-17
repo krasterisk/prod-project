@@ -24,8 +24,6 @@ export const ManualDetailsPageHeader = memo((props: ManualDetailsPageHeaderProps
     const manual = useSelector(getManualDetailsData)
     const canEdit = useSelector(getCanEditManual)
 
-    console.log(canEdit)
-
     const onBackToList = useCallback(() => {
         navigate(RoutePath.manuals)
     }, [navigate])

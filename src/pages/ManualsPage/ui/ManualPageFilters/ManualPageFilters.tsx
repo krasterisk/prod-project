@@ -11,7 +11,7 @@ import {
     ManualView,
     ManualViewSelector
 } from 'entities/Manual'
-import { manualPageActions } from '../ManualsPage/model/slice/manualPageSlice'
+import { manualPageActions } from '../../model/slice/manualPageSlice'
 import { useSelector } from 'react-redux'
 import {
     getManualsPageHashtag,
@@ -19,11 +19,11 @@ import {
     getManualsPageSearch,
     getManualsPageSort,
     getManualsPageView
-} from '../ManualsPage/model/selectors/manualsPageSelectors'
+} from '../../model/selectors/manualsPageSelectors'
 import { Card } from 'shared/ui/Card/Card'
 import { Input } from 'shared/ui/Input/Input'
 import { SortOrder } from 'shared/types'
-import { fetchManualsList } from '../ManualsPage/model/services/fetchManualsList/fetchManualsList'
+import { fetchManualsList } from '../../model/services/fetchManualsList/fetchManualsList'
 import { useDebounce } from 'shared/lib/hooks/useDebounce/useDebounce'
 
 interface ManualPageFiltersProps {

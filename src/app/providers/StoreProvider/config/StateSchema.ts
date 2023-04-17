@@ -9,11 +9,13 @@ import { AddCommentFormSchema } from 'features/AddCommentForm/model/types/addCom
 import { ManualsPageSchema } from 'pages/ManualsPage'
 import { ScrollSaveSchema } from 'features/ScrollSave'
 import { ManualDetailsPageSchema } from 'pages/ManualDetailsPage'
+import { rtkApi } from 'shared/api/rtkApi'
 
 export interface StateSchema {
     counter: CounterSchema
     user: UserSchema
     saveScroll: ScrollSaveSchema
+    [rtkApi.reducerPath]: ReturnType<typeof rtkApi.reducer>
 
     // Async reducers
     loginForm?: LoginSchema
