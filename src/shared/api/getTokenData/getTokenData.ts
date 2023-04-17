@@ -1,11 +1,8 @@
 import jwtDecode from 'jwt-decode'
-
-interface tokenData {
-    id: number
-}
+import { User } from 'entities/User'
 
 export const getTokenData = (token: string | undefined) => {
-    let data: tokenData | undefined
+    let data: User | undefined
     if (token) {
         data = jwtDecode(token)
     }
@@ -13,4 +10,12 @@ export const getTokenData = (token: string | undefined) => {
         return null
     }
     return data?.id
+}
+
+export const getTokenAllData = (token: string | undefined) => {
+    let data: User | undefined
+    if (token) {
+        data = jwtDecode(token)
+    }
+    return data
 }

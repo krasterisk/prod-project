@@ -4,6 +4,11 @@
     box-sizing: border-box;
 }
 
+li {
+    // убираем точку из списков
+    list-style-type: none;
+}
+
 input,
 button,
 textarea,
