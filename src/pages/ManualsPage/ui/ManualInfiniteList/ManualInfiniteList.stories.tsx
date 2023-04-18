@@ -3,7 +3,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react'
 import { ManualInfiniteList } from './ManualInfiniteList'
 
 export default {
-    title: 'shared/ManualInfiniteList',
+    title: 'pages/ManualsPage/ManualInfiniteList',
     component: ManualInfiniteList,
     argTypes: {
         backgroundColor: { control: 'color' }

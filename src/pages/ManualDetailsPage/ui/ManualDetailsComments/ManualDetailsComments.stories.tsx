@@ -3,7 +3,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react'
 import { ManualDetailsComments } from './ManualDetailsComments'
 
 export default {
-    title: 'shared/ManualDetailsComments',
+    title: 'pages/ManualDetailsPage/ManualDetailsComments',
     component: ManualDetailsComments,
     argTypes: {
         backgroundColor: { control: 'color' }

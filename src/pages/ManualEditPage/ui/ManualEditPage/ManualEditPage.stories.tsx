@@ -3,7 +3,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react'
 import ManualEditPage from './ManualEditPage'
 
 export default {
-    title: 'shared/ManualEditPage',
+    title: 'pages/ManualEditPage/ManualEditPage',
     component: ManualEditPage,
     argTypes: {
         backgroundColor: { control: 'color' }

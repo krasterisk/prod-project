@@ -6,7 +6,7 @@ import { ManualBlockTypes } from 'entities/Manual/model/types/manual'
 import { StoreDecorator } from 'shared/config/storybook/StoreDecorator/StoreDecorator'
 
 export default {
-    title: 'pages/Manual/ManualDetailsPage',
+    title: 'pages/ManualDetailsPage/ManualDetailsPage',
     component: ManualDetailsPage,
     argTypes: {
         backgroundColor: { control: 'color' }
