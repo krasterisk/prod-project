@@ -19,7 +19,7 @@ export interface StateSchema {
 
     // Async reducers
     loginForm?: LoginSchema
-    profileForm?: ProfileSchema
+    profileForm: ProfileSchema
     manualDetails?: ManualDetailsSchema
     addCommentForm?: AddCommentFormSchema
     manualsPage?: ManualsPageSchema

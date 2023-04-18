@@ -6,6 +6,7 @@ import { createReducerManager } from './reducerManager'
 import { $api } from 'shared/api/api'
 import { scrollSaveReducer } from 'features/ScrollSave'
 import { rtkApi } from 'shared/api/rtkApi'
+import { profileReducer } from 'features/EditableProfileCard/model/slice/profileSlice'
 
 export function createReduxStore (
     initialState?: StateSchema,
@@ -16,6 +17,7 @@ export function createReduxStore (
         counter: counterReducer,
         user: userReducer,
         saveScroll: scrollSaveReducer,
+        profileForm: profileReducer,
         [rtkApi.reducerPath]: rtkApi.reducer
     }
 
