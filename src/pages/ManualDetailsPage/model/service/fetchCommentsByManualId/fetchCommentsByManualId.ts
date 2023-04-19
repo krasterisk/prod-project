@@ -11,11 +11,11 @@ ThunkConfig<string>
     async (manualId, thunkAPI) => {
         const { extra, rejectWithValue } = thunkAPI
 
-        if (!manualId) {
-            return rejectWithValue('error')
-        }
-
         try {
+            if (!manualId) {
+                return rejectWithValue('error')
+            }
+
             const response = await extra.api.get<Comments[]>(`/comments/${manualId}`)
             if (!response.data) {
                 throw new Error()

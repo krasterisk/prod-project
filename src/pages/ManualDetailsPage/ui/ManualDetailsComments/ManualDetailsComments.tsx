@@ -9,14 +9,12 @@ import { getManualComments } from '../../model/slices/manualDetailsCommentsSlice
 import { getManualCommentsIsLoading } from '../../model/selectors/comments'
 import { addCommentForManual } from '../../model/service/addCommentForManual/addCommentForManual'
 import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect/useInitialEffect'
-import {
-    fetchCommentsByManualId
-} from '../../model/service/fetchCommentsByManualId/fetchCommentsByManualId'
+import { fetchCommentsByManualId } from '../../model/service/fetchCommentsByManualId/fetchCommentsByManualId'
 import { VStack } from 'shared/ui/Stack'
 
 interface ManualDetailsCommentsProps {
     className?: string
-    id: string
+    id?: string
 }
 
 export const ManualDetailsComments = memo((props: ManualDetailsCommentsProps) => {
@@ -38,7 +36,7 @@ export const ManualDetailsComments = memo((props: ManualDetailsCommentsProps) =>
     })
 
     return (
-        <VStack gap="8" className={classNames('', {}, [className])}>
+        <VStack gap="8" max className={classNames('', {}, [className])}>
             <Text
                 size={TextSize.L}
                 title={t('Комментарии')}

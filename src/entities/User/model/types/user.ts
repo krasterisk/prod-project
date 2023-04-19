@@ -1,10 +1,4 @@
-export enum UserRolesValues {
-    ADMIN = 'ADMIN',
-    USER = 'USER',
-    OPERATOR = 'OPERATOR',
-    SUPERVISOR = 'SUPERVISOR',
-    VPBXADMIN = 'VPBXADMIN'
-}
+import { UserRolesValues } from '../consts/consts'
 
 export interface UserRoles {
     id?: string

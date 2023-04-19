@@ -1,16 +1,5 @@
 import { User } from '../../../User/model/types/user'
-
-export enum ManualBlockTypes {
-    TEXT = 'TEXT',
-    CODE = 'CODE',
-    IMAGE = 'IMAGE'
-}
-
-export enum ManualSortField {
-    VIEW = 'views',
-    TITLE = 'title',
-    CREATED = 'createdAt'
-}
+import { ManualBlockTypes, ManualHashtagsTypes } from '../consts/consts'
 
 export type ManualView = 'SMALL' | 'BIG'
 
@@ -47,15 +36,6 @@ export type ManualBlock = ManualCodeBlock | ManualImageBlock | ManualTextBlock
 export interface ManualHashtags {
     title: ManualHashtagsTypes
     postId: number
-}
-
-export enum ManualHashtagsTypes {
-    ALL = 'ALL',
-    IT = 'IT',
-    INBOUND_CALL_CENTER = 'INBOUND_CALL_CENTER',
-    PBX = 'PBX',
-    OUTBOUND_CALL_CENTER = 'OUTBOUND_CALL_CENTER',
-    IP_PHONES = 'IP_PHONES'
 }
 
 export interface Manual {

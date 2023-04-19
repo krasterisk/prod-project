@@ -1,13 +1,6 @@
-import { Currency } from 'entities/Currency/model/types/Currency'
+import { Currency } from 'entities/Currency'
 import { Country } from 'entities/Country'
-
-export enum ValidateProfileError {
-    INCORRECT_USER_DATA = 'INCORRECT_USER_DATA',
-    INCORRECT_USER_AGE = 'INCORRECT_USER_AGE',
-    INCORRECT_COUNTRY = 'INCORRECT_COUNTRY',
-    NO_DATA = 'NO_DATA',
-    SERVER_ERROR = 'SERVER_ERROR'
-}
+import { ValidateProfileError } from '../../model/consts/consts'
 
 export interface Profile {
     id?: string

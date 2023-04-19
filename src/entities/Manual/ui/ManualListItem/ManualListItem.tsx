@@ -1,7 +1,7 @@
 import { classNames } from 'shared/lib/classNames/classNames'
 import cls from './ManualListItem.module.scss'
 import { HTMLAttributeAnchorTarget, memo } from 'react'
-import { Manual, ManualBlockTypes, ManualTextBlock, ManualView } from '../../model/types/manual'
+import { Manual, ManualTextBlock, ManualView } from '../../model/types/manual'
 import { Text } from 'shared/ui/Text/Text'
 import { Icon } from 'shared/ui/Icon/Icon'
 import EyeLogo from 'shared/assets/icons/eye-20-20.svg'
@@ -12,6 +12,7 @@ import { Button, ButtonTheme } from 'shared/ui/Button/Button'
 import { ManualBlockTextComponent } from '../ManualBlockTextComponent/ManualBlockTextComponent'
 import { RoutePath } from 'shared/config/routeConfig/routeConfig'
 import { AppLink } from 'shared/ui/AppLink/AppLink'
+import { ManualBlockTypes } from '../../model/consts/consts'
 
 interface ManualListItemProps {
     className?: string

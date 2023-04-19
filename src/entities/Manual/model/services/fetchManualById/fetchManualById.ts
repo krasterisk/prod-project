@@ -4,7 +4,7 @@ import { Manual } from '../../types/manual'
 
 export const fetchManualById = createAsyncThunk<
 Manual,
-string,
+string | undefined,
 ThunkConfig<string>
 >(
     'Manual/fetchManualById',
@@ -12,6 +12,9 @@ ThunkConfig<string>
         const { extra, rejectWithValue } = thunkAPI
 
         try {
+            if (!manualId) {
+                throw new Error('')
+            }
             const response = await extra.api.get<Manual>(`/manuals/${manualId}`)
             if (!response.data) {
                 throw new Error()

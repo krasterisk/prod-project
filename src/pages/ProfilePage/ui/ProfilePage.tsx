@@ -4,7 +4,6 @@ import { Page } from 'widgets/Page/Page'
 import { VStack } from 'shared/ui/Stack'
 import { EditableProfileCard } from 'features/EditableProfileCard'
 import { useParams } from 'react-router-dom'
-import { ErrorPage } from 'pages/ErrorPage'
 
 interface ProfilePageProps {
     className?: string
@@ -12,10 +11,6 @@ interface ProfilePageProps {
 
 const ProfilePage = memo(({ className }: ProfilePageProps) => {
     const { id } = useParams<{ id: string }>()
-
-    if (!id) {
-        return <ErrorPage />
-    }
 
     return (
         <Page className={classNames('', {}, [className])}>

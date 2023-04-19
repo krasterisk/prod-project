@@ -1,18 +1,18 @@
 import React from 'react'
 import { ComponentMeta, ComponentStory } from '@storybook/react'
-import ErrorPage from './ErrorPage'
+import ForbiddenPage from './ForbiddenPage'
 import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator'
 import { Theme } from 'app/providers/ThemeProvider'
 
 export default {
     title: 'pages/ForbiddenPage',
-    component: ErrorPage,
+    component: ForbiddenPage,
     argTypes: {
         backgroundColor: { control: 'color' }
     }
-} as ComponentMeta<typeof ErrorPage>
+} as ComponentMeta<typeof ForbiddenPage>
 
-const Template: ComponentStory<typeof ErrorPage> = () => <ErrorPage />
+const Template: ComponentStory<typeof ForbiddenPage> = () => <ForbiddenPage />
 
 export const Normal = Template.bind({})
 Normal.args = {}

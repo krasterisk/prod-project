@@ -3,6 +3,7 @@ import { Route, Routes } from 'react-router-dom'
 import { AppRoutesProps, routeConfig } from 'shared/config/routeConfig/routeConfig'
 import { PageLoader } from 'widgets/PageLoader/PageLoader'
 import { RequireAuth } from 'app/providers/router/ui/RequireAuth'
+import { UserRolesValues } from 'entities/User'
 
 const AppRouter = () => {
     const renderWithWrapper = useCallback((route: AppRoutesProps) => {
@@ -15,7 +16,7 @@ const AppRouter = () => {
             <Route
                 key={route.path}
                 path={route.path}
-                element={route.authOnly ? <RequireAuth>{element}</RequireAuth> : element}
+                element={route.authOnly ? <RequireAuth roles={[UserRolesValues.ADMIN, UserRolesValues.VPBXADMIN]}>{element}</RequireAuth> : element}
             />
         )
     }, [])

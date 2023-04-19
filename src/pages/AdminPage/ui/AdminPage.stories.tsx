@@ -16,6 +16,7 @@ const Template: ComponentStory<typeof AdminPage> = () => <AdminPage />
 
 export const Normal = Template.bind({})
 Normal.args = {}
+Normal.decorators = []
 
 export const Dark = Template.bind({})
 Dark.args = {}

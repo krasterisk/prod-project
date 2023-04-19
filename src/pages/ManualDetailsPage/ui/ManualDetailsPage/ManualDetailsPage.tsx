@@ -1,6 +1,5 @@
 import { classNames } from 'shared/lib/classNames/classNames'
 import cls from './ManualDetailsPage.module.scss'
-import { useTranslation } from 'react-i18next'
 import { memo } from 'react'
 import { ManualDetails } from 'entities/Manual'
 import { useParams } from 'react-router-dom'
@@ -22,15 +21,14 @@ const reducers: ReducersList = {
 
 const ManualDetailsPage = ({ className }: ManualDetailsPageProps) => {
     const { id } = useParams<{ id: string }>()
-    const { t } = useTranslation('manuals')
 
-    if (!id) {
-        return (
-            <Page className={classNames(cls.ManualDetailsPage, {}, [className])}>
-                {t('Страница не найдена')}
-            </Page>
-        )
-    }
+    // if (!id) {
+    //     return (
+    //         <Page className={classNames(cls.ManualDetailsPage, {}, [className])}>
+    //             {t('Страница не найдена')}
+    //         </Page>
+    //     )
+    // }
 
     return (
         <DynamicModuleLoader reducers={reducers} removeAfterUnmount>

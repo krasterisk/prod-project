@@ -1,7 +1,9 @@
 import React from 'react'
 import { ComponentMeta, ComponentStory } from '@storybook/react'
 import { ManualListItem } from './ManualListItem'
-import { Manual, ManualBlockTypes } from '../../model/types/manual'
+import { Manual } from '../../model/types/manual'
+import { StoreDecorator } from 'shared/config/storybook/StoreDecorator/StoreDecorator'
+import { ManualBlockTypes } from '../../model/consts/consts'
 
 export default {
     title: 'entities/Manual/ManualListItem',
@@ -17,6 +19,7 @@ const manual = {
     id: '2',
     title: 'TEST ADMIN MANUAL PAGE',
     subtitle: 'Testing',
+    hashtags: [],
     image: 'https://krasterisk.ru/logos/logo.svg',
     user: {
         id: '2',
@@ -85,9 +88,10 @@ Big.args = {
     view: 'BIG',
     manual
 }
-
+Big.decorators = [StoreDecorator({})]
 export const Small = Template.bind({})
 Small.args = {
     view: 'SMALL',
     manual
 }
+Small.decorators = [StoreDecorator({})]

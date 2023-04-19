@@ -1,8 +1,9 @@
-import { ProfileSchema, ValidateProfileError } from '../types/profile'
+import { ProfileSchema } from '../types/profile'
 import { profileReducer, profileActions } from './profileSlice'
 import { Country } from 'entities/Country'
 import { Currency } from 'entities/Currency'
 import { updateProfileData } from '../service/updateProfileData/updateProfileData'
+import { ValidateProfileError } from '../../model/consts/consts'
 
 describe('profileSlice.test', () => {
     const data = {

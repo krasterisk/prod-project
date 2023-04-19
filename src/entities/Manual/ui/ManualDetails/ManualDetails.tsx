@@ -16,17 +16,18 @@ import { Avatar } from 'shared/ui/Avatar/Avatar'
 import EyeIcon from 'shared/assets/icons/eye-20-20.svg'
 import CalendarIcon from 'shared/assets/icons/calendar-20-20.svg'
 import { Icon } from 'shared/ui/Icon/Icon'
-import { ManualBlock, ManualBlockTypes } from '../../model/types/manual'
+import { ManualBlock } from '../../model/types/manual'
 import { ManualBlockCodeComponent } from '../../ui/ManualBlockCodeComponent/ManualBlockCodeComponent'
 import { ManualBlockImageComponent } from '../../ui/ManualBlockImageComponent/ManualBlockImageComponent'
 import { ManualBlockTextComponent } from '../../ui/ManualBlockTextComponent/ManualBlockTextComponent'
 import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect/useInitialEffect'
 import { fetchManualById } from '../../model/services/fetchManualById/fetchManualById'
 import { HStack, VStack } from 'shared/ui/Stack'
+import { ManualBlockTypes } from '../../model/consts/consts'
 
 interface ManualDetailsProps {
     className?: string
-    id: string
+    id?: string
 }
 
 const reducers: ReducersList = {
@@ -114,7 +115,7 @@ export const ManualDetails = memo(({ className, id }: ManualDetailsProps) => {
 
     return (
         <DynamicModuleLoader reducers={reducers} removeAfterUnmount>
-            <VStack gap={'16'} className={classNames(cls.ManualDetails, {}, [className])}>
+            <VStack gap={'16'} max className={classNames(cls.ManualDetails, {}, [className])}>
                 {content}
             </VStack>
         </DynamicModuleLoader>

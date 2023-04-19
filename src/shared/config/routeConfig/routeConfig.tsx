@@ -8,6 +8,7 @@ import { ManualDetailsPage } from 'pages/ManualDetailsPage'
 import { ManualEditPage } from 'pages/ManualEditPage'
 import { AdminPage } from 'pages/AdminPage'
 import { UserRolesValues } from 'entities/User'
+import { ForbiddenPage } from 'pages/ForbiddenPage'
 
 export type AppRoutesProps = RouteProps & {
     authOnly?: boolean
@@ -23,7 +24,8 @@ export enum AppRoutes {
     MANUAL_DETAILS = 'manual_details',
     MANUAL_CREATE = 'manuals_create',
     MANUAL_EDIT = 'manual_edit',
-    ERROR = 'error',
+    FORBIDDEN = 'forbidden',
+    ERROR = 'error'
 }
 
 export const RoutePath: Record<AppRoutes, string> = {
@@ -35,6 +37,7 @@ export const RoutePath: Record<AppRoutes, string> = {
     [AppRoutes.MANUAL_DETAILS]: '/manuals/',
     [AppRoutes.MANUAL_EDIT]: '/manuals/:id/edit',
     [AppRoutes.MANUAL_CREATE]: '/manuals/create',
+    [AppRoutes.FORBIDDEN]: '/forbidden',
     [AppRoutes.ERROR]: '*'
 }
 
@@ -77,6 +80,10 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
         path: `${RoutePath[AppRoutes.MANUAL_CREATE]}`,
         element: <ManualEditPage />,
         authOnly: true
+    },
+    [AppRoutes.FORBIDDEN]: {
+        path: RoutePath[AppRoutes.FORBIDDEN],
+        element: <ForbiddenPage />
     },
     [AppRoutes.ERROR]: {
         path: RoutePath[AppRoutes.ERROR],
