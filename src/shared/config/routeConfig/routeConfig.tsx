@@ -6,15 +6,19 @@ import { ProfilePage } from 'pages/ProfilePage'
 import { ManualsPage } from 'pages/ManualsPage'
 import { ManualDetailsPage } from 'pages/ManualDetailsPage'
 import { ManualEditPage } from 'pages/ManualEditPage'
+import { AdminPage } from 'pages/AdminPage'
+import { UserRolesValues } from 'entities/User'
 
 export type AppRoutesProps = RouteProps & {
     authOnly?: boolean
+    roles?: UserRolesValues[]
 }
 
 export enum AppRoutes {
     MAIN = 'main',
     ABOUT = 'about',
     PROFILE = 'profile',
+    ADMIN = 'admin',
     MANUALS = 'manuals',
     MANUAL_DETAILS = 'manual_details',
     MANUAL_CREATE = 'manuals_create',
@@ -25,6 +29,7 @@ export enum AppRoutes {
 export const RoutePath: Record<AppRoutes, string> = {
     [AppRoutes.MAIN]: '/',
     [AppRoutes.ABOUT]: '/about',
+    [AppRoutes.ADMIN]: '/admin',
     [AppRoutes.PROFILE]: '/profile/',
     [AppRoutes.MANUALS]: '/manuals',
     [AppRoutes.MANUAL_DETAILS]: '/manuals/',
@@ -41,6 +46,12 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
     [AppRoutes.ABOUT]: {
         path: RoutePath[AppRoutes.ABOUT],
         element: <AboutPage />
+    },
+    [AppRoutes.ADMIN]: {
+        path: RoutePath[AppRoutes.ADMIN],
+        element: <AdminPage />,
+        authOnly: true,
+        roles: [UserRolesValues.ADMIN, UserRolesValues.USER]
     },
     [AppRoutes.PROFILE]: {
         path: `${RoutePath[AppRoutes.PROFILE]}:id`,
