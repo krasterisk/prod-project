@@ -1,7 +1,7 @@
+import userEvent from '@testing-library/user-event'
 import { screen } from '@testing-library/react'
 import { componentRender } from 'shared/lib/tests/componentRender/componentRender'
 import { Counter } from './Counter'
-import { userEvent } from '@storybook/testing-library'
 
 describe('Counter', () => {
     test('test render', () => {
@@ -11,27 +11,27 @@ describe('Counter', () => {
         expect(screen.getByTestId('value-title')).toHaveTextContent('10')
     })
 
-    test('decrement btn click', () => {
+    test('decrement btn click', async () => {
         componentRender(<Counter />, {
             initialState: { counter: { value: 10 } }
         })
-        userEvent.click(screen.getByTestId('decrement-btn'))
+        await userEvent.click(screen.getByTestId('decrement-btn'))
         expect(screen.getByTestId('value-title')).toHaveTextContent('9')
     })
 
-    test('increment btn click', () => {
+    test('increment btn click', async () => {
         componentRender(<Counter />, {
             initialState: { counter: { value: 10 } }
         })
-        userEvent.click(screen.getByTestId('increment-btn'))
+        await userEvent.click(screen.getByTestId('increment-btn'))
         expect(screen.getByTestId('value-title')).toHaveTextContent('11')
     })
 
-    test('plus5 btn click', () => {
+    test('plus5 btn click', async () => {
         componentRender(<Counter />, {
             initialState: { counter: { value: 10 } }
         })
-        userEvent.click(screen.getByTestId('plus5-btn'))
+        await userEvent.click(screen.getByTestId('plus5-btn'))
         expect(screen.getByTestId('value-title')).toHaveTextContent('15')
     })
 })
