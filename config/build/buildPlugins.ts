@@ -3,6 +3,7 @@ import webpack from 'webpack'
 import { buildOptions } from './types/config'
 import MiniCssExtractPlugin from 'mini-css-extract-plugin'
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer'
+import CircularDependencyPlugin from 'circular-dependency-plugin'
 import CopyPlugin from 'copy-webpack-plugin'
 
 export function buildPlugins ({ paths, isDev, apiUrl, project }: buildOptions): webpack.WebpackPluginInstance[] {
@@ -24,7 +25,14 @@ export function buildPlugins ({ paths, isDev, apiUrl, project }: buildOptions): 
             patterns: [
                 { from: paths.locales, to: paths.buildLocales }
             ]
-        })
+        }),
+        new CircularDependencyPlugin(
+            {
+            // exclude detection of files based on a RegExp
+                exclude: /node_modules/,
+                // add errors to webpack instead of warnings
+                failOnError: true
+            })
     ]
 
     if (isDev) {
