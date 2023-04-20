@@ -1,14 +1,18 @@
-import HTMLWebpackPlugin from 'html-webpack-plugin'
+import HtmlWebpackPlugin from 'html-webpack-plugin'
 import webpack from 'webpack'
-import { buildOptions } from './types/config'
 import MiniCssExtractPlugin from 'mini-css-extract-plugin'
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer'
-import CircularDependencyPlugin from 'circular-dependency-plugin'
+import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin'
 import CopyPlugin from 'copy-webpack-plugin'
+import CircularDependencyPlugin from 'circular-dependency-plugin'
+import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin'
+import { buildOptions } from './types/config'
 
-export function buildPlugins ({ paths, isDev, apiUrl, project }: buildOptions): webpack.WebpackPluginInstance[] {
+export function buildPlugins ({
+    paths, isDev, apiUrl, project
+}: buildOptions): webpack.WebpackPluginInstance[] {
     const plugins = [
-        new HTMLWebpackPlugin({
+        new HtmlWebpackPlugin({
             template: paths.html
         }),
         new webpack.ProgressPlugin(),
@@ -26,16 +30,23 @@ export function buildPlugins ({ paths, isDev, apiUrl, project }: buildOptions): 
                 { from: paths.locales, to: paths.buildLocales }
             ]
         }),
-        new CircularDependencyPlugin(
-            {
-            // exclude detection of files based on a RegExp
-                exclude: /node_modules/,
-                // add errors to webpack instead of warnings
-                failOnError: true
-            })
+        new CircularDependencyPlugin({
+            exclude: /node_modules/,
+            failOnError: true
+        }),
+        new ForkTsCheckerWebpackPlugin({
+            typescript: {
+                diagnosticOptions: {
+                    semantic: true,
+                    syntactic: true
+                },
+                mode: 'write-references'
+            }
+        })
     ]
 
     if (isDev) {
+        plugins.push(new ReactRefreshWebpackPlugin())
         plugins.push(new webpack.HotModuleReplacementPlugin())
         plugins.push(new BundleAnalyzerPlugin({
             openAnalyzer: false

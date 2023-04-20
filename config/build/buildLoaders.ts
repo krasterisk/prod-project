@@ -1,29 +1,43 @@
 import webpack from 'webpack'
-import { buildOptions } from './types/config'
 import { buildCssLoader } from './loaders/buildCssLoader'
+import { buildOptions } from './types/config'
+import { buildBabelLoader } from './loaders/buildBabelLoader'
 
-export function buildLoaders ({ isDev }: buildOptions): webpack.RuleSetRule[] {
+export function buildLoaders (options: buildOptions): webpack.RuleSetRule[] {
+    const { isDev } = options
+
     const svgLoader = {
         test: /\.svg$/,
         use: ['@svgr/webpack']
     }
 
-    const imgLoader = {
-        test: /\.(png|jpg|jpeg|gif)$/i,
-        type: 'asset/resource'
-    }
+    const codeBabelLoader = buildBabelLoader({ ...options, isTsx: false })
+    const tsxCodeBabelLoader = buildBabelLoader({ ...options, isTsx: true })
 
     const cssLoader = buildCssLoader(isDev)
-    const typeScriptLoader = {
-        test: /\.tsx?$/,
-        use: 'ts-loader',
-        exclude: /node_modules/
+
+    // Если не используем тайпскрипт - нужен babel-loader
+    // const typescriptLoader = {
+    //     test: /\.tsx?$/,
+    //     use: 'ts-loader',
+    //     exclude: /node_modules/,
+    // };
+
+    const fileLoader = {
+        test: /\.(png|jpe?g|gif|woff2|woff)$/i,
+        use: [
+            {
+                loader: 'file-loader'
+            }
+        ]
     }
 
     return [
-        typeScriptLoader,
-        cssLoader,
+        fileLoader,
         svgLoader,
-        imgLoader
+        codeBabelLoader,
+        tsxCodeBabelLoader,
+        // typescriptLoader,
+        cssLoader
     ]
 }

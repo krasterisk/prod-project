@@ -8,18 +8,22 @@ import './shared/config/i18n/i18n'
 import { ErrorBoundary } from 'app/providers/ErrorBoundary'
 import { StoreProvider } from 'app/providers/StoreProvider'
 
-const root = createRoot(document.getElementById('root')!)
+const container = document.getElementById('root')
+
+if (!container) {
+    throw new Error('Контейнер root не найден. НЕ удалось вмонтировать реакт приложение')
+}
+
+const root = createRoot(container)
 
 root.render(
-    <React.StrictMode>
-        <BrowserRouter>
-            <StoreProvider>
-                <ErrorBoundary>
-                    <ThemeProvider>
-                        <App/>
-                    </ThemeProvider>
-                </ErrorBoundary>
-            </StoreProvider>
-        </BrowserRouter>
-    </React.StrictMode>
+    <BrowserRouter>
+        <StoreProvider>
+            <ErrorBoundary>
+                <ThemeProvider>
+                    <App />
+                </ThemeProvider>
+            </ErrorBoundary>
+        </StoreProvider>
+    </BrowserRouter>
 )
