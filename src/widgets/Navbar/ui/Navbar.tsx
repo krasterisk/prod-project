@@ -12,6 +12,7 @@ import { RoutePath } from 'shared/config/routeConfig/routeConfig'
 import { Dropdown } from 'shared/ui/Dropdown/Dropdown'
 import { Avatar } from 'shared/ui/Avatar/Avatar'
 import { getTokenAllData } from 'shared/api/getTokenData/getTokenData'
+import { HStack } from 'shared/ui/Stack'
 
 interface NavbarProps {
     className?: string
@@ -55,27 +56,29 @@ export const Navbar = memo(({ className }: NavbarProps) => {
                 >
                     {t('Создать статью')}
                 </AppLink>
-                <Dropdown
-                    direction={'bottom-left'}
-                    className={cls.dropdown}
-                    items={[
-                        ...(isAdminAvailable
-                            ? [{
-                                content: t('Админ'),
-                                href: RoutePath.admin
-                            }]
-                            : []),
-                        {
-                            content: t('Профиль'),
-                            href: RoutePath.profile + String(userData?.id)
-                        },
-                        {
-                            content: t('Выйти'),
-                            onClick: onLogout
-                        }
-                    ]}
-                    trigger={<Avatar size={30} src={userData?.avatar}/>}
-                />
+                <HStack gap='16'>
+                    <Dropdown
+                        direction={'bottom-left'}
+                        className={cls.dropdown}
+                        items={[
+                            ...(isAdminAvailable
+                                ? [{
+                                    content: t('Админ'),
+                                    href: RoutePath.admin
+                                }]
+                                : []),
+                            {
+                                content: t('Профиль'),
+                                href: RoutePath.profile + String(userData?.id)
+                            },
+                            {
+                                content: t('Выйти'),
+                                onClick: onLogout
+                            }
+                        ]}
+                        trigger={<Avatar size={30} src={userData?.avatar}/>}
+                    />
+                </HStack>
             </header>
         )
     }
