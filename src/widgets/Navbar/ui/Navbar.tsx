@@ -5,17 +5,13 @@ import { useTranslation } from 'react-i18next'
 import { Button, ButtonTheme } from 'shared/ui/Button/Button'
 import { Text, TextTheme } from 'shared/ui/Text/Text'
 import { LoginModal } from 'features/AuthByUsername'
-import { useDispatch, useSelector } from 'react-redux'
-import { getUserAuthData, isUserAdmin, isUserVPBXAdmin, userActions } from 'entities/User'
+import { useSelector } from 'react-redux'
+import { getUserAuthData } from 'entities/User'
 import { AppLink, AppLinkTheme } from 'shared/ui/AppLink/AppLink'
 import { RoutePath } from 'shared/config/routeConfig/routeConfig'
-import { Dropdown } from 'shared/ui/Popups/ui/Dropdown/Dropdown'
-import { Avatar } from 'shared/ui/Avatar/Avatar'
-import { getTokenAllData } from 'shared/api/getTokenData/getTokenData'
 import { HStack } from 'shared/ui/Stack'
-import { Icon } from 'shared/ui/Icon/Icon'
-import NotificationIcon from 'shared/assets/icons/notification-20-20.svg'
-import { Popover } from 'shared/ui/Popups'
+import { NotificationButton } from 'features/notificationButton'
+import { AvatarDropdown } from 'features/avatarDropdown'
 
 interface NavbarProps {
     className?: string
@@ -25,10 +21,6 @@ export const Navbar = memo(({ className }: NavbarProps) => {
     const { t } = useTranslation()
     const [isAuthModal, setIsAuthModal] = useState(false)
     const authData = useSelector(getUserAuthData)
-    const dispatch = useDispatch()
-    const userData = getTokenAllData(authData?.token)
-    const isVPBXAdmin = useSelector(isUserVPBXAdmin)
-    const isAdmin = useSelector(isUserAdmin)
 
     const onCloseModal = useCallback(() => {
         setIsAuthModal(false)
@@ -37,12 +29,6 @@ export const Navbar = memo(({ className }: NavbarProps) => {
     const onShowModal = useCallback(() => {
         setIsAuthModal(true)
     }, [])
-
-    const onLogout = useCallback(() => {
-        dispatch(userActions.logout())
-    }, [dispatch])
-
-    const isAdminAvailable = isAdmin || isVPBXAdmin
 
     if (authData) {
         return (
@@ -60,36 +46,8 @@ export const Navbar = memo(({ className }: NavbarProps) => {
                     {t('Создать статью')}
                 </AppLink>
                 <HStack gap='16' className={cls.actions}>
-                    <Popover trigger={(
-                        <Button theme={ButtonTheme.CLEAR}>
-                            <Icon Svg={NotificationIcon} inverted />
-                        </Button>
-                    )}
-                        direction='bottom-left'
-                    >
-                        fsfsdfdsfsdf
-                    </Popover>
-                    <Dropdown
-                        direction={'bottom-left'}
-                        className={cls.dropdown}
-                        items={[
-                            ...(isAdminAvailable
-                                ? [{
-                                    content: t('Админ'),
-                                    href: RoutePath.admin
-                                }]
-                                : []),
-                            {
-                                content: t('Профиль'),
-                                href: RoutePath.profile + String(userData?.id)
-                            },
-                            {
-                                content: t('Выйти'),
-                                onClick: onLogout
-                            }
-                        ]}
-                        trigger={<Avatar size={30} src={userData?.avatar}/>}
-                    />
+                    <NotificationButton />
+                    <AvatarDropdown />
                 </HStack>
             </header>
         )
