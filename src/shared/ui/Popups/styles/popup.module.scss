@@ -1,34 +1,15 @@
-.Dropdown {
+.popup {
+    // относительное позиционирование, чтобы дочерние объекты позиционировались относительно верхнего
     position: relative;
 }
 
-.btn {
+.trigger {
     // Обнуляющие стили
     background: none;
     outline: none;
     margin: 0;
     padding: 0;
     border: none;
-    cursor: pointer;
-}
-
-.menu {
-    background: var(--card-bg);
-    position: absolute;
-    z-index: 10000;
-    border-radius: 8px;
-    border: 1px solid var(--primary-color);
-    flex-direction: column; // размеры пунктов по содержимому
-    display: flex;
-}
-
-.item {
-    padding: 10px 25px;
-    width: 100%;
-    border: none;
-    background: none;
-    outline: none;
-    color: var(--primary-color);
     cursor: pointer;
 }
 
@@ -54,4 +35,8 @@
 .optionsTopLeft {
     bottom: 100%;
     right: 0;
+}
+
+.disabled {
+    opacity: 0.7;
 }

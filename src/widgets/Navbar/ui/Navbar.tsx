@@ -9,10 +9,13 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getUserAuthData, isUserAdmin, isUserVPBXAdmin, userActions } from 'entities/User'
 import { AppLink, AppLinkTheme } from 'shared/ui/AppLink/AppLink'
 import { RoutePath } from 'shared/config/routeConfig/routeConfig'
-import { Dropdown } from 'shared/ui/Dropdown/Dropdown'
+import { Dropdown } from 'shared/ui/Popups/ui/Dropdown/Dropdown'
 import { Avatar } from 'shared/ui/Avatar/Avatar'
 import { getTokenAllData } from 'shared/api/getTokenData/getTokenData'
 import { HStack } from 'shared/ui/Stack'
+import { Icon } from 'shared/ui/Icon/Icon'
+import NotificationIcon from 'shared/assets/icons/notification-20-20.svg'
+import { Popover } from 'shared/ui/Popups'
 
 interface NavbarProps {
     className?: string
@@ -56,7 +59,16 @@ export const Navbar = memo(({ className }: NavbarProps) => {
                 >
                     {t('Создать статью')}
                 </AppLink>
-                <HStack gap='16'>
+                <HStack gap='16' className={cls.actions}>
+                    <Popover trigger={(
+                        <Button theme={ButtonTheme.CLEAR}>
+                            <Icon Svg={NotificationIcon} inverted />
+                        </Button>
+                    )}
+                        direction='bottom-left'
+                    >
+                        fsfsdfdsfsdf
+                    </Popover>
                     <Dropdown
                         direction={'bottom-left'}
                         className={cls.dropdown}
