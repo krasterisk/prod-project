@@ -8,6 +8,7 @@ import { Skeleton } from 'shared/ui/Skeleton/Skeleton'
 
 interface NotificationListProps {
     className?: string
+
 }
 
 export const NotificationList = memo((props: NotificationListProps) => {
