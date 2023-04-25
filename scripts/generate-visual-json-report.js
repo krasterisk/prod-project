@@ -13,7 +13,7 @@ const diffDir = joinPath(lokiDir, 'difference');
 (async function main () {
     const diffs = await asyncReaddir(diffDir)
 
-  await writeFileAsync(joinPath(lokiDir, 'report.json'), JSON.stringify({
+    await writeFileAsync(joinPath(lokiDir, 'report.json'), JSON.stringify({
         newItems: [],
         deletedItems: [],
         passedItems: [],

@@ -8,6 +8,11 @@
     opacity: 0;
     pointer-events: none;
     color: var(--primary-color);
+    display: flex;
+
+    // выравнивание по центру как по горизонтали так и по вертикали
+    justify-content: center;
+    align-items: center;
 }
 
 .Modal.dark {
