@@ -1,9 +1,9 @@
 import React from 'react'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 import { ManualRecommendationsList } from './ManualRecommendationsList'
-import { StoreDecorator } from 'shared/config/storybook/StoreDecorator/StoreDecorator'
-import { Manual } from 'entities/Manual'
-import { ManualBlockTypes } from 'entities/Manual/model/consts/consts'
+import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator'
+import { Manual } from '@/entities/Manual'
+import { ManualBlockTypes } from '@/entities/Manual/model/consts/consts'
 
 const manual: Manual = {
     id: '1',

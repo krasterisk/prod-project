@@ -1,9 +1,9 @@
 import { type ReactNode } from 'react'
 import { render } from '@testing-library/react'
 import { I18nextProvider } from 'react-i18next'
-import i18nTest from 'shared/config/i18n/i18nTest'
+import i18nTest from '@/shared/config/i18n/i18nTest'
 import { MemoryRouter } from 'react-router-dom'
-import { StateSchema, StoreProvider } from 'app/providers/StoreProvider'
+import { StateSchema, StoreProvider } from '@/app/providers/StoreProvider'
 import { DeepPartial, ReducersMapObject } from '@reduxjs/toolkit'
 
 export interface ComponentRenderOptions {

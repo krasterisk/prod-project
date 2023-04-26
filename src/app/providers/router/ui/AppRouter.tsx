@@ -1,9 +1,9 @@
 import React, { memo, Suspense, useCallback } from 'react'
 import { Route, Routes } from 'react-router-dom'
-import { AppRoutesProps, routeConfig } from 'shared/config/routeConfig/routeConfig'
-import { PageLoader } from 'widgets/PageLoader/PageLoader'
-import { RequireAuth } from 'app/providers/router/ui/RequireAuth'
-import { UserRolesValues } from 'entities/User'
+import { AppRoutesProps, routeConfig } from '@/shared/config/routeConfig/routeConfig'
+import { PageLoader } from '@/widgets/PageLoader/PageLoader'
+import { RequireAuth } from '@/app/providers/router/ui/RequireAuth'
+import { UserRolesValues } from '@/entities/User'
 
 const AppRouter = () => {
     const renderWithWrapper = useCallback((route: AppRoutesProps) => {

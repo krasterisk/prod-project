@@ -1,9 +1,9 @@
-import { classNames } from 'shared/lib/classNames/classNames'
+import { classNames } from '@/shared/lib/classNames/classNames'
 import cls from './ManualSortSelector.module.scss'
 import { useTranslation } from 'react-i18next'
 import { memo, useMemo } from 'react'
-import { Select, SelectOptions } from 'shared/ui/Select/Select'
-import { SortOrder } from 'shared/types'
+import { Select, SelectOptions } from '@/shared/ui/Select/Select'
+import { SortOrder } from '@/shared/types'
 import { ManualSortField } from '../../model/consts/consts'
 
 interface ManualSortSelectorProps {

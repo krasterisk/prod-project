@@ -1,5 +1,5 @@
-import { StateSchema } from 'app/providers/StoreProvider'
-import { ManualHashtagsTypes, ManualSortField } from 'entities/Manual'
+import { StateSchema } from '@/app/providers/StoreProvider'
+import { ManualHashtagsTypes, ManualSortField } from '@/entities/Manual'
 
 export const getManualsPageIsLoading = (state: StateSchema) => state.manualsPage?.isLoading || false
 export const getManualsPageError = (state: StateSchema) => state.manualsPage?.error

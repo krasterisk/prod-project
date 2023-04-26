@@ -1,6 +1,6 @@
 import { createEntityAdapter, createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { Comments } from 'entities/Comment'
-import { StateSchema } from 'app/providers/StoreProvider'
+import { Comments } from '@/entities/Comment'
+import { StateSchema } from '@/app/providers/StoreProvider'
 import { ManualDetailsCommentsSchema } from '../types/ManualDetailsCommentsSchema'
 import {
     fetchCommentsByManualId

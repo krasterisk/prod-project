@@ -1,11 +1,11 @@
 import { createEntityAdapter, createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { Manual, ManualHashtagsTypes, ManualView, ManualSortField } from 'entities/Manual'
-import { StateSchema } from 'app/providers/StoreProvider'
+import { Manual, ManualHashtagsTypes, ManualView, ManualSortField } from '@/entities/Manual'
+import { StateSchema } from '@/app/providers/StoreProvider'
 import { ManualsPageSchema } from '../types/manualsPageSchema'
 import { fetchManualsList } from '../services/fetchManualsList/fetchManualsList'
-import { MANUAL_VIEW_LOCALSTORAGE_KEY } from 'shared/const/localstorage'
+import { MANUAL_VIEW_LOCALSTORAGE_KEY } from '@/shared/const/localstorage'
 
-import { SortOrder } from 'shared/types'
+import { SortOrder } from '@/shared/types'
 
 const manualsAdapter = createEntityAdapter<Manual>({
     selectId: (manual) => manual.id

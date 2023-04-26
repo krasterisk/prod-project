@@ -1,8 +1,8 @@
-import { classNames } from 'shared/lib/classNames/classNames'
+import { classNames } from '@/shared/lib/classNames/classNames'
 import cls from './ManualBlockTextComponent.module.scss'
 import { memo } from 'react'
 import { ManualTextBlock } from '../../model/types/manual'
-import { Text } from 'shared/ui/Text/Text'
+import { Text } from '@/shared/ui/Text/Text'
 
 interface ManualBlockTextComponentProps {
     className?: string

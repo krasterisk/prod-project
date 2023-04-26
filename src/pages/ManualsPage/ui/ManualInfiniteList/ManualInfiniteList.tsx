@@ -6,8 +6,8 @@ import {
     getManualsPageIsLoading,
     getManualsPageView
 } from '../../model/selectors/manualsPageSelectors'
-import { ManualList } from 'entities/Manual'
-import ErrorPage from 'pages/ErrorPage/ui/ErrorPage'
+import { ManualList } from '@/entities/Manual'
+import ErrorPage from '@/pages/ErrorPage/ui/ErrorPage'
 
 interface ManualInfiniteListProps {
     className?: string

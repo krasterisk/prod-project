@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import { ThunkConfig } from 'app/providers/StoreProvider'
-import { Manual, ManualHashtagsTypes } from 'entities/Manual'
+import { ThunkConfig } from '@/app/providers/StoreProvider'
+import { Manual, ManualHashtagsTypes } from '@/entities/Manual'
 import {
     getManualsPageHashtag,
     getManualsPageLimit,
@@ -9,7 +9,7 @@ import {
     getManualsPageSearch,
     getManualsPageSort
 } from '../../../model/selectors/manualsPageSelectors'
-import { addQueryParams } from 'shared/lib/url/addQueryParams/addQueryParams'
+import { addQueryParams } from '@/shared/lib/url/addQueryParams/addQueryParams'
 
 interface FetchManualsListProps {
     replace?: boolean

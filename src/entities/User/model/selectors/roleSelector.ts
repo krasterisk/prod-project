@@ -1,6 +1,6 @@
-import { StateSchema } from 'app/providers/StoreProvider'
+import { StateSchema } from '@/app/providers/StoreProvider'
 import { createSelector } from '@reduxjs/toolkit'
-import { getTokenAllData } from 'shared/api/getTokenData/getTokenData'
+import { getTokenAllData } from '@/shared/api/getTokenData/getTokenData'
 import { UserRolesValues } from '../consts/consts'
 
 const getUserRoles = (state: StateSchema) => state.user.authData?.token

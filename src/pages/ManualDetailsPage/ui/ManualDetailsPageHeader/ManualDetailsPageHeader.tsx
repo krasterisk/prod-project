@@ -1,13 +1,13 @@
-import { classNames } from 'shared/lib/classNames/classNames'
+import { classNames } from '@/shared/lib/classNames/classNames'
 import { useTranslation } from 'react-i18next'
 import { memo, useCallback } from 'react'
-import { RoutePath } from 'shared/config/routeConfig/routeConfig'
-import { Button, ButtonTheme } from 'shared/ui/Button/Button'
+import { RoutePath } from '@/shared/config/routeConfig/routeConfig'
+import { Button, ButtonTheme } from '@/shared/ui/Button/Button'
 import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import { getManualDetailsData } from 'entities/Manual'
+import { getManualDetailsData } from '@/entities/Manual'
 import { getCanEditManual } from '../../model/selectors/manual'
-import { HStack } from 'shared/ui/Stack'
+import { HStack } from '@/shared/ui/Stack'
 
 interface ManualDetailsPageHeaderProps {
     className?: string

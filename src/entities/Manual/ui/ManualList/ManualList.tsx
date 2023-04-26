@@ -1,10 +1,10 @@
-import { classNames } from 'shared/lib/classNames/classNames'
+import { classNames } from '@/shared/lib/classNames/classNames'
 import cls from './ManualList.module.scss'
 import { HTMLAttributeAnchorTarget, memo } from 'react'
 import { Manual, ManualView } from '../../model/types/manual'
 import { ManualListItem } from '../ManualListItem/ManualListItem'
 import { ManualListItemSkeleton } from '../ManualListItem/ManualListItemSkeleton'
-import { Text, TextSize } from 'shared/ui/Text/Text'
+import { Text, TextSize } from '@/shared/ui/Text/Text'
 import { useTranslation } from 'react-i18next'
 
 interface ManualListProps {

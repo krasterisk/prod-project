@@ -1,10 +1,10 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import { ThunkConfig } from 'app/providers/StoreProvider'
+import { ThunkConfig } from '@/app/providers/StoreProvider'
 import { manualPageActions } from '../../../model/slice/manualPageSlice'
 import { fetchManualsList } from '../../../model/services/fetchManualsList/fetchManualsList'
 import { getManualsPageInited } from '../../../model/selectors/manualsPageSelectors'
-import { SortOrder } from 'shared/types'
-import { ManualHashtagsTypes, ManualSortField } from 'entities/Manual'
+import { SortOrder } from '@/shared/types'
+import { ManualHashtagsTypes, ManualSortField } from '@/entities/Manual'
 
 export const initManualPage = createAsyncThunk<
 void | never,

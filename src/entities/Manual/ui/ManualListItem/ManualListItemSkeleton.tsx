@@ -1,9 +1,9 @@
-import { classNames } from 'shared/lib/classNames/classNames'
+import { classNames } from '@/shared/lib/classNames/classNames'
 import cls from './ManualListItem.module.scss'
 import { memo } from 'react'
 import { ManualView } from '../../model/types/manual'
-import { Card } from 'shared/ui/Card/Card'
-import { Skeleton } from 'shared/ui/Skeleton/Skeleton'
+import { Card } from '@/shared/ui/Card/Card'
+import { Skeleton } from '@/shared/ui/Skeleton/Skeleton'
 
 interface ManualListItemSkeletonProps {
     className?: string

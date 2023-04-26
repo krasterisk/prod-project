@@ -1,8 +1,8 @@
-import { classNames } from 'shared/lib/classNames/classNames'
+import { classNames } from '@/shared/lib/classNames/classNames'
 import cls from './ManualPageFilters.module.scss'
 import { useTranslation } from 'react-i18next'
 import { memo, useCallback } from 'react'
-import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch'
+import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch'
 import {
     ManualHashtagsTypes,
     ManualSortField,
@@ -10,7 +10,7 @@ import {
     ManualTypeTabs,
     ManualView,
     ManualViewSelector
-} from 'entities/Manual'
+} from '@/entities/Manual'
 import { manualPageActions } from '../../model/slice/manualPageSlice'
 import { useSelector } from 'react-redux'
 import {
@@ -20,11 +20,11 @@ import {
     getManualsPageSort,
     getManualsPageView
 } from '../../model/selectors/manualsPageSelectors'
-import { Card } from 'shared/ui/Card/Card'
-import { Input } from 'shared/ui/Input/Input'
-import { SortOrder } from 'shared/types'
+import { Card } from '@/shared/ui/Card/Card'
+import { Input } from '@/shared/ui/Input/Input'
+import { SortOrder } from '@/shared/types'
 import { fetchManualsList } from '../../model/services/fetchManualsList/fetchManualsList'
-import { useDebounce } from 'shared/lib/hooks/useDebounce/useDebounce'
+import { useDebounce } from '@/shared/lib/hooks/useDebounce/useDebounce'
 
 interface ManualPageFiltersProps {
     className?: string

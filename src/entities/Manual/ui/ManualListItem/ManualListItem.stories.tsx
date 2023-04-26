@@ -2,7 +2,7 @@ import React from 'react'
 import { ComponentMeta, ComponentStory } from '@storybook/react'
 import { ManualListItem } from './ManualListItem'
 import { Manual } from '../../model/types/manual'
-import { StoreDecorator } from 'shared/config/storybook/StoreDecorator/StoreDecorator'
+import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator'
 import { ManualBlockTypes } from '../../model/consts/consts'
 
 export default {
