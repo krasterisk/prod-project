@@ -8,7 +8,7 @@ import { Text } from '@/shared/ui/Text/Text'
 import { StarRating } from '@/shared/ui/StarRating/StarRating'
 import { Modal } from '@/shared/ui/Modal/Modal'
 import { Input } from '@/shared/ui/Input/Input'
-import { Button, ButtonTheme } from '@/shared/ui/Button/Button'
+import { Button, ButtonSize, ButtonTheme } from '@/shared/ui/Button/Button'
 import { useDevice } from '@/shared/lib/hooks/useDevice/useDevice'
 import { Drawer } from '@/shared/ui/Drawer/Drawer'
 
@@ -19,6 +19,7 @@ interface RatingCardProps {
     hasFeedback?: boolean
     onCancel?: (starsCount: number) => void
     onAccept?: (starsCount: number, feedback?: string) => void
+    rate?: number
 }
 
 export const RatingCard = memo((props: RatingCardProps) => {
@@ -28,11 +29,12 @@ export const RatingCard = memo((props: RatingCardProps) => {
         onAccept,
         feedbackTitle,
         hasFeedback,
-        title
+        title,
+        rate = 0
     } = props
     const { t } = useTranslation()
     const [isModalOpen, setIsModalOpen] = useState(false)
-    const [starsCount, setStarsCount] = useState(0)
+    const [starsCount, setStarsCount] = useState(rate)
     const [feedback, setFeedback] = useState('')
 
     const onSelectStars = useCallback((selectedStarsCount: number) => {
@@ -62,31 +64,39 @@ export const RatingCard = memo((props: RatingCardProps) => {
                 onChange={setFeedback}
                 placeholder={t('Ваш отзыв')}
             />
-            <HStack max gap={'16'} justify={'end'}>
-                <Button theme={ButtonTheme.OUTLINE_RED} onClick={cancelHandler}>
-                    {t('Закрыть')}
-                </Button>
-                <Button onClick={acceptHandler}>
-                    {t('Отправить')}
-                </Button>
-            </HStack>
         </VStack>
     )
+
     const isMobile = useDevice()
 
     return (
-        <Card className={classNames(cls.RatingCard, {}, [className])}>
+        <Card className={classNames(cls.RatingCard, {}, [className])} max>
             <VStack align={'center'} gap={'8'}>
-                <Text text={title} />
-                <StarRating size={40} onSelect={onSelectStars}/>
-
+                <Text title={starsCount ? t('Спасибо за оценку!') : title}/>
+                <StarRating size={40} onSelect={onSelectStars} selectedStars={starsCount}/>
             </VStack>
             {!isMobile
                 ? <Modal isOpen={isModalOpen} lazy>
                     {modalContent}
+                    <HStack gap={'16'} justify={'end'}>
+                        <Button onClick={cancelHandler} theme={ButtonTheme.OUTLINE_RED}>
+                            {t('Закрыть')}
+                        </Button>
+                        <Button onClick={acceptHandler}>
+                            {t('Отправить')}
+                        </Button>
+                    </HStack>
                 </Modal>
                 : <Drawer isOpen={isModalOpen} onClose={cancelHandler}>
                     {modalContent}
+                    <HStack max gap={'16'} justify={'end'}>
+                        <Button
+                            onClick={acceptHandler}
+                            className={cls.fullwidth}
+                            size={ButtonSize.L}>
+                            {t('Отправить')}
+                        </Button>
+                    </HStack>
                 </Drawer>
             }
         </Card>

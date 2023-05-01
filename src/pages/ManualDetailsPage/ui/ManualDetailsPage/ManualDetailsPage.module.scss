@@ -8,3 +8,7 @@
     overflow-y: hidden; // скрыть скролл по вертикали
     overflow-x: auto; // если не влезло, показывать скроллл по горизонтале
 }
+
+.rating {
+    justify-items: center;
+}

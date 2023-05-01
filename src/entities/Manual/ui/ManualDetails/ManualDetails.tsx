@@ -49,7 +49,6 @@ export const ManualDetails = memo(({ className, id }: ManualDetailsProps) => {
         switch (block.type) {
             case ManualBlockTypes.TEXT:
                 return <ManualBlockTextComponent className={cls.block} block={block} key={Math.random() * 123}/>
-
             case ManualBlockTypes.CODE:
                 return <ManualBlockCodeComponent className={cls.block} block={block} key={block.code}/>
             case ManualBlockTypes.IMAGE:

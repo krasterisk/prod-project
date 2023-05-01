@@ -10,6 +10,7 @@ import { ManualDetailsPageHeader } from '../ManualDetailsPageHeader/ManualDetail
 import { VStack } from '@/shared/ui/Stack'
 import { ManualRecommendationsList } from '@/features/manualRecommendationsList'
 import { ManualDetailsComments } from '../../ui/ManualDetailsComments/ManualDetailsComments'
+import { ManualRating } from '@/features/manualRating'
 
 interface ManualDetailsPageProps {
     className?: string
@@ -22,13 +23,9 @@ const reducers: ReducersList = {
 const ManualDetailsPage = ({ className }: ManualDetailsPageProps) => {
     const { id } = useParams<{ id: string }>()
 
-    // if (!id) {
-    //     return (
-    //         <Page className={classNames(cls.ManualDetailsPage, {}, [className])}>
-    //             {t('Страница не найдена')}
-    //         </Page>
-    //     )
-    // }
+    if (!id) {
+        return null
+    }
 
     return (
         <DynamicModuleLoader reducers={reducers} removeAfterUnmount>
@@ -37,6 +34,7 @@ const ManualDetailsPage = ({ className }: ManualDetailsPageProps) => {
                     <ManualDetailsPageHeader />
                     <ManualDetails id={id} />
                     <ManualRecommendationsList />
+                    <ManualRating manualId={id}/>
                     <ManualDetailsComments id={id} />
                 </VStack>
             </Page>

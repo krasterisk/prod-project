@@ -10,7 +10,6 @@ ThunkConfig<string>
     'Manual/fetchManualById',
     async (manualId, thunkAPI) => {
         const { extra, rejectWithValue } = thunkAPI
-
         try {
             if (!manualId) {
                 throw new Error('')

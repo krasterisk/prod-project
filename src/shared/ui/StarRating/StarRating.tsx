@@ -1,11 +1,10 @@
-import { classNames, Mods } from '@/shared/lib/classNames/classNames'
+import { classNames } from '@/shared/lib/classNames/classNames'
 import cls from './StarRating.module.scss'
-import { useTranslation } from 'react-i18next'
 import { memo, useState } from 'react'
 import { Icon } from '../Icon/Icon'
 import StarIcon from '@/shared/assets/icons/star.svg'
+
 interface StarRatingProps {
-    className?: string
     onSelect?: (starsCount: number) => void
     size?: number
     selectedStars?: number
@@ -15,15 +14,12 @@ const stars = [1, 2, 3, 4, 5]
 
 export const StarRating = memo((props: StarRatingProps) => {
     const {
-        className,
         selectedStars = 0,
         size = 30,
         onSelect
     } = props
-    const { t } = useTranslation()
 
-    const [isHovered, setIsHovered] = useState(false)
-    const [currentStarCount, setCurrentStarCount] = useState(0)
+    const [currentStarCount, setCurrentStarCount] = useState(selectedStars)
     const [isSelected, setIsSelected] = useState(Boolean(selectedStars))
 
     const onHover = (starsCount: number) => () => {
