@@ -8,7 +8,6 @@ import NotificationIcon from '@/shared/assets/icons/notification-20-20.svg'
 import { NotificationList } from '@/entities/Notification'
 import { Drawer } from '@/shared/ui/Drawer/Drawer'
 import { useDevice } from '@/shared/lib/hooks/useDevice/useDevice'
-import { AnimationProvider } from '@/shared/lib/components/AnimationProvider'
 
 interface NotificationButtonProps {
     className?: string

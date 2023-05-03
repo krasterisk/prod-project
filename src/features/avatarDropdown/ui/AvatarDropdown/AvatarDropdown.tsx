@@ -10,7 +10,6 @@ import { getUserAuthData, isUserAdmin, isUserVPBXAdmin, userActions } from '@/en
 
 interface AvatarDropdownProps {
     className?: string
-
 }
 
 export const AvatarDropdown = memo((props: AvatarDropdownProps) => {

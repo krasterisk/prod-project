@@ -6,6 +6,7 @@ import { createReducerManager } from './reducerManager'
 import { $api } from '@/shared/api/api'
 import { scrollSaveReducer } from '@/features/ScrollSave'
 import { rtkApi } from '@/shared/api/rtkApi'
+// eslint-disable-next-line krasterisk-plugin/public-api-imports
 import { profileReducer } from '@/features/EditableProfileCard/model/slice/profileSlice'
 
 export function createReduxStore (

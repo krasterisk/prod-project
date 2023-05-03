@@ -5,11 +5,11 @@ import { memo, useCallback } from 'react'
 import { Input } from '@/shared/ui/Input/Input'
 import { Button, ButtonTheme } from '@/shared/ui/Button/Button'
 import { useSelector } from 'react-redux'
-import { addCommentFormText } from '../../model/selectors/addCommentFormSelectors'
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch'
 import { AddCommentFormActions, AddCommentFormReducer } from '../../model/slice/AddCommentFormSlice'
 import { DynamicModuleLoader, ReducersList } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader'
 import { HStack } from '@/shared/ui/Stack'
+import { addCommentFormText } from '../../model/selectors/addCommentFormSelectors'
 
 export interface AddCommentFormProps {
     className?: string

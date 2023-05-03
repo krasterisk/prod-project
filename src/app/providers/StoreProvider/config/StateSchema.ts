@@ -5,7 +5,7 @@ import { AnyAction, CombinedState, EnhancedStore, Reducer, ReducersMapObject } f
 import { ProfileSchema } from '@/features/EditableProfileCard'
 import { AxiosInstance } from 'axios'
 import { ManualDetailsSchema } from '@/entities/Manual'
-import { AddCommentFormSchema } from '@/features/AddCommentForm/model/types/addCommentForm'
+import { AddCommentFormSchema } from '@/features/AddCommentForm'
 import { ManualsPageSchema } from '@/pages/ManualsPage'
 import { ScrollSaveSchema } from '@/features/ScrollSave'
 import { ManualDetailsPageSchema } from '@/pages/ManualDetailsPage'

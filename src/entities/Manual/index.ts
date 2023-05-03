@@ -17,5 +17,8 @@ export { ManualViewSelector } from './ui/ManualViewSelector/ManualViewSelector'
 export { ManualSortSelector } from './ui/ManualSortSelector/ManualSortSelector'
 export { ManualTypeTabs } from './ui/ManualTypeTabs/ManualTypeTabs'
 export { getManualDetailsData } from './model/selectors/manualDetails'
-export { ManualSortField } from './model/consts/consts'
-export { ManualHashtagsTypes } from './model/consts/consts'
+export {
+    ManualSortField,
+    ManualHashtagsTypes,
+    ManualBlockTypes
+} from './model/consts/consts'
