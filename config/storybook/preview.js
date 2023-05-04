@@ -6,12 +6,12 @@ import { RouteDecorator } from '../../src/shared/config/storybook/RouterDecorato
 import { SuspenseDecorator } from '../../src/shared/config/storybook/SuspenseDecorator/SuspenseDecorator'
 
 export const parameters = {
-  actions: { argTypesRegex: '^on[A-Z].*' },
+    actions: { argTypesRegex: '^on[A-Z].*' },
     controls: {
-    matchers: {
-      color: /(background|color)$/i,
-      date: /Date$/
-    }
+        matchers: {
+            color: /(background|color)$/i,
+            date: /Date$/
+        }
     }
 }
 

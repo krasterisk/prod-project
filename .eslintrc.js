@@ -40,7 +40,13 @@ module.exports = {
             ignoreAttribute: ['data-testid']
         }],
         'krasterisk-plugin/path-checker': ['error', { alias: '@' }],
-        'krasterisk-plugin/public-api-imports': ['error', { alias: '@' }]
+        'krasterisk-plugin/public-api-imports': [
+            'error',
+            {
+                alias: '@',
+                testFilesPatterns: ['**/*.test.*', '**/*.story.*', '**/StoreDecorator.tsx']
+            }
+        ]
     },
     globals: {
         __IS_DEV__: true,

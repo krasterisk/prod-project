@@ -1,17 +1,11 @@
 import { Story } from '@storybook/react'
-// todo
 import { StateSchema, StoreProvider } from '@/app/providers/StoreProvider'
-// eslint-disable-next-line krasterisk-plugin/public-api-imports
-import { loginReducer } from '@/features/AuthByUsername/model/slice/loginSlice'
+import { loginReducer } from '@/features/AuthByUsername/testing'
 import { ReducersList } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader'
-// eslint-disable-next-line krasterisk-plugin/public-api-imports
-import { manualDetailsReducer } from '@/entities/Manual/model/slice/manualDetailsSlice'
-// eslint-disable-next-line krasterisk-plugin/public-api-imports
-import { AddCommentFormReducer } from '@/features/AddCommentForm/model/slice/AddCommentFormSlice'
-// eslint-disable-next-line krasterisk-plugin/public-api-imports
-import { manualDetailsPageReducer } from '@/pages/ManualDetailsPage/model/slices'
-// eslint-disable-next-line krasterisk-plugin/public-api-imports
-import { profileReducer } from '@/features/EditableProfileCard/model/slice/profileSlice'
+import { manualDetailsReducer } from '@/entities/Manual/testing'
+import { AddCommentFormReducer } from '@/features/AddCommentForm/testing'
+import { manualDetailsPageReducer } from '@/pages/ManualDetailsPage/testing'
+import { profileReducer } from '@/features/EditableProfileCard/testing'
 
 const defaultAsyncReducers: ReducersList = {
     loginForm: loginReducer,
