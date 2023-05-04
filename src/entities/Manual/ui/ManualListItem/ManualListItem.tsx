@@ -10,9 +10,9 @@ import { Avatar } from '@/shared/ui/Avatar/Avatar'
 import { useTranslation } from 'react-i18next'
 import { Button, ButtonTheme } from '@/shared/ui/Button/Button'
 import { ManualBlockTextComponent } from '../ManualBlockTextComponent/ManualBlockTextComponent'
-import { RoutePath } from '@/shared/config/routeConfig/routeConfig'
 import { AppLink } from '@/shared/ui/AppLink/AppLink'
 import { ManualBlockTypes } from '../../model/consts/consts'
+import { RoutePath } from '@/shared/const/router'
 
 interface ManualListItemProps {
     className?: string

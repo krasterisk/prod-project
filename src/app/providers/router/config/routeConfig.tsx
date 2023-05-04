@@ -1,93 +1,63 @@
-import { type RouteProps } from 'react-router-dom'
 import { MainPage } from '@/pages/MainPage'
 import { AboutPage } from '@/pages/AboutPage'
-import { ErrorPage } from '@/pages/ErrorPage'
+import { AdminPage } from '@/pages/AdminPage'
+import { UserRolesValues } from '@/entities/User'
 import { ProfilePage } from '@/pages/ProfilePage'
 import { ManualsPage } from '@/pages/ManualsPage'
 import { ManualDetailsPage } from '@/pages/ManualDetailsPage'
 import { ManualEditPage } from '@/pages/ManualEditPage'
-import { AdminPage } from '@/pages/AdminPage'
-import { UserRolesValues } from '@/entities/User'
 import { ForbiddenPage } from '@/pages/ForbiddenPage'
-
-export type AppRoutesProps = RouteProps & {
-    authOnly?: boolean
-    roles?: UserRolesValues[]
-}
-
-export enum AppRoutes {
-    MAIN = 'main',
-    ABOUT = 'about',
-    PROFILE = 'profile',
-    ADMIN = 'admin',
-    MANUALS = 'manuals',
-    MANUAL_DETAILS = 'manual_details',
-    MANUAL_CREATE = 'manuals_create',
-    MANUAL_EDIT = 'manual_edit',
-    FORBIDDEN = 'forbidden',
-    ERROR = 'error'
-}
-
-export const RoutePath: Record<AppRoutes, string> = {
-    [AppRoutes.MAIN]: '/',
-    [AppRoutes.ABOUT]: '/about',
-    [AppRoutes.ADMIN]: '/admin',
-    [AppRoutes.PROFILE]: '/profile/',
-    [AppRoutes.MANUALS]: '/manuals',
-    [AppRoutes.MANUAL_DETAILS]: '/manuals/',
-    [AppRoutes.MANUAL_EDIT]: '/manuals/:id/edit',
-    [AppRoutes.MANUAL_CREATE]: '/manuals/create',
-    [AppRoutes.FORBIDDEN]: '/forbidden',
-    [AppRoutes.ERROR]: '*'
-}
+import { ErrorPage } from '@/pages/ErrorPage'
+import { AppRoutes, RoutePath } from '@/shared/const/router'
+import { AppRoutesProps } from '@/shared/types/router'
 
 export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
     [AppRoutes.MAIN]: {
         path: RoutePath[AppRoutes.MAIN],
-        element: <MainPage />
+        element: <MainPage/>
     },
     [AppRoutes.ABOUT]: {
         path: RoutePath[AppRoutes.ABOUT],
-        element: <AboutPage />
+        element: <AboutPage/>
     },
     [AppRoutes.ADMIN]: {
         path: RoutePath[AppRoutes.ADMIN],
-        element: <AdminPage />,
+        element: <AdminPage/>,
         authOnly: true,
         roles: [UserRolesValues.ADMIN, UserRolesValues.USER]
     },
     [AppRoutes.PROFILE]: {
         path: `${RoutePath[AppRoutes.PROFILE]}:id`,
-        element: <ProfilePage />,
+        element: <ProfilePage/>,
         authOnly: true
     },
     [AppRoutes.MANUALS]: {
         path: RoutePath[AppRoutes.MANUALS],
-        element: <ManualsPage />,
+        element: <ManualsPage/>,
         authOnly: true
     },
     [AppRoutes.MANUAL_DETAILS]: {
         path: `${RoutePath[AppRoutes.MANUAL_DETAILS]}:id`,
-        element: <ManualDetailsPage />,
+        element: <ManualDetailsPage/>,
         authOnly: true
     },
     [AppRoutes.MANUAL_EDIT]: {
         path: `${RoutePath[AppRoutes.MANUAL_EDIT]}`,
-        element: <ManualEditPage />,
+        element: <ManualEditPage/>,
         authOnly: true
     },
     [AppRoutes.MANUAL_CREATE]: {
         path: `${RoutePath[AppRoutes.MANUAL_CREATE]}`,
-        element: <ManualEditPage />,
+        element: <ManualEditPage/>,
         authOnly: true
     },
     [AppRoutes.FORBIDDEN]: {
         path: RoutePath[AppRoutes.FORBIDDEN],
-        element: <ForbiddenPage />
+        element: <ForbiddenPage/>
     },
     [AppRoutes.ERROR]: {
         path: RoutePath[AppRoutes.ERROR],
-        element: <ErrorPage />
+        element: <ErrorPage/>
     }
 
 }
