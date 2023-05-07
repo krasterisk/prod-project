@@ -13,7 +13,8 @@ module.exports = {
         'react',
         'i18next',
         'react-hooks',
-        'krasterisk-plugin'
+        'krasterisk-plugin',
+        'unused-imports'
     ],
     rules: {
         indent: 'off',
@@ -53,7 +54,8 @@ module.exports = {
                 alias: '@',
                 ignoreImportPatterns: ['**/StoreProvider', '**/testing', '**/getTokenData']
             }
-        ]
+        ],
+        'unused-imports/no-unused-imports': 'error'
     },
     globals: {
         __IS_DEV__: true,
