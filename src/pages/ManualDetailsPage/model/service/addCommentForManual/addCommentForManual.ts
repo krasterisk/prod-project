@@ -4,7 +4,7 @@ import { getUserAuthData } from '@/entities/User'
 import { getManualDetailsData } from '@/entities/Manual'
 import { Comments } from '@/entities/Comment'
 import { fetchCommentsByManualId } from '../../service/fetchCommentsByManualId/fetchCommentsByManualId'
-import { getTokenData } from '@/shared/api/getTokenData/getTokenData'
+import { getTokenData } from '@/app/providers/getTokenData/getTokenData'
 
 export const addCommentForManual = createAsyncThunk<
 Comments,

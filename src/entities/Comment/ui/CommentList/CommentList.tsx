@@ -2,7 +2,7 @@ import { classNames } from '@/shared/lib/classNames/classNames'
 import { memo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { CommentCard } from '../../ui/CommentCard/CommentCard'
-import { Text } from '@/shared/ui/Text/Text'
+import { Text } from '@/shared/ui/Text'
 import { Comments } from '../../model/types/comments'
 import { VStack } from '@/shared/ui/Stack'
 

@@ -10,12 +10,12 @@ import {
     getManualDetailsError,
     getManualDetailsIsLoading
 } from '../../model/selectors/manualDetails'
-import { Text, TextAlign, TextSize } from '@/shared/ui/Text/Text'
-import { Skeleton } from '@/shared/ui/Skeleton/Skeleton'
-import { Avatar } from '@/shared/ui/Avatar/Avatar'
+import { Text, TextAlign, TextSize } from '@/shared/ui/Text'
+import { Skeleton } from '@/shared/ui/Skeleton'
+import { Avatar } from '@/shared/ui/Avatar'
 import EyeIcon from '@/shared/assets/icons/eye-20-20.svg'
 import CalendarIcon from '@/shared/assets/icons/calendar-20-20.svg'
-import { Icon } from '@/shared/ui/Icon/Icon'
+import { Icon } from '@/shared/ui/Icon'
 import { ManualBlock } from '../../model/types/manual'
 import { ManualBlockCodeComponent } from '../../ui/ManualBlockCodeComponent/ManualBlockCodeComponent'
 import { ManualBlockImageComponent } from '../../ui/ManualBlockImageComponent/ManualBlockImageComponent'

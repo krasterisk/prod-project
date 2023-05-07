@@ -3,8 +3,8 @@ import React, { ReactNode } from 'react'
 import { classNames, Mods } from '@/shared/lib/classNames/classNames'
 import { Portal } from '../Portal/Portal'
 import { Overlay } from '../Overlay/Overlay'
-import { useTheme } from '@/app/providers/ThemeProvider'
 import { useModal } from '@/shared/lib/hooks/useModal/useModal'
+import { useTheme } from '@/shared/lib/hooks/useTheme/useTheme'
 
 interface ModalProps {
     className?: string

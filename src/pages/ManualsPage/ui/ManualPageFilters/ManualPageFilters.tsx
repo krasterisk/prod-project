@@ -20,8 +20,8 @@ import {
     getManualsPageSort,
     getManualsPageView
 } from '../../model/selectors/manualsPageSelectors'
-import { Card } from '@/shared/ui/Card/Card'
-import { Input } from '@/shared/ui/Input/Input'
+import { Card } from '@/shared/ui/Card'
+import { Input } from '@/shared/ui/Input'
 import { SortOrder } from '@/shared/types'
 import { fetchManualsList } from '../../model/services/fetchManualsList/fetchManualsList'
 import { useDebounce } from '@/shared/lib/hooks/useDebounce/useDebounce'

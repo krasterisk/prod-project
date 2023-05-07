@@ -2,11 +2,10 @@ import { useTranslation } from 'react-i18next'
 import { memo, useCallback } from 'react'
 import { RatingCard } from '@/entities/Rating'
 import { useGetManualRating, useSetManualRating } from '../../api/manualRatingApi'
-import { getTokenData } from '@/shared/api/getTokenData/getTokenData'
+import { getTokenData } from '@/app/providers/getTokenData/getTokenData'
 import { getUserAuthData } from '@/entities/User'
 import { useSelector } from 'react-redux'
-import { Skeleton } from '@/shared/ui/Skeleton/Skeleton'
-import { ErrorPage } from '@/pages/ErrorPage'
+import { Skeleton } from '@/shared/ui/Skeleton'
 
 export interface ManualRatingProps {
     className?: string
@@ -38,7 +37,7 @@ const ManualRating = memo((props: ManualRatingProps) => {
                 feedback
             })
         } catch (e) {
-            return <ErrorPage />
+            throw Error()
         }
     }, [manualId, rateManualMutation, userId])
 

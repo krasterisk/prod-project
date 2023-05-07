@@ -5,7 +5,7 @@ import MainIcon from '@/shared/assets/icons/main-20-20.svg'
 import AboutIcon from '@/shared/assets/icons/about-20-20.svg'
 import ProfileIcon from '@/shared/assets/icons/profile-20-20.svg'
 import ManualIcon from '@/shared/assets/icons/manual-20-20.svg'
-import { getTokenData } from '@/shared/api/getTokenData/getTokenData'
+import { getTokenData } from '@/app/providers/getTokenData/getTokenData'
 import { RoutePath } from '@/shared/const/router'
 
 export const getSidebarItems = createSelector(

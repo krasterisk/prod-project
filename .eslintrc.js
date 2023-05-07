@@ -46,6 +46,13 @@ module.exports = {
                 alias: '@',
                 testFilesPatterns: ['**/*.test.*', '**/*.story.*', '**/StoreDecorator.tsx']
             }
+        ],
+        'krasterisk-plugin/layer-imports': [
+            'error',
+            {
+                alias: '@',
+                ignoreImportPatterns: ['**/StoreProvider', '**/testing', '**/getTokenData']
+            }
         ]
     },
     globals: {

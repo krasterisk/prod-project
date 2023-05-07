@@ -1,7 +1,7 @@
 import { createSelector } from '@reduxjs/toolkit'
 import { getManualDetailsData } from '@/entities/Manual'
 import { getUserAuthData } from '@/entities/User'
-import { getTokenData } from '@/shared/api/getTokenData/getTokenData'
+import { getTokenData } from '@/app/providers/getTokenData/getTokenData'
 
 export const getCanEditManual = createSelector(
     getManualDetailsData,
