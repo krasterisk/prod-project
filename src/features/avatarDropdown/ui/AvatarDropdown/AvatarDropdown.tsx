@@ -6,7 +6,7 @@ import { Avatar } from '@/shared/ui/Avatar'
 import { useDispatch, useSelector } from 'react-redux'
 import { getTokenAllData } from '@/app/providers/getTokenData/getTokenData'
 import { getUserAuthData, isUserAdmin, isUserVPBXAdmin, userActions } from '@/entities/User'
-import { RoutePath } from '@/shared/const/router'
+import { getRouteAdmin, getRouteProfile } from '@/shared/const/router'
 
 interface AvatarDropdownProps {
     className?: string
@@ -37,12 +37,12 @@ export const AvatarDropdown = memo((props: AvatarDropdownProps) => {
                 ...(isAdminAvailable
                     ? [{
                         content: t('Админ'),
-                        href: RoutePath.admin
+                        href: getRouteAdmin()
                     }]
                     : []),
                 {
                     content: t('Профиль'),
-                    href: RoutePath.profile + String(userData?.id)
+                    href: getRouteProfile(String(userData?.id))
                 },
                 {
                     content: t('Выйти'),

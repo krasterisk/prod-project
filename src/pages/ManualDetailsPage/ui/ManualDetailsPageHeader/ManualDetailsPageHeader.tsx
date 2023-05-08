@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux'
 import { getManualDetailsData } from '@/entities/Manual'
 import { getCanEditManual } from '../../model/selectors/manual'
 import { HStack } from '@/shared/ui/Stack'
-import { RoutePath } from '@/shared/const/router'
+import { getRouteManualEdit, getRouteManuals } from '@/shared/const/router'
 
 interface ManualDetailsPageHeaderProps {
     className?: string
@@ -25,12 +25,12 @@ export const ManualDetailsPageHeader = memo((props: ManualDetailsPageHeaderProps
     const canEdit = useSelector(getCanEditManual)
 
     const onBackToList = useCallback(() => {
-        navigate(RoutePath.manuals)
+        navigate(getRouteManuals())
     }, [navigate])
 
     const onEditPage = useCallback(() => {
         if (manual?.id) {
-            navigate(`${RoutePath.manuals}/${manual?.id}/edit`)
+            navigate(getRouteManualEdit(manual?.id))
         }
     }, [manual, navigate])
 

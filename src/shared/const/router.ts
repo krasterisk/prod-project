@@ -11,15 +11,12 @@ export enum AppRoutes {
     ERROR = 'error'
 }
 
-export const RoutePath: Record<AppRoutes, string> = {
-    [AppRoutes.MAIN]: '/',
-    [AppRoutes.ABOUT]: '/about',
-    [AppRoutes.ADMIN]: '/admin',
-    [AppRoutes.PROFILE]: '/profile/',
-    [AppRoutes.MANUALS]: '/manuals',
-    [AppRoutes.MANUAL_DETAILS]: '/manuals/',
-    [AppRoutes.MANUAL_EDIT]: '/manuals/:id/edit',
-    [AppRoutes.MANUAL_CREATE]: '/manuals/create',
-    [AppRoutes.FORBIDDEN]: '/forbidden',
-    [AppRoutes.ERROR]: '*'
-}
+export const getRouteMain = () => '/'
+export const getRouteAbout = () => '/about'
+export const getRouteAdmin = () => '/admin'
+export const getRouteManuals = () => '/manuals'
+export const getRouteManualDetails = (id: string) => `/manuals/${id}`
+export const getRouteManualEdit = (id: string) => `/manuals/${id}/edit`
+export const getRouteManualCreate = () => '/manuals/create'
+export const getRouteForbidden = () => '/forbidden'
+export const getRouteProfile = (id: string) => `/profile/${id}`

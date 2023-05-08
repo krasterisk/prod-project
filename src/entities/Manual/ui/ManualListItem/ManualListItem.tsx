@@ -12,7 +12,7 @@ import { Button, ButtonTheme } from '@/shared/ui/Button'
 import { ManualBlockTextComponent } from '../ManualBlockTextComponent/ManualBlockTextComponent'
 import { AppLink } from '@/shared/ui/AppLink'
 import { ManualBlockTypes } from '../../model/consts/consts'
-import { RoutePath } from '@/shared/const/router'
+import { getRouteManualDetails } from '@/shared/const/router'
 
 interface ManualListItemProps {
     className?: string
@@ -60,7 +60,7 @@ export const ManualListItem = memo((props: ManualListItemProps) => {
                     <div className={cls.footer}>
                         <AppLink
                             target={target}
-                            to={RoutePath.manual_details + manual.id}
+                            to={getRouteManualDetails(manual.id)}
                         >
                             <Button theme={ButtonTheme.OUTLINE}>
                                 {t('Читать дальше')}
@@ -77,7 +77,7 @@ export const ManualListItem = memo((props: ManualListItemProps) => {
         <AppLink
             target={target}
             className={classNames(cls.ManualListItem, {}, [className, cls[view]])}
-            to={RoutePath.manual_details + manual.id}
+            to={getRouteManualDetails(manual.id)}
         >
             <Card className={cls.card}>
                 <div className={cls.imageWrapper}>

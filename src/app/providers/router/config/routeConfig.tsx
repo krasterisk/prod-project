@@ -8,55 +8,66 @@ import { ManualDetailsPage } from '@/pages/ManualDetailsPage'
 import { ManualEditPage } from '@/pages/ManualEditPage'
 import { ForbiddenPage } from '@/pages/ForbiddenPage'
 import { ErrorPage } from '@/pages/ErrorPage'
-import { AppRoutes, RoutePath } from '@/shared/const/router'
+import {
+    AppRoutes,
+    getRouteAbout,
+    getRouteAdmin,
+    getRouteForbidden,
+    getRouteMain,
+    getRouteManualCreate,
+    getRouteManualDetails,
+    getRouteManualEdit,
+    getRouteManuals,
+    getRouteProfile
+} from '@/shared/const/router'
 import { AppRoutesProps } from '@/shared/types/router'
 
 export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
     [AppRoutes.MAIN]: {
-        path: RoutePath[AppRoutes.MAIN],
+        path: getRouteMain(),
         element: <MainPage/>
     },
     [AppRoutes.ABOUT]: {
-        path: RoutePath[AppRoutes.ABOUT],
+        path: getRouteAbout(),
         element: <AboutPage/>
     },
     [AppRoutes.ADMIN]: {
-        path: RoutePath[AppRoutes.ADMIN],
+        path: getRouteAdmin(),
         element: <AdminPage/>,
         authOnly: true,
         roles: [UserRolesValues.ADMIN, UserRolesValues.USER]
     },
     [AppRoutes.PROFILE]: {
-        path: `${RoutePath[AppRoutes.PROFILE]}:id`,
+        path: getRouteProfile(':id'),
         element: <ProfilePage/>,
         authOnly: true
     },
     [AppRoutes.MANUALS]: {
-        path: RoutePath[AppRoutes.MANUALS],
+        path: getRouteManuals(),
         element: <ManualsPage/>,
         authOnly: true
     },
     [AppRoutes.MANUAL_DETAILS]: {
-        path: `${RoutePath[AppRoutes.MANUAL_DETAILS]}:id`,
+        path: getRouteManualDetails(':id'),
         element: <ManualDetailsPage/>,
         authOnly: true
     },
     [AppRoutes.MANUAL_EDIT]: {
-        path: `${RoutePath[AppRoutes.MANUAL_EDIT]}`,
+        path: getRouteManualEdit(':id'),
         element: <ManualEditPage/>,
         authOnly: true
     },
     [AppRoutes.MANUAL_CREATE]: {
-        path: `${RoutePath[AppRoutes.MANUAL_CREATE]}`,
+        path: getRouteManualCreate(),
         element: <ManualEditPage/>,
         authOnly: true
     },
     [AppRoutes.FORBIDDEN]: {
-        path: RoutePath[AppRoutes.FORBIDDEN],
+        path: getRouteForbidden(),
         element: <ForbiddenPage/>
     },
     [AppRoutes.ERROR]: {
-        path: RoutePath[AppRoutes.ERROR],
+        path: '*',
         element: <ErrorPage/>
     }
 
