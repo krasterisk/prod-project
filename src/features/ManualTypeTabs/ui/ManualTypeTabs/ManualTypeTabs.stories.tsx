@@ -1,9 +1,10 @@
 import React from 'react'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
+
 import { ManualTypeTabs } from './ManualTypeTabs'
 
 export default {
-    title: 'shared/ManualTypeTabs',
+    title: 'features/ManualTypeTabs',
     component: ManualTypeTabs,
     argTypes: {
         backgroundColor: { control: 'color' }

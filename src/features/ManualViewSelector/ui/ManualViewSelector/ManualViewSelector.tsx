@@ -1,11 +1,11 @@
 import { classNames } from '@/shared/lib/classNames/classNames'
 import cls from './ManualViewSelector.module.scss'
 import { memo, SVGProps, VFC } from 'react'
-import { ManualView } from '../../model/types/manual'
 import ListIcon from '@/shared/assets/icons/list-24-24.svg'
 import TiledIcon from '@/shared/assets/icons/tiled-24-24.svg'
 import { Icon } from '@/shared/ui/Icon'
 import { Button, ButtonTheme } from '@/shared/ui/Button'
+import { ManualView } from '@/entities/Manual'
 
 interface ManualViewSelectorProps {
     className?: string

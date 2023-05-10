@@ -6,10 +6,7 @@ import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch
 import {
     ManualHashtagsTypes,
     ManualSortField,
-    ManualSortSelector,
-    ManualTypeTabs,
-    ManualView,
-    ManualViewSelector
+    ManualView
 } from '@/entities/Manual'
 import { manualPageActions } from '../../model/slice/manualPageSlice'
 import { useSelector } from 'react-redux'
@@ -25,6 +22,9 @@ import { Input } from '@/shared/ui/Input'
 import { SortOrder } from '@/shared/types'
 import { fetchManualsList } from '../../model/services/fetchManualsList/fetchManualsList'
 import { useDebounce } from '@/shared/lib/hooks/useDebounce/useDebounce'
+import { ManualViewSelector } from '@/features/ManualViewSelector'
+import { ManualTypeTabs } from '@/features/ManualTypeTabs'
+import { ManualSortSelector } from '@/features/ManualSortSelector'
 
 interface ManualPageFiltersProps {
     className?: string

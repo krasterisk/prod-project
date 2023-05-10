@@ -13,9 +13,6 @@ export type {
 
 export { ManualList } from './ui/ManualList/ManualList'
 
-export { ManualViewSelector } from './ui/ManualViewSelector/ManualViewSelector'
-export { ManualSortSelector } from './ui/ManualSortSelector/ManualSortSelector'
-export { ManualTypeTabs } from './ui/ManualTypeTabs/ManualTypeTabs'
 export { getManualDetailsData } from './model/selectors/manualDetails'
 export {
     ManualSortField,

@@ -1,9 +1,10 @@
 import React from 'react'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
+
 import { ManualSortSelector } from './ManualSortSelector'
 
 export default {
-    title: 'entities/Manual/ManualSortSelector',
+    title: 'features/ManualSortSelector',
     component: ManualSortSelector,
     argTypes: {
         backgroundColor: { control: 'color' }

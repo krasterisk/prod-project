@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next'
 import { memo, useMemo } from 'react'
 import { Select, SelectOptions } from '@/shared/ui/Select'
 import { SortOrder } from '@/shared/types'
-import { ManualSortField } from '../../model/consts/consts'
+import {ManualSortField} from "@/entities/Manual";
 
 interface ManualSortSelectorProps {
     className?: string

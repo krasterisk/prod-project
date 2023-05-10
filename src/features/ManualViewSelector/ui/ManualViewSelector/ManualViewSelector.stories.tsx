@@ -1,9 +1,10 @@
 import React from 'react'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
+
 import { ManualViewSelector } from './ManualViewSelector'
 
 export default {
-    title: 'entities/Manual/ManualViewSelector',
+    title: 'features/ManualViewSelector',
     component: ManualViewSelector,
     argTypes: {
         backgroundColor: { control: 'color' }

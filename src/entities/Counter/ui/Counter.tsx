@@ -1,43 +1,44 @@
 import { Button } from '@/shared/ui/Button'
-import { useDispatch, useSelector } from 'react-redux'
-import { counterActions } from '../model/slice/counterSlice'
-import { getCounterValue } from '../model/selectors/getCounterValue/getCounterValue'
+import { useDispatch } from 'react-redux'
+import { useCounterValue } from '../model/selectors/getCounterValue/getCounterValue'
 import { useTranslation } from 'react-i18next'
 import { memo } from 'react'
+import { useCounterActions } from '../model/slice/counterSlice'
 
 export const Counter = memo(() => {
     const dispatch = useDispatch()
-    const counterValue = useSelector(getCounterValue)
+    const counterValue = useCounterValue()
     const { t } = useTranslation()
+    const { decrement, increment, plusFive } = useCounterActions()
 
-    const increment = () => {
-        dispatch(counterActions.increment())
+    const handleInc = () => {
+        increment()
     }
 
-    const decrement = () => {
-        dispatch(counterActions.decrement())
+    const handleDec = () => {
+        decrement()
     }
-    const plusFive = () => {
-        dispatch(counterActions.plusFive())
+    const handelFive = () => {
+        plusFive()
     }
 
     return (
         <div>
             <h1 data-testid="value-title">{counterValue}</h1>
             <Button
-                onClick={decrement}
+                onClick={handleDec}
                 data-testid="decrement-btn"
             >
                 {t('decrement')}
             </Button>
             <Button
-                onClick={increment}
+                onClick={handleInc}
                 data-testid="increment-btn"
             >
                 {t('increment')}
             </Button>
             <Button
-                onClick={plusFive}
+                onClick={handelFive}
                 data-testid='plus5-btn'
             >
                 {t('plus 5')}
