@@ -13,6 +13,8 @@ import { ManualBlockTextComponent } from '../ManualBlockTextComponent/ManualBloc
 import { AppLink } from '@/shared/ui/AppLink'
 import { ManualBlockTypes } from '../../model/consts/consts'
 import { getRouteManualDetails } from '@/shared/const/router'
+import { AppImage } from '@/shared/ui/AppImage'
+import { Skeleton } from '@/shared/ui/Skeleton'
 
 interface ManualListItemProps {
     className?: string
@@ -53,7 +55,12 @@ export const ManualListItem = memo((props: ManualListItemProps) => {
                     </div>
                     <Text text={manual.id + '. ' + manual.title} className={cls.title}/>
                     {hashtags}
-                    <img src={manual.image} className={cls.img} alt={manual.title}/>
+                    <AppImage
+                        fallback={<Skeleton width={'100%'} height={250} />}
+                        src={manual.image}
+                        className={cls.img}
+                        alt={manual.title}
+                    />
                     {textBlock && (
                         <ManualBlockTextComponent block={textBlock} className={cls.textBlock}/>
                     )}
@@ -81,14 +88,19 @@ export const ManualListItem = memo((props: ManualListItemProps) => {
         >
             <Card className={cls.card}>
                 <div className={cls.imageWrapper}>
-                    <img src={manual.image} className={cls.img} alt={manual.title}/>
-                    <Text text={manual.createdAt} className={cls.date}/>
+                    <AppImage
+                        fallback={<Skeleton width={200} height={200} />}
+                        src={manual.image}
+                        className={cls.img}
+                        alt={manual.title}
+                    />
+                    <Text text={manual.createdAt} className={cls.date} />
                 </div>
                 <div className={cls.infoWrapper}>
                     {hashtags}
                     {views}
                 </div>
-                <Text text={manual.id + '. ' + manual.title} className={cls.title}/>
+                <Text text={manual.id + '. ' + manual.title} className={cls.title} />
                 <div/>
             </Card>
         </AppLink>
