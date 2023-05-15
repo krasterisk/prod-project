@@ -1,1 +1,1 @@
-export { ManualSortSelector } from './ui/ManualSortSelector/ManualSortSelector';
+export { ManualSortSelector } from './ui/ManualSortSelector/ManualSortSelector'

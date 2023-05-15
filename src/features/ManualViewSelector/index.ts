@@ -1,1 +1,1 @@
-export { ManualViewSelector } from './ui/ManualViewSelector/ManualViewSelector';
+export { ManualViewSelector } from './ui/ManualViewSelector/ManualViewSelector'

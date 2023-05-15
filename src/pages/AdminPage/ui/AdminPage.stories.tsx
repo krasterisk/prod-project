@@ -11,8 +11,8 @@ export default {
     }
 } as ComponentMeta<typeof AdminPage>
 
-const Template: ComponentStory<typeof AdminPage> = () => <AdminPage />
+// const Template: ComponentStory<typeof AdminPage> = () => <AdminPage />
 
-export const Normal = Template.bind({})
-Normal.args = {}
-Normal.decorators = [StoreDecorator({})]
+// export const Normal = Template.bind({})
+// Normal.args = {}
+// Normal.decorators = [StoreDecorator({})]

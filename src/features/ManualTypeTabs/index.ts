@@ -1,1 +1,1 @@
-export { ManualTypeTabs } from './ui/ManualTypeTabs/ManualTypeTabs';
+export { ManualTypeTabs } from './ui/ManualTypeTabs/ManualTypeTabs'
