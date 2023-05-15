@@ -8,8 +8,9 @@ import { useLocation } from 'react-router-dom'
 import { StateSchema } from '@/app/providers/StoreProvider'
 import { useInitialEffect } from '@/shared/lib/hooks/useInitialEffect/useInitialEffect'
 import { useThrottle } from '@/shared/lib/hooks/useThrottle/useThrottle'
+import { TestsProps } from '@/shared/types/tests'
 
-interface PageProps {
+interface PageProps extends TestsProps {
     className?: string
     children: ReactNode
     onScrollEnd?: () => void
@@ -57,6 +58,7 @@ export const Page = (props: PageProps) => {
             className={classNames(cls.Page, {}, [className])}
             ref={wrapperRef}
             onScroll={onScroll}
+            data-testid={props['data-testid'] ?? 'Page'}
         >
             {children}
             {onScrollEnd ? <div className={cls.trigger} ref={triggerRef} /> : null}

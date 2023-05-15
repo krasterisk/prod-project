@@ -3,8 +3,8 @@ import cls from './ManualSortSelector.module.scss'
 import { useTranslation } from 'react-i18next'
 import { memo, useMemo } from 'react'
 import { Select, SelectOptions } from '@/shared/ui/Select'
-import { SortOrder } from '@/shared/types'
-import {ManualSortField} from "@/entities/Manual";
+import { SortOrder } from '@/shared/types/sort'
+import { ManualSortField } from '@/entities/Manual'
 
 interface ManualSortSelectorProps {
     className?: string

@@ -11,7 +11,6 @@ import { ManualInfiniteList } from '../../ui/ManualInfiniteList/ManualInfiniteLi
 import { useInitialEffect } from '@/shared/lib/hooks/useInitialEffect/useInitialEffect'
 import { initManualPage } from '../../model/services/initManualPage/initManualPage'
 import { useSearchParams } from 'react-router-dom'
-import {useManualItemById} from "@/pages/ManualsPage/model/selectors/manualsPageSelectors";
 
 interface ManualsPageProps {
     className?: string
@@ -36,6 +35,7 @@ const ManualsPage = ({ className }: ManualsPageProps) => {
     return (
         <DynamicModuleLoader reducers={reducers} removeAfterUnmount={false}>
             <Page
+                data-testid={'ManualPage'}
                 onScrollEnd={onLoadNextPart}
                 className={classNames(cls.ManualsPage, {}, [className])}
                 isSaveScroll={true}

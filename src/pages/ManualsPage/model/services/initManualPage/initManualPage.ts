@@ -3,7 +3,7 @@ import { ThunkConfig } from '@/app/providers/StoreProvider'
 import { manualPageActions } from '../../../model/slice/manualPageSlice'
 import { fetchManualsList } from '../../../model/services/fetchManualsList/fetchManualsList'
 import { getManualsPageInited } from '../../../model/selectors/manualsPageSelectors'
-import { SortOrder } from '@/shared/types'
+import { SortOrder } from '@/shared/types/sort'
 import { ManualHashtagsTypes, ManualSortField } from '@/entities/Manual'
 
 export const initManualPage = createAsyncThunk<

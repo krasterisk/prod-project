@@ -1,6 +1,6 @@
 import { EntityState } from '@reduxjs/toolkit'
 import { Manual, ManualView, ManualHashtagsTypes, ManualSortField } from '@/entities/Manual'
-import { SortOrder } from '@/shared/types'
+import { SortOrder } from '@/shared/types/sort'
 
 export interface ManualsPageSchema extends EntityState<Manual> {
     isLoading?: boolean

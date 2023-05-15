@@ -12,7 +12,7 @@ const ErrorPage = memo(({ className }: ErrorPageProps) => {
     const { t } = useTranslation()
 
     return (
-        <Page className={classNames(cls.ErrorPage, {}, [className])}>
+        <Page data-testid={'ErrorPage'} className={classNames(cls.ErrorPage, {}, [className])}>
             {t('Страница не найдена')}
         </Page>
     )
