@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next'
 import { DynamicModuleLoader, ReducersList } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader'
 import { manualDetailsReducer } from '../../model/slice/manualDetailsSlice'
 import { memo, useCallback } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import {
     getManualDetailsData,
     getManualDetailsError,
@@ -24,6 +24,7 @@ import { useInitialEffect } from '@/shared/lib/hooks/useInitialEffect/useInitial
 import { fetchManualById } from '../../model/services/fetchManualById/fetchManualById'
 import { HStack, VStack } from '@/shared/ui/Stack'
 import { ManualBlockTypes } from '../../model/consts/consts'
+import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch'
 
 interface ManualDetailsProps {
     className?: string
@@ -39,7 +40,7 @@ export const ManualDetails = memo(({ className, id }: ManualDetailsProps) => {
     const isLoading = useSelector(getManualDetailsIsLoading)
     const manual = useSelector(getManualDetailsData)
     const error = useSelector(getManualDetailsError)
-    const dispatch = useDispatch()
+    const dispatch = useAppDispatch()
 
     useInitialEffect(() => {
         dispatch(fetchManualById(id))

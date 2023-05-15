@@ -2,6 +2,7 @@ import React from 'react'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 import { ManualDetailsPageHeader } from './ManualDetailsPageHeader'
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator'
+import { RouterDecorator } from '@/shared/config/storybook/RouterDecorator/RouterDecorator'
 
 export default {
     title: 'pages/ManualDetailsPage/ManualDetailsPageHeader',
@@ -15,4 +16,7 @@ const Template: ComponentStory<typeof ManualDetailsPageHeader> = (args) => <Manu
 
 export const Normal = Template.bind({})
 Normal.args = {}
-Normal.decorators = [StoreDecorator({})]
+Normal.decorators = [
+    StoreDecorator({}),
+    RouterDecorator
+]

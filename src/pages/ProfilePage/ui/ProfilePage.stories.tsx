@@ -6,6 +6,7 @@ import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDe
 import { Country } from '../../../entities/Country'
 import { Currency } from '../../../entities/Currency'
 import { Theme } from '@/shared/const/theme'
+import { RouterDecorator } from '@/shared/config/storybook/RouterDecorator/RouterDecorator'
 
 export default {
     title: 'pages/ProfilePage',
@@ -19,23 +20,26 @@ const Template: ComponentStory<typeof ProfilePage> = () => <ProfilePage/>
 
 export const Normal = Template.bind({})
 Normal.args = {}
-Normal.decorators = [StoreDecorator({
-    profileForm: {
-        form: {
-            firstname: 'First',
-            lastname: 'Last',
-            age: 20,
-            username: 'Username',
-            email: 'mail@email.com',
-            country: Country.Russia,
-            currency: Currency.RUB
+Normal.decorators = [
+    RouterDecorator,
+    StoreDecorator({
+        profileForm: {
+            form: {
+                firstname: 'First',
+                lastname: 'Last',
+                age: 20,
+                username: 'Username',
+                email: 'mail@email.com',
+                country: Country.Russia,
+                currency: Currency.RUB
+            }
         }
-    }
-})]
+    })]
 
 export const Dark = Template.bind({})
 Dark.args = {}
 Dark.decorators = [
+    RouterDecorator,
     ThemeDecorator(Theme.DARK),
     StoreDecorator({
         profileForm: {
@@ -54,6 +58,7 @@ Dark.decorators = [
 export const Readonly = Template.bind({})
 Readonly.args = {}
 Readonly.decorators = [
+    RouterDecorator,
     StoreDecorator({
         profileForm: {
             form: {

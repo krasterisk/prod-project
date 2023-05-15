@@ -2,6 +2,8 @@ import React from 'react'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 import ManualsPage from './ManualsPage'
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator'
+import { RouterDecorator } from '@/shared/config/storybook/RouterDecorator/RouterDecorator'
+import { SuspenseDecorator } from '@/shared/config/storybook/SuspenseDecorator/SuspenseDecorator'
 
 export default {
     title: 'pages/ManualsPage/ManualsPage',
@@ -15,4 +17,8 @@ const Template: ComponentStory<typeof ManualsPage> = (args) => <ManualsPage {...
 
 export const Normal = Template.bind({})
 Normal.args = {}
-Normal.decorators = [StoreDecorator({})]
+Normal.decorators = [
+    StoreDecorator({}),
+    RouterDecorator,
+    SuspenseDecorator
+]

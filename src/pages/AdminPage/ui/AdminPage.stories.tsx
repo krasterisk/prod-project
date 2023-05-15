@@ -2,6 +2,7 @@ import React from 'react'
 import { ComponentMeta, ComponentStory } from '@storybook/react'
 import AdminPage from './AdminPage'
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator'
+import { RouterDecorator } from '@/shared/config/storybook/RouterDecorator/RouterDecorator'
 
 export default {
     title: 'pages/AdminPage',
@@ -15,4 +16,4 @@ const Template: ComponentStory<typeof AdminPage> = () => <AdminPage />
 
 export const Normal = Template.bind({})
 Normal.args = {}
-Normal.decorators = [StoreDecorator({})]
+Normal.decorators = [StoreDecorator({}), RouterDecorator]

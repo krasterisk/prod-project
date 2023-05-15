@@ -3,6 +3,7 @@ import { ComponentMeta, ComponentStory } from '@storybook/react'
 import ManualDetailsPage from './ManualDetailsPage'
 import { Manual, ManualBlockTypes } from '@/entities/Manual'
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator'
+import { RouterDecorator } from '@/shared/config/storybook/RouterDecorator/RouterDecorator'
 
 export default {
     title: 'pages/ManualDetailsPage/ManualDetailsPage',
@@ -83,8 +84,11 @@ const manual: Manual = {
 
 export const Normal = Template.bind({})
 Normal.args = {}
-Normal.decorators = [StoreDecorator({
-    manualDetails: {
-        data: manual
-    }
-})]
+Normal.decorators = [
+    StoreDecorator({
+        manualDetails: {
+            data: manual
+        }
+    }),
+    RouterDecorator
+]

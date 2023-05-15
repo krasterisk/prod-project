@@ -4,21 +4,29 @@ import { buildPaths } from '../build/types/config'
 import path from 'path'
 import { DefinePlugin, RuleSetRule } from 'webpack'
 import { buildCssLoader } from '../build/loaders/buildCssLoader'
+// import { buildCssLoader } from '../build/loaders/buildCssLoader'
+
 const config: StorybookConfig = {
     stories: ['../../src/**/*.stories.@(js|jsx|ts|tsx)'],
     addons: [
         '@storybook/addon-links',
-        '@storybook/addon-essentials',
-        '@storybook/addon-interactions'
+        {
+            name: '@storybook/addon-essentials',
+            options: {
+                backgrounds: false
+            }
+        },
+        '@storybook/addon-interactions',
+        'storybook-addon-mock',
+        'storybook-addon-themes'
     ],
+    features: {
+        storyStoreV7: false
+    },
     framework: {
         name: '@storybook/react-webpack5',
         options: {}
     },
-    // framework: {
-    //     name: '@storybook/react-vite',
-    //     options: {}
-    // },
     webpackFinal: async (config, { configType }) => {
         const paths: buildPaths = {
             build: '',
@@ -39,7 +47,10 @@ const config: StorybookConfig = {
         // @ts-expect-error
         config.module!.rules = config.module!.rules!.map((rule: RuleSetRule) => {
             if (rule?.test instanceof RegExp && rule.test.toString().includes('svg')) {
-                return { ...rule, exclude: /\.svg$/i }
+                return {
+                    ...rule,
+                    exclude: /\.svg$/i
+                }
             }
 
             return rule
@@ -59,9 +70,6 @@ const config: StorybookConfig = {
         }))
 
         return config
-    },
-    docs: {
-        autodocs: 'tag'
     }
 }
 export default config
