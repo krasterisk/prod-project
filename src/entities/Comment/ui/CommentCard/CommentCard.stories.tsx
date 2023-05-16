@@ -1,6 +1,7 @@
 import React from 'react'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 import { CommentCard } from './CommentCard'
+import { RouterDecorator } from '@/shared/config/storybook/RouterDecorator/RouterDecorator'
 
 export default {
     title: 'entities/Comment/CommentCard',
@@ -23,6 +24,7 @@ Normal.args = {
         }
     }
 }
+Normal.decorators = [RouterDecorator]
 
 export const Loading = Template.bind({})
 Loading.args = {

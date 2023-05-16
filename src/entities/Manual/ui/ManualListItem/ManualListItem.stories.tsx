@@ -4,6 +4,7 @@ import { ManualListItem } from './ManualListItem'
 import { Manual } from '../../model/types/manual'
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator'
 import { ManualBlockTypes } from '../../model/consts/consts'
+import { RouterDecorator } from '@/shared/config/storybook/RouterDecorator/RouterDecorator'
 
 export default {
     title: 'entities/Manual/ManualListItem',
@@ -88,10 +89,11 @@ Big.args = {
     view: 'BIG',
     manual
 }
-Big.decorators = [StoreDecorator({})]
+Big.decorators = [StoreDecorator({}), RouterDecorator]
+
 export const Small = Template.bind({})
 Small.args = {
     view: 'SMALL',
     manual
 }
-Small.decorators = [StoreDecorator({})]
+Small.decorators = [StoreDecorator({}), RouterDecorator]

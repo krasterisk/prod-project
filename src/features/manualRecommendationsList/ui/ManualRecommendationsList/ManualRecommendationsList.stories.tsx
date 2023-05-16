@@ -3,6 +3,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react'
 import { ManualRecommendationsList } from './ManualRecommendationsList'
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator'
 import { Manual, ManualBlockTypes } from '@/entities/Manual'
+import { RouterDecorator } from '@/shared/config/storybook/RouterDecorator/RouterDecorator'
 
 const manual: Manual = {
     id: '1',
@@ -83,7 +84,6 @@ const Template: ComponentStory<typeof ManualRecommendationsList> = (args) => <Ma
 
 export const Normal = Template.bind({})
 Normal.args = {}
-Normal.decorators = [StoreDecorator({})]
 Normal.parameters = {
     mockData: [
         {
@@ -98,3 +98,4 @@ Normal.parameters = {
         }
     ]
 }
+Normal.decorators = [StoreDecorator({}), RouterDecorator]

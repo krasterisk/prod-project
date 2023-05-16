@@ -4,6 +4,7 @@ import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDe
 import { Sidebar } from './Sidebar'
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator'
 import { Theme } from '@/shared/const/theme'
+import { RouterDecorator } from '@/shared/config/storybook/RouterDecorator/RouterDecorator'
 
 export default {
     title: 'widgets/Sidebar',
@@ -20,7 +21,8 @@ Light.args = {}
 Light.decorators = [
     StoreDecorator({
         user: { authData: {} }
-    })
+    }),
+    RouterDecorator
 ]
 
 export const Dark = Template.bind({})
@@ -29,7 +31,18 @@ Dark.decorators = [
     ThemeDecorator(Theme.DARK),
     StoreDecorator({
         user: { authData: {} }
-    })
+    }),
+    RouterDecorator
+]
+
+export const Purple = Template.bind({})
+Purple.args = {}
+Purple.decorators = [
+    ThemeDecorator(Theme.PURPLE),
+    StoreDecorator({
+        user: { authData: {} }
+    }),
+    RouterDecorator
 ]
 
 export const NoAuth = Template.bind({})
@@ -37,5 +50,6 @@ NoAuth.args = {}
 NoAuth.decorators = [
     StoreDecorator({
         user: {}
-    })
+    }),
+    RouterDecorator
 ]

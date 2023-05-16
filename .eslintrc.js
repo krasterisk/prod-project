@@ -3,7 +3,12 @@ module.exports = {
         browser: true,
         es2021: true
     },
-    extends: ['plugin:react/recommended', 'standard-with-typescript', 'plugin:i18next/recommended', 'plugin:storybook/recommended'],
+    extends: [
+        'plugin:react/recommended',
+        'standard-with-typescript',
+        'plugin:i18next/recommended',
+        'plugin:storybook/recommended'
+    ],
     parserOptions: {
         ecmaVersion: 'latest',
         sourceType: 'module',
@@ -63,14 +68,9 @@ module.exports = {
         __PROJECT__: true
     },
     overrides: [{
-        files: ['**/src/**/*.test.{ts.tsx}'],
+        files: ['**/src/**/*.{test,stories}.{ts,tsx}'],
         rules: {
             'i18next/no-literal-string': 'off'
-        }
-    }, {
-        files: ['.eslintrc.js'],
-        rules: {
-
         }
     }]
 }

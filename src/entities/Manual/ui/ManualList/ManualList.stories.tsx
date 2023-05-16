@@ -2,6 +2,7 @@ import React from 'react'
 import { ComponentMeta, ComponentStory } from '@storybook/react'
 import { ManualList } from './ManualList'
 import { Manual } from '../../model/types/manual'
+import { RouterDecorator } from '@/shared/config/storybook/RouterDecorator/RouterDecorator'
 
 export default {
     title: 'entities/Manual/ManualList',
@@ -145,6 +146,7 @@ ListSmall.args = {
         })),
     view: 'SMALL'
 }
+ListSmall.decorators = [RouterDecorator]
 
 export const ListBig = Template.bind({})
 ListBig.args = {
@@ -156,3 +158,4 @@ ListBig.args = {
         })),
     view: 'BIG'
 }
+ListBig.decorators = [RouterDecorator]
