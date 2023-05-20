@@ -17,7 +17,7 @@ describe('template spec', () => {
     })
     describe('Пользователь авторизован', () => {
         beforeEach(() => {
-            cy.login('admin2', 'helloween');
+            cy.login();
         });
         it('Переход открывает страницу профиля', () => {
             cy.visit('/profile/1');

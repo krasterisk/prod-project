@@ -20,7 +20,11 @@ export const ManualRecommendationsList = memo((props: ManualRecommendationsListP
     }
 
     return (
-        <VStack gap="8" className={classNames('', {}, [className])}>
+        <VStack
+            data-testid={'ManualRecommendationsList'}
+            gap="8"
+            className={classNames('', {}, [className])}
+        >
             <Text
                 size={TextSize.L}
                 title={t('Рекомендуем')}

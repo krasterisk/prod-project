@@ -93,6 +93,7 @@ export const ManualPageFilters = memo((props: ManualPageFiltersProps) => {
             </div>
             <Card className={cls.search}>
                 <Input
+                    data-testid={'ManualSearch'}
                     className={cls.searchInput}
                     placeholder={t('Поиск')}
                     onChange={onChangeSearch}

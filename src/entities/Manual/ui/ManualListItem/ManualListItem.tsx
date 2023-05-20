@@ -46,7 +46,10 @@ export const ManualListItem = memo((props: ManualListItemProps) => {
         ) as ManualTextBlock
 
         return (
-            <div className={classNames(cls.ManualListItem, {}, [className, cls[view]])}>
+            <div
+                data-testid={'ManualListItem'}
+                className={classNames(cls.ManualListItem, {}, [className, cls[view]])}
+            >
                 <Card className={cls.card}>
                     <div className={cls.header}>
                         <Avatar src={manual.user.avatar} size={30}/>
@@ -82,6 +85,7 @@ export const ManualListItem = memo((props: ManualListItemProps) => {
 
     return (
         <AppLink
+            data-testid={'ManualListItem'}
             target={target}
             className={classNames(cls.ManualListItem, {}, [className, cls[view]])}
             to={getRouteManualDetails(manual.id)}

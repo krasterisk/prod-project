@@ -124,6 +124,7 @@ export const ProfileCard = (props: ProfileCardProps) => {
                 onChange={onChangeUsername}
                 readonly={readonly}
                 disabled={readonly}
+                data-testid={'ProfileCard.Username'}
             />
             <Input
                 value={data?.email}

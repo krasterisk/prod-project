@@ -88,7 +88,7 @@ export const ManualDetails = memo(({ className, id }: ManualDetailsProps) => {
                         src={manual?.image}
                     />
                 </HStack>
-                <VStack gap={'4'} max>
+                <VStack gap={'4'} max data-testid={'ManualDetails.Info'}>
                     <Text
                         className={cls.title}
                         title={manual?.title}

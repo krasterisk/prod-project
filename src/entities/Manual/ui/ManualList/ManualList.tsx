@@ -57,7 +57,9 @@ export const ManualList = memo((props: ManualListProps) => {
     }
 
     return (
-        <div className={classNames(cls.ManualList, {}, [className, cls[view]])}>
+        <div className={classNames(cls.ManualList, {}, [className, cls[view]])}
+            data-testid={'ManualList'}
+        >
             {manuals.length
                 ? manuals.map(renderManual)
                 : null

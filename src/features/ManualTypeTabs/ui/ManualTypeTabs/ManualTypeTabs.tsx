@@ -52,6 +52,7 @@ export const ManualTypeTabs = memo((props: ManualTypeTabsProps) => {
 
     return (
         <Tabs
+            data-testid={'ManualHashtags'}
             className={classNames('', {}, [className])}
             tabs={typeTabs}
             onTabClick={onTabClick}
