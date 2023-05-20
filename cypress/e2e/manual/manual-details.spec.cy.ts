@@ -27,11 +27,18 @@ describe('Пользователь заходит на страницу стат
         cy.getByTestId('CommentCard.Content').should('have.length', 1)
     })
 
-    it('и ставит оценку', () => {
+    it('и ставит оценку на реальном бэке', () => {
         cy.getByTestId('ManualDetails.Info').should('exist')
         cy.getByTestId('RatingCard').scrollIntoView()
         cy.setRate(4, 'feedback')
         cy.get('[data-selected=true]').should('have.length', 4)
     })
 
+    it('и ставит оценку на стабах(фикстурах)', () => {
+        cy.intercept('GET', '**/manuals/*', { fixture: 'manual-details.json' })
+        cy.getByTestId('ManualDetails.Info').should('exist')
+        cy.getByTestId('RatingCard').scrollIntoView()
+        cy.setRate(4, 'feedback')
+        cy.get('[data-selected=true]').should('have.length', 4)
+    })
 })
