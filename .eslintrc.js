@@ -7,7 +7,8 @@ module.exports = {
         'plugin:react/recommended',
         'standard-with-typescript',
         'plugin:i18next/recommended',
-        'plugin:storybook/recommended'
+        'plugin:storybook/recommended',
+        'prettier'
     ],
     parserOptions: {
         ecmaVersion: 'latest',
@@ -22,10 +23,10 @@ module.exports = {
         'unused-imports'
     ],
     rules: {
-        indent: 'off',
-        'react/jsx-indent': 'off',
-        'react/jsx-indent-props': 'off',
-        '@typescript-eslint/indent': [2, 4],
+        // indent: 'off',
+        // 'react/jsx-indent': 'off',
+        // 'react/jsx-indent-props': 'off',
+        // '@typescript-eslint/indent': [2, 4],
         'react/react-in-jsx-scope': 'off',
         '@typescript-eslint/prefer-nullish-coalescing': 'off',
         'no-unused-vars': 'warn',
