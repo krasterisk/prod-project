@@ -7,8 +7,7 @@ module.exports = {
         'plugin:react/recommended',
         'standard-with-typescript',
         'plugin:i18next/recommended',
-        'plugin:storybook/recommended',
-        'prettier'
+        'plugin:storybook/recommended'
     ],
     parserOptions: {
         ecmaVersion: 'latest',
