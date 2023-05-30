@@ -1,0 +1,11 @@
+{
+    "id": 1,
+    "username": "admin2",
+    "firstname": "Андрей",
+    "lastname": "Иванов",
+    "age": 23,
+    "country": "Belarus",
+    "email": "admin2@krasterisk.ru",
+    "currency": "RUB",
+    "avatar": "https://krasterisk.ru/logos/adm.jpg"
+}
