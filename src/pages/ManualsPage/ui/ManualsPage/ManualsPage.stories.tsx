@@ -6,11 +6,11 @@ import { RouterDecorator } from '@/shared/config/storybook/RouterDecorator/Route
 import { SuspenseDecorator } from '@/shared/config/storybook/SuspenseDecorator/SuspenseDecorator'
 
 export default {
-    title: 'pages/ManualsPage/ManualsPage',
-    component: ManualsPage,
-    argTypes: {
-        backgroundColor: { control: 'color' }
-    }
+  title: 'pages/ManualsPage/ManualsPage',
+  component: ManualsPage,
+  argTypes: {
+    backgroundColor: { control: 'color' }
+  }
 } as ComponentMeta<typeof ManualsPage>
 
 const Template: ComponentStory<typeof ManualsPage> = (args) => <ManualsPage {...args} />
@@ -18,7 +18,7 @@ const Template: ComponentStory<typeof ManualsPage> = (args) => <ManualsPage {...
 export const Normal = Template.bind({})
 Normal.args = {}
 Normal.decorators = [
-    StoreDecorator({}),
-    RouterDecorator,
-    SuspenseDecorator
+  StoreDecorator({}),
+  RouterDecorator,
+  SuspenseDecorator
 ]

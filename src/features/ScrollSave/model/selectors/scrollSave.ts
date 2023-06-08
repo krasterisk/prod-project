@@ -3,7 +3,7 @@ import { createSelector } from '@reduxjs/toolkit'
 
 export const getScrollSave = (state: StateSchema) => state.saveScroll.scroll
 export const getScrollByPath = createSelector(
-    getScrollSave,
-    (state: StateSchema, path: string) => path,
-    (scroll, path) => scroll[path] || 0
+  getScrollSave,
+  (state: StateSchema, path: string) => path,
+  (scroll, path) => scroll[path] || 0
 )

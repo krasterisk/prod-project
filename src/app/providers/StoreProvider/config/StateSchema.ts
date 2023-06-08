@@ -12,39 +12,39 @@ import { ManualDetailsPageSchema } from '@/pages/ManualDetailsPage'
 import { rtkApi } from '@/shared/api/rtkApi'
 
 export interface StateSchema {
-    counter: CounterSchema
-    user: UserSchema
-    saveScroll: ScrollSaveSchema
-    [rtkApi.reducerPath]: ReturnType<typeof rtkApi.reducer>
+  counter: CounterSchema
+  user: UserSchema
+  saveScroll: ScrollSaveSchema
+  [rtkApi.reducerPath]: ReturnType<typeof rtkApi.reducer>
 
-    // Async reducers
-    loginForm?: LoginSchema
-    profileForm: ProfileSchema
-    manualDetails?: ManualDetailsSchema
-    addCommentForm?: AddCommentFormSchema
-    manualsPage?: ManualsPageSchema
-    manualDetailsPage?: ManualDetailsPageSchema
+  // Async reducers
+  loginForm?: LoginSchema
+  profileForm: ProfileSchema
+  manualDetails?: ManualDetailsSchema
+  addCommentForm?: AddCommentFormSchema
+  manualsPage?: ManualsPageSchema
+  manualDetailsPage?: ManualDetailsPageSchema
 }
 
 export type StateSchemaKey = keyof StateSchema
 
 export interface ReducerManager {
-    getReducerMap: () => ReducersMapObject<StateSchema>
-    reduce: (state: StateSchema, action: AnyAction) => CombinedState<StateSchema>
-    add: (key: StateSchemaKey, reducer: Reducer) => void
-    remove: (key: StateSchemaKey, reducer: (state: any, action: AnyAction) => any) => void
+  getReducerMap: () => ReducersMapObject<StateSchema>
+  reduce: (state: StateSchema, action: AnyAction) => CombinedState<StateSchema>
+  add: (key: StateSchemaKey, reducer: Reducer) => void
+  remove: (key: StateSchemaKey, reducer: (state: any, action: AnyAction) => any) => void
 }
 
 export interface ReduxStoreWithManager extends EnhancedStore<StateSchema> {
-    reducerManager: ReducerManager
+  reducerManager: ReducerManager
 }
 
 export interface ThunkExtraArg {
-    api: AxiosInstance
+  api: AxiosInstance
 }
 
 export interface ThunkConfig<T> {
-    rejectValue: T
-    extra: ThunkExtraArg
-    state: StateSchema
+  rejectValue: T
+  extra: ThunkExtraArg
+  state: StateSchema
 }

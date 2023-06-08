@@ -1,3 +1,3 @@
 export {
-    ManualEditPageAsync as ManualEditPage
+  ManualEditPageAsync as ManualEditPage
 } from './ui/ManualEditPage/ManualEditPage.async'

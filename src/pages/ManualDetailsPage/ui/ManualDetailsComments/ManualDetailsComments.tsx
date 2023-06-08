@@ -14,29 +14,29 @@ import { VStack } from '@/shared/ui/Stack'
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch'
 
 interface ManualDetailsCommentsProps {
-    className?: string
-    id?: string
+  className?: string
+  id?: string
 }
 
 export const ManualDetailsComments = memo((props: ManualDetailsCommentsProps) => {
-    const {
-        className,
-        id
-    } = props
+  const {
+    className,
+    id
+  } = props
 
-    const { t } = useTranslation('manuals')
-    const dispatch = useAppDispatch()
-    const comments = useSelector(getManualComments.selectAll)
-    const commentsIsLoading = useSelector(getManualCommentsIsLoading)
-    const onSendComment = useCallback((text: string) => {
-        dispatch(addCommentForManual(text))
-    }, [dispatch])
+  const { t } = useTranslation('manuals')
+  const dispatch = useAppDispatch()
+  const comments = useSelector(getManualComments.selectAll)
+  const commentsIsLoading = useSelector(getManualCommentsIsLoading)
+  const onSendComment = useCallback((text: string) => {
+    dispatch(addCommentForManual(text))
+  }, [dispatch])
 
-    useInitialEffect(() => {
-        dispatch(fetchCommentsByManualId(id))
-    })
+  useInitialEffect(() => {
+    dispatch(fetchCommentsByManualId(id))
+  })
 
-    return (
+  return (
         <VStack gap="8" max className={classNames('', {}, [className])}>
             <Text
                 size={TextSize.L}
@@ -45,5 +45,5 @@ export const ManualDetailsComments = memo((props: ManualDetailsCommentsProps) =>
             <AddCommentForm onSendComment={onSendComment}/>
             <CommentList isLoading={commentsIsLoading} comments={comments}/>
         </VStack>
-    )
+  )
 })

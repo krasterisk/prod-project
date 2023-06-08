@@ -5,52 +5,52 @@ import { TabItem, Tabs } from '@/shared/ui/Tabs'
 import { ManualHashtagsTypes } from '@/entities/Manual'
 
 interface ManualTypeTabsProps {
-    className?: string
-    value: ManualHashtagsTypes
-    onChangeHashtag: (hashtag: ManualHashtagsTypes) => void
+  className?: string
+  value: ManualHashtagsTypes
+  onChangeHashtag: (hashtag: ManualHashtagsTypes) => void
 }
 
 export const ManualTypeTabs = memo((props: ManualTypeTabsProps) => {
-    const {
-        className,
-        value,
-        onChangeHashtag
-    } = props
+  const {
+    className,
+    value,
+    onChangeHashtag
+  } = props
 
-    const { t } = useTranslation('manuals')
+  const { t } = useTranslation('manuals')
 
-    const onTabClick = useCallback((tab: TabItem) => {
-        onChangeHashtag(tab.value as ManualHashtagsTypes)
-    }, [onChangeHashtag])
+  const onTabClick = useCallback((tab: TabItem) => {
+    onChangeHashtag(tab.value as ManualHashtagsTypes)
+  }, [onChangeHashtag])
 
-    const typeTabs = useMemo<TabItem[]>(() => [
-        {
-            value: ManualHashtagsTypes.ALL,
-            content: t('Все')
-        },
-        {
-            value: ManualHashtagsTypes.IT,
-            content: t('Айти')
-        },
-        {
-            value: ManualHashtagsTypes.PBX,
-            content: t('АТС')
-        },
-        {
-            value: ManualHashtagsTypes.INBOUND_CALL_CENTER,
-            content: t('Входящий колл-центр')
-        },
-        {
-            value: ManualHashtagsTypes.OUTBOUND_CALL_CENTER,
-            content: t('Исодящий колл-центр')
-        },
-        {
-            value: ManualHashtagsTypes.IP_PHONES,
-            content: t('Аппараты')
-        }
-    ], [t])
+  const typeTabs = useMemo<TabItem[]>(() => [
+    {
+      value: ManualHashtagsTypes.ALL,
+      content: t('Все')
+    },
+    {
+      value: ManualHashtagsTypes.IT,
+      content: t('Айти')
+    },
+    {
+      value: ManualHashtagsTypes.PBX,
+      content: t('АТС')
+    },
+    {
+      value: ManualHashtagsTypes.INBOUND_CALL_CENTER,
+      content: t('Входящий колл-центр')
+    },
+    {
+      value: ManualHashtagsTypes.OUTBOUND_CALL_CENTER,
+      content: t('Исодящий колл-центр')
+    },
+    {
+      value: ManualHashtagsTypes.IP_PHONES,
+      content: t('Аппараты')
+    }
+  ], [t])
 
-    return (
+  return (
         <Tabs
             data-testid={'ManualHashtags'}
             className={classNames('', {}, [className])}
@@ -58,5 +58,5 @@ export const ManualTypeTabs = memo((props: ManualTypeTabsProps) => {
             onTabClick={onTabClick}
             value={value}
         />
-    )
+  )
 })

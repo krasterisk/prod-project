@@ -9,11 +9,11 @@ import { Theme } from '@/shared/const/theme'
 import { RouterDecorator } from '@/shared/config/storybook/RouterDecorator/RouterDecorator'
 
 export default {
-    title: 'pages/ProfilePage',
-    component: ProfilePage,
-    argTypes: {
-        backgroundColor: { control: 'color' }
-    }
+  title: 'pages/ProfilePage',
+  component: ProfilePage,
+  argTypes: {
+    backgroundColor: { control: 'color' }
+  }
 } as ComponentMeta<typeof ProfilePage>
 
 const Template: ComponentStory<typeof ProfilePage> = () => <ProfilePage/>
@@ -21,58 +21,58 @@ const Template: ComponentStory<typeof ProfilePage> = () => <ProfilePage/>
 export const Normal = Template.bind({})
 Normal.args = {}
 Normal.decorators = [
-    RouterDecorator,
-    StoreDecorator({
-        profileForm: {
-            form: {
-                firstname: 'First',
-                lastname: 'Last',
-                age: 20,
-                username: 'Username',
-                email: 'mail@email.com',
-                country: Country.Russia,
-                currency: Currency.RUB
-            }
-        }
-    })]
+  RouterDecorator,
+  StoreDecorator({
+    profileForm: {
+      form: {
+        firstname: 'First',
+        lastname: 'Last',
+        age: 20,
+        username: 'Username',
+        email: 'mail@email.com',
+        country: Country.Russia,
+        currency: Currency.RUB
+      }
+    }
+  })]
 
 export const Dark = Template.bind({})
 Dark.args = {}
 Dark.decorators = [
-    RouterDecorator,
-    ThemeDecorator(Theme.DARK),
-    StoreDecorator({
-        profileForm: {
-            form: {
-                firstname: 'First',
-                lastname: 'Last',
-                age: 20,
-                username: 'Username',
-                email: 'mail@email.com',
-                country: Country.Russia,
-                currency: Currency.RUB
-            }
-        }
-    })]
+  RouterDecorator,
+  ThemeDecorator(Theme.DARK),
+  StoreDecorator({
+    profileForm: {
+      form: {
+        firstname: 'First',
+        lastname: 'Last',
+        age: 20,
+        username: 'Username',
+        email: 'mail@email.com',
+        country: Country.Russia,
+        currency: Currency.RUB
+      }
+    }
+  })]
 
 export const Readonly = Template.bind({})
 Readonly.args = {}
 Readonly.decorators = [
-    RouterDecorator,
-    StoreDecorator({
-        profileForm: {
-            form: {
-                firstname: 'First',
-                lastname: 'Last',
-                age: 20,
-                username: 'Username',
-                email: 'mail@email.com',
-                country: Country.Russia,
-                currency: Currency.RUB
-            },
-            readonly: true
-        }
-    })]
+  RouterDecorator,
+  StoreDecorator({
+    profileForm: {
+      form: {
+        firstname: 'First',
+        lastname: 'Last',
+        age: 20,
+        username: 'Username',
+        email: 'mail@email.com',
+        country: Country.Russia,
+        currency: Currency.RUB
+      },
+      readonly: true
+    }
+  })]
 
 // export const PageIsLoading = Template.bind({})
 // PageIsLoading.args = {}

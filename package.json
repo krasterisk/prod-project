@@ -26,7 +26,8 @@
     "storybook:build": "storybook build -c ./config/storybook",
     "generate:slice": "node ./scripts/createSlice/index.js",
     "clear:cache": "node ./scripts/clear-cache.js",
-    "postinstall": "node ./scripts/clear-cache.js"
+    "postinstall": "node ./scripts/clear-cache.js",
+    "remove-features": "ts-node ./scripts/remove-feature.ts"
   },
   "keywords": [],
   "author": "",

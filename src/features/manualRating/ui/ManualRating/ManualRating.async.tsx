@@ -5,9 +5,9 @@ import { ManualRatingProps } from './ManualRating'
 const ManualRatingLazy = lazy(async () => await import('./ManualRating'))
 
 export const ManualRatingAsync = (props: ManualRatingProps) => {
-    return (
+  return (
         <Suspense fallback={<Skeleton width={'100%'} height={120}/>}>
             <ManualRatingLazy {...props}/>
         </Suspense>
-    )
+  )
 }

@@ -5,22 +5,22 @@ import { memo } from 'react'
 import { useCounterActions } from '../model/slice/counterSlice'
 
 export const Counter = memo(() => {
-    const counterValue = useCounterValue()
-    const { t } = useTranslation()
-    const { decrement, increment, plusFive } = useCounterActions()
+  const counterValue = useCounterValue()
+  const { t } = useTranslation()
+  const { decrement, increment, plusFive } = useCounterActions()
 
-    const handleInc = () => {
-        increment()
-    }
+  const handleInc = () => {
+    increment()
+  }
 
-    const handleDec = () => {
-        decrement()
-    }
-    const handelFive = () => {
-        plusFive()
-    }
+  const handleDec = () => {
+    decrement()
+  }
+  const handelFive = () => {
+    plusFive()
+  }
 
-    return (
+  return (
         <div>
             <h1 data-testid="value-title">{counterValue}</h1>
             <Button
@@ -43,5 +43,5 @@ export const Counter = memo(() => {
             </Button>
 
         </div>
-    )
+  )
 })

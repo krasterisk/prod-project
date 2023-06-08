@@ -5,32 +5,32 @@ import { useMemo } from 'react'
 import { getRouteForbidden, getRouteMain } from '@/shared/const/router'
 
 interface RequireAuthProps {
-    children: JSX.Element
-    roles?: UserRolesValues[]
+  children: JSX.Element
+  roles?: UserRolesValues[]
 }
 
 export function RequireAuth ({ children, roles }: RequireAuthProps) {
-    const auth = useSelector(getUserAuthData)
-    const location = useLocation()
-    const userRoles = useSelector(getAllUserRoles)
+  const auth = useSelector(getUserAuthData)
+  const location = useLocation()
+  const userRoles = useSelector(getAllUserRoles)
 
-    const hasRequiredRoles = useMemo(() => {
-        if (!roles) {
-            return false
-        }
-        return roles.some((requiredRole) => {
-            const hasRole = userRoles?.includes(requiredRole)
-            return hasRole
-        })
-    }, [roles, userRoles])
-
-    if (!auth) {
-        return <Navigate to={getRouteMain()} state={{ from: location }} replace />
+  const hasRequiredRoles = useMemo(() => {
+    if (!roles) {
+      return false
     }
+    return roles.some((requiredRole) => {
+      const hasRole = userRoles?.includes(requiredRole)
+      return hasRole
+    })
+  }, [roles, userRoles])
 
-    if (!hasRequiredRoles) {
-        return <Navigate to={getRouteForbidden()} state={{ from: location }} replace />
-    }
+  if (!auth) {
+    return <Navigate to={getRouteMain()} state={{ from: location }} replace />
+  }
 
-    return children
+  if (!hasRequiredRoles) {
+    return <Navigate to={getRouteForbidden()} state={{ from: location }} replace />
+  }
+
+  return children
 }

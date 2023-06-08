@@ -8,20 +8,20 @@ import { manualDetailsPageReducer } from '@/pages/ManualDetailsPage/testing'
 import { profileReducer } from '@/features/EditableProfileCard/testing'
 
 const defaultAsyncReducers: ReducersList = {
-    loginForm: loginReducer,
-    profileForm: profileReducer,
-    manualDetails: manualDetailsReducer,
-    addCommentForm: AddCommentFormReducer,
-    manualDetailsPage: manualDetailsPageReducer
+  loginForm: loginReducer,
+  profileForm: profileReducer,
+  manualDetails: manualDetailsReducer,
+  addCommentForm: AddCommentFormReducer,
+  manualDetailsPage: manualDetailsPageReducer
 }
 
 export const StoreDecorator = (
-    state: DeepPartial<StateSchema>,
-    asyncReducers?: ReducersList
+  state: DeepPartial<StateSchema>,
+  asyncReducers?: ReducersList
 ) => (StoryComponent: Story) => {
-    return (
+  return (
         <StoreProvider initialState={state} asyncReducers={{ ...defaultAsyncReducers, ...asyncReducers }}>
             <StoryComponent/>
         </StoreProvider>
-    )
+  )
 }

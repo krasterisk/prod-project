@@ -4,33 +4,33 @@ import { memo, ReactNode, useCallback } from 'react'
 import { Card, CardTheme } from '../Card/Card'
 
 export interface TabItem {
-    value: string
-    content: ReactNode
+  value: string
+  content: ReactNode
 }
 
 interface TabsProps {
-    className?: string
-    tabs: TabItem[]
-    value: string
-    onTabClick: (tab: TabItem) => void
+  className?: string
+  tabs: TabItem[]
+  value: string
+  onTabClick: (tab: TabItem) => void
 }
 
 export const Tabs = memo((props: TabsProps) => {
-    const {
-        className,
-        tabs,
-        value,
-        onTabClick
-    } = props
+  const {
+    className,
+    tabs,
+    value,
+    onTabClick
+  } = props
 
-    const onClickHandler = useCallback((tab: TabItem) => () => {
-        onTabClick(tab)
-    }, [onTabClick])
+  const onClickHandler = useCallback((tab: TabItem) => () => {
+    onTabClick(tab)
+  }, [onTabClick])
 
-    return (
+  return (
         <div className={classNames(cls.Tabs, {}, [className])}>
             {tabs.map((tab) =>
-                (
+              (
                     <Card
                         theme={tab.value === value ? CardTheme.NORMAL : CardTheme.OUTLINED}
                         className={cls.tab}
@@ -39,7 +39,7 @@ export const Tabs = memo((props: TabsProps) => {
                     >
                         {tab.content}
                     </Card>
-                ))}
+              ))}
         </div>
-    )
+  )
 })

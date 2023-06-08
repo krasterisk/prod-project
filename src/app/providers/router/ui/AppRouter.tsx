@@ -7,25 +7,25 @@ import { routeConfig } from '../config/routeConfig'
 import { AppRoutesProps } from '@/shared/types/router'
 
 const AppRouter = () => {
-    const renderWithWrapper = useCallback((route: AppRoutesProps) => {
-        const element = (
+  const renderWithWrapper = useCallback((route: AppRoutesProps) => {
+    const element = (
             <Suspense fallback={<PageLoader/>}>
                 {route.element}
             </Suspense>
-        )
-        return (
+    )
+    return (
             <Route
                 key={route.path}
                 path={route.path}
                 element={route.authOnly ? <RequireAuth roles={[UserRolesValues.ADMIN, UserRolesValues.VPBXADMIN]}>{element}</RequireAuth> : element}
             />
-        )
-    }, [])
-    return (
+    )
+  }, [])
+  return (
         <Routes>
             {Object.values(routeConfig).map(renderWithWrapper)}
         </Routes>
-    )
+  )
 }
 
 export default memo(AppRouter)

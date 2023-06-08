@@ -11,36 +11,42 @@ import { VStack } from '@/shared/ui/Stack'
 import { ManualRecommendationsList } from '@/features/manualRecommendationsList'
 import { ManualDetailsComments } from '../../ui/ManualDetailsComments/ManualDetailsComments'
 import { ManualRating } from '@/features/manualRating'
+import { ToggleFeatures } from '@/shared/lib/features'
+import { Card } from '@/shared/ui/Card'
+import { useTranslation } from 'react-i18next'
 
 interface ManualDetailsPageProps {
-    className?: string
+  className?: string
 }
 
 const reducers: ReducersList = {
-    manualDetailsPage: manualDetailsPageReducer
+  manualDetailsPage: manualDetailsPageReducer
 }
 
 const ManualDetailsPage = ({ className }: ManualDetailsPageProps) => {
-    const { id } = useParams<{ id: string }>()
+  const { t } = useTranslation('manuals')
 
-    if (!id) {
-        return null
-    }
+  const { id } = useParams<{ id: string }>()
 
-    return (
+  if (!id) {
+    return null
+  }
+
+  return (
         <DynamicModuleLoader reducers={reducers} removeAfterUnmount>
             <Page className={classNames(cls.ManualDetailsPage, {}, [className])}>
                 <VStack gap={'16'} max>
                     <ManualDetailsPageHeader />
                     <ManualDetails id={id} />
-                    <ManualRecommendationsList />
                     <ManualRating manualId={id}/>
+                    <ManualRecommendationsList />
+
                     <ManualDetailsComments id={id} />
                 </VStack>
             </Page>
         </DynamicModuleLoader>
 
-    )
+  )
 }
 
 export default memo(ManualDetailsPage)

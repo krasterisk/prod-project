@@ -5,12 +5,12 @@ import { ManualTextBlock } from '../../model/types/manual'
 import { Text } from '@/shared/ui/Text'
 
 interface ManualBlockTextComponentProps {
-    className?: string
-    block: ManualTextBlock
+  className?: string
+  block: ManualTextBlock
 }
 
 export const ManualBlockTextComponent = memo(({ className, block }: ManualBlockTextComponentProps) => {
-    return (
+  return (
         <div className={classNames(cls.ManualBlockTextComponent, {}, [className])}>
 
             {block.title && (
@@ -20,5 +20,5 @@ export const ManualBlockTextComponent = memo(({ className, block }: ManualBlockT
                 <Text key={par.paragraph} text={par.paragraph} className={cls.paragraph}/>
             ))}
         </div>
-    )
+  )
 })

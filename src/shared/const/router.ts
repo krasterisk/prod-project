@@ -1,14 +1,14 @@
 export enum AppRoutes {
-    MAIN = 'main',
-    ABOUT = 'about',
-    PROFILE = 'profile',
-    ADMIN = 'admin',
-    MANUALS = 'manuals',
-    MANUAL_DETAILS = 'manual_details',
-    MANUAL_CREATE = 'manuals_create',
-    MANUAL_EDIT = 'manual_edit',
-    FORBIDDEN = 'forbidden',
-    ERROR = 'error'
+  MAIN = 'main',
+  ABOUT = 'about',
+  PROFILE = 'profile',
+  ADMIN = 'admin',
+  MANUALS = 'manuals',
+  MANUAL_DETAILS = 'manual_details',
+  MANUAL_CREATE = 'manuals_create',
+  MANUAL_EDIT = 'manual_edit',
+  FORBIDDEN = 'forbidden',
+  ERROR = 'error'
 }
 
 export const getRouteMain = () => '/'

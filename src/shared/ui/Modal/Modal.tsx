@@ -7,36 +7,36 @@ import { useModal } from '@/shared/lib/hooks/useModal/useModal'
 import { useTheme } from '@/shared/lib/hooks/useTheme/useTheme'
 
 interface ModalProps {
-    className?: string
-    children?: ReactNode
-    isOpen?: boolean
-    onClose?: () => void
-    lazy?: boolean
+  className?: string
+  children?: ReactNode
+  isOpen?: boolean
+  onClose?: () => void
+  lazy?: boolean
 }
 
 export const Modal = (props: ModalProps) => {
-    const {
-        className,
-        children,
-        isOpen,
-        onClose,
-        lazy
-    } = props
+  const {
+    className,
+    children,
+    isOpen,
+    onClose,
+    lazy
+  } = props
 
-    const { close, isClosing, isMounted } = useModal({ animationDelay: 300, onClose, isOpen })
+  const { close, isClosing, isMounted } = useModal({ animationDelay: 300, onClose, isOpen })
 
-    const { theme } = useTheme()
+  const { theme } = useTheme()
 
-    const mods: Mods = {
-        [cls.opened]: isOpen,
-        [cls.isClosing]: isClosing
-    }
+  const mods: Mods = {
+    [cls.opened]: isOpen,
+    [cls.isClosing]: isClosing
+  }
 
-    if (lazy && !isMounted) {
-        return null
-    }
+  if (lazy && !isMounted) {
+    return null
+  }
 
-    return (
+  return (
         <Portal>
             <div className={classNames(cls.Modal, mods, [className, theme, 'app_modal'])}>
                 <Overlay onClick={close}/>
@@ -47,5 +47,5 @@ export const Modal = (props: ModalProps) => {
                 </div>
             </div>
         </Portal>
-    )
+  )
 }

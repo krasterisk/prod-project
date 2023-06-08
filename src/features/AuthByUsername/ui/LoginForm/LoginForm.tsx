@@ -16,35 +16,35 @@ import { DynamicModuleLoader, ReducersList } from '@/shared/lib/components/Dynam
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch'
 
 export interface LoginFormProps {
-    className?: string
-    onSuccess: () => void
+  className?: string
+  onSuccess: () => void
 }
 
 const initialReducers: ReducersList = {
-    loginForm: loginReducer
+  loginForm: loginReducer
 }
 
 const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
-    const { t } = useTranslation('login')
-    const dispatch = useAppDispatch()
-    const username = useSelector(getLoginUsername)
-    const password = useSelector(getLoginPassword)
-    const isLoading = useSelector(getLoginIsLoading)
-    const error = useSelector(getLoginError)
+  const { t } = useTranslation('login')
+  const dispatch = useAppDispatch()
+  const username = useSelector(getLoginUsername)
+  const password = useSelector(getLoginPassword)
+  const isLoading = useSelector(getLoginIsLoading)
+  const error = useSelector(getLoginError)
 
-    const onChangeUsername = useCallback((value: string) => {
-        dispatch(loginActions.setUsername(value))
-    }, [dispatch])
+  const onChangeUsername = useCallback((value: string) => {
+    dispatch(loginActions.setUsername(value))
+  }, [dispatch])
 
-    const onChangePassword = useCallback((value: string) => {
-        dispatch(loginActions.setPassword(value))
-    }, [dispatch])
+  const onChangePassword = useCallback((value: string) => {
+    dispatch(loginActions.setPassword(value))
+  }, [dispatch])
 
-    const onLoginClick = useCallback(() => {
-        dispatch(loginByUsername({ username, password }))
-    }, [dispatch, password, username])
+  const onLoginClick = useCallback(() => {
+    dispatch(loginByUsername({ username, password }))
+  }, [dispatch, password, username])
 
-    return (
+  return (
         <DynamicModuleLoader
             removeAfterUnmount
             reducers={initialReducers}
@@ -80,7 +80,7 @@ const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
 
             </div>
         </DynamicModuleLoader>
-    )
+  )
 })
 
 export default LoginForm

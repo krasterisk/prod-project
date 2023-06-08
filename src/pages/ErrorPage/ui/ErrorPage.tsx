@@ -5,17 +5,17 @@ import cls from './ErrorPage.module.scss'
 import { Page } from '@/widgets/Page'
 
 interface ErrorPageProps {
-    className?: string
+  className?: string
 }
 
 const ErrorPage = memo(({ className }: ErrorPageProps) => {
-    const { t } = useTranslation()
+  const { t } = useTranslation()
 
-    return (
+  return (
         <Page data-testid={'ErrorPage'} className={classNames(cls.ErrorPage, {}, [className])}>
             {t('Страница не найдена')}
         </Page>
-    )
+  )
 })
 
 export default ErrorPage

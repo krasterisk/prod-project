@@ -10,31 +10,31 @@ import { HStack } from '@/shared/ui/Stack'
 import { getRouteManualEdit, getRouteManuals } from '@/shared/const/router'
 
 interface ManualDetailsPageHeaderProps {
-    className?: string
+  className?: string
 
 }
 
 export const ManualDetailsPageHeader = memo((props: ManualDetailsPageHeaderProps) => {
-    const {
-        className
-    } = props
-    const { t } = useTranslation('manuals')
-    const navigate = useNavigate()
-    //    const userData = useSelector(getUserAuthData)
-    const manual = useSelector(getManualDetailsData)
-    const canEdit = useSelector(getCanEditManual)
+  const {
+    className
+  } = props
+  const { t } = useTranslation('manuals')
+  const navigate = useNavigate()
+  //    const userData = useSelector(getUserAuthData)
+  const manual = useSelector(getManualDetailsData)
+  const canEdit = useSelector(getCanEditManual)
 
-    const onBackToList = useCallback(() => {
-        navigate(getRouteManuals())
-    }, [navigate])
+  const onBackToList = useCallback(() => {
+    navigate(getRouteManuals())
+  }, [navigate])
 
-    const onEditPage = useCallback(() => {
-        if (manual?.id) {
-            navigate(getRouteManualEdit(manual?.id))
-        }
-    }, [manual, navigate])
+  const onEditPage = useCallback(() => {
+    if (manual?.id) {
+      navigate(getRouteManualEdit(manual?.id))
+    }
+  }, [manual, navigate])
 
-    return (
+  return (
         <HStack justify='between' max className={classNames('', {}, [className])}>
             <Button theme={ButtonTheme.OUTLINE} onClick={onBackToList}>
                 {t('Назад к списку')}
@@ -47,5 +47,5 @@ export const ManualDetailsPageHeader = memo((props: ManualDetailsPageHeaderProps
             </Button>
             )}
         </HStack>
-    )
+  )
 })

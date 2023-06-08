@@ -5,11 +5,11 @@ import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDe
 import { RouterDecorator } from '@/shared/config/storybook/RouterDecorator/RouterDecorator'
 
 export default {
-    title: 'pages/AdminPage',
-    component: AdminPage,
-    argTypes: {
-        backgroundColor: { control: 'color' }
-    }
+  title: 'pages/AdminPage',
+  component: AdminPage,
+  argTypes: {
+    backgroundColor: { control: 'color' }
+  }
 } as ComponentMeta<typeof AdminPage>
 
 const Template: ComponentStory<typeof AdminPage> = () => <AdminPage />

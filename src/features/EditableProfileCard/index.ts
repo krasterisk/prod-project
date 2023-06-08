@@ -1,5 +1,5 @@
 export type {
-    ProfileSchema
+  ProfileSchema
 } from './model/types/profile'
 
 export { profileReducer } from './model/slice/profileSlice'

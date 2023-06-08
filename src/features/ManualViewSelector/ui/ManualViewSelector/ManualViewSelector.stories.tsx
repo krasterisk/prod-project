@@ -4,11 +4,11 @@ import { ComponentStory, ComponentMeta } from '@storybook/react'
 import { ManualViewSelector } from './ManualViewSelector'
 
 export default {
-    title: 'features/ManualViewSelector',
-    component: ManualViewSelector,
-    argTypes: {
-        backgroundColor: { control: 'color' }
-    }
+  title: 'features/ManualViewSelector',
+  component: ManualViewSelector,
+  argTypes: {
+    backgroundColor: { control: 'color' }
+  }
 } as ComponentMeta<typeof ManualViewSelector>
 
 const Template: ComponentStory<typeof ManualViewSelector> = (args) => <ManualViewSelector {...args} />

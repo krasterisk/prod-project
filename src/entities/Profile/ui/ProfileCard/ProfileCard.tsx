@@ -11,54 +11,54 @@ import { HStack, VStack } from '@/shared/ui/Stack'
 import { Profile } from '../../model/types/profile'
 
 interface ProfileCardProps {
-    className?: string
-    data?: Profile
-    error?: string
-    isLoading?: boolean
-    readonly?: boolean
-    onChangeFirstname?: (value?: string) => void
-    onChangeLastname?: (value?: string) => void
-    onChangeCountry?: (value?: Country) => void
-    onChangeAge?: (value?: string) => void
-    onChangeUsername?: (value?: string) => void
-    onChangeEmail?: (value?: string) => void
-    onChangeAvatar?: (value?: string) => void
-    onChangeCurrency?: (currency?: Currency) => void
+  className?: string
+  data?: Profile
+  error?: string
+  isLoading?: boolean
+  readonly?: boolean
+  onChangeFirstname?: (value?: string) => void
+  onChangeLastname?: (value?: string) => void
+  onChangeCountry?: (value?: Country) => void
+  onChangeAge?: (value?: string) => void
+  onChangeUsername?: (value?: string) => void
+  onChangeEmail?: (value?: string) => void
+  onChangeAvatar?: (value?: string) => void
+  onChangeCurrency?: (currency?: Currency) => void
 
 }
 
 export const ProfileCard = (props: ProfileCardProps) => {
-    const {
-        className,
-        data,
-        error,
-        isLoading,
-        onChangeLastname,
-        onChangeFirstname,
-        onChangeCountry,
-        onChangeAge,
-        onChangeUsername,
-        onChangeEmail,
-        onChangeAvatar,
-        onChangeCurrency,
-        readonly
-    } = props
+  const {
+    className,
+    data,
+    error,
+    isLoading,
+    onChangeLastname,
+    onChangeFirstname,
+    onChangeCountry,
+    onChangeAge,
+    onChangeUsername,
+    onChangeEmail,
+    onChangeAvatar,
+    onChangeCurrency,
+    readonly
+  } = props
 
-    const { t } = useTranslation('profile')
+  const { t } = useTranslation('profile')
 
-    if (isLoading) {
-        return (
+  if (isLoading) {
+    return (
             <HStack
                 justify={'center'}
                 max
                 className={classNames(cls.ProfileCard, { [cls.loading]: true }, [className])}>
                 <Loader/>
             </HStack>
-        )
-    }
+    )
+  }
 
-    if (error) {
-        return (
+  if (error) {
+    return (
             <HStack
                 justify={'center'}
                 max
@@ -70,14 +70,14 @@ export const ProfileCard = (props: ProfileCardProps) => {
                     align={TextAlign.CENTER}
                 />
             </HStack>
-        )
-    }
+    )
+  }
 
-    const mods: Mods = {
-        [cls.editing]: !readonly
-    }
+  const mods: Mods = {
+    [cls.editing]: !readonly
+  }
 
-    return (
+  return (
         <VStack max gap={'8'} className={classNames(cls.ProfileCard, mods, [className])}>
             {data?.avatar && (
                 <HStack justify='center' max className={cls.avatarWrapper}>
@@ -107,9 +107,9 @@ export const ProfileCard = (props: ProfileCardProps) => {
                 value={data?.age}
                 placeholder={t('Ваш возраст')}
                 onKeyPress={(event) => {
-                    if (!/[0-9]/.test(event.key)) {
-                        event.preventDefault()
-                    }
+                  if (!/[0-9]/.test(event.key)) {
+                    event.preventDefault()
+                  }
                 }}
                 className={cls.input}
                 onChange={onChangeAge}
@@ -155,5 +155,5 @@ export const ProfileCard = (props: ProfileCardProps) => {
                 onChange={onChangeCurrency}
             />
         </VStack>
-    )
+  )
 }

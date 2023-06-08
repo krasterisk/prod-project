@@ -13,26 +13,26 @@ import { initManualPage } from '../../model/services/initManualPage/initManualPa
 import { useSearchParams } from 'react-router-dom'
 
 interface ManualsPageProps {
-    className?: string
+  className?: string
 }
 
 const reducers: ReducersList = {
-    manualsPage: manualPageReducer
+  manualsPage: manualPageReducer
 }
 
 const ManualsPage = ({ className }: ManualsPageProps) => {
-    const [searchParams] = useSearchParams()
-    const dispatch = useAppDispatch()
+  const [searchParams] = useSearchParams()
+  const dispatch = useAppDispatch()
 
-    const onLoadNextPart = useCallback(() => {
-        dispatch(fetchNextManualPage())
-    }, [dispatch])
+  const onLoadNextPart = useCallback(() => {
+    dispatch(fetchNextManualPage())
+  }, [dispatch])
 
-    useInitialEffect(() => {
-        dispatch(initManualPage(searchParams))
-    })
+  useInitialEffect(() => {
+    dispatch(initManualPage(searchParams))
+  })
 
-    return (
+  return (
         <DynamicModuleLoader reducers={reducers} removeAfterUnmount={false}>
             <Page
                 data-testid={'ManualPage'}
@@ -44,7 +44,7 @@ const ManualsPage = ({ className }: ManualsPageProps) => {
                 <ManualInfiniteList className={cls.list}/>
             </Page>
         </DynamicModuleLoader>
-    )
+  )
 }
 
 export default memo(ManualsPage)

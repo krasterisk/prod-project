@@ -7,50 +7,50 @@ import { SortOrder } from '@/shared/types/sort'
 import { ManualSortField } from '@/entities/Manual'
 
 interface ManualSortSelectorProps {
-    className?: string
-    sort: ManualSortField
-    order: SortOrder
-    onChangeOrder: (newOrder: SortOrder) => void
-    onChangeSort: (newSort: ManualSortField) => void
+  className?: string
+  sort: ManualSortField
+  order: SortOrder
+  onChangeOrder: (newOrder: SortOrder) => void
+  onChangeSort: (newSort: ManualSortField) => void
 }
 
 export const ManualSortSelector = memo((props: ManualSortSelectorProps) => {
-    const {
-        className,
-        sort,
-        order,
-        onChangeSort,
-        onChangeOrder
-    } = props
-    const { t } = useTranslation('manuals')
+  const {
+    className,
+    sort,
+    order,
+    onChangeSort,
+    onChangeOrder
+  } = props
+  const { t } = useTranslation('manuals')
 
-    const orderOptions = useMemo<Array<SelectOptions<SortOrder>>>(() => [
-        {
-            value: 'asc',
-            content: t('возрастанию')
-        },
-        {
-            value: 'desc',
-            content: t('убыванию')
-        }
-    ], [t])
+  const orderOptions = useMemo<Array<SelectOptions<SortOrder>>>(() => [
+    {
+      value: 'asc',
+      content: t('возрастанию')
+    },
+    {
+      value: 'desc',
+      content: t('убыванию')
+    }
+  ], [t])
 
-    const sortFieldOptions = useMemo<Array<SelectOptions<ManualSortField>>>(() => [
-        {
-            value: ManualSortField.CREATED,
-            content: t('дате создания')
-        },
-        {
-            value: ManualSortField.VIEW,
-            content: t('просмотрам')
-        },
-        {
-            value: ManualSortField.TITLE,
-            content: t('названию')
-        }
-    ], [t])
+  const sortFieldOptions = useMemo<Array<SelectOptions<ManualSortField>>>(() => [
+    {
+      value: ManualSortField.CREATED,
+      content: t('дате создания')
+    },
+    {
+      value: ManualSortField.VIEW,
+      content: t('просмотрам')
+    },
+    {
+      value: ManualSortField.TITLE,
+      content: t('названию')
+    }
+  ], [t])
 
-    return (
+  return (
         <div className={classNames(cls.ManualSortSelector, {}, [className])}>
             <Select<ManualSortField>
                 options={sortFieldOptions}
@@ -66,5 +66,5 @@ export const ManualSortSelector = memo((props: ManualSortSelectorProps) => {
                 className={cls.order}
             />
         </div>
-    )
+  )
 })

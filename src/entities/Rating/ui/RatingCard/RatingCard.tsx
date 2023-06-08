@@ -13,50 +13,50 @@ import { useDevice } from '@/shared/lib/hooks/useDevice/useDevice'
 import { Drawer } from '@/shared/ui/Drawer'
 
 interface RatingCardProps {
-    className?: string
-    title?: string
-    feedbackTitle?: string
-    hasFeedback?: boolean
-    onCancel?: (starsCount: number) => void
-    onAccept?: (starsCount: number, feedback?: string) => void
-    rate?: number
+  className?: string
+  title?: string
+  feedbackTitle?: string
+  hasFeedback?: boolean
+  onCancel?: (starsCount: number) => void
+  onAccept?: (starsCount: number, feedback?: string) => void
+  rate?: number
 }
 
 export const RatingCard = memo((props: RatingCardProps) => {
-    const {
-        className,
-        onCancel,
-        onAccept,
-        feedbackTitle,
-        hasFeedback,
-        title,
-        rate = 0
-    } = props
-    const { t } = useTranslation()
-    const [isModalOpen, setIsModalOpen] = useState(false)
-    const [starsCount, setStarsCount] = useState(rate)
-    const [feedback, setFeedback] = useState('')
+  const {
+    className,
+    onCancel,
+    onAccept,
+    feedbackTitle,
+    hasFeedback,
+    title,
+    rate = 0
+  } = props
+  const { t } = useTranslation()
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [starsCount, setStarsCount] = useState(rate)
+  const [feedback, setFeedback] = useState('')
 
-    const onSelectStars = useCallback((selectedStarsCount: number) => {
-        setStarsCount(selectedStarsCount)
-        if (hasFeedback) {
-            setIsModalOpen(true)
-        } else {
-            onAccept?.(selectedStarsCount)
-        }
-    }, [hasFeedback, onAccept])
+  const onSelectStars = useCallback((selectedStarsCount: number) => {
+    setStarsCount(selectedStarsCount)
+    if (hasFeedback) {
+      setIsModalOpen(true)
+    } else {
+      onAccept?.(selectedStarsCount)
+    }
+  }, [hasFeedback, onAccept])
 
-    const acceptHandler = useCallback(() => {
-        setIsModalOpen(false)
-        onAccept?.(starsCount, feedback)
-    }, [feedback, onAccept, starsCount])
+  const acceptHandler = useCallback(() => {
+    setIsModalOpen(false)
+    onAccept?.(starsCount, feedback)
+  }, [feedback, onAccept, starsCount])
 
-    const cancelHandler = useCallback(() => {
-        setIsModalOpen(false)
-        onCancel?.(starsCount)
-    }, [onCancel, starsCount])
+  const cancelHandler = useCallback(() => {
+    setIsModalOpen(false)
+    onCancel?.(starsCount)
+  }, [onCancel, starsCount])
 
-    const modalContent = (
+  const modalContent = (
         <VStack gap={'32'} max>
             <Text title={feedbackTitle}/>
             <Input
@@ -66,11 +66,11 @@ export const RatingCard = memo((props: RatingCardProps) => {
                 placeholder={t('Ваш отзыв')}
             />
         </VStack>
-    )
+  )
 
-    const isMobile = useDevice()
+  const isMobile = useDevice()
 
-    return (
+  return (
         <Card
             data-testid={'RatingCard'}
             className={classNames(cls.RatingCard, {}, [className])}
@@ -81,7 +81,7 @@ export const RatingCard = memo((props: RatingCardProps) => {
                 <StarRating size={40} onSelect={onSelectStars} selectedStars={starsCount}/>
             </VStack>
             {!isMobile
-                ? <Modal isOpen={isModalOpen} lazy>
+              ? <Modal isOpen={isModalOpen} lazy>
                     {modalContent}
                     <HStack gap={'16'} justify={'end'}>
                         <Button
@@ -98,7 +98,7 @@ export const RatingCard = memo((props: RatingCardProps) => {
                         </Button>
                     </HStack>
                 </Modal>
-                : <Drawer isOpen={isModalOpen} onClose={cancelHandler}>
+              : <Drawer isOpen={isModalOpen} onClose={cancelHandler}>
                     {modalContent}
                     <HStack max gap={'16'} justify={'end'}>
                         <Button
@@ -111,5 +111,5 @@ export const RatingCard = memo((props: RatingCardProps) => {
                 </Drawer>
             }
         </Card>
-    )
+  )
 })

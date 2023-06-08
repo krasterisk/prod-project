@@ -5,11 +5,11 @@ import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDe
 import { Theme } from '@/shared/const/theme'
 
 export default {
-    title: 'pages/ForbiddenPage',
-    component: ErrorPage,
-    argTypes: {
-        backgroundColor: { control: 'color' }
-    }
+  title: 'pages/ForbiddenPage',
+  component: ErrorPage,
+  argTypes: {
+    backgroundColor: { control: 'color' }
+  }
 } as ComponentMeta<typeof ErrorPage>
 
 const Template: ComponentStory<typeof ErrorPage> = () => <ErrorPage />

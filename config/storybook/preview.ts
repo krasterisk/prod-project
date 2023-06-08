@@ -2,7 +2,7 @@ import { StyleDecorator } from '../../src/shared/config/storybook/StyleDecorator
 import { ThemeDecorator } from '../../src/shared/config/storybook/ThemeDecorator/ThemeDecorator'
 import { RouterDecorator } from '../../src/shared/config/storybook/RouterDecorator/RouterDecorator'
 import {
-    SuspenseDecorator
+  SuspenseDecorator
 } from '../../src/shared/config/storybook/SuspenseDecorator/SuspenseDecorator'
 
 import { Theme } from '../../src/shared/const/theme'
@@ -12,36 +12,36 @@ import { Preview } from '@storybook/react'
 export const decorators = [StyleDecorator, ThemeDecorator(Theme.LIGHT), RouterDecorator, SuspenseDecorator]
 
 const preview: Preview = {
-    parameters: {
-        actions: { argTypesRegex: '^on[A-Z].*' },
-        controls: {
-            matchers: {
-                color: /(background|color)$/i,
-                date: /Date$/
-            }
+  parameters: {
+    actions: { argTypesRegex: '^on[A-Z].*' },
+    controls: {
+      matchers: {
+        color: /(background|color)$/i,
+        date: /Date$/
+      }
+    },
+    layout: 'fullscreen',
+    themes: {
+      default: 'light',
+      list: [
+        {
+          name: 'light',
+          class: Theme.LIGHT,
+          color: '#ffffff'
         },
-        layout: 'fullscreen',
-        themes: {
-            default: 'light',
-            list: [
-                {
-                    name: 'light',
-                    class: Theme.LIGHT,
-                    color: '#ffffff'
-                },
-                {
-                    name: 'dark',
-                    class: Theme.DARK,
-                    color: '#000000'
-                },
-                {
-                    name: 'purple',
-                    class: Theme.PURPLE,
-                    color: '#ff5d05'
-                }
-            ]
+        {
+          name: 'dark',
+          class: Theme.DARK,
+          color: '#000000'
+        },
+        {
+          name: 'purple',
+          class: Theme.PURPLE,
+          color: '#ff5d05'
         }
+      ]
     }
+  }
 }
 
 export default preview

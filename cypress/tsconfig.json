@@ -1,12 +1,12 @@
 {
   "compilerOptions": {
+    "jsx": "react",
     "target": "es5",
     "lib": ["es5", "dom"],
     "types": ["cypress", "node"],
     "allowJs": true,
     "isolatedModules": false
   },
-  "extends": "../tsconfig.json",
-  "exclude": ["node_modules", "cypress", "./cypress.config.ts"],
-  "include": ["**/*.ts", "**/*.tsx"]
+  "include": ["**/*.ts", "**/*.tsx"],
+  //"extends": "../tsconfig.json",
 }

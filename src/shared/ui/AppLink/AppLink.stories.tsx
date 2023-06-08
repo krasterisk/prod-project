@@ -6,75 +6,75 @@ import { Theme } from '@/shared/const/theme'
 import { RouterDecorator } from '@/shared/config/storybook/RouterDecorator/RouterDecorator'
 
 export default {
-    title: 'shared/AppLink',
-    component: AppLink,
-    argTypes: {
-        backgroundColor: { control: 'color' }
-    },
-    args: {
-        to: '/'
-    }
+  title: 'shared/AppLink',
+  component: AppLink,
+  argTypes: {
+    backgroundColor: { control: 'color' }
+  },
+  args: {
+    to: '/'
+  }
 } as ComponentMeta<typeof AppLink>
 
 const Template: ComponentStory<typeof AppLink> = (args) => <AppLink {...args} />
 
 export const Primary = Template.bind({})
 Primary.args = {
-    children: 'Text',
-    theme: AppLinkTheme.PRIMARY
+  children: 'Text',
+  theme: AppLinkTheme.PRIMARY
 }
 Primary.decorators = [
-    RouterDecorator
+  RouterDecorator
 ]
 
 export const PrimaryDark = Template.bind({})
 PrimaryDark.args = {
-    children: 'Text',
-    theme: AppLinkTheme.PRIMARY
+  children: 'Text',
+  theme: AppLinkTheme.PRIMARY
 }
 PrimaryDark.decorators = [
-    RouterDecorator,
-    ThemeDecorator(Theme.DARK)
+  RouterDecorator,
+  ThemeDecorator(Theme.DARK)
 ]
 
 export const Secondary = Template.bind({})
 Secondary.args = {
-    children: 'Text',
-    theme: AppLinkTheme.SECONDARY
+  children: 'Text',
+  theme: AppLinkTheme.SECONDARY
 }
 Secondary.decorators = [
-    RouterDecorator
+  RouterDecorator
 ]
 
 export const SecondaryDark = Template.bind({})
 SecondaryDark.args = {
-    children: 'Text',
-    theme: AppLinkTheme.SECONDARY
+  children: 'Text',
+  theme: AppLinkTheme.SECONDARY
 }
 SecondaryDark.decorators = [
-    RouterDecorator
+  RouterDecorator
 ]
 
 SecondaryDark.decorators = [
-    RouterDecorator,
-    ThemeDecorator(Theme.DARK)
+  RouterDecorator,
+  ThemeDecorator(Theme.DARK)
 ]
 
 export const Red = Template.bind({})
 Red.args = {
-    children: 'Text',
-    theme: AppLinkTheme.RED
+  children: 'Text',
+  theme: AppLinkTheme.RED
 }
 Red.decorators = [
-    RouterDecorator
+  RouterDecorator
 ]
 
 export const RedDark = Template.bind({})
 RedDark.args = {
-    children: 'Text',
-    theme: AppLinkTheme.RED
+  children: 'Text',
+  theme: AppLinkTheme.RED
 }
 RedDark.decorators = [
-    RouterDecorator,
-    ThemeDecorator(Theme.DARK)
+  RouterDecorator,
+  ThemeDecorator(Theme.DARK)
 ]

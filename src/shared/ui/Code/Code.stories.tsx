@@ -3,18 +3,18 @@ import { ComponentStory, ComponentMeta } from '@storybook/react'
 import { Code } from './Code'
 
 export default {
-    title: 'shared/Code',
-    component: Code,
-    argTypes: {
-        backgroundColor: { control: 'color' }
-    }
+  title: 'shared/Code',
+  component: Code,
+  argTypes: {
+    backgroundColor: { control: 'color' }
+  }
 } as ComponentMeta<typeof Code>
 
 const Template: ComponentStory<typeof Code> = (args) => <Code {...args} />
 
 export const Normal = Template.bind({})
 Normal.args = {
-    text: 'import React from \'react\'\n' +
+  text: 'import React from \'react\'\n' +
         'import { ComponentStory, ComponentMeta } from \'@storybook/react\'\n' +
         'import { Code } from \'./Code\'\n' +
         '\n' +

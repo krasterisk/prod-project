@@ -5,83 +5,83 @@ import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDe
 import { Theme } from '@/shared/const/theme'
 
 export default {
-    title: 'shared/Text',
-    component: Text,
-    argTypes: {
-        backgroundColor: { control: 'color' }
-    }
+  title: 'shared/Text',
+  component: Text,
+  argTypes: {
+    backgroundColor: { control: 'color' }
+  }
 } as ComponentMeta<typeof Text>
 
 const Template: ComponentStory<typeof Text> = (args) => <Text {...args} />
 
 export const Primary = Template.bind({})
 Primary.args = {
-    title: 'Title text',
-    text: 'Some little text'
+  title: 'Title text',
+  text: 'Some little text'
 }
 
 export const Error = Template.bind({})
 Error.args = {
-    title: 'Title text',
-    text: 'Some little text',
-    theme: TextTheme.ERROR
+  title: 'Title text',
+  text: 'Some little text',
+  theme: TextTheme.ERROR
 }
 
 export const OnlyTitle = Template.bind({})
 OnlyTitle.args = {
-    title: 'Title text'
+  title: 'Title text'
 }
 
 export const OnlyText = Template.bind({})
 OnlyText.args = {
-    text: 'Some text'
+  text: 'Some text'
 }
 
 export const PrimaryDark = Template.bind({})
 PrimaryDark.args = {
-    title: 'Title text',
-    text: 'Some text'
+  title: 'Title text',
+  text: 'Some text'
 }
 PrimaryDark.decorators = [ThemeDecorator(Theme.DARK)]
 
 export const OnlyTitleDark = Template.bind({})
 OnlyTitleDark.args = {
-    title: 'Title text',
-    text: 'Some text'
+  title: 'Title text',
+  text: 'Some text'
 }
 OnlyTitleDark.decorators = [ThemeDecorator(Theme.DARK)]
 
 export const OnlyTextDark = Template.bind({})
 OnlyTextDark.args = {
-    title: 'Title text',
-    text: 'Some text'
+  title: 'Title text',
+  text: 'Some text'
 }
 OnlyTextDark.decorators = [ThemeDecorator(Theme.DARK)]
 
 export const TextSizeS = Template.bind({})
 TextSizeS.args = {
-    title: 'Title text',
-    text: 'Some text',
-    size: TextSize.S
+  title: 'Title text',
+  text: 'Some text',
+  size: TextSize.S
 }
 
 export const TextSizeM = Template.bind({})
 TextSizeM.args = {
-    title: 'Title text',
-    text: 'Some text',
-    size: TextSize.M
+  title: 'Title text',
+  text: 'Some text',
+  size: TextSize.M
 }
 
 export const TextSizeL = Template.bind({})
 TextSizeL.args = {
-    title: 'Title text',
-    text: 'Some text',
-    size: TextSize.L
+  title: 'Title text',
+  text: 'Some text',
+  size: TextSize.L
 }
 
 export const TextSizeXL = Template.bind({})
 TextSizeXL.args = {
-    title: 'Title text',
-    text: 'Some text',
-    size: TextSize.XL
+  title: 'Title text',
+  text: 'Some text',
+  size: TextSize.XL
 }

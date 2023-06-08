@@ -6,11 +6,11 @@ import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDe
 import { Theme } from '@/shared/const/theme'
 
 export default {
-    title: 'widgets/Navbar',
-    component: Navbar,
-    argTypes: {
-        backgroundColor: { control: 'color' }
-    }
+  title: 'widgets/Navbar',
+  component: Navbar,
+  argTypes: {
+    backgroundColor: { control: 'color' }
+  }
 } as ComponentMeta<typeof Navbar>
 
 const Template: ComponentStory<typeof Navbar> = (args) => <Navbar {...args} />
@@ -26,5 +26,5 @@ Dark.decorators = [ThemeDecorator(Theme.DARK), StoreDecorator({})]
 export const Auth = Template.bind({})
 Auth.args = {}
 Auth.decorators = [StoreDecorator({
-    loginForm: { username: 'admin', password: '123' }
+  loginForm: { username: 'admin', password: '123' }
 })]

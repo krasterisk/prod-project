@@ -8,39 +8,39 @@ import { Button, ButtonTheme } from '@/shared/ui/Button'
 import { ManualView } from '@/entities/Manual'
 
 interface ManualViewSelectorProps {
-    className?: string
-    view: ManualView
-    onViewClick: (view: ManualView) => void
+  className?: string
+  view: ManualView
+  onViewClick: (view: ManualView) => void
 }
 
 interface viewsAttr {
-    view: ManualView
-    icon: VFC<SVGProps<SVGSVGElement>>
+  view: ManualView
+  icon: VFC<SVGProps<SVGSVGElement>>
 }
 
 const viewTypes: viewsAttr[] = [
-    {
-        view: 'BIG',
-        icon: ListIcon
-    },
-    {
-        view: 'SMALL',
-        icon: TiledIcon
-    }
+  {
+    view: 'BIG',
+    icon: ListIcon
+  },
+  {
+    view: 'SMALL',
+    icon: TiledIcon
+  }
 ]
 
 export const ManualViewSelector = memo((props: ManualViewSelectorProps) => {
-    const {
-        className,
-        view,
-        onViewClick
-    } = props
+  const {
+    className,
+    view,
+    onViewClick
+  } = props
 
-    const onClick = (newView: ManualView) => () => {
-        onViewClick?.(newView)
-    }
+  const onClick = (newView: ManualView) => () => {
+    onViewClick?.(newView)
+  }
 
-    return (
+  return (
         <div className={classNames(cls.ManualViewSelector, {}, [className])}>
             {viewTypes.map(viewType => (
                 <Button
@@ -55,5 +55,5 @@ export const ManualViewSelector = memo((props: ManualViewSelectorProps) => {
                 </Button>
             ))}
         </div>
-    )
+  )
 })

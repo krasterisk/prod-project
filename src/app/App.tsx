@@ -7,13 +7,13 @@ import { getUserMounted, userActions } from '@/entities/User'
 import { AppRouter } from './providers/router'
 
 const App = (): any => {
-    const dispatch = useDispatch()
-    const mounted = useSelector(getUserMounted)
+  const dispatch = useDispatch()
+  const mounted = useSelector(getUserMounted)
 
-    useEffect(() => {
-        dispatch(userActions.initAuthData())
-    }, [dispatch])
-    return (
+  useEffect(() => {
+    dispatch(userActions.initAuthData())
+  }, [dispatch])
+  return (
         <div className={classNames('app', {}, [])}>
             <Suspense>
                 <Navbar/>
@@ -23,7 +23,7 @@ const App = (): any => {
                 </div>
             </Suspense>
         </div>
-    )
+  )
 }
 
 export default App

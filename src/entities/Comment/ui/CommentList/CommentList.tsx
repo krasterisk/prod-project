@@ -7,41 +7,41 @@ import { Comments } from '../../model/types/comments'
 import { VStack } from '@/shared/ui/Stack'
 
 interface CommentListProps {
-    className?: string
-    comments?: Comments[]
-    isLoading?: boolean
+  className?: string
+  comments?: Comments[]
+  isLoading?: boolean
 }
 
 export const CommentList = memo((props: CommentListProps) => {
-    const {
-        className,
-        comments,
-        isLoading
-    } = props
-    const { t } = useTranslation()
+  const {
+    className,
+    comments,
+    isLoading
+  } = props
+  const { t } = useTranslation()
 
-    if (isLoading) {
-        return (
+  if (isLoading) {
+    return (
             <VStack gap='16' max className={classNames('', {}, [className])}>
                 <CommentCard isLoading />
                 <CommentCard isLoading />
                 <CommentCard isLoading />
             </VStack>
-        )
-    }
+    )
+  }
 
-    return (
+  return (
         <VStack gap={'8'} max className={classNames('', {}, [className])}>
             {comments?.length
-                ? comments.map(comment => (
+              ? comments.map(comment => (
                     <CommentCard
                         isLoading={isLoading}
                         comment={comment}
                         key={comment.id}
                     />
-                ))
-                : <Text text={t('Пока нет комментариев')}/>
+              ))
+              : <Text text={t('Пока нет комментариев')}/>
             }
         </VStack>
-    )
+  )
 })

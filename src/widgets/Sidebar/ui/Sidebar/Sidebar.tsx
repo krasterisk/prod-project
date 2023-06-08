@@ -10,27 +10,27 @@ import { ThemeSwitcher } from '@/entities/ThemeSwitcher'
 import { LangSwitcher } from '@/entities/LangSwitcher'
 
 interface SidebarProps {
-    className?: string
+  className?: string
 
 }
 
 export const Sidebar = memo(({ className }: SidebarProps) => {
-    const [collapsed, setCollapsed] = useState(false)
-    const sidebarItemList = useSelector(getSidebarItems)
+  const [collapsed, setCollapsed] = useState(false)
+  const sidebarItemList = useSelector(getSidebarItems)
 
-    const onToggle = () => {
-        setCollapsed((prev) => !prev)
-    }
+  const onToggle = () => {
+    setCollapsed((prev) => !prev)
+  }
 
-    const itemList = useMemo(() => sidebarItemList.map((item) => (
+  const itemList = useMemo(() => sidebarItemList.map((item) => (
         <SidebarItem
             key={item.path}
             item={item}
             collapsed={collapsed}
         />
-    )), [collapsed, sidebarItemList])
+  )), [collapsed, sidebarItemList])
 
-    return (
+  return (
         <section
             data-testid='sidebar'
             className={classNames(cls.Sidebar, { [cls.collapsed]: collapsed }, [className])}
@@ -56,5 +56,5 @@ export const Sidebar = memo(({ className }: SidebarProps) => {
                 />
             </div>
         </section>
-    )
+  )
 })

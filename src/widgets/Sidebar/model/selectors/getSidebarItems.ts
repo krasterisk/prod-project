@@ -7,43 +7,43 @@ import ProfileIcon from '@/shared/assets/icons/profile-20-20.svg'
 import ManualIcon from '@/shared/assets/icons/manual-20-20.svg'
 import { getTokenData } from '@/app/providers/getTokenData/getTokenData'
 import {
-    getRouteAbout,
-    getRouteMain,
-    getRouteManuals,
-    getRouteProfile
+  getRouteAbout,
+  getRouteMain,
+  getRouteManuals,
+  getRouteProfile
 } from '@/shared/const/router'
 
 export const getSidebarItems = createSelector(
-    getUserAuthData, (userData) => {
-        const sidebarItemsList: SidebarItemType[] = [
-            {
-                path: getRouteMain(),
-                Icon: MainIcon,
-                text: 'Главная'
-            },
-            {
-                path: getRouteAbout(),
-                Icon: AboutIcon,
-                text: 'О Сайте'
-            }
-        ]
-        if (userData) {
-            const userId = String(getTokenData(userData.token))
-            sidebarItemsList.push(
-                {
-                    path: getRouteProfile(userId),
-                    Icon: ProfileIcon,
-                    text: 'Профиль',
-                    authOnly: true
-                },
-                {
-                    path: getRouteManuals(),
-                    Icon: ManualIcon,
-                    text: 'Документация',
-                    authOnly: true
-                }
-            )
+  getUserAuthData, (userData) => {
+    const sidebarItemsList: SidebarItemType[] = [
+      {
+        path: getRouteMain(),
+        Icon: MainIcon,
+        text: 'Главная'
+      },
+      {
+        path: getRouteAbout(),
+        Icon: AboutIcon,
+        text: 'О Сайте'
+      }
+    ]
+    if (userData) {
+      const userId = String(getTokenData(userData.token))
+      sidebarItemsList.push(
+        {
+          path: getRouteProfile(userId),
+          Icon: ProfileIcon,
+          text: 'Профиль',
+          authOnly: true
+        },
+        {
+          path: getRouteManuals(),
+          Icon: ManualIcon,
+          text: 'Документация',
+          authOnly: true
         }
-        return sidebarItemsList
+      )
     }
+    return sidebarItemsList
+  }
 )

@@ -6,16 +6,16 @@ import { MutableRefObject, useCallback, useRef } from 'react'
  * @param delay - задержка в мс
  */
 export function useDebounce (callback: (...args: any[]) => void, delay: number) {
-    // eslint-disable-next-line
+  // eslint-disable-next-line
     const timer = useRef() as MutableRefObject<any>
 
-    return useCallback((...args: any[]) => {
-        if (timer.current) {
-            clearTimeout(timer.current)
-        }
-        timer.current = setTimeout(() => {
-            // eslint-disable-next-line n/no-callback-literal
-            callback(...args)
-        }, delay)
-    }, [callback, delay])
+  return useCallback((...args: any[]) => {
+    if (timer.current) {
+      clearTimeout(timer.current)
+    }
+    timer.current = setTimeout(() => {
+      // eslint-disable-next-line n/no-callback-literal
+      callback(...args)
+    }, delay)
+  }, [callback, delay])
 }

@@ -6,18 +6,18 @@ import { Card } from '@/shared/ui/Card'
 import { Skeleton } from '@/shared/ui/Skeleton'
 
 interface ManualListItemSkeletonProps {
-    className?: string
-    view?: ManualView
+  className?: string
+  view?: ManualView
 }
 
 export const ManualListItemSkeleton = memo((props: ManualListItemSkeletonProps) => {
-    const {
-        className,
-        view = 'SMALL'
-    } = props
+  const {
+    className,
+    view = 'SMALL'
+  } = props
 
-    if (view === 'BIG') {
-        return (
+  if (view === 'BIG') {
+    return (
             <div className={classNames(cls.ManualListItem, {}, [className, cls[view]])}>
                 <Card className={cls.card}>
                     <div className={cls.header}>
@@ -32,10 +32,10 @@ export const ManualListItemSkeleton = memo((props: ManualListItemSkeletonProps) 
                     </div>
                 </Card>
             </div>
-        )
-    }
+    )
+  }
 
-    return (
+  return (
         <div className={classNames(cls.ManualListItem, {}, [className, cls[view]])}>
             <Card className={cls.card}>
                 <div className={cls.imageWrapper}>
@@ -48,5 +48,5 @@ export const ManualListItemSkeleton = memo((props: ManualListItemSkeletonProps) 
                 <div/>
             </Card>
         </div>
-    )
+  )
 })

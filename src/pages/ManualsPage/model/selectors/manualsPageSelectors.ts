@@ -15,5 +15,5 @@ export const getManualsPageSearch = (state: StateSchema) => state.manualsPage?.s
 export const getManualsPageHashtag = (state: StateSchema) => state.manualsPage?.hashtag ?? ManualHashtagsTypes.ALL
 
 export const [useManualItemById] = buildSelector(
-    (state, id: string) => state.manualsPage?.entities[id]
+  (state, id: string) => state.manualsPage?.entities[id]
 )

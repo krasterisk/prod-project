@@ -7,12 +7,12 @@ import { Theme } from '@/shared/const/theme'
 import { RouterDecorator } from '@/shared/config/storybook/RouterDecorator/RouterDecorator'
 
 export default {
-    title: 'pages/MainPage',
-    component: MainPage,
-    argTypes: {
-        backgroundColor: { control: 'color' }
-    },
-    decorators: [StoreDecorator({})]
+  title: 'pages/MainPage',
+  component: MainPage,
+  argTypes: {
+    backgroundColor: { control: 'color' }
+  },
+  decorators: [StoreDecorator({})]
 } as ComponentMeta<typeof MainPage>
 
 const Template: ComponentStory<typeof MainPage> = () => <MainPage />
@@ -20,19 +20,19 @@ const Template: ComponentStory<typeof MainPage> = () => <MainPage />
 export const Normal = Template.bind({})
 Normal.args = {}
 Normal.decorators = [
-    RouterDecorator
+  RouterDecorator
 ]
 
 export const Dark = Template.bind({})
 Dark.args = {}
 Dark.decorators = [
-    ThemeDecorator(Theme.DARK),
-    RouterDecorator
+  ThemeDecorator(Theme.DARK),
+  RouterDecorator
 ]
 
 export const Purple = Template.bind({})
 Purple.args = {}
 Purple.decorators = [
-    ThemeDecorator(Theme.PURPLE),
-    RouterDecorator
+  ThemeDecorator(Theme.PURPLE),
+  RouterDecorator
 ]

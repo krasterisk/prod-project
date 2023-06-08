@@ -7,14 +7,14 @@ Manual[],
 void | never,
 ThunkConfig<string>
 >(
-    'ManualPage/fetchManualRecommendations',
-    async (props, thunkAPI) => {
-        const { extra, rejectWithValue } = thunkAPI
-        try {
-            const response = await extra.api.get<Manual[]>('/manuals/recommendations')
-            return response.data
-        } catch (e) {
-            return rejectWithValue('error')
-        }
+  'ManualPage/fetchManualRecommendations',
+  async (props, thunkAPI) => {
+    const { extra, rejectWithValue } = thunkAPI
+    try {
+      const response = await extra.api.get<Manual[]>('/manuals/recommendations')
+      return response.data
+    } catch (e) {
+      return rejectWithValue('error')
     }
+  }
 )

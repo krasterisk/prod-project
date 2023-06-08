@@ -5,11 +5,11 @@ import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDe
 import { RouterDecorator } from '@/shared/config/storybook/RouterDecorator/RouterDecorator'
 
 export default {
-    title: 'pages/ManualEditPage/ManualEditPage',
-    component: ManualEditPage,
-    argTypes: {
-        backgroundColor: { control: 'color' }
-    }
+  title: 'pages/ManualEditPage/ManualEditPage',
+  component: ManualEditPage,
+  argTypes: {
+    backgroundColor: { control: 'color' }
+  }
 } as ComponentMeta<typeof ManualEditPage>
 
 const Template: ComponentStory<typeof ManualEditPage> = (args) => <ManualEditPage {...args} />
@@ -17,6 +17,6 @@ const Template: ComponentStory<typeof ManualEditPage> = (args) => <ManualEditPag
 export const Normal = Template.bind({})
 Normal.args = {}
 Normal.decorators = [
-    StoreDecorator({}),
-    RouterDecorator
+  StoreDecorator({}),
+  RouterDecorator
 ]

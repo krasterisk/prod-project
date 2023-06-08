@@ -5,20 +5,20 @@ import cls from './ForbiddenPage.module.scss'
 import { Page } from '@/widgets/Page'
 
 interface ForbiddenPageProps {
-    className?: string
+  className?: string
 }
 
 const ForbiddenPage = memo(({ className }: ForbiddenPageProps) => {
-    const { t } = useTranslation()
+  const { t } = useTranslation()
 
-    return (
+  return (
         <Page
             data-testid={'ForbiddenPage'}
             className={classNames(cls.ForbiddenPage, {}, [className])}
         >
             {t('Нет доступа')}
         </Page>
-    )
+  )
 })
 
 export default ForbiddenPage

@@ -7,24 +7,24 @@ import { NotificationItem } from '../NotificationItem/NotificationItem'
 import { Skeleton } from '@/shared/ui/Skeleton'
 
 interface NotificationListProps {
-    className?: string
+  className?: string
 
 }
 
 export const NotificationList = memo((props: NotificationListProps) => {
-    const {
-        className
-    } = props
+  const {
+    className
+  } = props
 
-    const {
-        data,
-        isLoading
-    } = useNotifications(null, {
-        pollingInterval: 5000
-    })
+  const {
+    data,
+    isLoading
+  } = useNotifications(null, {
+    pollingInterval: 5000
+  })
 
-    if (isLoading) {
-        return (
+  if (isLoading) {
+    return (
             <VStack
                 gap={'16'}
                 max
@@ -34,10 +34,10 @@ export const NotificationList = memo((props: NotificationListProps) => {
                 <Skeleton width='100%' border='8px' height='80px' />
                 <Skeleton width='100%' border='8px' height='80px' />
             </VStack>
-        )
-    }
+    )
+  }
 
-    return (
+  return (
         <VStack
             gap={'16'}
             max
@@ -50,5 +50,5 @@ export const NotificationList = memo((props: NotificationListProps) => {
                 />
             ))}
         </VStack>
-    )
+  )
 })

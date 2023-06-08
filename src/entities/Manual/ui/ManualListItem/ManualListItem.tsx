@@ -17,35 +17,35 @@ import { AppImage } from '@/shared/ui/AppImage'
 import { Skeleton } from '@/shared/ui/Skeleton'
 
 interface ManualListItemProps {
-    className?: string
-    manual: Manual
-    view?: ManualView
-    target?: HTMLAttributeAnchorTarget
+  className?: string
+  manual: Manual
+  view?: ManualView
+  target?: HTMLAttributeAnchorTarget
 }
 
 export const ManualListItem = memo((props: ManualListItemProps) => {
-    const {
-        className,
-        manual,
-        view = 'SMALL',
-        target
-    } = props
+  const {
+    className,
+    manual,
+    view = 'SMALL',
+    target
+  } = props
 
-    const { t } = useTranslation('manuals')
+  const { t } = useTranslation('manuals')
 
-    const hashtags = <Text text={manual.hashtags.map((hashtag) => hashtag.title).join(', ')} className={cls.types}/>
-    const views = (
+  const hashtags = <Text text={manual.hashtags.map((hashtag) => hashtag.title).join(', ')} className={cls.types}/>
+  const views = (
         <>
             <Text text={String(manual.views)} className={cls.views}/>
             <Icon Svg={EyeLogo}></Icon>
         </>
-    )
+  )
 
-    if (view === 'BIG') {
-        const textBlock = manual.blocks.find((block) => block.type === ManualBlockTypes.TEXT
-        ) as ManualTextBlock
+  if (view === 'BIG') {
+    const textBlock = manual.blocks.find((block) => block.type === ManualBlockTypes.TEXT
+    ) as ManualTextBlock
 
-        return (
+    return (
             <div
                 data-testid={'ManualListItem'}
                 className={classNames(cls.ManualListItem, {}, [className, cls[view]])}
@@ -80,10 +80,10 @@ export const ManualListItem = memo((props: ManualListItemProps) => {
                     </div>
                 </Card>
             </div>
-        )
-    }
+    )
+  }
 
-    return (
+  return (
         <AppLink
             data-testid={'ManualListItem'}
             target={target}
@@ -108,5 +108,5 @@ export const ManualListItem = memo((props: ManualListItemProps) => {
                 <div/>
             </Card>
         </AppLink>
-    )
+  )
 })

@@ -10,16 +10,16 @@ import { VStack } from '@/shared/ui/Stack'
 import { getRouteProfile } from '@/shared/const/router'
 
 interface CommentCardProps {
-    className?: string
-    comment?: Comments
-    isLoading?: boolean
+  className?: string
+  comment?: Comments
+  isLoading?: boolean
 }
 
 export const CommentCard = memo((props: CommentCardProps) => {
-    const { className, comment, isLoading } = props
+  const { className, comment, isLoading } = props
 
-    if (isLoading) {
-        return (
+  if (isLoading) {
+    return (
             <VStack
                 data-testid={'CommentCard.Loading'}
                 gap='8'
@@ -32,14 +32,14 @@ export const CommentCard = memo((props: CommentCardProps) => {
                 </div>
                 <Skeleton width={'100%'} height={50} className={cls.text}/>
             </VStack>
-        )
-    }
+    )
+  }
 
-    if (!comment) {
-        return null
-    }
+  if (!comment) {
+    return null
+  }
 
-    return (
+  return (
         <VStack
             data-testid={'CommentCard.Content'}
             gap='8'
@@ -52,5 +52,5 @@ export const CommentCard = memo((props: CommentCardProps) => {
             </AppLink>
             <Text text={comment.text} className={cls.text} />
         </VStack>
-    )
+  )
 })

@@ -4,13 +4,13 @@ import { getUserAuthData } from '@/entities/User'
 import { getTokenData } from '@/app/providers/getTokenData/getTokenData'
 
 export const getCanEditManual = createSelector(
-    getManualDetailsData,
-    getUserAuthData,
-    (manual, user) => {
-        if (!manual || !user) {
-            return false
-        }
-        const userId = getTokenData(user.token)
-        return String(manual.user.id) === String(userId)
+  getManualDetailsData,
+  getUserAuthData,
+  (manual, user) => {
+    if (!manual || !user) {
+      return false
     }
+    const userId = getTokenData(user.token)
+    return String(manual.user.id) === String(userId)
+  }
 )

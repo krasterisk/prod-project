@@ -6,9 +6,9 @@ import { manualDetailsReducer } from '../../model/slice/manualDetailsSlice'
 import { memo, useCallback } from 'react'
 import { useSelector } from 'react-redux'
 import {
-    getManualDetailsData,
-    getManualDetailsError,
-    getManualDetailsIsLoading
+  getManualDetailsData,
+  getManualDetailsError,
+  getManualDetailsIsLoading
 } from '../../model/selectors/manualDetails'
 import { Text, TextAlign, TextSize } from '@/shared/ui/Text'
 import { Skeleton } from '@/shared/ui/Skeleton'
@@ -27,41 +27,41 @@ import { ManualBlockTypes } from '../../model/consts/consts'
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch'
 
 interface ManualDetailsProps {
-    className?: string
-    id?: string
+  className?: string
+  id?: string
 }
 
 const reducers: ReducersList = {
-    manualDetails: manualDetailsReducer
+  manualDetails: manualDetailsReducer
 }
 
 export const ManualDetails = memo(({ className, id }: ManualDetailsProps) => {
-    const { t } = useTranslation('manuals')
-    const isLoading = useSelector(getManualDetailsIsLoading)
-    const manual = useSelector(getManualDetailsData)
-    const error = useSelector(getManualDetailsError)
-    const dispatch = useAppDispatch()
+  const { t } = useTranslation('manuals')
+  const isLoading = useSelector(getManualDetailsIsLoading)
+  const manual = useSelector(getManualDetailsData)
+  const error = useSelector(getManualDetailsError)
+  const dispatch = useAppDispatch()
 
-    useInitialEffect(() => {
-        dispatch(fetchManualById(id))
-    })
+  useInitialEffect(() => {
+    dispatch(fetchManualById(id))
+  })
 
-    const renderBlock = useCallback((block: ManualBlock) => {
-        switch (block.type) {
-            case ManualBlockTypes.TEXT:
-                return <ManualBlockTextComponent className={cls.block} block={block} key={Math.random() * 123}/>
-            case ManualBlockTypes.CODE:
-                return <ManualBlockCodeComponent className={cls.block} block={block} key={block.code}/>
-            case ManualBlockTypes.IMAGE:
-                return <ManualBlockImageComponent className={cls.block} block={block} key={block.src}/>
-            default:
-                return null
-        }
-    }, [])
+  const renderBlock = useCallback((block: ManualBlock) => {
+    switch (block.type) {
+      case ManualBlockTypes.TEXT:
+        return <ManualBlockTextComponent className={cls.block} block={block} key={Math.random() * 123}/>
+      case ManualBlockTypes.CODE:
+        return <ManualBlockCodeComponent className={cls.block} block={block} key={block.code}/>
+      case ManualBlockTypes.IMAGE:
+        return <ManualBlockImageComponent className={cls.block} block={block} key={block.src}/>
+      default:
+        return null
+    }
+  }, [])
 
-    let content
-    if (isLoading) {
-        content = (
+  let content
+  if (isLoading) {
+    content = (
             <>
                 <Skeleton className={cls.avatar} width={200} height={200} border={'50%'}/>
                 <Skeleton className={cls.title} width={300} height={32}/>
@@ -70,16 +70,16 @@ export const ManualDetails = memo(({ className, id }: ManualDetailsProps) => {
                 <Skeleton className={cls.skeleton} width={'100%'} height={500}/>
                 <Skeleton className={cls.skeleton} width={'100%'} height={300}/>
             </>
-        )
-    } else if (error) {
-        content = (
+    )
+  } else if (error) {
+    content = (
             <Text
                 align={TextAlign.CENTER}
                 text={t('Произошла ошибка при загрузке страницы')}
             />
-        )
-    } else {
-        content = (
+    )
+  } else {
+    content = (
             <>
                 <HStack justify={'center'} max>
                     <Avatar
@@ -110,14 +110,14 @@ export const ManualDetails = memo(({ className, id }: ManualDetailsProps) => {
                 </VStack>
                 {manual?.blocks.map(renderBlock)}
             </>
-        )
-    }
+    )
+  }
 
-    return (
+  return (
         <DynamicModuleLoader reducers={reducers} removeAfterUnmount>
             <VStack gap={'16'} max className={classNames(cls.ManualDetails, {}, [className])}>
                 {content}
             </VStack>
         </DynamicModuleLoader>
-    )
+  )
 })

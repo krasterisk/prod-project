@@ -4,18 +4,18 @@ import { useTranslation } from 'react-i18next'
 import { memo, useCallback } from 'react'
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch'
 import {
-    ManualHashtagsTypes,
-    ManualSortField,
-    ManualView
+  ManualHashtagsTypes,
+  ManualSortField,
+  ManualView
 } from '@/entities/Manual'
 import { manualPageActions } from '../../model/slice/manualPageSlice'
 import { useSelector } from 'react-redux'
 import {
-    getManualsPageHashtag,
-    getManualsPageOrder,
-    getManualsPageSearch,
-    getManualsPageSort,
-    getManualsPageView
+  getManualsPageHashtag,
+  getManualsPageOrder,
+  getManualsPageSearch,
+  getManualsPageSort,
+  getManualsPageView
 } from '../../model/selectors/manualsPageSelectors'
 import { Card } from '@/shared/ui/Card'
 import { Input } from '@/shared/ui/Input'
@@ -27,57 +27,57 @@ import { ManualTypeTabs } from '@/features/ManualTypeTabs'
 import { ManualSortSelector } from '@/features/ManualSortSelector'
 
 interface ManualPageFiltersProps {
-    className?: string
+  className?: string
 
 }
 
 export const ManualPageFilters = memo((props: ManualPageFiltersProps) => {
-    const {
-        className
-    } = props
-    const { t } = useTranslation('manuals')
-    const dispatch = useAppDispatch()
-    const view = useSelector(getManualsPageView)
-    const sort = useSelector(getManualsPageSort)
-    const order = useSelector(getManualsPageOrder)
-    const search = useSelector(getManualsPageSearch)
-    const hashtag = useSelector(getManualsPageHashtag)
+  const {
+    className
+  } = props
+  const { t } = useTranslation('manuals')
+  const dispatch = useAppDispatch()
+  const view = useSelector(getManualsPageView)
+  const sort = useSelector(getManualsPageSort)
+  const order = useSelector(getManualsPageOrder)
+  const search = useSelector(getManualsPageSearch)
+  const hashtag = useSelector(getManualsPageHashtag)
 
-    const fetchData = useCallback(() => {
-        dispatch(fetchManualsList({ replace: true }))
-    }, [dispatch])
+  const fetchData = useCallback(() => {
+    dispatch(fetchManualsList({ replace: true }))
+  }, [dispatch])
 
-    const debouncedFetchData = useDebounce(fetchData, 500)
+  const debouncedFetchData = useDebounce(fetchData, 500)
 
-    const onChangeView = useCallback((view: ManualView) => {
-        dispatch(manualPageActions.setView(view))
-    }, [dispatch])
+  const onChangeView = useCallback((view: ManualView) => {
+    dispatch(manualPageActions.setView(view))
+  }, [dispatch])
 
-    const onChangeSort = useCallback((sort: ManualSortField) => {
-        dispatch(manualPageActions.setSort(sort))
-        dispatch(manualPageActions.setPage(1))
-        fetchData()
-    }, [dispatch, fetchData])
+  const onChangeSort = useCallback((sort: ManualSortField) => {
+    dispatch(manualPageActions.setSort(sort))
+    dispatch(manualPageActions.setPage(1))
+    fetchData()
+  }, [dispatch, fetchData])
 
-    const onChangeOrder = useCallback((order: SortOrder) => {
-        dispatch(manualPageActions.setOrder(order))
-        dispatch(manualPageActions.setPage(1))
-        fetchData()
-    }, [dispatch, fetchData])
+  const onChangeOrder = useCallback((order: SortOrder) => {
+    dispatch(manualPageActions.setOrder(order))
+    dispatch(manualPageActions.setPage(1))
+    fetchData()
+  }, [dispatch, fetchData])
 
-    const onChangeSearch = useCallback((search: string) => {
-        dispatch(manualPageActions.setSearch(search))
-        dispatch(manualPageActions.setPage(1))
-        debouncedFetchData()
-    }, [debouncedFetchData, dispatch])
+  const onChangeSearch = useCallback((search: string) => {
+    dispatch(manualPageActions.setSearch(search))
+    dispatch(manualPageActions.setPage(1))
+    debouncedFetchData()
+  }, [debouncedFetchData, dispatch])
 
-    const onChangeHashtag = useCallback((value: ManualHashtagsTypes) => {
-        dispatch(manualPageActions.setHashtag(value))
-        dispatch(manualPageActions.setPage(1))
-        fetchData()
-    }, [dispatch, fetchData])
+  const onChangeHashtag = useCallback((value: ManualHashtagsTypes) => {
+    dispatch(manualPageActions.setHashtag(value))
+    dispatch(manualPageActions.setPage(1))
+    fetchData()
+  }, [dispatch, fetchData])
 
-    return (
+  return (
         <div className={classNames(cls.ManualPageFilters, {}, [className])}>
             <div className={cls.sortWrapper}>
                 <ManualSortSelector
@@ -106,5 +106,5 @@ export const ManualPageFilters = memo((props: ManualPageFiltersProps) => {
                 onChangeHashtag={onChangeHashtag}
             />
         </div>
-    )
+  )
 })

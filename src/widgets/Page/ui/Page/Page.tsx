@@ -11,49 +11,49 @@ import { useThrottle } from '@/shared/lib/hooks/useThrottle/useThrottle'
 import { TestsProps } from '@/shared/types/tests'
 
 interface PageProps extends TestsProps {
-    className?: string
-    children: ReactNode
-    onScrollEnd?: () => void
-    isSaveScroll?: boolean
+  className?: string
+  children: ReactNode
+  onScrollEnd?: () => void
+  isSaveScroll?: boolean
 }
 
 export const Page = (props: PageProps) => {
-    const {
-        className,
-        children,
-        onScrollEnd,
-        isSaveScroll = false
-    } = props
+  const {
+    className,
+    children,
+    onScrollEnd,
+    isSaveScroll = false
+  } = props
 
-    const wrapperRef = useRef() as MutableRefObject<HTMLDivElement>
-    const triggerRef = useRef() as MutableRefObject<HTMLDivElement>
-    const dispatch = useDispatch()
-    const { pathname } = useLocation()
-    const scrollPosition = useSelector(
-        (state: StateSchema) => getScrollByPath(state, pathname)
-    )
+  const wrapperRef = useRef() as MutableRefObject<HTMLDivElement>
+  const triggerRef = useRef() as MutableRefObject<HTMLDivElement>
+  const dispatch = useDispatch()
+  const { pathname } = useLocation()
+  const scrollPosition = useSelector(
+    (state: StateSchema) => getScrollByPath(state, pathname)
+  )
 
-    useInfiniteScroll({
-        triggerRef,
-        wrapperRef,
-        callback: onScrollEnd
-    })
+  useInfiniteScroll({
+    triggerRef,
+    wrapperRef,
+    callback: onScrollEnd
+  })
 
-    useInitialEffect(() => {
-        if (isSaveScroll) {
-            wrapperRef.current.scrollTop = scrollPosition
-        }
-    })
-    const onScroll = useThrottle((e: UIEvent<HTMLDivElement>) => {
-        if (isSaveScroll) {
-            dispatch(scrollSaveActions.setScrollPosition({
-                position: e.currentTarget.scrollTop,
-                path: pathname
-            }))
-        }
-    }, 500)
+  useInitialEffect(() => {
+    if (isSaveScroll) {
+      wrapperRef.current.scrollTop = scrollPosition
+    }
+  })
+  const onScroll = useThrottle((e: UIEvent<HTMLDivElement>) => {
+    if (isSaveScroll) {
+      dispatch(scrollSaveActions.setScrollPosition({
+        position: e.currentTarget.scrollTop,
+        path: pathname
+      }))
+    }
+  }, 500)
 
-    return (
+  return (
         <main
             className={classNames(cls.Page, {}, [className])}
             ref={wrapperRef}
@@ -63,5 +63,5 @@ export const Page = (props: PageProps) => {
             {children}
             {onScrollEnd ? <div className={cls.trigger} ref={triggerRef} /> : null}
         </main>
-    )
+  )
 }

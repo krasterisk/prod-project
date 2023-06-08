@@ -7,20 +7,20 @@ Manual,
 string | undefined,
 ThunkConfig<string>
 >(
-    'Manual/fetchManualById',
-    async (manualId, thunkAPI) => {
-        const { extra, rejectWithValue } = thunkAPI
-        try {
-            if (!manualId) {
-                throw new Error('')
-            }
-            const response = await extra.api.get<Manual>(`/manuals/${manualId}`)
-            if (!response.data) {
-                throw new Error()
-            }
-            return response.data
-        } catch (e) {
-            return rejectWithValue('error')
-        }
+  'Manual/fetchManualById',
+  async (manualId, thunkAPI) => {
+    const { extra, rejectWithValue } = thunkAPI
+    try {
+      if (!manualId) {
+        throw new Error('')
+      }
+      const response = await extra.api.get<Manual>(`/manuals/${manualId}`)
+      if (!response.data) {
+        throw new Error()
+      }
+      return response.data
+    } catch (e) {
+      return rejectWithValue('error')
     }
+  }
 )

@@ -1,21 +1,21 @@
 export {
-    ManualDetails
+  ManualDetails
 } from './ui/ManualDetails/ManualDetails'
 
 export type {
-    Manual,
-    ManualView
+  Manual,
+  ManualView
 } from './model/types/manual'
 
 export type {
-    ManualDetailsSchema
+  ManualDetailsSchema
 } from './model/types/manualDetailsSchema'
 
 export { ManualList } from './ui/ManualList/ManualList'
 
 export { getManualDetailsData } from './model/selectors/manualDetails'
 export {
-    ManualSortField,
-    ManualHashtagsTypes,
-    ManualBlockTypes
+  ManualSortField,
+  ManualHashtagsTypes,
+  ManualBlockTypes
 } from './model/consts/consts'

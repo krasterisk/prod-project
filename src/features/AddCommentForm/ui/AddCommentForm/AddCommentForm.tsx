@@ -12,35 +12,35 @@ import { HStack } from '@/shared/ui/Stack'
 import { addCommentFormText } from '../../model/selectors/addCommentFormSelectors'
 
 export interface AddCommentFormProps {
-    className?: string
-    onSendComment: (text: string) => void
+  className?: string
+  onSendComment: (text: string) => void
 }
 
 const reducers: ReducersList = {
-    addCommentForm: AddCommentFormReducer
+  addCommentForm: AddCommentFormReducer
 }
 
 const AddCommentForm = memo((props: AddCommentFormProps) => {
-    const {
-        className,
-        onSendComment
-    } = props
+  const {
+    className,
+    onSendComment
+  } = props
 
-    const { t } = useTranslation('manuals')
-    const text = useSelector(addCommentFormText)
-    //    const error = useSelector(addCommentFormError)
-    const dispatch = useAppDispatch()
+  const { t } = useTranslation('manuals')
+  const text = useSelector(addCommentFormText)
+  //    const error = useSelector(addCommentFormError)
+  const dispatch = useAppDispatch()
 
-    const onCommentTextChange = useCallback((value: string) => {
-        dispatch(AddCommentFormActions.setText(value))
-    }, [dispatch])
+  const onCommentTextChange = useCallback((value: string) => {
+    dispatch(AddCommentFormActions.setText(value))
+  }, [dispatch])
 
-    const onSendHandler = useCallback(() => {
-        onSendComment(text || '')
-        onCommentTextChange('')
-    }, [onCommentTextChange, onSendComment, text])
+  const onSendHandler = useCallback(() => {
+    onSendComment(text || '')
+    onCommentTextChange('')
+  }, [onCommentTextChange, onSendComment, text])
 
-    return (
+  return (
         <DynamicModuleLoader reducers={reducers}>
             <HStack
                 data-testid={'AddCommentForm'}
@@ -63,7 +63,7 @@ const AddCommentForm = memo((props: AddCommentFormProps) => {
                 </Button>
             </HStack>
         </DynamicModuleLoader>
-    )
+  )
 })
 
 export default AddCommentForm

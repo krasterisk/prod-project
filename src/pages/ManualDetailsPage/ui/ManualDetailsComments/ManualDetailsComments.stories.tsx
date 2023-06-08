@@ -4,11 +4,11 @@ import { ManualDetailsComments } from './ManualDetailsComments'
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator'
 
 export default {
-    title: 'pages/ManualDetailsPage/ManualDetailsComments',
-    component: ManualDetailsComments,
-    argTypes: {
-        backgroundColor: { control: 'color' }
-    }
+  title: 'pages/ManualDetailsPage/ManualDetailsComments',
+  component: ManualDetailsComments,
+  argTypes: {
+    backgroundColor: { control: 'color' }
+  }
 } as ComponentMeta<typeof ManualDetailsComments>
 
 const Template: ComponentStory<typeof ManualDetailsComments> = (args) => <ManualDetailsComments {...args} />

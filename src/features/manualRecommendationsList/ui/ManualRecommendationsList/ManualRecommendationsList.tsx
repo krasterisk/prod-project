@@ -7,19 +7,19 @@ import { VStack } from '@/shared/ui/Stack'
 import { useManualRecommendationsList } from '../../api/manualRecommendationsApi'
 
 interface ManualRecommendationsListProps {
-    className?: string
+  className?: string
 }
 
 export const ManualRecommendationsList = memo((props: ManualRecommendationsListProps) => {
-    const { className } = props
-    const { t } = useTranslation('manuals')
-    const { data: manuals, isLoading, error } = useManualRecommendationsList('')
+  const { className } = props
+  const { t } = useTranslation('manuals')
+  const { data: manuals, isLoading, error } = useManualRecommendationsList('')
 
-    if (isLoading || error || !manuals) {
-        return null
-    }
+  if (isLoading || error || !manuals) {
+    return null
+  }
 
-    return (
+  return (
         <VStack
             data-testid={'ManualRecommendationsList'}
             gap="8"
@@ -35,5 +35,5 @@ export const ManualRecommendationsList = memo((props: ManualRecommendationsListP
             />
 
         </VStack>
-    )
+  )
 })

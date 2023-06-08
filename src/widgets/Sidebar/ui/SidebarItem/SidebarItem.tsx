@@ -8,20 +8,20 @@ import { getUserAuthData } from '@/entities/User'
 import { SidebarItemType } from '../../model/types/sidebar'
 
 interface SidebarItemProps {
-    item: SidebarItemType
-    collapsed: boolean
+  item: SidebarItemType
+  collapsed: boolean
 }
 
 export const SidebarItem = memo(({
-    item,
-    collapsed
+  item,
+  collapsed
 }: SidebarItemProps) => {
-    const { t } = useTranslation()
-    const isAuth = useSelector(getUserAuthData)
-    if (item.authOnly && !isAuth) {
-        return null
-    }
-    return (
+  const { t } = useTranslation()
+  const isAuth = useSelector(getUserAuthData)
+  if (item.authOnly && !isAuth) {
+    return null
+  }
+  return (
         <AppLink
             theme={AppLinkTheme.SECONDARY}
             to={item.path}
@@ -32,5 +32,5 @@ export const SidebarItem = memo(({
                 {t(item.text)}
             </span>
         </AppLink>
-    )
+  )
 })

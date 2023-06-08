@@ -2,6 +2,6 @@ import { ManualDetailsRecommendationsSchema } from './ManualDetailsRecommendatio
 import { ManualDetailsCommentsSchema } from './ManualDetailsCommentsSchema'
 
 export interface ManualDetailsPageSchema {
-    comments: ManualDetailsCommentsSchema
-    recommendations: ManualDetailsRecommendationsSchema
+  comments: ManualDetailsCommentsSchema
+  recommendations: ManualDetailsRecommendationsSchema
 }

@@ -9,47 +9,47 @@ import { getUserAuthData, isUserAdmin, isUserVPBXAdmin, userActions } from '@/en
 import { getRouteAdmin, getRouteProfile } from '@/shared/const/router'
 
 interface AvatarDropdownProps {
-    className?: string
+  className?: string
 }
 
 export const AvatarDropdown = memo((props: AvatarDropdownProps) => {
-    const {
-        className
-    } = props
-    const { t } = useTranslation()
-    const dispatch = useDispatch()
-    const authData = useSelector(getUserAuthData)
-    const userData = getTokenAllData(authData?.token)
-    const isVPBXAdmin = useSelector(isUserVPBXAdmin)
-    const isAdmin = useSelector(isUserAdmin)
+  const {
+    className
+  } = props
+  const { t } = useTranslation()
+  const dispatch = useDispatch()
+  const authData = useSelector(getUserAuthData)
+  const userData = getTokenAllData(authData?.token)
+  const isVPBXAdmin = useSelector(isUserVPBXAdmin)
+  const isAdmin = useSelector(isUserAdmin)
 
-    const onLogout = useCallback(() => {
-        dispatch(userActions.logout())
-    }, [dispatch])
+  const onLogout = useCallback(() => {
+    dispatch(userActions.logout())
+  }, [dispatch])
 
-    const isAdminAvailable = isAdmin || isVPBXAdmin
+  const isAdminAvailable = isAdmin || isVPBXAdmin
 
-    return (
+  return (
         <Dropdown
             className={classNames('', {}, [className])}
             direction={'bottom-left'}
             items={[
-                ...(isAdminAvailable
-                    ? [{
-                        content: t('Админ'),
-                        href: getRouteAdmin()
-                    }]
-                    : []),
-                {
-                    content: t('Профиль'),
-                    href: getRouteProfile(String(userData?.id))
-                },
-                {
-                    content: t('Выйти'),
-                    onClick: onLogout
-                }
+              ...(isAdminAvailable
+                ? [{
+                    content: t('Админ'),
+                    href: getRouteAdmin()
+                  }]
+                : []),
+              {
+                content: t('Профиль'),
+                href: getRouteProfile(String(userData?.id))
+              },
+              {
+                content: t('Выйти'),
+                onClick: onLogout
+              }
             ]}
             trigger={<Avatar fallbackInverted size={30} src={userData?.avatar}/>}
         />
-    )
+  )
 })

@@ -7,11 +7,11 @@ import { Theme } from '@/shared/const/theme'
 import { RouterDecorator } from '@/shared/config/storybook/RouterDecorator/RouterDecorator'
 
 export default {
-    title: 'pages/ForbiddenPage',
-    component: ForbiddenPage,
-    argTypes: {
-        backgroundColor: { control: 'color' }
-    }
+  title: 'pages/ForbiddenPage',
+  component: ForbiddenPage,
+  argTypes: {
+    backgroundColor: { control: 'color' }
+  }
 } as ComponentMeta<typeof ForbiddenPage>
 
 const Template: ComponentStory<typeof ForbiddenPage> = () => <ForbiddenPage />
@@ -19,14 +19,14 @@ const Template: ComponentStory<typeof ForbiddenPage> = () => <ForbiddenPage />
 export const Normal = Template.bind({})
 Normal.args = {}
 Normal.decorators = [
-    StoreDecorator({}),
-    RouterDecorator
+  StoreDecorator({}),
+  RouterDecorator
 ]
 
 export const Dark = Template.bind({})
 Dark.args = {}
 Dark.decorators = [
-    StoreDecorator({}),
-    ThemeDecorator(Theme.DARK),
-    RouterDecorator
+  StoreDecorator({}),
+  ThemeDecorator(Theme.DARK),
+  RouterDecorator
 ]
