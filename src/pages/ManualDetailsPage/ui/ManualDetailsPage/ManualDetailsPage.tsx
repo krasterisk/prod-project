@@ -10,10 +10,10 @@ import { ManualDetailsPageHeader } from '../ManualDetailsPageHeader/ManualDetail
 import { VStack } from '@/shared/ui/Stack'
 import { ManualRecommendationsList } from '@/features/manualRecommendationsList'
 import { ManualDetailsComments } from '../../ui/ManualDetailsComments/ManualDetailsComments'
-import { ManualRating } from '@/features/manualRating'
-import { ToggleFeatures } from '@/shared/lib/features'
-import { Card } from '@/shared/ui/Card'
 import { useTranslation } from 'react-i18next'
+import { ToggleFeatures } from '@/shared/lib/features/ToggleFeatures/ToggleFeatures'
+import { ManualRating } from '@/features/manualRating'
+import { Card } from '@/shared/ui/Card'
 
 interface ManualDetailsPageProps {
   className?: string
@@ -38,9 +38,12 @@ const ManualDetailsPage = ({ className }: ManualDetailsPageProps) => {
                 <VStack gap={'16'} max>
                     <ManualDetailsPageHeader />
                     <ManualDetails id={id} />
-                    <ManualRating manualId={id}/>
                     <ManualRecommendationsList />
-
+                    <ToggleFeatures
+                        feature={'isManualRatingEnabled'}
+                        on={<ManualRating manualId={id}/>}
+                        off={<Card>{t('Оценка статей скоро появится')}</Card>}
+                    />
                     <ManualDetailsComments id={id} />
                 </VStack>
             </Page>

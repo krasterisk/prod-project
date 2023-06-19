@@ -20,8 +20,8 @@ if (featureState !== 'on' && featureState !== 'off') {
 
 const project = new Project({})
 
-project.addSourceFilesAtPaths('src/**/ManualDetailsPage.ts')
-project.addSourceFilesAtPaths('src/**/ManualDetailsPage.tsx')
+project.addSourceFilesAtPaths('src/**/*.ts')
+project.addSourceFilesAtPaths('src/**/*.tsx')
 
 const files = project.getSourceFiles()
 
@@ -42,7 +42,7 @@ function isToggleFunction (node: Node) {
 
 function isToggleComponent (node: Node) {
   const identifier = node.getFirstDescendantByKind(SyntaxKind.Identifier)
-
+  console.log(toggleComponentName)
   return identifier?.getText() === toggleComponentName
 }
 
