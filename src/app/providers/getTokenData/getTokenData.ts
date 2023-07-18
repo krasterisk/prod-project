@@ -19,3 +19,14 @@ export const getTokenAllData = (token: string | undefined) => {
   }
   return data
 }
+
+export const getUserFeatureData = (token: string | undefined) => {
+  let data: User | undefined
+  if (token) {
+    data = jwtDecode(token)
+  }
+  if (!data?.designed) {
+    return false
+  }
+  return data?.designed
+}

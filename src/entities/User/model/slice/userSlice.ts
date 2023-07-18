@@ -1,8 +1,10 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { USER_LOCALSTORAGE_KEY } from '@/shared/const/localstorage'
+import { TOKEN_LOCALSTORAGE_KEY } from '@/shared/const/localstorage'
 import { User, UserSchema } from '../types/user'
+import { setFeatureFlags } from '@/shared/lib/features'
+import { getUserFeatureData } from '@/app/providers/getTokenData/getTokenData'
 
-const initialState: UserSchema = { _mounted: false }
+const initialState: UserSchema = { _mounted: false, redesigned: false }
 
 export const userSlice = createSlice({
   name: 'user',
@@ -10,17 +12,21 @@ export const userSlice = createSlice({
   reducers: {
     setAuthData: (state, action: PayloadAction<User>) => {
       state.authData = action.payload
+      const token = JSON.stringify(action.payload.token)
+      state.redesigned = getUserFeatureData(token)
     },
     initAuthData: (state) => {
-      const token = localStorage.getItem(USER_LOCALSTORAGE_KEY)
+      const token = localStorage.getItem(TOKEN_LOCALSTORAGE_KEY)
       if (token) {
         state.authData = JSON.parse(token)
+        state.redesigned = getUserFeatureData(token)
+        setFeatureFlags({ isAppRedesigned: getUserFeatureData(token) })
       }
       state._mounted = true
     },
     logout: (state) => {
       state.authData = undefined
-      localStorage.removeItem(USER_LOCALSTORAGE_KEY)
+      localStorage.removeItem(TOKEN_LOCALSTORAGE_KEY)
     }
   }
 })

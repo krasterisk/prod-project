@@ -49,6 +49,8 @@ export const ManualViewSelector = memo((props: ManualViewSelectorProps) => {
                     onClick={onClick(viewType.view)}
                 >
                     <Icon
+                        width={24}
+                        height={24}
                         Svg={viewType.icon}
                         className={classNames('', { [cls.notSelected]: viewType.view !== view })}
                     />

@@ -42,7 +42,6 @@ function isToggleFunction (node: Node) {
 
 function isToggleComponent (node: Node) {
   const identifier = node.getFirstDescendantByKind(SyntaxKind.Identifier)
-  console.log(toggleComponentName)
   return identifier?.getText() === toggleComponentName
 }
 

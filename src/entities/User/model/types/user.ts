@@ -9,6 +9,7 @@ export interface User {
   id: string
   username: string
   password?: string
+  designed?: boolean
   avatar?: string
   token?: string
   roles?: UserRoles[]
@@ -17,4 +18,5 @@ export interface User {
 export interface UserSchema {
   authData?: User
   _mounted: boolean
+  redesigned: boolean
 }

@@ -45,7 +45,7 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
   [AppRoutes.MANUALS]: {
     path: getRouteManuals(),
     element: <ManualsPage/>,
-    authOnly: true
+    authOnly: false
   },
   [AppRoutes.MANUAL_DETAILS]: {
     path: getRouteManualDetails(':id'),
