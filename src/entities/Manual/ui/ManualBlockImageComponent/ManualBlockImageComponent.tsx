@@ -2,7 +2,7 @@ import { classNames } from '@/shared/lib/classNames/classNames'
 import cls from './ManualBlockImageComponent.module.scss'
 import { memo } from 'react'
 import { ManualImageBlock } from '../../model/types/manual'
-import { Text, TextAlign, TextSize } from '@/shared/ui/Text'
+import { Text, TextAlign, TextSize } from '@/shared/ui/deprecated/Text'
 
 interface ManualBlockImageComponentProps {
   className?: string

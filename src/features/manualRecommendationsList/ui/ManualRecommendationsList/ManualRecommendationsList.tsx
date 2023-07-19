@@ -1,9 +1,9 @@
 import { classNames } from '@/shared/lib/classNames/classNames'
 import { useTranslation } from 'react-i18next'
 import { memo } from 'react'
-import { Text, TextSize } from '@/shared/ui/Text'
+import { Text, TextSize } from '@/shared/ui/deprecated/Text'
 import { ManualList } from '@/entities/Manual'
-import { VStack } from '@/shared/ui/Stack'
+import { VStack } from '@/shared/ui/deprecated/Stack'
 import { useManualRecommendationsList } from '../../api/manualRecommendationsApi'
 
 interface ManualRecommendationsListProps {

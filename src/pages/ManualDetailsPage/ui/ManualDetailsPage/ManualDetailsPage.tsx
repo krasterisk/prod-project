@@ -7,13 +7,13 @@ import { DynamicModuleLoader, ReducersList } from '@/shared/lib/components/Dynam
 import { Page } from '@/widgets/Page'
 import { manualDetailsPageReducer } from '../../model/slices'
 import { ManualDetailsPageHeader } from '../ManualDetailsPageHeader/ManualDetailsPageHeader'
-import { VStack } from '@/shared/ui/Stack'
+import { VStack } from '@/shared/ui/deprecated/Stack'
 import { ManualRecommendationsList } from '@/features/manualRecommendationsList'
 import { ManualDetailsComments } from '../../ui/ManualDetailsComments/ManualDetailsComments'
 import { useTranslation } from 'react-i18next'
 import { ToggleFeatures } from '@/shared/lib/features/ToggleFeatures/ToggleFeatures'
 import { ManualRating } from '@/features/manualRating'
-import { Card } from '@/shared/ui/Card'
+import { Card } from '@/shared/ui/deprecated/Card'
 
 interface ManualDetailsPageProps {
   className?: string

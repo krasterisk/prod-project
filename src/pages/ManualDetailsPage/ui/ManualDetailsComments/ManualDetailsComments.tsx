@@ -1,7 +1,7 @@
 import { classNames } from '@/shared/lib/classNames/classNames'
 import { useTranslation } from 'react-i18next'
 import { memo, useCallback } from 'react'
-import { Text, TextSize } from '@/shared/ui/Text'
+import { Text, TextSize } from '@/shared/ui/deprecated/Text'
 import { AddCommentForm } from '@/features/AddCommentForm'
 import { CommentList } from '@/entities/Comment'
 import { useSelector } from 'react-redux'
@@ -10,7 +10,7 @@ import { getManualCommentsIsLoading } from '../../model/selectors/comments'
 import { addCommentForManual } from '../../model/service/addCommentForManual/addCommentForManual'
 import { useInitialEffect } from '@/shared/lib/hooks/useInitialEffect/useInitialEffect'
 import { fetchCommentsByManualId } from '../../model/service/fetchCommentsByManualId/fetchCommentsByManualId'
-import { VStack } from '@/shared/ui/Stack'
+import { VStack } from '@/shared/ui/deprecated/Stack'
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch'
 
 interface ManualDetailsCommentsProps {
