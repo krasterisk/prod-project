@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { getManualDetailsData } from '@/entities/Manual'
 import { getCanEditManual } from '../../model/selectors/manual'
-import { HStack } from '@/shared/ui/deprecated/Stack'
+import { HStack } from '@/shared/ui/redesigned/Stack'
 import { getRouteManualEdit, getRouteManuals } from '@/shared/const/router'
 
 interface ManualDetailsPageHeaderProps {

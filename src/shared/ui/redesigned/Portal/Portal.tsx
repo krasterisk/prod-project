@@ -6,10 +6,6 @@ interface PortalProps {
   element?: HTMLBRElement
 }
 
-/**
- * @deprecated
- */
-
 export const Portal = (props: PortalProps) => {
   const {
     children,

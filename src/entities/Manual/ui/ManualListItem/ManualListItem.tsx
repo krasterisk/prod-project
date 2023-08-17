@@ -5,7 +5,7 @@ import { Manual, ManualTextBlock, ManualView } from '../../model/types/manual'
 import { Text } from '@/shared/ui/deprecated/Text'
 import { Icon } from '@/shared/ui/deprecated/Icon'
 import EyeLogo from '@/shared/assets/icons/eye-20-20.svg'
-import { Card } from '@/shared/ui/deprecated/Card'
+import { Card } from '@/shared/ui/redesigned/Card'
 import { Avatar } from '@/shared/ui/deprecated/Avatar'
 import { useTranslation } from 'react-i18next'
 import { Button, ButtonTheme } from '@/shared/ui/deprecated/Button'
@@ -13,8 +13,8 @@ import { ManualBlockTextComponent } from '../ManualBlockTextComponent/ManualBloc
 import { AppLink } from '@/shared/ui/deprecated/AppLink'
 import { ManualBlockTypes } from '../../model/consts/consts'
 import { getRouteManualDetails } from '@/shared/const/router'
-import { AppImage } from '@/shared/ui/deprecated/AppImage'
-import { Skeleton } from '@/shared/ui/deprecated/Skeleton'
+import { AppImage } from '@/shared/ui/redesigned/AppImage'
+import { Skeleton } from '@/shared/ui/redesigned/Skeleton'
 
 interface ManualListItemProps {
   className?: string

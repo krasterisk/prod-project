@@ -17,7 +17,7 @@ import {
   getManualsPageSort,
   getManualsPageView
 } from '../../model/selectors/manualsPageSelectors'
-import { Card } from '@/shared/ui/deprecated/Card'
+import { Card } from '@/shared/ui/redesigned/Card'
 import { Input } from '@/shared/ui/deprecated/Input'
 import { SortOrder } from '@/shared/types/sort'
 import { fetchManualsList } from '../../model/services/fetchManualsList/fetchManualsList'

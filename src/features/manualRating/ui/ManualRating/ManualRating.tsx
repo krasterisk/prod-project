@@ -5,7 +5,7 @@ import { useGetManualRating, useSetManualRating } from '../../api/manualRatingAp
 import { getTokenData } from '@/app/providers/getTokenData/getTokenData'
 import { getUserAuthData } from '@/entities/User'
 import { useSelector } from 'react-redux'
-import { Skeleton } from '@/shared/ui/deprecated/Skeleton'
+import { Skeleton } from '@/shared/ui/redesigned/Skeleton'
 
 export interface ManualRatingProps {
   className?: string

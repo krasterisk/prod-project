@@ -10,10 +10,6 @@ interface SkeletonProps {
 
 }
 
-/**
- * @deprecated
- */
-
 export const Skeleton = memo((props: SkeletonProps) => {
   const {
     className,

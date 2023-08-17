@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { memo } from 'react'
 import { Text, TextSize } from '@/shared/ui/deprecated/Text'
 import { ManualList } from '@/entities/Manual'
-import { VStack } from '@/shared/ui/deprecated/Stack'
+import { VStack } from '@/shared/ui/redesigned/Stack'
 import { useManualRecommendationsList } from '../../api/manualRecommendationsApi'
 
 interface ManualRecommendationsListProps {

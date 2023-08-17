@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next'
 import { CommentCard } from '../../ui/CommentCard/CommentCard'
 import { Text } from '@/shared/ui/deprecated/Text'
 import { Comments } from '../../model/types/comments'
-import { VStack } from '@/shared/ui/deprecated/Stack'
+import { VStack } from '@/shared/ui/redesigned/Stack'
 
 interface CommentListProps {
   className?: string

@@ -11,7 +11,7 @@ import {
   getManualDetailsIsLoading
 } from '../../model/selectors/manualDetails'
 import { Text, TextAlign, TextSize } from '@/shared/ui/deprecated/Text'
-import { Skeleton } from '@/shared/ui/deprecated/Skeleton'
+import { Skeleton } from '@/shared/ui/redesigned/Skeleton'
 import { Avatar } from '@/shared/ui/deprecated/Avatar'
 import EyeIcon from '@/shared/assets/icons/eye-20-20.svg'
 import CalendarIcon from '@/shared/assets/icons/calendar-20-20.svg'
@@ -22,7 +22,7 @@ import { ManualBlockImageComponent } from '../../ui/ManualBlockImageComponent/Ma
 import { ManualBlockTextComponent } from '../../ui/ManualBlockTextComponent/ManualBlockTextComponent'
 import { useInitialEffect } from '@/shared/lib/hooks/useInitialEffect/useInitialEffect'
 import { fetchManualById } from '../../model/services/fetchManualById/fetchManualById'
-import { HStack, VStack } from '@/shared/ui/deprecated/Stack'
+import { HStack, VStack } from '@/shared/ui/redesigned/Stack'
 import { ManualBlockTypes } from '../../model/consts/consts'
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch'
 

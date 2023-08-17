@@ -10,7 +10,7 @@ import { getManualCommentsIsLoading } from '../../model/selectors/comments'
 import { addCommentForManual } from '../../model/service/addCommentForManual/addCommentForManual'
 import { useInitialEffect } from '@/shared/lib/hooks/useInitialEffect/useInitialEffect'
 import { fetchCommentsByManualId } from '../../model/service/fetchCommentsByManualId/fetchCommentsByManualId'
-import { VStack } from '@/shared/ui/deprecated/Stack'
+import { VStack } from '@/shared/ui/redesigned/Stack'
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch'
 
 interface ManualDetailsCommentsProps {
