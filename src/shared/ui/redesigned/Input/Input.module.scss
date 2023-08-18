@@ -1,0 +1,17 @@
+.InputWrapper {
+    display: flex;
+}
+
+.input {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    width: 100%;
+}
+
+.placeholder {
+    margin-right: 5px;
+}
+
+.readonly {
+    opacity: 0.7;
+}
