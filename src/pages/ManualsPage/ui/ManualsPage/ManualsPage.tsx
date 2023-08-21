@@ -6,7 +6,6 @@ import { manualPageReducer } from '../../model/slice/manualPageSlice'
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch'
 import { Page } from '@/widgets/Page'
 import { fetchNextManualPage } from '../../model/services/fetchNextManualPage/fetchNextManualPage'
-import { ManualPageFilters } from '../ManualPageFilters/ManualPageFilters'
 import { ManualInfiniteList } from '../../ui/ManualInfiniteList/ManualInfiniteList'
 import { useInitialEffect } from '@/shared/lib/hooks/useInitialEffect/useInitialEffect'
 import { initManualPage } from '../../model/services/initManualPage/initManualPage'
@@ -15,6 +14,7 @@ import { ToggleFeatures } from '@/shared/lib/features'
 import { StickyContentLayout } from '@/shared/layouts/StickyContentLayout'
 import { ViewSelectorContainer } from '../ViewSelectorContainer/ViewSelectorContainer'
 import { FiltersContainer } from '../FiltersContainer/FiltersContainer'
+import { ManualPageFilters } from '../ManualPageFilters/ManualPageFilters'
 
 interface ManualsPageProps {
   className?: string
@@ -61,8 +61,8 @@ const ManualsPage = ({ className }: ManualsPageProps) => {
                 className={classNames(cls.ManualsPage, {}, [className])}
                 isSaveScroll={true}
             >
-                <ManualPageFilters/>
-                <ManualInfiniteList className={cls.list}/>
+                 <ManualPageFilters/>
+                 <ManualInfiniteList className={cls.list}/>
             </Page>
         }
     />

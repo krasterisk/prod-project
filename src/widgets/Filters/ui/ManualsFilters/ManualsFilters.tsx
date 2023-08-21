@@ -3,12 +3,14 @@ import cls from './ManualsFilters.module.scss'
 import { memo } from 'react'
 import { Card } from '@/shared/ui/redesigned/Card'
 import { ManualSortSelector } from '@/features/ManualSortSelector'
-import { Input } from '@/shared/ui/deprecated/Input'
 import { ManualTypeTabs } from '@/features/ManualTypeTabs'
 import { VStack } from '@/shared/ui/redesigned/Stack'
 import { useTranslation } from 'react-i18next'
 import { ManualHashtagsTypes, ManualSortField } from '@/entities/Manual'
 import { SortOrder } from '@/shared/types/sort'
+import { Input } from '@/shared/ui/redesigned/Input'
+import SearchIcon from '@/shared/assets/icons/search.svg'
+import { Icon } from '@/shared/ui/redesigned/Icon'
 
 interface ManualsFiltersProps {
   className?: string
@@ -46,8 +48,9 @@ export const ManualsFilters = memo((props: ManualsFiltersProps) => {
             <Input
                 data-testid={'ManualSearch'}
                 className={cls.searchInput}
-                placeholder={t('Поиск')}
+                placeholder={t('Поиск') ?? ''}
                 onChange={onChangeSearch}
+                addonLeft={<Icon Svg={SearchIcon} />}
                 value={search}
             />
             <ManualSortSelector

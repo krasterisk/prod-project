@@ -52,7 +52,7 @@ export const ManualPageFilters = memo((props: ManualPageFiltersProps) => {
                 <Input
                     data-testid={'ManualSearch'}
                     className={cls.searchInput}
-                    placeholder={t('Поиск')}
+                    placeholder={'Поиск'}
                     onChange={onChangeSearch}
                     value={search}
                 />
