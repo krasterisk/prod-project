@@ -14,7 +14,7 @@ import { getTokenData } from '@/app/providers/getTokenData/getTokenData'
 import {
   getRouteAbout,
   getRouteMain,
-  getRouteManuals,
+  getRouteManuals, getRoutePeers,
   getRouteProfile
 } from '@/shared/const/router'
 import { toggleFeatures } from '@/shared/lib/features'
@@ -44,6 +44,16 @@ export const getSidebarItems = createSelector(
     if (userData) {
       const userId = String(getTokenData(userData.token))
       sidebarItemsList.push(
+        {
+          path: getRoutePeers(),
+          Icon: toggleFeatures({
+            name: 'isAppRedesigned',
+            off: () => ProfileIconDeprecated,
+            on: () => ProfileIcon
+          }),
+          text: 'Абоненты',
+          authOnly: false
+        },
         {
           path: getRouteProfile(userId),
           Icon: toggleFeatures({

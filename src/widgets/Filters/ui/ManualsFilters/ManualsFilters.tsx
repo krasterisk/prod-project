@@ -49,6 +49,7 @@ export const ManualsFilters = memo((props: ManualsFiltersProps) => {
                 data-testid={'ManualSearch'}
                 className={cls.searchInput}
                 placeholder={t('Поиск') ?? ''}
+                size={'s'}
                 onChange={onChangeSearch}
                 addonLeft={<Icon Svg={SearchIcon} />}
                 value={search}

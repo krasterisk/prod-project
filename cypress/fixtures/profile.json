@@ -7,5 +7,10 @@
     "country": "Belarus",
     "email": "admin2@krasterisk.ru",
     "currency": "RUB",
-    "avatar": "https://krasterisk.ru/logos/adm.jpg"
+    "avatar": "https://krasterisk.ru/logos/adm.jpg",
+  "Ссылка на аватар": "Ссылка на аватар",
+  "Логин": "Логин",
+    "Возраст": "Возраст",
+    "Фамилия": "Фамилия",
+    "Имя": "Имя"
 }

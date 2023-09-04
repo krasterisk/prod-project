@@ -18,9 +18,11 @@ import {
   getRouteManualDetails,
   getRouteManualEdit,
   getRouteManuals,
-  getRouteProfile
+  getRouteProfile,
+  getRoutePeers
 } from '@/shared/const/router'
 import { AppRoutesProps } from '@/shared/types/router'
+import { PeersPage } from '@/pages/Peers'
 
 export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
   [AppRoutes.MAIN]: {
@@ -31,6 +33,11 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
     path: getRouteAbout(),
     element: <AboutPage/>
   },
+  [AppRoutes.PEERS]: {
+    path: getRoutePeers(),
+    element: <PeersPage />
+  },
+
   [AppRoutes.ADMIN]: {
     path: getRouteAdmin(),
     element: <AdminPage/>,
@@ -40,7 +47,7 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
   [AppRoutes.PROFILE]: {
     path: getRouteProfile(':id'),
     element: <ProfilePage/>,
-    authOnly: true
+    authOnly: false
   },
   [AppRoutes.MANUALS]: {
     path: getRouteManuals(),
