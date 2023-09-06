@@ -2,8 +2,10 @@ import { classNames } from '@/shared/lib/classNames/classNames'
 import cls from './ManualListItem.module.scss'
 import { memo } from 'react'
 import { ManualView } from '../../model/types/manual'
-import { Card } from '@/shared/ui/redesigned/Card'
+import { Card as CardDeprecated } from '@/shared/ui/deprecated/Card'
+import { Card as CardRedesigned } from '@/shared/ui/redesigned/Card'
 import { Skeleton } from '@/shared/ui/redesigned/Skeleton'
+import { toggleFeatures } from '@/shared/lib/features'
 
 interface ManualListItemSkeletonProps {
   className?: string
@@ -15,6 +17,12 @@ export const ManualListItemSkeleton = memo((props: ManualListItemSkeletonProps) 
     className,
     view = 'SMALL'
   } = props
+
+  const Card = toggleFeatures({
+    name: 'isAppRedesigned',
+    on: () => CardRedesigned,
+    off: () => CardDeprecated
+  })
 
   if (view === 'BIG') {
     return (

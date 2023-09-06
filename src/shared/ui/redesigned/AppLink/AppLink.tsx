@@ -21,7 +21,7 @@ export const AppLink = memo((props: AppLinkProps) => {
     activeClassName = '',
     ...otherProps
   } = props
-
+  console.log(activeClassName)
   return (
         <NavLink
             to={to}
