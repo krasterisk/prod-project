@@ -6,6 +6,8 @@ import { ManualListItem } from '../ManualListItem/ManualListItem'
 import { ManualListItemSkeleton } from '../ManualListItem/ManualListItemSkeleton'
 import { Text, TextSize } from '@/shared/ui/deprecated/Text'
 import { useTranslation } from 'react-i18next'
+import { ToggleFeatures } from '@/shared/lib/features'
+import { HStack } from '@/shared/ui/redesigned/Stack'
 
 interface ManualListProps {
   className?: string
@@ -57,14 +59,34 @@ export const ManualList = memo((props: ManualListProps) => {
   }
 
   return (
-        <div className={classNames(cls.ManualList, {}, [className, cls[view]])}
-            data-testid={'ManualList'}
-        >
-            {manuals.length
-              ? manuals.map(renderManual)
-              : null
-            }
-            {isLoading && getSkeletons(view)}
-        </div>
+      <ToggleFeatures
+          feature={'isAppRedesigned'}
+          on={
+            <HStack
+                className={classNames(cls.ManualListRedesign, {}, [className, cls[view]])}
+                gap={'16'}
+                wrap={'wrap'}
+                 data-testid={'ManualList'}
+            >
+              {manuals.length
+                ? manuals.map(renderManual)
+                : null
+              }
+              {isLoading && getSkeletons(view)}
+            </HStack>
+          }
+          off={
+            <div className={classNames(cls.ManualList, {}, [className, cls[view]])}
+                 data-testid={'ManualList'}
+            >
+              {manuals.length
+                ? manuals.map(renderManual)
+                : null
+              }
+              {isLoading && getSkeletons(view)}
+            </div>
+          }
+      />
+
   )
 })

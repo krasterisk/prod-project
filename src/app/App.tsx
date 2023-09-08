@@ -3,20 +3,23 @@ import { classNames } from '@/shared/lib/classNames/classNames'
 import { Navbar } from '@/widgets/Navbar'
 import { Sidebar } from '@/widgets/Sidebar'
 import { useDispatch, useSelector } from 'react-redux'
-import { getUserMounted, getUserRedesign, userActions } from '@/entities/User'
+import { getUserAuthData, getUserMounted, userActions } from '@/entities/User'
 import { AppRouter } from './providers/router'
 import { getFeatureFlag, setFeatureFlags, ToggleFeatures } from '@/shared/lib/features'
 import { MainLayout } from '@/shared/layouts/MainLayout'
 import { PageLoader } from '@/widgets/PageLoader'
+import { getTokenAllData } from '@/app/providers/getTokenData/getTokenData'
 
 const App = (): any => {
   const dispatch = useDispatch()
   const mounted = useSelector(getUserMounted)
-  const redesigned = useSelector(getUserRedesign)
+  const userData = useSelector(getUserAuthData)
+  const authData = getTokenAllData(userData?.token)
+  const redesigned = authData?.designed
 
   useEffect(() => {
     dispatch(userActions.initAuthData())
-    console.log(getFeatureFlag('isAppRedesigned'))
+    console.log('REDESIGNED:', getFeatureFlag('isAppRedesigned'))
   }, [dispatch])
 
   setFeatureFlags({ isAppRedesigned: redesigned })

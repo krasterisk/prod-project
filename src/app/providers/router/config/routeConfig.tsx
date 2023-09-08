@@ -19,10 +19,12 @@ import {
   getRouteManualEdit,
   getRouteManuals,
   getRouteProfile,
-  getRoutePeers
+  getRoutePeers,
+  getRouteSettings
 } from '@/shared/const/router'
 import { AppRoutesProps } from '@/shared/types/router'
 import { PeersPage } from '@/pages/Peers'
+import { SettingPage } from '@/pages/SettingsPage'
 
 export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
   [AppRoutes.MAIN]: {
@@ -57,7 +59,7 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
   [AppRoutes.MANUAL_DETAILS]: {
     path: getRouteManualDetails(':id'),
     element: <ManualDetailsPage/>,
-    authOnly: true
+    authOnly: false
   },
   [AppRoutes.MANUAL_EDIT]: {
     path: getRouteManualEdit(':id'),
@@ -68,6 +70,11 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
     path: getRouteManualCreate(),
     element: <ManualEditPage/>,
     authOnly: true
+  },
+  [AppRoutes.SETTINGS]: {
+    path: getRouteSettings(),
+    element: <SettingPage />,
+    authOnly: false
   },
   [AppRoutes.FORBIDDEN]: {
     path: getRouteForbidden(),

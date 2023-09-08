@@ -21,6 +21,6 @@ export const ManualListItem = memo((props: ManualListItemProps) => {
             feature={'isAppRedesigned'}
             on={<ManualListItemRedesigned {...props} />}
             off={<ManualListItemDeprecated {...props} />}
-                />
+        />
   )
 })

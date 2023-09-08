@@ -28,6 +28,13 @@ export const ManualListItemRedesigned = memo((props: ManualListItemProps) => {
 
   const { t } = useTranslation('manuals')
 
+  const userInfo = (
+        <>
+            <Avatar src={manual.user.avatar} size={32}/>
+            <Text bold text={manual.user.username}/>
+        </>
+  )
+
   const hashtags = <Text text={manual.hashtags.map((hashtag) => hashtag.title).join(', ')} className={cls.types}/>
   const views = (
         <HStack gap={'8'}>
@@ -41,47 +48,46 @@ export const ManualListItemRedesigned = memo((props: ManualListItemProps) => {
     ) as ManualTextBlock
 
     return (
-                <Card
-                    max
-                    padding={'24'}
-                    data-testid={'ManualListItem'}
-                      className={classNames(cls.ManualListItem, {}, [className, cls[view]])}
-                >
-                    <VStack max gap={'16'}>
-                        <HStack gap={'8'}>
-                            <Avatar src={manual.user.avatar} size={32}/>
-                            <Text bold text={manual.user.username} />
-                            <Text text={manual.createdAt} />
-                        </HStack>
-                        <Text text={manual.id + '. ' + manual.title} bold className={cls.title}/>
-                        <Text text={manual.subtitle} size={'s'}/>
-                        {hashtags}
-                        <AppImage
-                            fallback={<Skeleton width={'100%'} height={250} />}
-                            src={manual.image}
-                            className={cls.img}
-                            alt={manual.title}
-                        />
-                        {textBlock && (
-                            <ManualBlockTextComponent block={textBlock} className={cls.textBlock}/>
-                        )}
-                        <HStack max justify={'between'}>
-                            <AppLink
-                                target={target}
-                                to={getRouteManualDetails(manual.id)}
-                            >
-                                <Button variant={'outline'}>
-                                    {t('Читать дальше')}
-                                </Button>
-                            </AppLink>
-                            {views}
-                        </HStack>
-                    </VStack>
+            <Card
+                max
+                padding={'24'}
+                data-testid={'ManualListItem'}
+                className={classNames(cls.ManualListItem, {}, [className, cls[view]])}
+            >
+                <VStack max gap={'16'}>
+                    <HStack gap={'8'}>
+                        {userInfo}
+                        <Text text={manual.createdAt}/>
+                    </HStack>
+                    <Text text={manual.id + '. ' + manual.title} bold className={cls.title}/>
+                    <Text text={manual.subtitle} size={'s'}/>
+                    {hashtags}
+                    <AppImage
+                        fallback={<Skeleton width={'100%'} height={250}/>}
+                        src={manual.image}
+                        className={cls.img}
+                        alt={manual.title}
+                    />
+                    {textBlock && (
+                        <ManualBlockTextComponent block={textBlock} className={cls.textBlock}/>
+                    )}
+                    <HStack max justify={'between'}>
+                        <AppLink
+                            target={target}
+                            to={getRouteManualDetails(manual.id)}
+                        >
+                            <Button variant={'outline'}>
+                                {t('Читать дальше')}
+                            </Button>
+                        </AppLink>
+                        {views}
+                    </HStack>
+                </VStack>
 
-                    <div className={cls.footer}>
+                <div className={cls.footer}>
 
-                    </div>
-                </Card>
+                </div>
+            </Card>
     )
   }
 
@@ -92,22 +98,24 @@ export const ManualListItemRedesigned = memo((props: ManualListItemProps) => {
             className={classNames(cls.ManualListItem, {}, [className, cls[view]])}
             to={getRouteManualDetails(manual.id)}
         >
-            <Card className={cls.card}>
-                <div className={cls.imageWrapper}>
-                    <AppImage
-                        fallback={<Skeleton width={200} height={200} />}
-                        src={manual.image}
-                        className={cls.img}
-                        alt={manual.title}
-                    />
-                    <Text text={manual.createdAt} className={cls.date} />
-                </div>
-                <div className={cls.infoWrapper}>
-                    {hashtags}
-                    {views}
-                </div>
-                <Text text={manual.id + '. ' + manual.title} className={cls.title} />
-                <div/>
+            <Card className={cls.card} border="round">
+                <AppImage
+                    fallback={<Skeleton width={200} height={200}/>}
+                    src={manual.image}
+                    className={cls.img}
+                    alt={manual.title}
+                />
+                <VStack className={cls.info} gap={'4'}>
+                    <Text text={manual.id + '. ' + manual.title} className={cls.title}/>
+                    <Text text={manual.subtitle} size={'s'}/>
+                    <VStack gap={'4'} className={cls.footer} max>
+                        <HStack justify={'between'} max>
+                            <Text text={manual.createdAt.slice(0, -8)} className={cls.date}/>
+                            {views}
+                        </HStack>
+                        <HStack gap={'4'}>{userInfo}</HStack>
+                    </VStack>
+                </VStack>
             </Card>
         </AppLink>
   )

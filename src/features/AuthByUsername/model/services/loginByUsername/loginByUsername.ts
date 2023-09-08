@@ -25,7 +25,7 @@ ThunkConfig<string>>(
       if (!response.data) {
         throw new Error()
       }
-      localStorage.setItem(TOKEN_LOCALSTORAGE_KEY, JSON.stringify(response.data.token))
+      localStorage.setItem(TOKEN_LOCALSTORAGE_KEY, JSON.stringify(response.data))
       //            localStorage.setItem(TOKEN_LOCALSTORAGE_KEY, JSON.stringify(response.data.token))
       dispatch(userActions.setAuthData(response.data))
       return response.data

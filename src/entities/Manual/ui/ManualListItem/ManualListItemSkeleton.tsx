@@ -18,6 +18,12 @@ export const ManualListItemSkeleton = memo((props: ManualListItemSkeletonProps) 
     view = 'SMALL'
   } = props
 
+  const mainClass = toggleFeatures({
+    name: 'isAppRedesigned',
+    on: () => cls.ManualListItemRedesign,
+    off: () => cls.ManualListItem
+  })
+
   const Card = toggleFeatures({
     name: 'isAppRedesigned',
     on: () => CardRedesigned,
@@ -26,7 +32,10 @@ export const ManualListItemSkeleton = memo((props: ManualListItemSkeletonProps) 
 
   if (view === 'BIG') {
     return (
-            <div className={classNames(cls.ManualListItem, {}, [className, cls[view]])}>
+            <div className={classNames(mainClass,
+              {},
+              [className, cls[view]])}
+            >
                 <Card className={cls.card}>
                     <div className={cls.header}>
                         <Skeleton border='50%' width={30} height={30}/>
@@ -44,7 +53,7 @@ export const ManualListItemSkeleton = memo((props: ManualListItemSkeletonProps) 
   }
 
   return (
-        <div className={classNames(cls.ManualListItem, {}, [className, cls[view]])}>
+        <div className={classNames(mainClass, {}, [className, cls[view]])}>
             <Card className={cls.card}>
                 <div className={cls.imageWrapper}>
                     <Skeleton className={cls.img} width={200} height={200}/>

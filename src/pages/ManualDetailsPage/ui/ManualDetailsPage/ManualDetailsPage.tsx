@@ -11,7 +11,7 @@ import { VStack } from '@/shared/ui/redesigned/Stack'
 import { ManualRecommendationsList } from '@/features/manualRecommendationsList'
 import { ManualDetailsComments } from '../../ui/ManualDetailsComments/ManualDetailsComments'
 import { useTranslation } from 'react-i18next'
-import { ToggleFeatures } from '@/shared/lib/features/ToggleFeatures/ToggleFeatures'
+import { ToggleFeatures } from '@/shared/lib/features/components/ToggleFeatures/ToggleFeatures'
 import { ManualRating } from '@/features/manualRating'
 import { Card } from '@/shared/ui/redesigned/Card'
 

@@ -17,6 +17,7 @@ export interface User {
 
 export interface UserSchema {
   authData?: User
+  token?: string
   _mounted: boolean
   redesigned: boolean
 }
