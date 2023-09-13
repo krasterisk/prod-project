@@ -7,7 +7,6 @@
     z-index: -1;
     opacity: 0;
     pointer-events: none;
-    color: var(--primary-color);
     display: flex;
 
     // выравнивание по центру как по горизонтали так и по вертикали
@@ -15,19 +14,25 @@
     align-items: center;
 }
 
-.Modal.dark {
-    --bg-color: #191992;
-    --primary-color: #19a419;
-}
-
 .content {
     padding: 20px;
     border-radius: 12px;
-    background: var(--bg-color);
     transition: 0.3s transform;
     transform: scale(0.5);
     max-width: 60%;
     z-index: var(--modal-z-index);
+}
+
+.modalNew {
+    .content {
+        background: var(--light-bg-redesigned);
+    }
+}
+
+.modalOld {
+    .content {
+        background: var(--bg-color);
+    }
 }
 
 .opened {

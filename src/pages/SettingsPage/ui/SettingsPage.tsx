@@ -1,6 +1,5 @@
 import { classNames } from '@/shared/lib/classNames/classNames'
 import { useTranslation } from 'react-i18next'
-import cls from './SettingsPage.module.scss'
 import { memo } from 'react'
 import { Text } from '@/shared/ui/redesigned/Text'
 import { Page } from '@/widgets/Page'
@@ -16,7 +15,7 @@ export const SettingsPage = memo((props: SettingsPageProps) => {
   const { t } = useTranslation()
 
   return (
-        <Page className={classNames(cls.SettingsPage, {}, [className])}>
+        <Page className={classNames('', {}, [className])}>
             <VStack gap={'16'}>
                 <Text text={t('Настройки пользователя')} />
                 <UiDesignSwitcher />

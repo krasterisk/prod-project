@@ -1,6 +1,5 @@
 import { classNames } from '@/shared/lib/classNames/classNames'
 import cls from './ManualPageFilters.module.scss'
-import { useTranslation } from 'react-i18next'
 import { memo } from 'react'
 
 import { Card } from '@/shared/ui/redesigned/Card'
@@ -19,7 +18,6 @@ export const ManualPageFilters = memo((props: ManualPageFiltersProps) => {
   const {
     className
   } = props
-  const { t } = useTranslation('manuals')
 
   const {
     onChangeHashtag,
