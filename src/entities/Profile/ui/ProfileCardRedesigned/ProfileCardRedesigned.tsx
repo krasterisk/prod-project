@@ -12,23 +12,24 @@ import { Text } from '@/shared/ui/redesigned/Text'
 
 export const ProfileCardRedesignedSkeleton = () => {
   return (
-      <Card padding={'24'} max>
-        <VStack gap={'32'}>
-          <HStack max justify={'center'}>
-            <Skeleton border={'100%'} width={128} height={128} />
+      <Card padding="24" max>
+        <VStack gap="32">
+          <HStack max justify="center">
+            <Skeleton border="100%" width={128} height={128} />
           </HStack>
-          <HStack gap={'32'} max>
-            <VStack gap={'16'}>
-              <Skeleton width={'100%'} height={30} />
-              <Skeleton width={'100%'} height={30} />
-              <Skeleton width={'100%'} height={30} />
-              <Skeleton width={'100%'} height={30} />
+          <HStack gap="32" max>
+            <VStack gap="16" max>
+              <Skeleton width="100%" height={38} />
+              <Skeleton width="100%" height={38} />
+              <Skeleton width="100%" height={38} />
+              <Skeleton width="100%" height={38} />
             </VStack>
-            <VStack gap={'16'}>
-              <Skeleton width={'100%'} height={30} />
-              <Skeleton width={'100%'} height={30} />
-              <Skeleton width={'100%'} height={30} />
-              <Skeleton width={'100%'} height={30} />
+
+            <VStack gap="16" max>
+              <Skeleton width="100%" height={38} />
+              <Skeleton width="100%" height={38} />
+              <Skeleton width="100%" height={38} />
+              <Skeleton width="100%" height={38} />
             </VStack>
           </HStack>
         </VStack>

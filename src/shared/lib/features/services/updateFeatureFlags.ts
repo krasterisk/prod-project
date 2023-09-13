@@ -21,7 +21,7 @@ ThunkConfig<string>
         designed
       })
     )
-    window.location.reload()
+    // window.location.reload()
   } catch (e) {
     console.log(e)
     return rejectWithValue('')

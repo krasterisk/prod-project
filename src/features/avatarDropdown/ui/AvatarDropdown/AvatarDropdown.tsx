@@ -6,7 +6,7 @@ import { Avatar as AvatarDeprecated } from '@/shared/ui/deprecated/Avatar'
 import { useDispatch, useSelector } from 'react-redux'
 import { getTokenAllData } from '@/app/providers/getTokenData/getTokenData'
 import { getUserAuthData, isUserAdmin, isUserVPBXAdmin, userActions } from '@/entities/User'
-import { getRouteAdmin, getRouteProfile } from '@/shared/const/router'
+import { getRouteAdmin, getRouteProfile, getRouteSettings } from '@/shared/const/router'
 import { ToggleFeatures } from '@/shared/lib/features'
 import { Avatar } from '@/shared/ui/redesigned/Avatar'
 import { Dropdown } from '@/shared/ui/redesigned/Popups'
@@ -43,6 +43,11 @@ export const AvatarDropdown = memo((props: AvatarDropdownProps) => {
       content: t('Профиль'),
       href: getRouteProfile(String(userData?.id))
     },
+    {
+      content: t('Настройки'),
+      href: getRouteSettings()
+    },
+
     {
       content: t('Выйти'),
       onClick: onLogout
