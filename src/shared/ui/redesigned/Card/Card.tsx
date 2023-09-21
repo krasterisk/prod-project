@@ -11,6 +11,7 @@ interface CardProps extends HTMLAttributes<HTMLDivElement> {
   children: ReactNode
   variant?: CardVariant
   max?: boolean
+  fullHeight?: boolean
   padding?: CardPadding
   border?: CardBorder
 }
@@ -28,6 +29,7 @@ export const Card = memo((props: CardProps) => {
     children,
     variant = 'normal',
     max,
+    fullHeight,
     padding = '8',
     border = 'normal',
     ...otherProps
@@ -39,14 +41,14 @@ export const Card = memo((props: CardProps) => {
         <div
             className={classNames(
               cls.Card,
-              { [cls.max]: max },
+              { [cls.max]: max, [cls.fullHeight]: fullHeight },
               [
                 className,
                 cls[variant],
                 cls[paddingClass],
                 cls[border]
               ])
-        }
+            }
             {...otherProps}
         >
             {children}

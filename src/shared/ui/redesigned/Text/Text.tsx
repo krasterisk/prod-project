@@ -22,10 +22,10 @@ export type TextSize = 's' | 'm' | 'l' | 'xl'
 type HeaderTagType = 'h1' | 'h2' | 'h3' | 'h4'
 
 const mapSizeToClass: Record<TextSize, string> = {
-  s: 'h4',
-  m: 'h3',
-  l: 'h2',
-  xl: 'h1'
+  s: cls.size_s,
+  m: cls.size_m,
+  l: cls.size_l,
+  xl: cls.size_xl
 }
 
 const mapSizeToHeaderTag: Record<TextSize, HeaderTagType> = {

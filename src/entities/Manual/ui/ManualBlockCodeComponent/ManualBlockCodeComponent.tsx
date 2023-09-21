@@ -2,7 +2,7 @@ import { classNames } from '@/shared/lib/classNames/classNames'
 import cls from './ManualBlockCodeComponent.module.scss'
 import { memo } from 'react'
 import { ManualCodeBlock } from '../../model/types/manual'
-import { Code } from '@/shared/ui/deprecated/Code'
+import { Code } from '@/shared/ui/redesigned/Code'
 
 interface ManualBlockCodeComponentProps {
   className?: string

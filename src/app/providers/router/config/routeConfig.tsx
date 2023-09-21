@@ -64,7 +64,7 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
   [AppRoutes.MANUAL_EDIT]: {
     path: getRouteManualEdit(':id'),
     element: <ManualEditPage/>,
-    authOnly: true
+    authOnly: false
   },
   [AppRoutes.MANUAL_CREATE]: {
     path: getRouteManualCreate(),

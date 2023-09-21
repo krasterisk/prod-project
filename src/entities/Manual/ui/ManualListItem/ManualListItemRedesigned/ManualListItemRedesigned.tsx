@@ -30,7 +30,7 @@ export const ManualListItemRedesigned = memo((props: ManualListItemProps) => {
 
   const userInfo = (
         <>
-            <Avatar src={manual.user.avatar} size={32}/>
+            <Avatar src={manual.user.avatar} size={32} className={cls.avatar} />
             <Text bold text={manual.user.username}/>
         </>
   )
@@ -98,9 +98,9 @@ export const ManualListItemRedesigned = memo((props: ManualListItemProps) => {
             className={classNames(cls.ManualListItem, {}, [className, cls[view]])}
             to={getRouteManualDetails(manual.id)}
         >
-            <Card className={cls.card} border="round">
+            <Card className={cls.card} border="round" padding="0">
                 <AppImage
-                    fallback={<Skeleton width={200} height={200}/>}
+                    fallback={<Skeleton width={'100%'} height={200}/>}
                     src={manual.image}
                     className={cls.img}
                     alt={manual.title}
