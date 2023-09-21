@@ -1,13 +1,21 @@
+.StarRating {
+    .hovered {
+        fill: var(--primary-color);
+    }
+}
+
+.StarRatingRedesigned {
+    .hovered {
+        fill: var(--icon-redesigned);
+    }
+}
+
 .StarIcon {
     cursor: pointer;
 }
 
 .normal {
     fill: none;
-}
-
-.hovered {
-    fill: var(--primary-color);
 }
 
 .selected {

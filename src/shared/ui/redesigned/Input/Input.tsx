@@ -75,7 +75,12 @@ export const Input = memo((props: InputProps) => {
   }
 
   const input = (
-      <div className={classNames(cls.InputWrapper, mods, [className, cls[size]])}>
+      <div
+          className={classNames(cls.InputWrapper, mods, [
+            className,
+            cls[size]
+          ])}
+      >
         <div className={cls.addonLeft}>{addonLeft}</div>
         <input
             ref={ref}
@@ -95,8 +100,8 @@ export const Input = memo((props: InputProps) => {
 
   if (label) {
     return (
-        <HStack max gap={'8'}>
-          <Text text={label}/>
+        <HStack max gap="8">
+          <Text text={label} />
           {input}
         </HStack>
     )

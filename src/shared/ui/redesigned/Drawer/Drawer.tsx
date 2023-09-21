@@ -16,10 +16,6 @@ interface DrawerProps {
 
 const height = window.innerHeight - 100
 
-/**
- * @deprecated
- */
-
 export const DrawerContent = memo((props: DrawerProps) => {
   const {
     Spring,
@@ -136,10 +132,6 @@ const DrawerAsync = (props: DrawerProps) => {
 
   return <DrawerContent {...props} />
 }
-
-/**
- * @deprecated
- */
 
 export const Drawer = (props: DrawerProps) => {
   return (

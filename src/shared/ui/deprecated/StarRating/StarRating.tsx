@@ -1,8 +1,10 @@
 import { classNames } from '@/shared/lib/classNames/classNames'
 import cls from './StarRating.module.scss'
 import { memo, useState } from 'react'
-import { Icon } from '../Icon/Icon'
+import { Icon as IconDeprecated } from '../Icon/Icon'
 import StarIcon from '@/shared/assets/icons/star.svg'
+import { toggleFeatures, ToggleFeatures } from '@/shared/lib/features'
+import { Icon } from '../../redesigned/Icon'
 
 interface StarRatingProps {
   onSelect?: (starsCount: number) => void
@@ -47,24 +49,44 @@ export const StarRating = memo((props: StarRatingProps) => {
   }
 
   return (
-        <div>
-            {stars.map((starNumber) => (
-                <Icon
-                    className={classNames(
-                      cls.StarIcon,
-                      { [cls.selected]: isSelected },
-                      [currentStarCount >= starNumber ? cls.hovered : cls.normal])}
-                    Svg={StarIcon}
-                    key={starNumber}
-                    width={size}
-                    height={size}
-                    onMouseEnter={onHover(starNumber)}
-                    onMouseLeave={onLeave}
-                    onClick={onClick(starNumber)}
-                    data-testid={`StarRating.${starNumber}`}
-                    data-selected={currentStarCount >= starNumber}
-                />
-            ))}
+        <div className={classNames(toggleFeatures({
+          name: 'isAppRedesigned',
+          on: () => cls.StarRatingRedesigned,
+          off: () => cls.StarRating
+        }))}
+        >
+            {stars.map((starNumber) => {
+              const commonProps = {
+                className: classNames(
+                  cls.StarIcon,
+                  { [cls.selected]: isSelected },
+                  [currentStarCount >= starNumber ? cls.hovered : cls.normal]),
+                Svg: StarIcon,
+                key: starNumber,
+                width: size,
+                height: size,
+                onMouseEnter: onHover(starNumber),
+                onMouseLeave: onLeave,
+                onClick: onClick(starNumber),
+                'data-testid': `StarRating.${starNumber}`,
+                'data-selected': currentStarCount >= starNumber
+
+              }
+
+              return (
+                  <ToggleFeatures
+                      feature={'isAppRedesigned'}
+                      on={
+                        <Icon clickable={!isSelected} {...commonProps} />
+                      }
+                      off={
+                        <IconDeprecated {...commonProps} />
+                      }
+                      />
+              )
+            }
+            )
+            }
         </div>
   )
 })

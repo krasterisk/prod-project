@@ -1,10 +1,12 @@
 import { classNames } from '@/shared/lib/classNames/classNames'
 import { useTranslation } from 'react-i18next'
 import { memo } from 'react'
-import { Text, TextSize } from '@/shared/ui/deprecated/Text'
+import { Text as TextDeprecated, TextSize } from '@/shared/ui/deprecated/Text'
+import { Text } from '@/shared/ui/redesigned/Text'
 import { ManualList } from '@/entities/Manual'
 import { VStack } from '@/shared/ui/redesigned/Stack'
 import { useManualRecommendationsList } from '../../api/manualRecommendationsApi'
+import { ToggleFeatures } from '@/shared/lib/features'
 
 interface ManualRecommendationsListProps {
   className?: string
@@ -25,9 +27,20 @@ export const ManualRecommendationsList = memo((props: ManualRecommendationsListP
             gap="8"
             className={classNames('', {}, [className])}
         >
-            <Text
-                size={TextSize.L}
-                title={t('Рекомендуем')}
+            <ToggleFeatures
+                feature={'isAppRedesigned'}
+                on={
+                    <Text
+                        size={'l'}
+                        title={t('Рекомендуем')}
+                    />
+                }
+                off={
+                    <TextDeprecated
+                        size={TextSize.L}
+                        title={t('Рекомендуем')}
+                    />
+                }
             />
             <ManualList
                 manuals={manuals}
