@@ -24,3 +24,17 @@ export const getRouteManualEdit = (id: string) => `/manuals/${id}/edit`
 export const getRouteManualCreate = () => '/manuals/create'
 export const getRouteForbidden = () => '/forbidden'
 export const getRouteProfile = (id: string) => `/profile/${id}`
+
+export const AppRouteByPathPattern: Record<string, AppRoutes> = {
+  [getRouteMain()]: AppRoutes.MAIN,
+  [getRoutePeers()]: AppRoutes.PEERS,
+  [getRouteAbout()]: AppRoutes.ABOUT,
+  [getRouteProfile(':id')]: AppRoutes.PROFILE,
+  [getRouteAdmin()]: AppRoutes.ADMIN,
+  [getRouteSettings()]: AppRoutes.SETTINGS,
+  [getRouteManuals()]: AppRoutes.MANUALS,
+  [getRouteManualDetails(':id')]: AppRoutes.MANUAL_DETAILS,
+  [getRouteManualCreate()]: AppRoutes.MANUAL_CREATE,
+  [getRouteManualEdit(':id')]: AppRoutes.MANUAL_EDIT,
+  [getRouteForbidden()]: AppRoutes.FORBIDDEN
+}

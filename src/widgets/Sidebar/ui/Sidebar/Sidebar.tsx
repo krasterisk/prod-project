@@ -2,9 +2,8 @@ import { classNames } from '@/shared/lib/classNames/classNames'
 import cls from './Sidebar.module.scss'
 import React, { memo, useMemo, useState } from 'react'
 import { Button, ButtonSize, ButtonTheme } from '@/shared/ui/deprecated/Button'
-import { getSidebarItems } from '../../model/selectors/getSidebarItems'
+import { useSidebarItems } from '../../model/selectors/getSidebarItems'
 import { SidebarItem } from '../SidebarItem/SidebarItem'
-import { useSelector } from 'react-redux'
 import { VStack } from '@/shared/ui/redesigned/Stack'
 import { ThemeSwitcher } from '@/entities/ThemeSwitcher'
 import { LangSwitcher } from '@/entities/LangSwitcher'
@@ -19,7 +18,7 @@ interface SidebarProps {
 
 export const Sidebar = memo(({ className }: SidebarProps) => {
   const [collapsed, setCollapsed] = useState(false)
-  const sidebarItemList = useSelector(getSidebarItems)
+  const sidebarItemList = useSidebarItems()
 
   const onToggle = () => {
     console.log(collapsed)
@@ -69,6 +68,11 @@ export const Sidebar = memo(({ className }: SidebarProps) => {
                 data-testid='sidebar'
                 className={classNames(cls.Sidebar, { [cls.collapsed]: collapsed }, [className])}
             >
+                <AppLogo size={collapsed ? 30 : 50} className={cls.appLogo}/>
+                <VStack role='navigation' gap='8' className={cls.items}>
+                    {itemList}
+                </VStack>
+
                 <Button
                     data-testid='sidebar-toggle'
                     onClick={onToggle}

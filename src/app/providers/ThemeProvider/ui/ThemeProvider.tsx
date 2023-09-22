@@ -1,4 +1,4 @@
-import React, { ReactNode, useMemo, useState } from 'react'
+import React, { ReactNode, useEffect, useMemo, useState } from 'react'
 import { ThemeContext } from '../../../../shared/lib/context/ThemeContext'
 import { Theme } from '@/shared/const/theme'
 import { LOCAL_STORAGE_THEME_KEY } from '@/shared/const/localstorage'
@@ -17,6 +17,18 @@ const ThemeProvider = (props: ThemeProviderProps) => {
   } = props
 
   const [theme, setTheme] = useState<Theme>(initialTheme || defaultTheme)
+  const [isThemeInited, setThemeInited] = useState(false)
+
+  useEffect(() => {
+    if (!isThemeInited && defaultTheme) {
+      setTheme(defaultTheme)
+      setThemeInited(true)
+    }
+  }, [isThemeInited])
+
+  useEffect(() => {
+    document.body.className = theme
+  }, [theme])
 
   const defaultProps = useMemo(() => ({
     theme,
