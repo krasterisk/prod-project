@@ -49,7 +49,6 @@ const App = (): any => {
                             header={<Navbar/>}
                             content={<AppRouter/>}
                             sidebar={<Sidebar/>}
-                            toolbar={<div>123123123</div>}
                         />
                     </Suspense>
                 </div>

@@ -46,7 +46,7 @@ export const Tabs = memo((props: TabsProps) => {
                         key={tab.value}
                         padding={isSelected ? '16' : '8'}
                         onClick={onClickHandler(tab)}
-                        border="round"
+                        border="partial"
                     >
                         {tab.content}
                     </Card>

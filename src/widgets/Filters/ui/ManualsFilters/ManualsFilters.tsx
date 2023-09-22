@@ -43,6 +43,7 @@ export const ManualsFilters = memo((props: ManualsFiltersProps) => {
         <Card
             className={classNames(cls.ManualsFilters, {}, [className])}
             padding={'24'}
+            border={'partial'}
         >
           <VStack gap={'32'}>
             <Input

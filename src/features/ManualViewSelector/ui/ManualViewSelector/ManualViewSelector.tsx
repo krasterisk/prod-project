@@ -64,7 +64,7 @@ export const ManualViewSelector = memo((props: ManualViewSelectorProps) => {
               {},
               [className]
             )}
-            border={'round'}
+            border={'partial'}
         >
           <HStack gap="8">
             {viewTypes.map(viewType => (

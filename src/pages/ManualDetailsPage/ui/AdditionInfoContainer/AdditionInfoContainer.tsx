@@ -21,7 +21,7 @@ export const AdditionInfoContainer = memo(() => {
   }
 
   return (
-        <Card max fullHeight padding={'24'} border={'round'} className={cls.card}>
+        <Card max fullHeight padding={'24'} border={'partial'} className={cls.card}>
             <AdditionInfo
                 onEdit={onEditPage}
                 createdAt={manual.createdAt}
