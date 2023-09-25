@@ -9,7 +9,7 @@ import { getFeatureFlag, setFeatureFlags, ToggleFeatures } from '@/shared/lib/fe
 import { MainLayout } from '@/shared/layouts/MainLayout'
 import { PageLoader } from '@/widgets/PageLoader'
 import { getTokenAllData } from '@/app/providers/getTokenData/getTokenData'
-import { useAppToolbar } from '@/app/lib/useAppToolbar'
+import { useAppToolbar } from './lib/useAppToolbar'
 
 const App = (): any => {
   const dispatch = useDispatch()

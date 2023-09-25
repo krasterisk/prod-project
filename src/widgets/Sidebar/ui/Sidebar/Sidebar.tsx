@@ -52,8 +52,7 @@ export const Sidebar = memo(({ className }: SidebarProps) => {
                         onClick={onToggle}
                         className={cls.collapseBtn}
                         clickable
-                    >
-                    </Icon>
+                    />
                     <div className={cls.switchers}>
                         <ThemeSwitcher/>
                         <LangSwitcher

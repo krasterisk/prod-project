@@ -28,9 +28,10 @@ export const ManualBlockTextComponent = memo(({ className, block }: ManualBlockT
             )}
             {block.paragraphs.length && block.paragraphs.map((par) => (
                 <ToggleFeatures
+                    key={par.paragraph}
                     feature={'isAppRedesigned'}
                     on={
-                        <Text key={par.paragraph} text={par.paragraph} className={cls.paragraph}/>
+                        <Text text={par.paragraph} className={cls.paragraph}/>
                     }
                     off={
                         <TextDeprecated key={par.paragraph} text={par.paragraph} className={cls.paragraph}/>

@@ -4,12 +4,18 @@ import { RouterDecorator } from '../../src/shared/config/storybook/RouterDecorat
 import {
   SuspenseDecorator
 } from '../../src/shared/config/storybook/SuspenseDecorator/SuspenseDecorator'
-
 import { Theme } from '../../src/shared/const/theme'
 import '../../src/app/styles/index.scss'
 import { Preview } from '@storybook/react'
+import { FeaturesFlagsDecorator } from '../../src/shared/config/storybook/FeaturesFlagsDecorator/FeaturesFlagsDecorator'
 
-export const decorators = [StyleDecorator, ThemeDecorator(Theme.LIGHT), RouterDecorator, SuspenseDecorator]
+export const decorators = [
+  FeaturesFlagsDecorator({ isAppRedesigned: false }),
+  StyleDecorator,
+  ThemeDecorator(Theme.LIGHT),
+  RouterDecorator,
+  SuspenseDecorator
+]
 
 const preview: Preview = {
   parameters: {

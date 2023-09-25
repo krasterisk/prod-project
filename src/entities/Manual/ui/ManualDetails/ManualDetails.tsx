@@ -91,7 +91,6 @@ const Redesigned = () => {
 export const ManualDetails = memo(({ className, id }: ManualDetailsProps) => {
   const { t } = useTranslation('manuals')
   const isLoading = useSelector(getManualDetailsIsLoading)
-  const manual = useSelector(getManualDetailsData)
   const error = useSelector(getManualDetailsError)
   const dispatch = useAppDispatch()
 

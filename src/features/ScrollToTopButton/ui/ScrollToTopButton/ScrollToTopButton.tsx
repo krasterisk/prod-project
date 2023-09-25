@@ -1,5 +1,3 @@
-import { classNames } from '@/shared/lib/classNames/classNames'
-import cls from './ScrollToTopButton.module.scss'
 import { memo } from 'react'
 import { Icon } from '@/shared/ui/redesigned/Icon'
 import CircleIcon from '@/shared/assets/icons/circle-up.svg'
@@ -25,7 +23,7 @@ export const ScrollToTopButton = memo((props: ScrollToTopButtonProps) => {
         clickable
         height={32}
         onClick={onClick}
-            className={classNames(cls.ScrollToTopButton, {}, [className])}
+        className={className}
         />
   )
 })
