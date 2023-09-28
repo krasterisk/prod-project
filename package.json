@@ -121,6 +121,7 @@
     "@headlessui/react": "^1.7.13",
     "@react-spring/web": "^9.7.2",
     "@reduxjs/toolkit": "^1.9.5",
+    "@tanstack/react-table": "^8.10.3",
     "@use-gesture/react": "^10.2.26",
     "axion": "^0.1.0",
     "i18next": "^22.4.9",
@@ -134,7 +135,10 @@
     "react-router-dom": "^6.8.0"
   },
   "lint-staged": {
-    "**/*.{ts,tsx}": ["prettier --list-different", "eslint"]
+    "**/*.{ts,tsx}": [
+      "prettier --list-different",
+      "eslint"
+    ]
   },
   "loki": {
     "chromeSelector": "#storybook-root > *",

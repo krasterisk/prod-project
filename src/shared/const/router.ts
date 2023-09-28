@@ -1,6 +1,6 @@
 export enum AppRoutes {
   MAIN = 'main',
-  PEERS = 'peers',
+  ENDPOINTS = 'endpoints',
   ABOUT = 'about',
   PROFILE = 'profile',
   ADMIN = 'admin',
@@ -16,7 +16,7 @@ export enum AppRoutes {
 export const getRouteMain = () => '/'
 export const getRouteAbout = () => '/about'
 export const getRouteAdmin = () => '/admin'
-export const getRoutePeers = () => '/peers'
+export const getRoutePeers = () => '/endpoints'
 export const getRouteSettings = () => '/settings'
 export const getRouteManuals = () => '/manuals'
 export const getRouteManualDetails = (id: string) => `/manuals/${id}`
@@ -27,7 +27,7 @@ export const getRouteProfile = (id: string) => `/profile/${id}`
 
 export const AppRouteByPathPattern: Record<string, AppRoutes> = {
   [getRouteMain()]: AppRoutes.MAIN,
-  [getRoutePeers()]: AppRoutes.PEERS,
+  [getRoutePeers()]: AppRoutes.ENDPOINTS,
   [getRouteAbout()]: AppRoutes.ABOUT,
   [getRouteProfile(':id')]: AppRoutes.PROFILE,
   [getRouteAdmin()]: AppRoutes.ADMIN,

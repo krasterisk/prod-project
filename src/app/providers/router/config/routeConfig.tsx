@@ -23,7 +23,7 @@ import {
   getRouteSettings
 } from '@/shared/const/router'
 import { AppRoutesProps } from '@/shared/types/router'
-import { PeersPage } from '@/pages/Peers'
+import { EndpointsPage } from '@/pages/EndpointsPage'
 import { SettingPage } from '@/pages/SettingsPage'
 
 export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
@@ -35,9 +35,9 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
     path: getRouteAbout(),
     element: <AboutPage/>
   },
-  [AppRoutes.PEERS]: {
+  [AppRoutes.ENDPOINTS]: {
     path: getRoutePeers(),
-    element: <PeersPage />
+    element: <EndpointsPage />
   },
 
   [AppRoutes.ADMIN]: {

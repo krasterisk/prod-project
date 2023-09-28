@@ -27,7 +27,7 @@ export const Card = memo((props: CardProps) => {
   const {
     className,
     children,
-    variant = 'normal',
+    variant = 'light',
     max,
     fullHeight,
     padding = '8',
