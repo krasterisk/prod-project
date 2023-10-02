@@ -10,19 +10,13 @@ import {
   getManualDetailsError,
   getManualDetailsIsLoading
 } from '../../model/selectors/manualDetails'
-import { Text as TextDeprecated, TextAlign, TextSize } from '@/shared/ui/deprecated/Text'
 import { Text } from '@/shared/ui/redesigned/Text'
 import { Skeleton } from '@/shared/ui/redesigned/Skeleton'
-import { Avatar } from '@/shared/ui/deprecated/Avatar'
-import EyeIcon from '@/shared/assets/icons/eye-20-20.svg'
-import CalendarIcon from '@/shared/assets/icons/calendar-20-20.svg'
-import { Icon } from '@/shared/ui/deprecated/Icon'
 import { useInitialEffect } from '@/shared/lib/hooks/useInitialEffect/useInitialEffect'
 import { fetchManualById } from '../../model/services/fetchManualById/fetchManualById'
-import { HStack, VStack } from '@/shared/ui/redesigned/Stack'
+import { VStack } from '@/shared/ui/redesigned/Stack'
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch'
 import { renderManualBlock } from './RenderBlock'
-import { ToggleFeatures } from '@/shared/lib/features'
 import { AppImage } from '@/shared/ui/redesigned/AppImage'
 
 interface ManualDetailsProps {
@@ -34,42 +28,42 @@ const reducers: ReducersList = {
   manualDetails: manualDetailsReducer
 }
 
-const Deprecated = () => {
-  const manual = useSelector(getManualDetailsData)
-
-  return (
-     <>
-         <HStack justify={'center'} max>
-             <Avatar
-                 className={classNames(cls.avatar, {}, [cls.avatarWrapper])}
-                 size={200}
-                 src={manual?.image}
-             />
-         </HStack>
-         <VStack gap={'4'} max data-testid={'ManualDetails.Info'}>
-             <TextDeprecated
-                 className={cls.title}
-                 title={manual?.title}
-                 text={manual?.subtitle}
-                 size={TextSize.L}
-             />
-             <HStack gap={'8'}>
-                 <Icon Svg={EyeIcon} className={cls.icon}/>
-                 <TextDeprecated
-                     text={String(manual?.views)}
-                 />
-             </HStack>
-             <HStack gap={'8'}>
-                 <Icon Svg={CalendarIcon} className={cls.icon}/>
-                 <TextDeprecated
-                     text={manual?.createdAt}
-                 />
-             </HStack>
-         </VStack>
-         {manual?.blocks.map(renderManualBlock)}
-     </>
-  )
-}
+// const Deprecated = () => {
+//   const manual = useSelector(getManualDetailsData)
+//
+//   return (
+//      <>
+//          <HStack justify={'center'} max>
+//              <Avatar
+//                  className={classNames(cls.avatar, {}, [cls.avatarWrapper])}
+//                  size={200}
+//                  src={manual?.image}
+//              />
+//          </HStack>
+//          <VStack gap={'4'} max data-testid={'ManualDetails.Info'}>
+//              <TextDeprecated
+//                  className={cls.title}
+//                  title={manual?.title}
+//                  text={manual?.subtitle}
+//                  size={TextSize.L}
+//              />
+//              <HStack gap={'8'}>
+//                  <Icon Svg={EyeIcon} className={cls.icon}/>
+//                  <TextDeprecated
+//                      text={String(manual?.views)}
+//                  />
+//              </HStack>
+//              <HStack gap={'8'}>
+//                  <Icon Svg={CalendarIcon} className={cls.icon}/>
+//                  <TextDeprecated
+//                      text={manual?.createdAt}
+//                  />
+//              </HStack>
+//          </VStack>
+//          {manual?.blocks.map(renderManualBlock)}
+//      </>
+//   )
+// }
 
 const Redesigned = () => {
   const manual = useSelector(getManualDetailsData)
@@ -112,18 +106,14 @@ export const ManualDetails = memo(({ className, id }: ManualDetailsProps) => {
     )
   } else if (error) {
     content = (
-            <TextDeprecated
-                align={TextAlign.CENTER}
+            <Text
+                align={'center'}
                 text={t('Произошла ошибка при загрузке страницы')}
             />
     )
   } else {
     content = (
-        <ToggleFeatures
-            feature={'isAppRedesigned'}
-            on={<Redesigned />}
-            off={<Deprecated />}
-            />
+        <Redesigned />
     )
   }
 

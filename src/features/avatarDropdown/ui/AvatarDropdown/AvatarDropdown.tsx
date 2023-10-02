@@ -1,13 +1,10 @@
 import { classNames } from '@/shared/lib/classNames/classNames'
 import { useTranslation } from 'react-i18next'
 import React, { memo, useCallback } from 'react'
-import { Dropdown as DropdownDeprecated } from '@/shared/ui/deprecated/Popups'
-import { Avatar as AvatarDeprecated } from '@/shared/ui/deprecated/Avatar'
 import { useDispatch, useSelector } from 'react-redux'
 import { getTokenAllData } from '@/app/providers/getTokenData/getTokenData'
 import { getUserAuthData, isUserAdmin, isUserVPBXAdmin, userActions } from '@/entities/User'
 import { getRouteAdmin, getRouteProfile, getRouteSettings } from '@/shared/const/router'
-import { ToggleFeatures } from '@/shared/lib/features'
 import { Avatar } from '@/shared/ui/redesigned/Avatar'
 import { Dropdown } from '@/shared/ui/redesigned/Popups'
 
@@ -55,23 +52,12 @@ export const AvatarDropdown = memo((props: AvatarDropdownProps) => {
   ]
 
   return (
-      <ToggleFeatures feature={'isAppRedesigned'} on={
-          <Dropdown
-              className={classNames('', {}, [className])}
-              direction={'bottom-left'}
-              items={items}
-              trigger={<Avatar size={40} src={userData?.avatar}/>}
-          />
-      } off={
-          <DropdownDeprecated
-              className={classNames('', {}, [className])}
-              direction={'bottom-left'}
-              items={items}
-              trigger={<AvatarDeprecated fallbackInverted size={30} src={userData?.avatar}/>}
-          />
-      }
-
-      />
+      <Dropdown
+                    className={classNames('', {}, [className])}
+                    direction={'bottom-left'}
+                    items={items}
+                    trigger={<Avatar size={40} src={userData?.avatar}/>}
+                />
 
   )
 })

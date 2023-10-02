@@ -1,7 +1,6 @@
 import { classNames } from '@/shared/lib/classNames/classNames'
 import { useTranslation } from 'react-i18next'
 import { memo, useCallback } from 'react'
-import { Text as TextDeprecated, TextSize } from '@/shared/ui/deprecated/Text'
 import { Text } from '@/shared/ui/redesigned/Text'
 import { AddCommentForm } from '@/features/AddCommentForm'
 import { CommentList } from '@/entities/Comment'
@@ -13,7 +12,6 @@ import { useInitialEffect } from '@/shared/lib/hooks/useInitialEffect/useInitial
 import { fetchCommentsByManualId } from '../../model/service/fetchCommentsByManualId/fetchCommentsByManualId'
 import { VStack } from '@/shared/ui/redesigned/Stack'
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch'
-import { ToggleFeatures } from '@/shared/lib/features'
 
 interface ManualDetailsCommentsProps {
   className?: string
@@ -40,21 +38,10 @@ export const ManualDetailsComments = memo((props: ManualDetailsCommentsProps) =>
 
   return (
         <VStack gap="8" max className={classNames('', {}, [className])}>
-            <ToggleFeatures
-                feature={'isAppRedesigned'}
-                on={
-                    <Text
-                        size={'l'}
-                        title={t('Комментарии')}
-                    />
-                }
-                off={
-                    <TextDeprecated
-                        size={TextSize.L}
-                        title={t('Комментарии')}
-                    />
-                }
-            />
+            <Text
+                                  size={'l'}
+                                  title={t('Комментарии')}
+                              />
             <AddCommentForm onSendComment={onSendComment}/>
             <CommentList isLoading={commentsIsLoading} comments={comments}/>
         </VStack>

@@ -1,1 +1,1 @@
-export { EndpointsPageAsync as EndpointsPage } from './ui/EndpointsPage.async'
+export { EndpointsPageAsync as EndpointsPage } from './ui/EndpointPage/EndpointsPage.async'

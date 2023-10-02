@@ -9,7 +9,6 @@ import { StateSchema } from '@/app/providers/StoreProvider'
 import { useInitialEffect } from '@/shared/lib/hooks/useInitialEffect/useInitialEffect'
 import { useThrottle } from '@/shared/lib/hooks/useThrottle/useThrottle'
 import { TestsProps } from '@/shared/types/tests'
-import { toggleFeatures } from '@/shared/lib/features'
 
 interface PageProps extends TestsProps {
   className?: string
@@ -36,11 +35,7 @@ export const Page = (props: PageProps) => {
 
   useInfiniteScroll({
     triggerRef,
-    wrapperRef: toggleFeatures({
-      name: 'isAppRedesigned',
-      on: () => undefined,
-      off: () => wrapperRef
-    }),
+    wrapperRef: undefined,
     callback: onScrollEnd
   })
 
@@ -62,11 +57,7 @@ export const Page = (props: PageProps) => {
       <main
           ref={wrapperRef}
           className={classNames(
-            toggleFeatures({
-              name: 'isAppRedesigned',
-              on: () => cls.PageRedesigned,
-              off: () => cls.Page
-            }),
+            cls.PageRedesigned,
             {},
             [className]
           )}

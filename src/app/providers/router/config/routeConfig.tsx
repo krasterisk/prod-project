@@ -19,12 +19,15 @@ import {
   getRouteManualEdit,
   getRouteManuals,
   getRouteProfile,
-  getRoutePeers,
-  getRouteSettings
+  getRouteSettings,
+  getRouteEndpointCreate,
+  getRouteEndpointEdit,
+  getRouteEndpoints
 } from '@/shared/const/router'
 import { AppRoutesProps } from '@/shared/types/router'
 import { EndpointsPage } from '@/pages/EndpointsPage'
 import { SettingPage } from '@/pages/SettingsPage'
+import { EndpointCard } from '@/entities/Endpoints'
 
 export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
   [AppRoutes.MAIN]: {
@@ -36,10 +39,19 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
     element: <AboutPage/>
   },
   [AppRoutes.ENDPOINTS]: {
-    path: getRoutePeers(),
+    path: getRouteEndpoints(),
     element: <EndpointsPage />
   },
-
+  [AppRoutes.ENDPOINT_CREATE]: {
+    path: getRouteEndpointCreate(),
+    element: <EndpointCard create />,
+    authOnly: false
+  },
+  [AppRoutes.ENDPOINT_EDIT]: {
+    path: getRouteEndpointEdit(':id'),
+    element: <EndpointCard />,
+    authOnly: false
+  },
   [AppRoutes.ADMIN]: {
     path: getRouteAdmin(),
     element: <AdminPage/>,

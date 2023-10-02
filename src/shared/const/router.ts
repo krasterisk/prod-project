@@ -9,6 +9,8 @@ export enum AppRoutes {
   MANUAL_DETAILS = 'manual_details',
   MANUAL_CREATE = 'manuals_create',
   MANUAL_EDIT = 'manual_edit',
+  ENDPOINT_EDIT = 'endpoint_edit',
+  ENDPOINT_CREATE = 'endpoint_create',
   FORBIDDEN = 'forbidden',
   ERROR = 'error'
 }
@@ -16,18 +18,20 @@ export enum AppRoutes {
 export const getRouteMain = () => '/'
 export const getRouteAbout = () => '/about'
 export const getRouteAdmin = () => '/admin'
-export const getRoutePeers = () => '/endpoints'
+export const getRouteEndpoints = () => '/endpoints'
 export const getRouteSettings = () => '/settings'
 export const getRouteManuals = () => '/manuals'
 export const getRouteManualDetails = (id: string) => `/manuals/${id}`
 export const getRouteManualEdit = (id: string) => `/manuals/${id}/edit`
 export const getRouteManualCreate = () => '/manuals/create'
+export const getRouteEndpointCreate = () => '/endpoints/create'
+export const getRouteEndpointEdit = (id: string) => `/endpoints/${id}`
 export const getRouteForbidden = () => '/forbidden'
 export const getRouteProfile = (id: string) => `/profile/${id}`
 
 export const AppRouteByPathPattern: Record<string, AppRoutes> = {
   [getRouteMain()]: AppRoutes.MAIN,
-  [getRoutePeers()]: AppRoutes.ENDPOINTS,
+  [getRouteEndpoints()]: AppRoutes.ENDPOINTS,
   [getRouteAbout()]: AppRoutes.ABOUT,
   [getRouteProfile(':id')]: AppRoutes.PROFILE,
   [getRouteAdmin()]: AppRoutes.ADMIN,
@@ -36,5 +40,7 @@ export const AppRouteByPathPattern: Record<string, AppRoutes> = {
   [getRouteManualDetails(':id')]: AppRoutes.MANUAL_DETAILS,
   [getRouteManualCreate()]: AppRoutes.MANUAL_CREATE,
   [getRouteManualEdit(':id')]: AppRoutes.MANUAL_EDIT,
+  [getRouteEndpointEdit(':id')]: AppRoutes.ENDPOINT_EDIT,
+  [getRouteEndpointCreate()]: AppRoutes.ENDPOINT_CREATE,
   [getRouteForbidden()]: AppRoutes.FORBIDDEN
 }

@@ -1,9 +1,8 @@
 import { classNames } from '@/shared/lib/classNames/classNames'
 import { useTranslation } from 'react-i18next'
 import { memo, useCallback, useMemo } from 'react'
-import { TabItem, Tabs as TabsDeprecated } from '@/shared/ui/deprecated/Tabs'
+import { TabItem } from '@/shared/ui/deprecated/Tabs'
 import { ManualHashtagsTypes } from '@/entities/Manual'
-import { ToggleFeatures } from '@/shared/lib/features'
 import { Tabs } from '@/shared/ui/redesigned/Tabs'
 
 interface ManualTypeTabsProps {
@@ -53,29 +52,13 @@ export const ManualTypeTabs = memo((props: ManualTypeTabsProps) => {
   ], [t])
 
   return (
-      <ToggleFeatures
-          feature={'isAppRedesigned'}
-          on={
-            <Tabs
-                direction={'column'}
-                data-testid={'ManualHashtags'}
-                className={classNames('', {}, [className])}
-                tabs={typeTabs}
-                onTabClick={onTabClick}
-                value={value}
-            />
-
-          }
-          off={
-            <TabsDeprecated
-                data-testid={'ManualHashtags'}
-                className={classNames('', {}, [className])}
-                tabs={typeTabs}
-                onTabClick={onTabClick}
-                value={value}
-            />
-
-          }
-      />
+      <Tabs
+                      direction={'column'}
+                      data-testid={'ManualHashtags'}
+                      className={classNames('', {}, [className])}
+                      tabs={typeTabs}
+                      onTabClick={onTabClick}
+                      value={value}
+                  />
   )
 })
