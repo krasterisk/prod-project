@@ -6,6 +6,7 @@ import { Card } from '@/shared/ui/redesigned/Card'
 import { HStack, VStack } from '@/shared/ui/redesigned/Stack'
 import { Input } from '@/shared/ui/redesigned/Input'
 import { EndpointCardProps } from '../EndpointCard/EndpointCard'
+import { CodecSelect } from '../../../Codecs'
 
 export const EndpointCreate = memo((props: EndpointCardProps) => {
   const {
@@ -41,12 +42,16 @@ export const EndpointCreate = memo((props: EndpointCardProps) => {
                             data-testid={'EndpointCard.Context'}
                         />
                         <Input
+                            label={t('Транспортный протокол') ?? ''}
+                            onChange={onChangeTransport}
+                            data-testid={'EndpointCard.Transport'}
+                        />
+                        <Input
                             label={t('Авторизация') ?? ''}
                             onChange={onChangeAuthType}
                             data-testid={'EndpointCard.AuthType'}
                         />
-                        <Input
-                            label={t('Кодеки') ?? ''}
+                        <CodecSelect
                             onChange={onChangeCodecs}
                             data-testid={'EndpointCard.Codecs'}
                         />

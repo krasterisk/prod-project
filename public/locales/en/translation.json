@@ -42,5 +42,7 @@
   "{{count}} просмотров_other": "{{count}} views",
   "Имя": "Имя",
   "Возраст": "Возраст",
-  "Email": "Email"
+  "Email": "Email",
+    "Кодек": "Кодек",
+    "alaw": "alaw"
 }

@@ -1,7 +1,5 @@
 import { memo } from 'react'
-import { Country } from '@/entities/Country'
 import { Endpoint } from '../../model/types/endpoints'
-
 import { EndpointCreate } from '../EndpointCreate/EndpointCreate'
 import { EndpointEdit } from '../EndpointEdit/EndpointEdit'
 import { useTranslation } from 'react-i18next'
@@ -9,6 +7,7 @@ import { HStack, VStack } from '@/shared/ui/redesigned/Stack'
 import { Text } from '@/shared/ui/redesigned/Text'
 import { Card } from '@/shared/ui/redesigned/Card'
 import { Skeleton } from '@/shared/ui/redesigned/Skeleton'
+import { Codecs } from '../../../Codecs/model/types/Codecs'
 
 export interface EndpointCardProps {
   className?: string
@@ -19,18 +18,22 @@ export interface EndpointCardProps {
   create?: boolean
   onChangeContext?: (value?: string) => void
   onChangeExtension?: (value?: string) => void
-  onChangeTransport?: (value?: Country) => void
-  onChangeCodecs?: (value?: string) => void
+  onChangeTransport?: (value?: string) => void
+  onChangeCodecs?: (value?: Codecs) => void
   onChangeMaxContacts?: (value?: string) => void
   onChangeAuthType?: (value?: string) => void
 }
 
 export const EndpointCard = memo((props: EndpointCardProps) => {
-  const { isLoading, error, create } = props
+  const {
+    isLoading,
+    error,
+    create
+  } = props
 
   if (create) {
     return (
-            <EndpointCreate />
+            <EndpointCreate {...props} />
     )
   }
 
@@ -75,12 +78,12 @@ export const EndpointSkeleton = () => {
             <VStack gap="32">
                 <HStack gap="32" max>
                     <VStack gap="16" max>
-                        <Skeleton width="100%" height={38} />
-                        <Skeleton width="100%" height={38} />
-                        <Skeleton width="100%" height={38} />
-                        <Skeleton width="100%" height={38} />
-                        <Skeleton width="100%" height={38} />
-                        <Skeleton width="100%" height={38} />
+                        <Skeleton width="100%" height={38}/>
+                        <Skeleton width="100%" height={38}/>
+                        <Skeleton width="100%" height={38}/>
+                        <Skeleton width="100%" height={38}/>
+                        <Skeleton width="100%" height={38}/>
+                        <Skeleton width="100%" height={38}/>
                     </VStack>
                 </HStack>
             </VStack>
