@@ -1,16 +1,16 @@
-import { memo } from 'react'
+import { memo, useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import { HStack, VStack } from '@/shared/ui/redesigned/Stack'
 import { Text } from '@/shared/ui/redesigned/Text'
 import { Card } from '@/shared/ui/redesigned/Card'
 import { Skeleton } from '@/shared/ui/redesigned/Skeleton'
-import { Endpoint } from '../../../../entities/Endpoints/model/types/endpoints'
+import { EndpointCreate, EndpointCreateArg, EndpointEdit } from '@/entities/Endpoints'
 import { Codecs } from '@/entities/Codecs'
-import { EndpointCreate, EndpointEdit } from '@/entities/Endpoints'
+import { useSetEndpoints } from '../../api/endpointsApi'
 
 export interface EndpointCardProps {
   className?: string
-  data?: Endpoint
+  data?: EndpointCreateArg
   error?: string
   isLoading?: boolean
   readonly?: boolean
@@ -21,30 +21,46 @@ export interface EndpointCardProps {
   onChangeCodecs?: (value?: Codecs) => void
   onChangeMaxContacts?: (value?: string) => void
   onChangeAuthType?: (value?: string) => void
+  onCreate?: (data?: EndpointCreateArg) => void
 }
 
 export const EndpointCard = memo((props: EndpointCardProps) => {
   const {
     isLoading,
     error,
-    create
+    create,
+    data
   } = props
+
+  const [endpointMutation] = useSetEndpoints()
+
+  const handleCreateEndpoint = useCallback((data: EndpointCreateArg) => {
+    try {
+      endpointMutation([{ ...data }])
+    } catch (e) {
+      throw Error()
+    }
+  }, [endpointMutation])
+
+  const onCreate = useCallback((data: EndpointCreateArg) => {
+    handleCreateEndpoint(data)
+  }, [handleCreateEndpoint])
 
   if (create) {
     return (
-            <EndpointCreate {...props} />
+            <EndpointCreate onCreate={onCreate} data={data} create {...props} />
     )
   }
 
   if (isLoading) {
     return (
-            <EndpointSkeleton />
+            <EndpointSkeleton/>
     )
   }
 
   if (error) {
     return (
-            <EndpointError />
+            <EndpointError/>
     )
   }
 

@@ -7,7 +7,7 @@ export const getTokenData = (token: string | undefined) => {
     data = jwtDecode(token)
   }
   if (!data?.id) {
-    return null
+    return 0
   }
   return data?.id
 }

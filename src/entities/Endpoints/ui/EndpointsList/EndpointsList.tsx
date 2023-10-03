@@ -7,7 +7,7 @@ import { Card } from '@/shared/ui/redesigned/Card'
 import { Table } from '@/shared/ui/redesigned/Table/Table'
 import { EndpointsListProps } from '../../model/types/endpoints'
 import { endpointsColumns } from '../../model/types/EndpointsColumns'
-import { EndpointHeader } from '../EndpointHeader/EndpointHeader'
+import { EndpointsListHeader } from '../EndpointsListHeader/EndpointsListHeader'
 
 export const EndpointsList = memo((props: EndpointsListProps) => {
   const {
@@ -38,7 +38,7 @@ export const EndpointsList = memo((props: EndpointsListProps) => {
                 max
                 border={'partial'}
             >
-                <EndpointHeader/>
+                <EndpointsListHeader/>
             </Card>
             <Card
                 className={cls.EndpointsTable}

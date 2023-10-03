@@ -1,5 +1,5 @@
 export interface Endpoint {
-  id: number
+  id: string
   endpoint_id: string
   username: string
   password: string
@@ -8,7 +8,18 @@ export interface Endpoint {
   allow: string
   max_contacts: number
   auth_type: string
-  vpbx_user_id: number
+  vpbx_user_id: string
+}
+
+export interface EndpointCreateArg {
+  endpoint_id: string
+  username: string
+  password: string
+  context: string
+  transport: string
+  allow: string
+  max_contacts: number
+  auth_type: string
 }
 
 export interface EndpointsListProps {
