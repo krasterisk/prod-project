@@ -5,7 +5,7 @@ import { memo } from 'react'
 import { Card } from '@/shared/ui/redesigned/Card'
 import { HStack, VStack } from '@/shared/ui/redesigned/Stack'
 import { Input } from '@/shared/ui/redesigned/Input'
-import { EndpointCardProps } from '../EndpointCard/EndpointCard'
+import { EndpointCardProps } from '../../../../features/Endpoints/ui/EndpointCard/EndpointCard'
 import { CodecSelect } from '../../../Codecs'
 
 export const EndpointCreate = memo((props: EndpointCardProps) => {

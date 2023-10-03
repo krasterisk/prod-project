@@ -1,15 +1,13 @@
 import React, { memo } from 'react'
 import { Page } from '@/widgets/Page'
-import { EndpointsList } from '@/entities/Endpoints'
-import { EndpointHeader } from '../EndpointHeader/EndpointHeader'
 import { VStack } from '@/shared/ui/redesigned/Stack'
+import { Endpoints } from '@/features/Endpoints'
 
 const EndpointsPage = memo(() => {
   return (
         <Page data-testid={'EndpointsPage'}>
             <VStack gap='8'>
-                <EndpointHeader/>
-                <EndpointsList/>
+                <Endpoints />
             </VStack>
         </Page>
   )

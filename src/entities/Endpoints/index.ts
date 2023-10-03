@@ -1,2 +1,4 @@
+export { EndpointCreate } from './ui/EndpointCreate/EndpointCreate'
+export { EndpointEdit } from './ui/EndpointEdit/EndpointEdit'
 export { EndpointsList } from './ui/EndpointsList/EndpointsList'
-export { EndpointCard } from './ui/EndpointCard/EndpointCard'
+export type { EndpointsListProps, Endpoint } from './model/types/endpoints'

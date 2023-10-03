@@ -1,13 +1,12 @@
 import { memo } from 'react'
-import { Endpoint } from '../../model/types/endpoints'
-import { EndpointCreate } from '../EndpointCreate/EndpointCreate'
-import { EndpointEdit } from '../EndpointEdit/EndpointEdit'
 import { useTranslation } from 'react-i18next'
 import { HStack, VStack } from '@/shared/ui/redesigned/Stack'
 import { Text } from '@/shared/ui/redesigned/Text'
 import { Card } from '@/shared/ui/redesigned/Card'
 import { Skeleton } from '@/shared/ui/redesigned/Skeleton'
-import { Codecs } from '../../../Codecs/model/types/Codecs'
+import { Endpoint } from '../../../../entities/Endpoints/model/types/endpoints'
+import { Codecs } from '@/entities/Codecs'
+import { EndpointCreate, EndpointEdit } from '@/entities/Endpoints'
 
 export interface EndpointCardProps {
   className?: string

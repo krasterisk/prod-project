@@ -1,5 +1,5 @@
 import { rtkApi } from '@/shared/api/rtkApi'
-import { Endpoint } from '../model/types/endpoints'
+import { Endpoint } from '../../../entities/Endpoints/model/types/endpoints'
 
 const endpointsApi = rtkApi.injectEndpoints({
   endpoints: (build) => ({

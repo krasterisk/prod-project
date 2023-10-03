@@ -25,9 +25,12 @@ import {
   getRouteEndpoints
 } from '@/shared/const/router'
 import { AppRoutesProps } from '@/shared/types/router'
-import { EndpointsPage } from '@/pages/EndpointsPage'
+import {
+  EndpointsPage,
+  EndpointCreatePage,
+  EndpointEditPage
+} from '@/pages/EndpointsPage'
 import { SettingPage } from '@/pages/SettingsPage'
-import { EndpointCard } from '@/entities/Endpoints'
 
 export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
   [AppRoutes.MAIN]: {
@@ -44,12 +47,12 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
   },
   [AppRoutes.ENDPOINT_CREATE]: {
     path: getRouteEndpointCreate(),
-    element: <EndpointCard create />,
+    element: <EndpointCreatePage />,
     authOnly: false
   },
   [AppRoutes.ENDPOINT_EDIT]: {
     path: getRouteEndpointEdit(':id'),
-    element: <EndpointCard />,
+    element: <EndpointEditPage />,
     authOnly: false
   },
   [AppRoutes.ADMIN]: {

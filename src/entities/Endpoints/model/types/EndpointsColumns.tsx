@@ -1,6 +1,6 @@
 import { createColumnHelper } from '@tanstack/react-table'
 import React from 'react'
-import { Endpoint } from '../../model/types/endpoints'
+import { Endpoint } from './endpoints'
 
 const columnHelper = createColumnHelper<Endpoint>()
 
