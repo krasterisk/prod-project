@@ -30,23 +30,28 @@ export const EndpointCreateHeader = memo((props: EndpointCreateHeaderProps) => {
             max
         >
             <HStack max justify={'start'} >
-                <Text title={t('Профиль')}/>
+                <Text title={t('Новый абонент')}/>
             </HStack>
+            <HStack gap='24'>
             <AppLink
                 to={getRouteEndpoints()}
             >
                 <Button
                     title={t('Закрыть') ?? ''}
-                    variant={'outline'}>
+                    variant={'outline'}
+                    color={'error'}
+                >
                     {t('Закрыть')}
                 </Button>
             </AppLink>
                 <Button
                     title={t('Создать') ?? ''}
                     variant={'outline'}
+                    color={'success'}
                 >
                     {t('Создать')}
                 </Button>
+            </HStack>
         </Card>
   )
 })

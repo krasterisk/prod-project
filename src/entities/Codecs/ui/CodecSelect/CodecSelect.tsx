@@ -45,11 +45,11 @@ export const CodecSelect = memo(({ className, value, onChange, readonly }: Codec
     items: options,
     value,
     defaultValue: String(t('Выбрать')),
-    label: String(t('Кодек')),
+    label: String(t('Кодеки')),
     onChange: onChangeHandler,
     readonly,
     multiple: true,
-    direction: 'top-right' as const
+    direction: 'bottom-right' as const
   }
 
   return (

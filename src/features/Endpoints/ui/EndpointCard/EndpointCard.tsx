@@ -1,12 +1,11 @@
-import { memo, useCallback } from 'react'
+import { memo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { HStack, VStack } from '@/shared/ui/redesigned/Stack'
 import { Text } from '@/shared/ui/redesigned/Text'
 import { Card } from '@/shared/ui/redesigned/Card'
 import { Skeleton } from '@/shared/ui/redesigned/Skeleton'
-import { EndpointCreate, EndpointCreateArg, EndpointEdit } from '@/entities/Endpoints'
-import { Codecs } from '@/entities/Codecs'
-import { useSetEndpoints } from '../../api/endpointsApi'
+import { EndpointCreateArg, EndpointEdit } from '@/entities/Endpoints'
+import { EndpointCreate } from '../../ui/EndpointCreate/EndpointCreate'
 
 export interface EndpointCardProps {
   className?: string
@@ -15,13 +14,6 @@ export interface EndpointCardProps {
   isLoading?: boolean
   readonly?: boolean
   create?: boolean
-  onChangeContext?: (value?: string) => void
-  onChangeExtension?: (value?: string) => void
-  onChangeTransport?: (value?: string) => void
-  onChangeCodecs?: (value?: Codecs) => void
-  onChangeMaxContacts?: (value?: string) => void
-  onChangeAuthType?: (value?: string) => void
-  onCreate?: (data?: EndpointCreateArg) => void
 }
 
 export const EndpointCard = memo((props: EndpointCardProps) => {
@@ -32,23 +24,9 @@ export const EndpointCard = memo((props: EndpointCardProps) => {
     data
   } = props
 
-  const [endpointMutation] = useSetEndpoints()
-
-  const handleCreateEndpoint = useCallback((data: EndpointCreateArg) => {
-    try {
-      endpointMutation([{ ...data }])
-    } catch (e) {
-      throw Error()
-    }
-  }, [endpointMutation])
-
-  const onCreate = useCallback((data: EndpointCreateArg) => {
-    handleCreateEndpoint(data)
-  }, [handleCreateEndpoint])
-
   if (create) {
     return (
-            <EndpointCreate onCreate={onCreate} data={data} create {...props} />
+            <EndpointCreate data={data} create {...props} />
     )
   }
 
