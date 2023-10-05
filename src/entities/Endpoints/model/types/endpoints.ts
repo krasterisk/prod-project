@@ -1,5 +1,5 @@
 export interface Endpoint {
-  id: string
+  id?: string
   endpoint_id: string
   username: string
   password: string

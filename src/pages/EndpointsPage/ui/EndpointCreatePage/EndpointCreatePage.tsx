@@ -7,7 +7,7 @@ export const EndpointCreatePage = memo(() => {
   return (
         <Page data-testid={'EndpointsPage'}>
             <VStack gap='8'>
-                <EndpointCard create />
+                <EndpointCard />
             </VStack>
         </Page>
   )

@@ -6,13 +6,12 @@ import { Card } from '@/shared/ui/redesigned/Card'
 import { AppLink } from '@/shared/ui/redesigned/AppLink'
 import { getRouteEndpoints } from '@/shared/const/router'
 import { Button } from '@/shared/ui/redesigned/Button'
-import { EndpointCreateArg } from '../..'
 import { Text } from '@/shared/ui/redesigned/Text'
 import { HStack } from '@/shared/ui/redesigned/Stack'
 
 interface EndpointCreateHeaderProps {
   className?: string
-  onCreate?: (data: EndpointCreateArg) => void
+  onCreate?: () => void
 }
 
 export const EndpointCreateHeader = memo((props: EndpointCreateHeaderProps) => {
@@ -48,9 +47,11 @@ export const EndpointCreateHeader = memo((props: EndpointCreateHeaderProps) => {
                     title={t('Создать') ?? ''}
                     variant={'outline'}
                     color={'success'}
+                    onClick={onCreate}
                 >
                     {t('Создать')}
                 </Button>
+
             </HStack>
         </Card>
   )

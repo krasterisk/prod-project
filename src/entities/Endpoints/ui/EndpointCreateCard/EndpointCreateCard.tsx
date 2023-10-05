@@ -5,20 +5,13 @@ import { memo, useCallback, useState } from 'react'
 import { Card } from '@/shared/ui/redesigned/Card'
 import { HStack, VStack } from '@/shared/ui/redesigned/Stack'
 import { Input } from '@/shared/ui/redesigned/Input'
-import { Codecs, CodecSelect } from '@/entities/Codecs'
-import { EndpointCreateArg } from '../..'
-import { EndpointCreateHeader } from '../EndpointCreateHeader/EndpointCreateHeader'
+import { CodecSelect } from '@/entities/Codecs'
+import { EndpointCreateHeader } from '../../ui/EndpointCreateHeader/EndpointCreateHeader'
+import { Endpoint } from '../../model/types/endpoints'
 
 interface EndpointCreateCardProps {
   className?: string
-  data?: EndpointCreateArg
-  onChangeContext?: (value?: string) => void
-  onChangeExtension?: (value?: string) => void
-  onChangeTransport?: (value?: string) => void
-  onChangeCodecs?: (value?: Codecs) => void
-  onChangeMaxContacts?: (value?: string) => void
-  onChangeAuthType?: (value?: string) => void
-  onCreate?: (data: EndpointCreateArg) => void
+  onCreate?: (data: Endpoint) => void
 }
 
 export const EndpointCreateCard = memo((props: EndpointCreateCardProps) => {
@@ -27,22 +20,26 @@ export const EndpointCreateCard = memo((props: EndpointCreateCardProps) => {
     onCreate
   } = props
 
-  const [formFields, setFormFields] = useState<EndpointCreateArg>(
-    {
-      endpoint_id: '',
-      allow: '',
-      auth_type: '',
-      context: '',
-      max_contacts: 0,
-      password: '',
-      transport: '',
-      username: ''
-    })
+  const initEndpoint = {
+    endpoint_id: 'TEST',
+    allow: 'alaw',
+    auth_type: 'userpass',
+    context: '',
+    max_contacts: 0,
+    password: '123',
+    transport: 'udp',
+    username: '',
+    vpbx_user_id: '0'
+  }
+  const [formFields, setFormFields] = useState<Endpoint>(initEndpoint)
 
   const { t } = useTranslation('endpoints')
 
-  const createChangeHandler = (field: keyof EndpointCreateArg) => (value: string) => {
-    setFormFields({ ...formFields, [field]: value })
+  const createChangeHandler = (field: keyof Endpoint) => (value: string) => {
+    setFormFields({
+      ...formFields,
+      [field]: value
+    })
   }
 
   const createHandler = useCallback(() => {
@@ -50,12 +47,9 @@ export const EndpointCreateCard = memo((props: EndpointCreateCardProps) => {
   }, [formFields, onCreate])
 
   return (
-        <VStack gap={'8'} max className={classNames(cls.EndpointCreateHeader, {}, [className])}>
-            <EndpointCreateHeader
-                onCreate={createHandler}
-                className={cls.EndpointCreateHeader}
-            />
-            <Card className={cls.EndpointCreateCard} max padding={'8'} border={'partial'}>
+        <VStack gap={'8'} max className={classNames(cls.EndpointCreateCard, {}, [className])}>
+            <EndpointCreateHeader onCreate={createHandler}/>
+            <Card max padding={'8'} border={'partial'}>
                 <HStack gap={'24'} max>
                     <VStack gap={'16'}>
                         <Input
