@@ -1,5 +1,5 @@
 import { rtkApi } from '@/shared/api/rtkApi'
-import { Endpoint, EndpointCreateArg } from '@/entities/Endpoints'
+import { Endpoint } from '@/entities/Endpoints'
 
 const endpointsApi = rtkApi.injectEndpoints({
   endpoints: (build) => ({
@@ -8,7 +8,7 @@ const endpointsApi = rtkApi.injectEndpoints({
         url: '/endpoints'
       })
     }),
-    setEndpoints: build.mutation<void | never, EndpointCreateArg[]>({
+    setEndpoints: build.mutation<void | never, Endpoint[]>({
       query: (arg) => ({
         url: '/endpoints',
         method: 'POST',

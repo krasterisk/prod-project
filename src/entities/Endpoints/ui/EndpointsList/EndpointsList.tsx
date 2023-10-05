@@ -1,20 +1,45 @@
 import { classNames } from '@/shared/lib/classNames/classNames'
 import cls from './EndpointsList.module.scss'
-import { memo } from 'react'
+import React from 'react'
 import { VStack } from '@/shared/ui/redesigned/Stack'
 import { Skeleton } from '@/shared/ui/redesigned/Skeleton'
 import { Card } from '@/shared/ui/redesigned/Card'
 import { Table } from '@/shared/ui/redesigned/Table/Table'
-import { EndpointsListProps } from '../../model/types/endpoints'
-import { endpointsColumns } from '../../model/types/EndpointsColumns'
+import { Endpoint, EndpointsListProps } from '../../model/types/endpoints'
 import { EndpointsListHeader } from '../EndpointsListHeader/EndpointsListHeader'
+import { createColumnHelper } from '@tanstack/react-table'
+import { useTranslation } from 'react-i18next'
 
-export const EndpointsList = memo((props: EndpointsListProps) => {
+export const EndpointsList = (props: EndpointsListProps) => {
   const {
     className,
     isLoading,
     data
   } = props
+
+  const { t } = useTranslation('endpoints')
+
+  const columnHelper = createColumnHelper<Endpoint>()
+
+  const endpointsColumns = [
+    columnHelper.accessor('endpoint_id', {
+      id: 'endpoint_id',
+      cell: info => info.getValue(),
+      header: () => t('Номер')
+    }),
+    columnHelper.accessor(row => row.username, {
+      id: 'UserName',
+      cell: info => <i>{info.getValue()}</i>,
+      header: () => t('Имя пользователя')
+    }),
+    columnHelper.accessor('context', {
+      header: () => t('Контекст'),
+      cell: info => info.renderValue()
+    }),
+    columnHelper.accessor('allow', {
+      header: () => t('Кодеки')
+    })
+  ]
 
   if (isLoading) {
     return (
@@ -50,4 +75,4 @@ export const EndpointsList = memo((props: EndpointsListProps) => {
             </Card>
         </VStack>
   )
-})
+}

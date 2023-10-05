@@ -54,6 +54,12 @@ export const EndpointCreateCard = memo((props: EndpointCreateCardProps) => {
                     <VStack gap={'16'}>
                         <Input
                             label={t('Номер') ?? ''}
+                            onChange={createChangeHandler('endpoint_id')}
+                            data-testid={'EndpointCard.endpoint_id'}
+                            value={formFields.endpoint_id}
+                        />
+                        <Input
+                            label={t('Имя пользователя') ?? ''}
                             onChange={createChangeHandler('username')}
                             data-testid={'EndpointCard.Extension'}
                             value={formFields.username}
@@ -81,6 +87,7 @@ export const EndpointCreateCard = memo((props: EndpointCreateCardProps) => {
                         <CodecSelect
                             onChange={createChangeHandler('allow')}
                             data-testid={'EndpointCard.Codecs'}
+                            value={formFields.allow}
                         />
                         <Input
                             label={t('Количество одновременных звонков') ?? ''}

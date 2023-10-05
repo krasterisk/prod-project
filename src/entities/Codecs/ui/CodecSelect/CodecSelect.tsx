@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next'
 
 interface CodecSelectProps {
   className?: string
-  value?: Codecs
+  value?: string
   onChange?: (value: Codecs) => void
   readonly?: boolean
 }

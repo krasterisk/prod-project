@@ -8,6 +8,6 @@ export const Endpoints = () => {
   } = useEndpoints(null)
 
   return (
-        <EndpointsList isLoading={isLoading} data={data}/>
+        <EndpointsList isLoading={isLoading} data={data} />
   )
 }
