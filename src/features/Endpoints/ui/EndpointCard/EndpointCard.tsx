@@ -4,7 +4,7 @@ import { HStack, VStack } from '@/shared/ui/redesigned/Stack'
 import { Text } from '@/shared/ui/redesigned/Text'
 import { Card } from '@/shared/ui/redesigned/Card'
 import { Skeleton } from '@/shared/ui/redesigned/Skeleton'
-import { useEndpoints, useSetEndpoints } from '../../api/endpointsApi'
+import { useSetEndpoints } from '../../api/endpointsApi'
 import { Endpoint, EndpointCreateCard } from '@/entities/Endpoints'
 import { classNames } from '@/shared/lib/classNames/classNames'
 import cls from './EndpointCard.module.scss'
@@ -25,21 +25,18 @@ export const EndpointCard = memo((props: EndpointCardProps) => {
 
   const { t } = useTranslation('endpoints')
   const [endpointMutation] = useSetEndpoints()
-  const { refetch } = useEndpoints(null)
 
-  const handleCreateEndpoint = useCallback((data: Endpoint) => {
+  const handleCreateEndpoint = useCallback(async (data: Endpoint) => {
     try {
-      endpointMutation([{ ...data }])
-      refetch()
+      await endpointMutation([{ ...data }])
     } catch (e) {
       throw Error()
     }
-  }, [endpointMutation, refetch])
+  }, [endpointMutation])
 
   const onCreate = useCallback((data: Endpoint) => {
     handleCreateEndpoint(data)
-    refetch()
-  }, [handleCreateEndpoint, refetch])
+  }, [handleCreateEndpoint])
 
   if (isLoading) {
     return (

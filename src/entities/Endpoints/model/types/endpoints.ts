@@ -14,7 +14,5 @@ export interface Endpoint {
 export interface EndpointsListProps {
   className?: string
   isLoading?: boolean
-  refetch?: () => void
   data?: Endpoint[]
-
 }
