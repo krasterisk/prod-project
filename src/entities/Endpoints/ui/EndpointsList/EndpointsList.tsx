@@ -10,7 +10,7 @@ import { EndpointsListHeader } from '../EndpointsListHeader/EndpointsListHeader'
 import { createColumnHelper } from '@tanstack/react-table'
 import { useTranslation } from 'react-i18next'
 
-export const EndpointsList = (props: EndpointsListProps) => {
+const EndpointsList = (props: EndpointsListProps) => {
   const {
     className,
     isLoading,
@@ -76,3 +76,5 @@ export const EndpointsList = (props: EndpointsListProps) => {
         </VStack>
   )
 }
+
+export default EndpointsList

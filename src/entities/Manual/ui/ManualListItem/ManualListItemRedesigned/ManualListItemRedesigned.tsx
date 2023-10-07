@@ -9,7 +9,6 @@ import EyeLogo from '@/shared/assets/icons/eye.svg'
 import { ManualBlockTypes } from '../../../model/consts/consts'
 import { ManualTextBlock } from '../../../model/types/manual'
 import { Card } from '@/shared/ui/redesigned/Card'
-import { Avatar } from '@/shared/ui/redesigned/Avatar'
 import { AppImage } from '@/shared/ui/redesigned/AppImage'
 import { Skeleton } from '@/shared/ui/redesigned/Skeleton'
 import { ManualBlockTextComponent } from '../../ManualBlockTextComponent/ManualBlockTextComponent'
@@ -17,6 +16,7 @@ import { AppLink } from '@/shared/ui/redesigned/AppLink'
 import { getRouteManualDetails } from '@/shared/const/router'
 import { Button } from '@/shared/ui/redesigned/Button'
 import { HStack, VStack } from '@/shared/ui/redesigned/Stack'
+import { Avatar } from '@/shared/ui/redesigned/Avatar'
 
 export const ManualListItemRedesigned = memo((props: ManualListItemProps) => {
   const {
@@ -30,8 +30,8 @@ export const ManualListItemRedesigned = memo((props: ManualListItemProps) => {
 
   const userInfo = (
         <>
-            <Avatar src={manual.user.avatar} size={32} className={cls.avatar} />
-            <Text bold text={manual.user.username}/>
+             <Avatar src={manual.user.avatar} size={32} className={cls.avatar} />
+             <Text bold text={manual.user.username}/>
         </>
   )
 

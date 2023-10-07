@@ -1,6 +1,6 @@
 import React from 'react'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
-import { EndpointsList } from './EndpointsList'
+import { EndpointsList } from '../../index'
 
 export default {
   title: 'shared/EndpointsList',
