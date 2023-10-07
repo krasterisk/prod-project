@@ -1,4 +1,4 @@
 export { EndpointCreateCard } from './ui/EndpointCreateCard/EndpointCreateCard'
-export { EndpointsList } from './ui/EndpointsList/EndpointsList'
 export { EndpointCreateHeader } from './ui/EndpointCreateHeader/EndpointCreateHeader'
-export type { Endpoint } from './model/types/endpoints'
+export type { Endpoint, EndpointsListProps } from './model/types/endpoints'
+export { EndpointsListAsync as EndpointsList } from './ui/EndpointsList/EndpointsListAsync'

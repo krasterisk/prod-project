@@ -5,20 +5,13 @@ import { VStack } from '@/shared/ui/redesigned/Stack'
 import { Skeleton } from '@/shared/ui/redesigned/Skeleton'
 import { Card } from '@/shared/ui/redesigned/Card'
 import { Table } from '@/shared/ui/redesigned/Table/Table'
-import { Endpoint } from '../../model/types/endpoints'
+import { Endpoint, EndpointsListProps } from '../../model/types/endpoints'
 import { EndpointsListHeader } from '../EndpointsListHeader/EndpointsListHeader'
 import { createColumnHelper } from '@tanstack/react-table'
 import { useTranslation } from 'react-i18next'
 import { ErrorGetData } from '@/entities/ErrorGetData'
 
-interface EndpointsListProps {
-  className?: string
-  isLoading?: boolean
-  isError?: boolean
-  data?: Endpoint[]
-}
-
-export const EndpointsList = (props: EndpointsListProps) => {
+const EndpointsList = (props: EndpointsListProps) => {
   const {
     className,
     isLoading,
@@ -89,3 +82,5 @@ export const EndpointsList = (props: EndpointsListProps) => {
         </VStack>
   )
 }
+
+export default EndpointsList
