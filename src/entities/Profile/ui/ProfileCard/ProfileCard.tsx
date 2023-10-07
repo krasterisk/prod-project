@@ -4,9 +4,9 @@ import { Profile } from '../../model/types/profile'
 
 import {
   ProfileCardRedesigned,
-  ProfileCardRedesignedError,
   ProfileCardRedesignedSkeleton
 } from '../ProfileCardRedesigned/ProfileCardRedesigned'
+import { ErrorGetData } from '../../../ErrorGetData'
 
 export interface ProfileCardProps {
   className?: string
@@ -35,7 +35,7 @@ export const ProfileCard = (props: ProfileCardProps) => {
 
   if (error) {
     return (
-        <ProfileCardRedesignedError />
+        <ErrorGetData />
     )
   }
 

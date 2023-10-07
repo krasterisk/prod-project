@@ -6,6 +6,7 @@ export const Endpoints = () => {
   const {
     data,
     isLoading,
+    isError,
     refetch
   } = useEndpoints(null)
 
@@ -15,6 +16,6 @@ export const Endpoints = () => {
   }, [refetch])
 
   return (
-        <EndpointsList isLoading={isLoading} data={data} />
+        <EndpointsList isLoading={isLoading} isError={isError} data={data} />
   )
 }

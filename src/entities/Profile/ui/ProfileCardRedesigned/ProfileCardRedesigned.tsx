@@ -8,7 +8,6 @@ import { CurrencySelect } from '@/entities/Currency'
 import { ProfileCardProps } from '../ProfileCard/ProfileCard'
 import { useTranslation } from 'react-i18next'
 import { Skeleton } from '@/shared/ui/redesigned/Skeleton'
-import { Text } from '@/shared/ui/redesigned/Text'
 
 export const ProfileCardRedesignedSkeleton = () => {
   return (
@@ -34,24 +33,6 @@ export const ProfileCardRedesignedSkeleton = () => {
           </HStack>
         </VStack>
       </Card>
-  )
-}
-
-export const ProfileCardRedesignedError = () => {
-  const { t } = useTranslation('profile')
-
-  return (
-      <HStack
-          justify={'center'}
-          max
- >
-        <Text
-            variant={'error'}
-            title={t('Ошибка получения данных профиля!')}
-            text={t('Попробуйте обновить страницу')}
-            align={'center'}
-        />
-      </HStack>
   )
 }
 

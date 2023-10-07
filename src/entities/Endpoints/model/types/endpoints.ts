@@ -10,9 +10,3 @@ export interface Endpoint {
   auth_type: string
   vpbx_user_id: string
 }
-
-export interface EndpointsListProps {
-  className?: string
-  isLoading?: boolean
-  data?: Endpoint[]
-}
