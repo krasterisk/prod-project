@@ -5,11 +5,10 @@ import { EndpointsList } from '@/entities/Endpoints'
 export const Endpoints = () => {
   const {
     data,
-    isLoading,
-    isError
+    isLoading
   } = useEndpoints(null)
 
   return (
-        <EndpointsList isLoading={isLoading} isError={isError} data={data} />
+      <EndpointsList isLoading={isLoading} endpoints={data} />
   )
 }

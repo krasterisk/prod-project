@@ -8,6 +8,7 @@ import { Input } from '@/shared/ui/redesigned/Input'
 import { CodecSelect } from '@/entities/Codecs'
 import { EndpointCreateHeader } from '../../ui/EndpointCreateHeader/EndpointCreateHeader'
 import { Endpoint } from '../../model/types/endpoints'
+import { useNavigate } from 'react-router-dom'
 
 interface EndpointCreateCardProps {
   className?: string
@@ -34,6 +35,7 @@ export const EndpointCreateCard = memo((props: EndpointCreateCardProps) => {
   const [formFields, setFormFields] = useState<Endpoint>(initEndpoint)
 
   const { t } = useTranslation('endpoints')
+  const navigate = useNavigate()
 
   const createChangeHandler = (field: keyof Endpoint) => (value: string) => {
     setFormFields({
@@ -44,7 +46,7 @@ export const EndpointCreateCard = memo((props: EndpointCreateCardProps) => {
 
   const createHandler = useCallback(() => {
     onCreate?.(formFields)
-  }, [formFields, onCreate])
+  }, [formFields, navigate, onCreate])
 
   return (
         <VStack gap={'8'} max className={classNames(cls.EndpointCreateCard, {}, [className])}>

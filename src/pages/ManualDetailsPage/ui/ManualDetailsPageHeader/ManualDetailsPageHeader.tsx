@@ -1,7 +1,7 @@
 import { classNames } from '@/shared/lib/classNames/classNames'
 import { useTranslation } from 'react-i18next'
 import { memo, useCallback } from 'react'
-import { Button, ButtonTheme } from '@/shared/ui/deprecated/Button'
+import { Button } from '@/shared/ui/redesigned/Button'
 import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { getManualDetailsData } from '@/entities/Manual'
@@ -36,11 +36,10 @@ export const ManualDetailsPageHeader = memo((props: ManualDetailsPageHeaderProps
 
   return (
         <HStack justify='between' max className={classNames('', {}, [className])}>
-            <Button theme={ButtonTheme.OUTLINE} onClick={onBackToList}>
+            <Button onClick={onBackToList}>
                 {t('Назад к списку')}
             </Button>
             {canEdit && (<Button
-                theme={ButtonTheme.OUTLINE}
                 onClick={onEditPage}
             >
                 {t('Редактировать')}

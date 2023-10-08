@@ -15,5 +15,5 @@ export interface EndpointsListProps {
   className?: string
   isLoading?: boolean
   isError?: boolean
-  data?: Endpoint[]
+  endpoints?: Endpoint[]
 }

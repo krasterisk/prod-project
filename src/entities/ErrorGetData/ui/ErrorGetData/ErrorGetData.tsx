@@ -3,7 +3,11 @@ import { memo } from 'react'
 import { HStack } from '@/shared/ui/redesigned/Stack'
 import { Text } from '@/shared/ui/redesigned/Text'
 
-export const ErrorGetData = memo(() => {
+interface ErrorGetDataProps {
+  error?: string
+}
+
+export const ErrorGetData = memo(({ error }: ErrorGetDataProps) => {
   const { t } = useTranslation()
 
   return (
@@ -14,7 +18,7 @@ export const ErrorGetData = memo(() => {
                 <Text
                     variant={'error'}
                     title={t('Ошибка получения данных!')}
-                    text={t('Попробуйте обновить страницу')}
+                    text={error || t('Попробуйте обновить страницу')}
                     align={'center'}
                 />
             </HStack>

@@ -16,7 +16,7 @@ const EndpointsList = (props: EndpointsListProps) => {
     className,
     isLoading,
     isError,
-    data
+    endpoints
   } = props
 
   const { t } = useTranslation('endpoints')
@@ -77,7 +77,7 @@ const EndpointsList = (props: EndpointsListProps) => {
                 max
                 border={'partial'}
             >
-                <Table data={data} columns={endpointsColumns}/>
+                <Table data={endpoints} columns={endpointsColumns}/>
             </Card>
         </VStack>
   )
