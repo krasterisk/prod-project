@@ -9,12 +9,14 @@ import { Endpoint, EndpointsListProps } from '../../model/types/endpoints'
 import { EndpointsListHeader } from '../EndpointsListHeader/EndpointsListHeader'
 import { createColumnHelper } from '@tanstack/react-table'
 import { useTranslation } from 'react-i18next'
+import { ErrorGetData } from '@/entities/ErrorGetData'
 
 const EndpointsList = (props: EndpointsListProps) => {
   const {
     className,
     isLoading,
-    data
+    isError,
+    endpoints
   } = props
 
   const { t } = useTranslation('endpoints')
@@ -40,6 +42,10 @@ const EndpointsList = (props: EndpointsListProps) => {
       header: () => t('Кодеки')
     })
   ]
+
+  if (isError) {
+        <ErrorGetData />
+  }
 
   if (isLoading) {
     return (
@@ -71,7 +77,7 @@ const EndpointsList = (props: EndpointsListProps) => {
                 max
                 border={'partial'}
             >
-                <Table data={data} columns={endpointsColumns}/>
+                <Table data={endpoints} columns={endpointsColumns}/>
             </Card>
         </VStack>
   )

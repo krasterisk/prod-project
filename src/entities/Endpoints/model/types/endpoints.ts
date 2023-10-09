@@ -14,5 +14,6 @@ export interface Endpoint {
 export interface EndpointsListProps {
   className?: string
   isLoading?: boolean
-  data?: Endpoint[]
+  isError?: boolean
+  endpoints?: Endpoint[]
 }

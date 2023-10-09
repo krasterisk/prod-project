@@ -43,9 +43,6 @@ export const EndpointCreateHeader = memo((props: EndpointCreateHeaderProps) => {
                         {t('Закрыть')}
                     </Button>
                 </AppLink>
-                <AppLink
-                    to={getRouteEndpoints()}
-                >
                     <Button
                         title={t('Создать') ?? ''}
                         variant={'outline'}
@@ -54,7 +51,6 @@ export const EndpointCreateHeader = memo((props: EndpointCreateHeaderProps) => {
                     >
                         {t('Создать')}
                     </Button>
-                </AppLink>
             </HStack>
         </Card>
   )
