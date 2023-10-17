@@ -1,4 +1,5 @@
 import { memo, useCallback } from 'react'
+import { useTranslation } from 'react-i18next'
 import { HStack, VStack } from '@/shared/ui/redesigned/Stack'
 import { Card } from '@/shared/ui/redesigned/Card'
 import { Skeleton } from '@/shared/ui/redesigned/Skeleton'
@@ -9,7 +10,6 @@ import cls from './EndpointCard.module.scss'
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch'
 import { getRouteEndpoints } from '@/shared/const/router'
 import { useNavigate } from 'react-router-dom'
-import { ErrorGetData } from '@/entities/ErrorGetData'
 
 export interface EndpointCardProps {
   className?: string
@@ -24,6 +24,7 @@ export const EndpointCard = memo((props: EndpointCardProps) => {
     isLoading
   } = props
 
+  const { t } = useTranslation('endpoints')
   const [endpointMutation, { isError, error }] = useSetEndpoints()
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
@@ -41,9 +42,12 @@ export const EndpointCard = memo((props: EndpointCardProps) => {
         navigate(getRouteEndpoints())
       })
       .catch((error) => {
-        console.log(error)
+        console.log(error.data.message)
       })
   }, [dispatch, endpointMutation, navigate])
+
+  // console.log('error: ', error.status)
+  // const err = isError ? error.status : ''
 
   const onCreate = useCallback((data: Endpoint) => {
     handleCreateEndpoint(data)
@@ -68,15 +72,11 @@ export const EndpointCard = memo((props: EndpointCardProps) => {
     )
   }
 
-  if (isError) {
-    return (
-        <ErrorGetData error={JSON.stringify(error)}/>
-    )
-  }
-
   return (
         <VStack gap={'8'} max className={classNames(cls.EndpointCard, {}, [className])}>
-            <EndpointCreateCard onCreate={onCreate}/>
+            <EndpointCreateCard
+                onCreate={onCreate}
+                error={JSON.stringify(error)} />
         </VStack>
   )
 })

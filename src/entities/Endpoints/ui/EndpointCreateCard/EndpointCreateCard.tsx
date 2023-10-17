@@ -8,17 +8,19 @@ import { Input } from '@/shared/ui/redesigned/Input'
 import { CodecSelect } from '@/entities/Codecs'
 import { EndpointCreateHeader } from '../../ui/EndpointCreateHeader/EndpointCreateHeader'
 import { Endpoint } from '../../model/types/endpoints'
-import { useNavigate } from 'react-router-dom'
+import { ErrorGetData } from '@/entities/ErrorGetData'
 
 interface EndpointCreateCardProps {
   className?: string
   onCreate?: (data: Endpoint) => void
+  error?: string
 }
 
 export const EndpointCreateCard = memo((props: EndpointCreateCardProps) => {
   const {
     className,
-    onCreate
+    onCreate,
+    error
   } = props
 
   const initEndpoint = {
@@ -35,7 +37,6 @@ export const EndpointCreateCard = memo((props: EndpointCreateCardProps) => {
   const [formFields, setFormFields] = useState<Endpoint>(initEndpoint)
 
   const { t } = useTranslation('endpoints')
-  const navigate = useNavigate()
 
   const createChangeHandler = (field: keyof Endpoint) => (value: string) => {
     setFormFields({
@@ -46,11 +47,12 @@ export const EndpointCreateCard = memo((props: EndpointCreateCardProps) => {
 
   const createHandler = useCallback(() => {
     onCreate?.(formFields)
-  }, [formFields, navigate, onCreate])
+  }, [formFields, onCreate])
 
   return (
         <VStack gap={'8'} max className={classNames(cls.EndpointCreateCard, {}, [className])}>
             <EndpointCreateHeader onCreate={createHandler}/>
+            { error ? <ErrorGetData error={error} /> : ''}
             <Card max padding={'8'} border={'partial'}>
                 <HStack gap={'24'} max>
                     <VStack gap={'16'}>

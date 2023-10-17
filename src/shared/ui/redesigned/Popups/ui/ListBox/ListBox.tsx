@@ -1,4 +1,4 @@
-import { Fragment, ReactNode, useMemo, useState } from 'react'
+import { Fragment, ReactNode, useState } from 'react'
 import { Listbox as HListBox } from '@headlessui/react'
 import { classNames } from '@/shared/lib/classNames/classNames'
 import { HStack } from '../../../../redesigned/Stack'
@@ -61,9 +61,9 @@ export function ListBox<T extends string> (props: ListBoxProps<T>) {
     return <>{values.join(', ')}</>
   }
 
-  const selectedItem = useMemo(() => {
-    return items?.find(item => item.value === value)
-  }, [items, value])
+  // const selectedItem = useMemo(() => {
+  //   return items?.find(item => item.value === value)
+  // }, [items, value])
 
   // console.log(selectedItems)
 
@@ -85,7 +85,7 @@ export function ListBox<T extends string> (props: ListBoxProps<T>) {
                                 <SelectedItems values={selectedItems}/>
                             )
                           : (
-                              selectedItem?.content ?? defaultValue
+                              defaultValue
                             )}
                     </Button>
                 </HListBox.Button>
