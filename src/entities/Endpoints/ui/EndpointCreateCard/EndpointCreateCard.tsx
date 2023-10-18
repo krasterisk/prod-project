@@ -13,14 +13,14 @@ import { ErrorGetData } from '@/entities/ErrorGetData'
 interface EndpointCreateCardProps {
   className?: string
   onCreate?: (data: Endpoint) => void
-  error?: string
+  isError?: boolean
 }
 
 export const EndpointCreateCard = memo((props: EndpointCreateCardProps) => {
   const {
     className,
     onCreate,
-    error
+    isError
   } = props
 
   const initEndpoint = {
@@ -52,7 +52,7 @@ export const EndpointCreateCard = memo((props: EndpointCreateCardProps) => {
   return (
         <VStack gap={'8'} max className={classNames(cls.EndpointCreateCard, {}, [className])}>
             <EndpointCreateHeader onCreate={createHandler}/>
-            { error ? <ErrorGetData error={error} /> : ''}
+            { isError ? <ErrorGetData error={t('Проверьте корректность данных абонента') || ''}/> : ''}
             <Card max padding={'8'} border={'partial'}>
                 <HStack gap={'24'} max>
                     <VStack gap={'16'}>

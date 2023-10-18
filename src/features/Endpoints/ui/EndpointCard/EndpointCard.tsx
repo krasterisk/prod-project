@@ -25,7 +25,7 @@ export const EndpointCard = memo((props: EndpointCardProps) => {
   } = props
 
   const { t } = useTranslation('endpoints')
-  const [endpointMutation, { isError, error }] = useSetEndpoints()
+  const [endpointMutation, { isError }] = useSetEndpoints()
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
 
@@ -33,7 +33,7 @@ export const EndpointCard = memo((props: EndpointCardProps) => {
     endpointMutation([{ ...data }])
       .unwrap()
       .then((payload) => {
-        console.log('fulfilled', payload)
+        // console.log('fulfilled', payload)
         dispatch(
           endpointsApi.util.updateQueryData('getEndpoints', null, (draftEndpoints) => {
             draftEndpoints.push(payload[0])
@@ -41,13 +41,9 @@ export const EndpointCard = memo((props: EndpointCardProps) => {
         )
         navigate(getRouteEndpoints())
       })
-      .catch((error) => {
-        console.log(error.data.message)
+      .catch(() => {
       })
   }, [dispatch, endpointMutation, navigate])
-
-  // console.log('error: ', error.status)
-  // const err = isError ? error.status : ''
 
   const onCreate = useCallback((data: Endpoint) => {
     handleCreateEndpoint(data)
@@ -76,7 +72,7 @@ export const EndpointCard = memo((props: EndpointCardProps) => {
         <VStack gap={'8'} max className={classNames(cls.EndpointCard, {}, [className])}>
             <EndpointCreateCard
                 onCreate={onCreate}
-                error={JSON.stringify(error)} />
+                isError={isError} />
         </VStack>
   )
 })
