@@ -9,6 +9,7 @@ import { CodecSelect } from '@/entities/Codecs'
 import { EndpointCreateHeader } from '../../ui/EndpointCreateHeader/EndpointCreateHeader'
 import { Endpoint } from '../../model/types/endpoints'
 import { ErrorGetData } from '@/entities/ErrorGetData'
+import { ContextSelect } from '../../../Contexts/ui/ContextSelect/ContextSelect'
 
 interface EndpointCreateCardProps {
   className?: string
@@ -52,7 +53,12 @@ export const EndpointCreateCard = memo((props: EndpointCreateCardProps) => {
   return (
         <VStack gap={'8'} max className={classNames(cls.EndpointCreateCard, {}, [className])}>
             <EndpointCreateHeader onCreate={createHandler}/>
-            { isError ? <ErrorGetData error={t('Проверьте корректность данных абонента') || ''}/> : ''}
+            { isError
+              ? <ErrorGetData
+                title={t('Ошибка в данных абонента') || ''}
+                text={t('Проверьте заполняемые поля и повторите ещё раз') || ''}
+            />
+              : ''}
             <Card max padding={'8'} border={'partial'}>
                 <HStack gap={'24'} max>
                     <VStack gap={'16'}>
@@ -68,11 +74,8 @@ export const EndpointCreateCard = memo((props: EndpointCreateCardProps) => {
                             data-testid={'EndpointCard.Extension'}
                             value={formFields.username}
                         />
-                        <Input
-                            label={t('Контекст') ?? ''}
-                            onChange={createChangeHandler('context')}
+                        <ContextSelect
                             data-testid={'EndpointCard.Context'}
-                            value={formFields.context}
                         />
                         <Input
                             label={t('Транспортный протокол') ?? ''}
