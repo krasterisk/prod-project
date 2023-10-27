@@ -1,13 +1,12 @@
 import { ListBox } from '@/shared/ui/redesigned/Popups'
-import { memo } from 'react'
+import { memo, useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useGetContexts } from '../../api/contextApi'
-import { Contexts } from '../../model/Contexts'
 
 interface ContextsSelectProps {
   className?: string
   value?: string
-  onChange?: (value: Contexts) => void
+  onChange?: (value: string) => void
   readonly?: boolean
 }
 
@@ -24,9 +23,9 @@ export const ContextSelect = memo(({ className, value, onChange, readonly }: Con
     content: item.name
   }))
 
-  // const onChangeHandler = useCallback((value: string) => {
-  //   onChange?.(value as Contexts)
-  // }, [onChange])
+  const onChangeHandler = useCallback((value: string) => {
+    onChange?.(value)
+  }, [onChange])
 
   const contextProps = {
     className,
@@ -35,9 +34,8 @@ export const ContextSelect = memo(({ className, value, onChange, readonly }: Con
     key: value,
     defaultValue: String(t('Выбрать...')),
     label: String(t('Контекст')),
-    // onChange: onChangeHandler,
+    onChange: onChangeHandler,
     readonly,
-    multiple: true,
     direction: 'bottom-right' as const
   }
   return (

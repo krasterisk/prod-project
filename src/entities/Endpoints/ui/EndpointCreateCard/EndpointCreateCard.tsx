@@ -50,6 +50,8 @@ export const EndpointCreateCard = memo((props: EndpointCreateCardProps) => {
     onCreate?.(formFields)
   }, [formFields, onCreate])
 
+  // console.log(formFields)
+
   return (
         <VStack gap={'8'} max className={classNames(cls.EndpointCreateCard, {}, [className])}>
             <EndpointCreateHeader onCreate={createHandler}/>
@@ -71,11 +73,14 @@ export const EndpointCreateCard = memo((props: EndpointCreateCardProps) => {
                         <Input
                             label={t('Имя пользователя') ?? ''}
                             onChange={createChangeHandler('username')}
-                            data-testid={'EndpointCard.Extension'}
+                            data-testid={'EndpointCard.Username'}
                             value={formFields.username}
                         />
                         <ContextSelect
                             data-testid={'EndpointCard.Context'}
+                            onChange={createChangeHandler('context')}
+                            value={formFields.context}
+
                         />
                         <Input
                             label={t('Транспортный протокол') ?? ''}
@@ -92,8 +97,8 @@ export const EndpointCreateCard = memo((props: EndpointCreateCardProps) => {
                             value={formFields.auth_type}
                         />
                         <CodecSelect
-                            onChange={createChangeHandler('allow')}
                             data-testid={'EndpointCard.Codecs'}
+                            onChange={createChangeHandler('allow')}
                             value={formFields.allow}
                         />
                         <Input

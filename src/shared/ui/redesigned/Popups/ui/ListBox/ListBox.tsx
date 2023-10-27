@@ -48,15 +48,10 @@ export function ListBox<T extends string> (props: ListBoxProps<T>) {
   const handleOnChange = (values: T[]) => {
     setSelectedItems(values)
     if (onChange) {
-      if (props.multiple) {
-        values.forEach((value) => {
-          onChange(value)
-        })
-      } else {
-        onChange(values[0])
-      }
+      multiple ? onChange(values.join(',') as T) : onChange(values as unknown as T)
     }
   }
+
   const SelectedItems = ({ values }: { values: string[] }) => {
     return <>{values.join(', ')}</>
   }
@@ -64,8 +59,6 @@ export function ListBox<T extends string> (props: ListBoxProps<T>) {
   // const selectedItem = useMemo(() => {
   //   return items?.find(item => item.value === value)
   // }, [items, value])
-
-  // console.log(selectedItems)
 
   return (
         <HStack gap="4">
@@ -75,7 +68,7 @@ export function ListBox<T extends string> (props: ListBoxProps<T>) {
                 as="div"
                 className={classNames(cls.ListBox, {}, [className, popupCls.popup])}
                 value={multiple ? selectedItems : value}
-                onChange={multiple ? handleOnChange : onChange}
+                onChange={handleOnChange}
                 multiple={multiple}
             >
                 <HListBox.Button as={'div'} className={cls.trigger}>
@@ -85,7 +78,7 @@ export function ListBox<T extends string> (props: ListBoxProps<T>) {
                                 <SelectedItems values={selectedItems}/>
                             )
                           : (
-                              defaultValue
+                              value || defaultValue
                             )}
                     </Button>
                 </HListBox.Button>
