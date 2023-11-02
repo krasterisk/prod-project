@@ -2,7 +2,6 @@ import { classNames } from '@/shared/lib/classNames/classNames'
 import { useTranslation } from 'react-i18next'
 import React, { memo, useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { getTokenAllData } from '@/app/providers/getTokenData/getTokenData'
 import { getUserAuthData, isUserAdmin, isUserVPBXAdmin, userActions } from '@/entities/User'
 import { getRouteAdmin, getRouteProfile, getRouteSettings } from '@/shared/const/router'
 import { Avatar } from '@/shared/ui/redesigned/Avatar'
@@ -19,7 +18,6 @@ export const AvatarDropdown = memo((props: AvatarDropdownProps) => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const authData = useSelector(getUserAuthData)
-  const userData = getTokenAllData(authData?.token)
   const isVPBXAdmin = useSelector(isUserVPBXAdmin)
   const isAdmin = useSelector(isUserAdmin)
 
@@ -38,7 +36,7 @@ export const AvatarDropdown = memo((props: AvatarDropdownProps) => {
       : []),
     {
       content: t('Профиль'),
-      href: getRouteProfile(String(userData?.id))
+      href: getRouteProfile(String(authData?.id))
     },
     {
       content: t('Настройки'),
@@ -56,7 +54,7 @@ export const AvatarDropdown = memo((props: AvatarDropdownProps) => {
                     className={classNames('', {}, [className])}
                     direction={'bottom-left'}
                     items={items}
-                    trigger={<Avatar size={40} src={userData?.avatar}/>}
+                    trigger={<Avatar size={40} src={authData?.avatar}/>}
                 />
 
   )

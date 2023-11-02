@@ -5,22 +5,18 @@ import { TestAsyncThunk } from '@/shared/lib/tests/TestAsyncThunk/TestAsyncThunk
 describe('loginByUsername.test', () => {
   test('success common', async () => {
     const thunk = new TestAsyncThunk(loginByUsername)
-    const userValue = {
-      id: '1',
-      username: 'admin',
-      password: 'something_token'
-    }
-    thunk.api.post.mockReturnValue(Promise.resolve({ data: userValue }))
+    const userToken = '12313123fasfsadfsdfsdfsdfsf'
+    thunk.api.post.mockReturnValue(Promise.resolve({ data: userToken }))
     const result = await thunk.callThunk({
       username: 'admin',
       password: '123'
     })
 
-    expect(thunk.dispatch).toHaveBeenCalledWith(userActions.setAuthData(userValue))
+    expect(thunk.dispatch).toHaveBeenCalledWith(userActions.setToken(userToken))
     expect(thunk.dispatch).toHaveBeenCalledTimes(3)
     expect(thunk.api.post).toHaveBeenCalled()
     expect(result.meta.requestStatus).toBe('fulfilled')
-    expect(result.payload).toEqual(userValue)
+    expect(result.payload).toEqual(userToken)
   })
 
   test('invalid common', async () => {

@@ -13,5 +13,6 @@
   "Имя пользователя": "Username",
   "Проверьте корректность данных абонента": "Check endpoint data",
   "Ошибка в данных абонента": "Endpoint creation error",
-  "Проверьте заполняемые поля и повторите ещё раз": "Check endpoint data and try again"
+  "Проверьте заполняемые поля и повторите ещё раз": "Check endpoint data and try again",
+  "Кодеки": "Кодеки"
 }

@@ -3,7 +3,6 @@ import { useTranslation } from 'react-i18next'
 import { memo, useCallback } from 'react'
 import { useSelector } from 'react-redux'
 import { getUserAuthData } from '@/entities/User'
-import { getTokenData } from '@/app/providers/getTokenData/getTokenData'
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch'
 import { HStack } from '@/shared/ui/redesigned/Stack'
 import { Text } from '@/shared/ui/redesigned/Text'
@@ -24,7 +23,7 @@ export const EditableProfileCardHeader = memo((props: EditableProfileCardHeaderP
   const readonly = useSelector(getProfileReadonly)
   const authData = useSelector(getUserAuthData)
   const profileData = useSelector(getProfileData)
-  const userId = String(getTokenData(authData?.token))
+  const userId = String(authData?.id)
   const canEdit = String(profileData?.id) === userId
 
   const dispatch = useAppDispatch()

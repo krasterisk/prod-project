@@ -1,4 +1,4 @@
-import { User, userActions } from '@/entities/User'
+import { userActions } from '@/entities/User'
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import { TOKEN_LOCALSTORAGE_KEY } from '@/shared/const/localstorage'
 import { ThunkConfig } from '@/app/providers/StoreProvider'
@@ -9,7 +9,7 @@ interface loginByUsernameProps {
 }
 
 export const loginByUsername = createAsyncThunk<
-User,
+string,
 loginByUsernameProps,
 ThunkConfig<string>>(
   'common/loginByUsername',
@@ -19,17 +19,17 @@ ThunkConfig<string>>(
       rejectWithValue,
       dispatch
     } = thunkAPI
-
     try {
-      const response = await extra.api.post<User>('/auth/login', authData)
+      const response = await extra.api.post<string>('/auth/login', authData)
       if (!response.data) {
         throw new Error()
       }
-      localStorage.setItem(TOKEN_LOCALSTORAGE_KEY, JSON.stringify(response.data))
-      //            localStorage.setItem(TOKEN_LOCALSTORAGE_KEY, JSON.stringify(response.data.token))
-      dispatch(userActions.setAuthData(response.data))
+      // localStorage.setItem(USER_LOCALSTORAGE_KEY, JSON.stringify(response.data))
+      localStorage.setItem(TOKEN_LOCALSTORAGE_KEY, response.data)
+      dispatch(userActions.setToken(response.data))
       return response.data
     } catch (e) {
+      console.log(e)
       return rejectWithValue('error')
     }
   }

@@ -2,16 +2,14 @@ import { getUserAuthData } from '@/entities/User'
 import { SidebarItemType } from '../types/sidebar'
 import MainIcon from '@/shared/assets/icons/home.svg'
 import ManualIcon from '@/shared/assets/icons/article.svg'
-import AboutIcon from '@/shared/assets/icons/Info.svg'
 import ProfileIcon from '@/shared/assets/icons/avatar.svg'
-
-import { getTokenData } from '@/app/providers/getTokenData/getTokenData'
+import EndpointsIcon from '@/shared/assets/icons/endpoints.svg'
+import ContextsIcon from '@/shared/assets/icons/contexts.svg'
 import {
-  getRouteAbout,
   getRouteMain,
   getRouteManuals,
   getRouteEndpoints,
-  getRouteProfile
+  getRouteProfile, getRouteContexts
 } from '@/shared/const/router'
 import { useSelector } from 'react-redux'
 
@@ -22,20 +20,21 @@ export const useSidebarItems = () => {
       path: getRouteMain(),
       Icon: MainIcon,
       text: 'Главная'
-    },
-    {
-      path: getRouteAbout(),
-      Icon: AboutIcon,
-      text: 'О Сайте'
     }
   ]
   if (userData) {
-    const userId = String(getTokenData(userData.token))
+    const userId = String(userData.id)
     sidebarItemsList.push(
       {
         path: getRouteEndpoints(),
-        Icon: ProfileIcon,
+        Icon: EndpointsIcon,
         text: 'Абоненты',
+        authOnly: false
+      },
+      {
+        path: getRouteContexts(),
+        Icon: ContextsIcon,
+        text: 'Контексты',
         authOnly: false
       },
       {

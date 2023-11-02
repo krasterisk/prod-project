@@ -20,7 +20,7 @@ const App = (): any => {
   const toolbar = useAppToolbar()
 
   useEffect(() => {
-    dispatch(userActions.initAuthData())
+    dispatch(userActions.initToken())
   }, [dispatch])
 
   setFeatureFlags({ isAppRedesigned: redesigned })

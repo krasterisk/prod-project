@@ -22,14 +22,15 @@ import {
   getRouteSettings,
   getRouteEndpointCreate,
   getRouteEndpointEdit,
-  getRouteEndpoints
+  getRouteEndpoints, getRouteContexts
 } from '@/shared/const/router'
 import { AppRoutesProps } from '@/shared/types/router'
 import {
   EndpointsPage,
   EndpointCreatePage,
-  EndpointEditPage
-} from '@/pages/EndpointsPage'
+  EndpointEditPage,
+  ContextsListPage
+} from '@/pages/pbx'
 import { SettingPage } from '@/pages/SettingsPage'
 
 export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
@@ -54,6 +55,10 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
     path: getRouteEndpointEdit(':id'),
     element: <EndpointEditPage />,
     authOnly: false
+  },
+  [AppRoutes.CONTEXTS]: {
+    path: getRouteContexts(),
+    element: <ContextsListPage />
   },
   [AppRoutes.ADMIN]: {
     path: getRouteAdmin(),
