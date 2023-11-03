@@ -2,6 +2,7 @@ export enum AppRoutes {
   MAIN = 'main',
   ENDPOINTS = 'endpoints',
   CONTEXTS = 'contexts',
+  CONTEXT_CREATE = 'context_create',
   ABOUT = 'about',
   PROFILE = 'profile',
   ADMIN = 'admin',
@@ -47,5 +48,6 @@ export const AppRouteByPathPattern: Record<string, AppRoutes> = {
   [getRouteManualEdit(':id')]: AppRoutes.MANUAL_EDIT,
   [getRouteEndpointEdit(':id')]: AppRoutes.ENDPOINT_EDIT,
   [getRouteEndpointCreate()]: AppRoutes.ENDPOINT_CREATE,
+  [getRouteContextCreate()]: AppRoutes.CONTEXT_CREATE,
   [getRouteForbidden()]: AppRoutes.FORBIDDEN
 }

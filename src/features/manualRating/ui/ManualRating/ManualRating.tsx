@@ -2,7 +2,6 @@ import { useTranslation } from 'react-i18next'
 import { memo, useCallback } from 'react'
 import { RatingCard } from '@/entities/Rating'
 import { useGetManualRating, useSetManualRating } from '../../api/manualRatingApi'
-import { getTokenData } from '@/app/providers/getTokenData/getTokenData'
 import { getUserAuthData } from '@/entities/User'
 import { useSelector } from 'react-redux'
 import { Skeleton } from '@/shared/ui/redesigned/Skeleton'
@@ -19,7 +18,7 @@ const ManualRating = memo((props: ManualRatingProps) => {
   } = props
   const { t } = useTranslation('manuals')
   const userData = useSelector(getUserAuthData)
-  const userId = getTokenData(userData?.token)
+  const userId = userData?.id
 
   const { data, isLoading } = useGetManualRating({
     postId: Number(manualId),

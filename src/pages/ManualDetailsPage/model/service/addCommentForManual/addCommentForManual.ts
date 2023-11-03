@@ -4,7 +4,6 @@ import { getUserAuthData } from '@/entities/User'
 import { getManualDetailsData } from '@/entities/Manual'
 import { Comments } from '@/entities/Comment'
 import { fetchCommentsByManualId } from '../../service/fetchCommentsByManualId/fetchCommentsByManualId'
-import { getTokenData } from '@/app/providers/getTokenData/getTokenData'
 
 export const addCommentForManual = createAsyncThunk<
 Comments,
@@ -21,7 +20,7 @@ ThunkConfig<string>>(
 
     const userData = getUserAuthData(getState())
     const manual = getManualDetailsData(getState())
-    const decodeUserData = getTokenData(userData?.token)
+    const userId = userData?.id
 
     if (!userData || !text || !manual) {
       return rejectWithValue('no data')
@@ -30,7 +29,7 @@ ThunkConfig<string>>(
     try {
       const response = await extra.api.post<Comments>('/comments', {
         postId: manual?.id,
-        userId: decodeUserData,
+        userId,
         text
       })
       if (!response.data) {

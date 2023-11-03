@@ -13,6 +13,7 @@ export interface User {
   avatar?: string
   token?: string
   roles?: UserRoles[]
+  vpbx_user_id?: string
 }
 
 export interface UserSchema {
