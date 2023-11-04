@@ -42,6 +42,7 @@ export const ContextCreateCard = memo((props: ContextCreateCardProps) => {
   }
 
   const createHandler = useCallback(() => {
+    console.log(formFields)
     onCreate?.(formFields)
   }, [formFields, onCreate])
 
@@ -60,7 +61,7 @@ export const ContextCreateCard = memo((props: ContextCreateCardProps) => {
                         <Input
                             label={t('Наименование контекста') ?? ''}
                             onChange={createChangeHandler('name')}
-                            data-testid={'ConextCard.name'}
+                            data-testid={'ContextCard.name'}
                             value={formFields.name}
                         />
                         <Input

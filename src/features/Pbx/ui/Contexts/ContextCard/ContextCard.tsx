@@ -4,12 +4,15 @@ import { useTranslation } from 'react-i18next'
 import { memo, useCallback } from 'react'
 import { HStack, VStack } from '@/shared/ui/redesigned/Stack'
 import { ContextCreateCard } from '../ContextCreateCard/ContextCreateCard'
-import { useNavigate } from 'react-router-dom'
 import { Context } from '@/entities/Pbx'
-import { getRouteEndpoints } from '@/shared/const/router'
 import { Card } from '@/shared/ui/redesigned/Card'
 import { Skeleton } from '@/shared/ui/redesigned/Skeleton'
-import { useSetContexts } from '../../../api/contextsApi'
+import { useNavigate } from 'react-router-dom'
+import { getRouteContexts } from '@/shared/const/router'
+import { contextsApi, useSetContexts } from '../../../api/contextsApi'
+import { useSelector } from 'react-redux'
+import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch'
+import { getUserAuthData } from '@/entities/User'
 
 interface ContextCardProps {
   className?: string
@@ -26,29 +29,27 @@ export const ContextCard = memo((props: ContextCardProps) => {
 
   const { t } = useTranslation('endpoints')
   const [contextMutation, { isError }] = useSetContexts()
-  //  const dispatch = useAppDispatch()
+  const dispatch = useAppDispatch()
   const navigate = useNavigate()
-  // const userData = useSelector(getUserAuthData)
-  // const vpbx_user_id = userData?.vpbx_user_id || '0'
-
-  console.log(isError)
+  const userData = useSelector(getUserAuthData)
+  const vpbx_user_id = userData?.vpbx_user_id || '0'
 
   const handleCreateContext = useCallback((data: Context) => {
-    console.log(data)
     contextMutation([{ ...data }])
       .unwrap()
       .then((payload) => {
         // console.log('fulfilled', payload)
-        // dispatch(
-        //   contextsApi.util.updateQueryData('getContexts', { vpbx_user_id }, (draftContexts) => {
-        //     draftContexts.push(payload[0])
-        //   })
-        // )
-        navigate(getRouteEndpoints())
+        dispatch(
+          contextsApi.util.updateQueryData('getContexts', { vpbx_user_id }, (draftContexts) => {
+            draftContexts.push(payload[0])
+          })
+        )
+        navigate(getRouteContexts())
       })
-      .catch(() => {
-      })
-  }, [contextMutation, navigate])
+      // .catch(() => {
+      //   console.log(e)
+      // })
+  }, [contextMutation, dispatch, navigate, vpbx_user_id])
 
   const onCreate = useCallback((data: Context) => {
     handleCreateContext(data)
@@ -77,7 +78,8 @@ export const ContextCard = memo((props: ContextCardProps) => {
         <VStack gap={'8'} max className={classNames(cls.ContextCard, {}, [className])}>
             <ContextCreateCard
                 onCreate={onCreate}
-                isError={isError} />
+                isError={isError}
+            />
         </VStack>
   )
 })

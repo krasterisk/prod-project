@@ -3,7 +3,7 @@ export interface Context {
   name: string
   includes: string
   description: string
-  vpbx_user_id: string
+  vpbx_user_id?: string
 }
 
 export interface ContextsListProps {
