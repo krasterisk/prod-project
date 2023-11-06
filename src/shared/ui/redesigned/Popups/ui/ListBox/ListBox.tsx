@@ -20,7 +20,7 @@ interface ListBoxProps<T extends string> {
   items?: Array<ListBoxItem<T>>
   className?: string
   value?: T
-  defaultValue?: string
+  defaultValue?: T
   onChange?: (value: T) => void
   readonly?: boolean
   direction?: DropdownDirection
@@ -38,17 +38,23 @@ export function ListBox<T extends string> (props: ListBoxProps<T>) {
     readonly,
     direction = 'bottom-left',
     label,
-    multiple = false
+    multiple
   } = props
 
   const optionsClasses = [mapDirectionClass[direction], popupCls.menu]
+  const initItem = items && items?.length > 0 && !value ? [items[0].value] : []
 
-  const [selectedItems, setSelectedItems] = useState<T[]>(items ? [items[0]?.value] : [])
+  const [selectedItems, setSelectedItems] = useState<T[]>(initItem)
 
   const handleOnChange = (values: T[]) => {
-    setSelectedItems(values)
-    if (onChange) {
-      multiple ? onChange(values.join(',') as T) : onChange(values as unknown as T)
+    if (multiple) {
+      console.log('multiple_value: ', values)
+
+      setSelectedItems(values)
+      onChange?.(values.join(',') as T)
+    } else {
+      setSelectedItems(values)
+      onChange?.(values as unknown as T)
     }
   }
 
@@ -59,7 +65,6 @@ export function ListBox<T extends string> (props: ListBoxProps<T>) {
   // const selectedItem = useMemo(() => {
   //   return items?.find(item => item.value === value)
   // }, [items, value])
-
   return (
         <HStack gap="4">
             {label && <span>{`${label}>`}</span>}
@@ -67,7 +72,7 @@ export function ListBox<T extends string> (props: ListBoxProps<T>) {
                 disabled={readonly}
                 as="div"
                 className={classNames(cls.ListBox, {}, [className, popupCls.popup])}
-                value={multiple ? selectedItems : value}
+                value={selectedItems}
                 onChange={handleOnChange}
                 multiple={multiple}
             >
@@ -105,7 +110,7 @@ export function ListBox<T extends string> (props: ListBoxProps<T>) {
                                     )}
                                 >
                                     {selected}
-                                    {item.content}
+                                    {item.value}
                                 </li>
                             )}
                         </HListBox.Option>

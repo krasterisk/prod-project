@@ -26,7 +26,7 @@ export const EndpointCard = memo((props: EndpointCardProps) => {
   } = props
 
   const { t } = useTranslation('endpoints')
-  const [endpointMutation, { isError }] = useSetEndpoints()
+  const [endpointMutation, { isError, error }] = useSetEndpoints()
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
 
@@ -73,7 +73,9 @@ export const EndpointCard = memo((props: EndpointCardProps) => {
         <VStack gap={'8'} max className={classNames(cls.EndpointCard, {}, [className])}>
             <EndpointCreateCard
                 onCreate={onCreate}
-                isError={isError} />
+                isError={isError}
+                error={error}
+            />
         </VStack>
   )
 })

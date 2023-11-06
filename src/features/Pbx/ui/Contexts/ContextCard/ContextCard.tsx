@@ -1,6 +1,5 @@
 import { classNames } from '@/shared/lib/classNames/classNames'
 import cls from './ContextCard.module.scss'
-import { useTranslation } from 'react-i18next'
 import { memo, useCallback } from 'react'
 import { HStack, VStack } from '@/shared/ui/redesigned/Stack'
 import { ContextCreateCard } from '../ContextCreateCard/ContextCreateCard'
@@ -27,8 +26,7 @@ export const ContextCard = memo((props: ContextCardProps) => {
     isLoading
   } = props
 
-  const { t } = useTranslation('endpoints')
-  const [contextMutation, { isError }] = useSetContexts()
+  const [contextMutation, { isError, error }] = useSetContexts()
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
   const userData = useSelector(getUserAuthData)
@@ -46,14 +44,20 @@ export const ContextCard = memo((props: ContextCardProps) => {
         )
         navigate(getRouteContexts())
       })
-      // .catch(() => {
-      //   console.log(e)
-      // })
+      .catch((e) => {
+        // console.log(e)
+      })
   }, [contextMutation, dispatch, navigate, vpbx_user_id])
 
   const onCreate = useCallback((data: Context) => {
     handleCreateContext(data)
   }, [handleCreateContext])
+
+  if (error) {
+    if ('data' in error) {
+      console.log((error.data as { message: string }).message)
+    }
+  }
 
   if (isLoading) {
     return (
@@ -79,6 +83,7 @@ export const ContextCard = memo((props: ContextCardProps) => {
             <ContextCreateCard
                 onCreate={onCreate}
                 isError={isError}
+                error={error}
             />
         </VStack>
   )

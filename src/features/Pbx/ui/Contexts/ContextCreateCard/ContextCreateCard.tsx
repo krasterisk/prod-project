@@ -9,19 +9,28 @@ import { HStack, VStack } from '@/shared/ui/redesigned/Stack'
 import { Card } from '@/shared/ui/redesigned/Card'
 import { ContextSelect } from '../ContextSelect/ContextSelect'
 import { Context } from '@/entities/Pbx'
+import { useSelector } from 'react-redux'
+import { getUserAuthData } from '@/entities/User'
+import { FetchBaseQueryError } from '@reduxjs/toolkit/query'
+import { SerializedError } from '@reduxjs/toolkit'
 
 interface ContextCreateCardProps {
   className?: string
   onCreate?: (data: Context) => void
   isError?: boolean
+  error?: FetchBaseQueryError | SerializedError | undefined
 }
 
 export const ContextCreateCard = memo((props: ContextCreateCardProps) => {
   const {
     className,
     onCreate,
-    isError
+    isError,
+    error
   } = props
+
+  const userData = useSelector(getUserAuthData)
+  const vpbx_user_id = userData?.vpbx_user_id || '0'
 
   const { t } = useTranslation('endpoints')
 
@@ -29,20 +38,19 @@ export const ContextCreateCard = memo((props: ContextCreateCardProps) => {
     name: 'sip-out',
     includes: '',
     description: '',
-    vpbx_user_id: '0'
+    vpbx_user_id
   }
 
   const [formFields, setFormFields] = useState<Context>(initContext)
 
-  const createChangeHandler = (field: keyof Context) => (value: string) => {
+  const createChangeHandler = useCallback((field: keyof Context) => (value: string) => {
     setFormFields({
       ...formFields,
       [field]: value
     })
-  }
+  }, [formFields])
 
   const createHandler = useCallback(() => {
-    console.log(formFields)
     onCreate?.(formFields)
   }, [formFields, onCreate])
 
@@ -51,8 +59,12 @@ export const ContextCreateCard = memo((props: ContextCreateCardProps) => {
             <ContextCreateHeader onCreate={createHandler}/>
             { isError
               ? <ErrorGetData
-                    title={t('Ошибка в параметрах контекста') || ''}
-                    text={t('Проверьте заполняемые поля и повторите ещё раз') || ''}
+                    title={t('Ошибка при создании контекста') || ''}
+                    text={
+                  error && 'data' in error
+                    ? String(t((error.data as { message: string }).message))
+                    : String(t('Проверьте заполняемые поля и повторите ещё раз'))
+              }
                 />
               : ''}
             <Card max padding={'8'} border={'partial'}>
@@ -71,11 +83,13 @@ export const ContextCreateCard = memo((props: ContextCreateCardProps) => {
                             value={formFields.description}
                         />
                         <ContextSelect
-                            label={'Включить'}
+                            label={t('Включить') ?? ''}
                             data-testid={'ContextCard.includes'}
                             onChange={createChangeHandler('includes')}
                             value={formFields.includes}
+                            multiple
                         />
+
                     </VStack>
                 </HStack>
             </Card>

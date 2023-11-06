@@ -5,35 +5,44 @@ import { memo, useCallback, useState } from 'react'
 import { Card } from '@/shared/ui/redesigned/Card'
 import { HStack, VStack } from '@/shared/ui/redesigned/Stack'
 import { Input } from '@/shared/ui/redesigned/Input'
-import { CodecSelect } from '@/features/CodecSelect'
+import { CodecSelect } from '../../../../CodecSelect'
 import { EndpointCreateHeader } from '../EndpointCreateHeader/EndpointCreateHeader'
-import { Endpoint } from '../../../../../entities/Pbx/Endpoints/model/types/endpoints'
 import { ErrorGetData } from '@/entities/ErrorGetData'
 import { ContextSelect } from '../../Contexts/ContextSelect/ContextSelect'
+import { useSelector } from 'react-redux'
+import { getUserAuthData } from '@/entities/User'
+import { Endpoint } from '@/entities/Pbx'
+import { FetchBaseQueryError } from '@reduxjs/toolkit/query'
+import { SerializedError } from '@reduxjs/toolkit'
 
 interface EndpointCreateCardProps {
   className?: string
   onCreate?: (data: Endpoint) => void
   isError?: boolean
+  error?: FetchBaseQueryError | SerializedError | undefined
 }
 
 export const EndpointCreateCard = memo((props: EndpointCreateCardProps) => {
   const {
     className,
     onCreate,
-    isError
+    isError,
+    error
   } = props
 
+  const userData = useSelector(getUserAuthData)
+  const vpbx_user_id = userData?.vpbx_user_id || '0'
+
   const initEndpoint = {
-    endpoint_id: 'TEST',
-    allow: 'alaw',
+    endpoint_id: '',
+    allow: '',
     auth_type: 'userpass',
     context: '',
     max_contacts: 0,
-    password: '123',
+    password: '',
     transport: 'udp',
     username: '',
-    vpbx_user_id: '0'
+    vpbx_user_id
   }
 
   const [formFields, setFormFields] = useState<Endpoint>(initEndpoint)
@@ -51,16 +60,18 @@ export const EndpointCreateCard = memo((props: EndpointCreateCardProps) => {
     onCreate?.(formFields)
   }, [formFields, onCreate])
 
-  // console.log(formFields)
-
   return (
         <VStack gap={'8'} max className={classNames(cls.EndpointCreateCard, {}, [className])}>
             <EndpointCreateHeader onCreate={createHandler}/>
             { isError
               ? <ErrorGetData
-                title={t('Ошибка в данных абонента') || ''}
-                text={t('Проверьте заполняемые поля и повторите ещё раз') || ''}
-            />
+                    title={t('Ошибка при создании абонента') || ''}
+                    text={
+                        error && 'data' in error
+                          ? String(t((error.data as { message: string }).message))
+                          : String(t('Проверьте заполняемые поля и повторите ещё раз'))
+                    }
+                />
               : ''}
             <Card max padding={'8'} border={'partial'}>
                 <HStack gap={'24'} max>
@@ -81,7 +92,6 @@ export const EndpointCreateCard = memo((props: EndpointCreateCardProps) => {
                             data-testid={'EndpointCard.Context'}
                             onChange={createChangeHandler('context')}
                             value={formFields.context}
-
                         />
                         <Input
                             label={t('Транспортный протокол') ?? ''}
