@@ -8,6 +8,7 @@ import { DropdownDirection } from '@/shared/types/ui'
 import { mapDirectionClass } from '../../styles/consts'
 import popupCls from '../../styles/popup.module.scss'
 import ArrowIcon from '@/shared/assets/icons/arrow-bottom.svg'
+import CheckIcon from '@/shared/assets/icons/check.svg'
 import { Icon } from '../../../Icon'
 
 export interface ListBoxItem<T extends string> {
@@ -101,11 +102,16 @@ export function ListBox<T extends string> (props: ListBoxProps<T>) {
                                       {
                                         [popupCls.active]: active,
                                         [popupCls.disabled]: item.disabled,
-                                        [popupCls.selected]: selected
+                                        [popupCls.selected]: selectedItems.length === 0 && item.value === items[0].value ? true : selected
                                       }
                                     )}
                                 >
-                                    {selected}
+                                    {selected &&
+                                        <Icon className={cls.checked} Svg={CheckIcon} width={'16'} height={'16'}/>
+                                    }
+                                    {!selected && selectedItems.length === 0 && item.value === items[0].value &&
+                                        <Icon className={cls.checked} Svg={CheckIcon} width={'16'} height={'16'}/>
+                                    }
                                     {item.value}
                                 </li>
                             )}

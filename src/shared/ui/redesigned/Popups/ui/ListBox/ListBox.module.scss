@@ -13,9 +13,18 @@
     border-radius: 12px; // скругление углов
     // тень сдвиг 4 справа, 4 слева, 8 - размытие, цвет из переменной
     box-shadow: 4px 4px 8px var(--listbox-bg);
+
+    // padding: 10px;
 }
 
 .item {
+    display: flex;
     cursor: pointer;
-    padding: 5px 10px;
+    padding: 5px 30px;
+}
+
+.checked {
+    display: flex;
+    align-items: start;
+    margin-left: -1rem;
 }
