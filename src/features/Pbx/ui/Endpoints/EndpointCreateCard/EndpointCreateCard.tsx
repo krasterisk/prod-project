@@ -111,6 +111,7 @@ export const EndpointCreateCard = memo((props: EndpointCreateCardProps) => {
                             data-testid={'EndpointCard.CodecSelect'}
                             onChange={createChangeHandler('allow')}
                             value={formFields.allow}
+                            defaultValue={String(t('Выбрать...'))}
                         />
                         <Input
                             label={t('Количество одновременных звонков') ?? ''}

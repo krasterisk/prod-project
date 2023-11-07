@@ -4,6 +4,7 @@ import { ContextsList } from '@/entities/Pbx'
 import { ErrorGetData } from '@/entities/ErrorGetData'
 import { useSelector } from 'react-redux'
 import { getUserAuthData } from '@/entities/User'
+import { useTranslation } from 'react-i18next'
 
 export const Contexts = () => {
   const authData = useSelector(getUserAuthData)
@@ -15,9 +16,17 @@ export const Contexts = () => {
     error
   } = useGetContexts({ vpbx_user_id })
 
+  const { t } = useTranslation('endpoints')
+
   if (isError) {
     return (
-        <ErrorGetData text={JSON.stringify(error)}/>
+        <ErrorGetData
+            text={
+              error && 'data' in error
+                ? String(t((error.data as { message: string }).message))
+                : String(t('Попробуйте обновить страницу'))
+            }
+        />
     )
   }
 

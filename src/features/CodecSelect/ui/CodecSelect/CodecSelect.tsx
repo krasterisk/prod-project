@@ -8,6 +8,7 @@ interface CodecSelectProps {
   value?: string
   onChange: (value: Codecs) => void
   readonly?: boolean
+  defaultValue?: string
 }
 
 const codecItems = [
@@ -35,7 +36,7 @@ const codecItems = [
 
 export const CodecSelect = memo((props: CodecSelectProps) => {
   const { t } = useTranslation()
-  const { className, value, onChange, readonly } = props
+  const { className, value, onChange, readonly, defaultValue } = props
 
   //  const initValue = !value && contextItems && contextItems?.length > 0 ? contextItems[0].value : ''
 
@@ -53,7 +54,7 @@ export const CodecSelect = memo((props: CodecSelectProps) => {
     className,
     items: codecItems,
     value,
-    defaultValue: String(t('Выбрать...')),
+    defaultValue,
     label: String(t('Кодеки')),
     onChange: onChangeHandler,
     readonly,

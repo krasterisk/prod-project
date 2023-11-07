@@ -53,12 +53,6 @@ export const ContextCard = memo((props: ContextCardProps) => {
     handleCreateContext(data)
   }, [handleCreateContext])
 
-  if (error) {
-    if ('data' in error) {
-      console.log((error.data as { message: string }).message)
-    }
-  }
-
   if (isLoading) {
     return (
             <Card padding="24" max>

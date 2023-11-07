@@ -12,6 +12,7 @@ interface ContextsSelectProps {
   readonly?: boolean
   label?: string
   multiple?: boolean
+  defaultValue?: string
 }
 
 export const ContextSelect = memo((props: ContextsSelectProps) => {
@@ -21,7 +22,8 @@ export const ContextSelect = memo((props: ContextsSelectProps) => {
     onChange,
     readonly,
     label,
-    multiple
+    multiple,
+    defaultValue
   } = props
 
   const { t } = useTranslation()
@@ -33,17 +35,27 @@ export const ContextSelect = memo((props: ContextsSelectProps) => {
   const contextItems = data?.map(item => ({
     value: item.name,
     content: item.name
-  })).filter(item => item.value !== value)
+  }))
+  // todo надо будте сделать при редактировании - исключить сам себя из списка контекстов
+  // .filter(item => item.value !== value)
 
-  const initValue = !value && contextItems && contextItems?.length > 0 ? contextItems[0].value : value
+  const initValue = !value &&
+      !defaultValue &&
+  contextItems &&
+  contextItems?.length > 0
+    ? contextItems[0].value
+    : defaultValue || value
+
+  console.log(initValue)
 
   useEffect(() => {
-    if (!value && contextItems && contextItems.length > 0) {
+    if (!value && !defaultValue && contextItems && contextItems.length > 0) {
       onChange?.(contextItems[0].value)
     }
-  }, [contextItems, onChange, value])
+  }, [contextItems, defaultValue, onChange, value])
 
   const onChangeHandler = useCallback((value: string) => {
+    console.log(value)
     onChange?.(value)
   }, [onChange])
 
@@ -51,7 +63,7 @@ export const ContextSelect = memo((props: ContextsSelectProps) => {
     className,
     items: contextItems,
     value: initValue,
-    defaultValue: String(t('Выбрать...')),
+    defaultValue,
     label: String(t(label || 'Контекст')),
     onChange: onChangeHandler,
     readonly,

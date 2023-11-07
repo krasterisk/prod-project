@@ -42,14 +42,13 @@ export function ListBox<T extends string> (props: ListBoxProps<T>) {
   } = props
 
   const optionsClasses = [mapDirectionClass[direction], popupCls.menu]
-  const initItem = items && items?.length > 0 && !value ? [items[0].value] : []
+
+  const initItem = items && !defaultValue && items?.length > 0 && !value ? [items[0].value] : []
 
   const [selectedItems, setSelectedItems] = useState<T[]>(initItem)
 
   const handleOnChange = (values: T[]) => {
     if (multiple) {
-      console.log('multiple_value: ', values)
-
       setSelectedItems(values)
       onChange?.(values.join(',') as T)
     } else {
@@ -62,9 +61,6 @@ export function ListBox<T extends string> (props: ListBoxProps<T>) {
     return <>{values.join(', ')}</>
   }
 
-  // const selectedItem = useMemo(() => {
-  //   return items?.find(item => item.value === value)
-  // }, [items, value])
   return (
         <HStack gap="4">
             {label && <span>{`${label}>`}</span>}

@@ -27,5 +27,6 @@
   "Включить": "Включить",
   "Ошибка при создании контекста": "Context creation error",
   "Context already exists": "Context already exists",
+  "TokenExpiredError": "Session time expired!",
   "Ошибка при создании абонента": "Ошибка при создании абонента"
 }

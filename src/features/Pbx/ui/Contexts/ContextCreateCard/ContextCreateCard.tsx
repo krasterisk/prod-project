@@ -87,6 +87,7 @@ export const ContextCreateCard = memo((props: ContextCreateCardProps) => {
                             data-testid={'ContextCard.includes'}
                             onChange={createChangeHandler('includes')}
                             value={formFields.includes}
+                            defaultValue={String(t('Выбрать...'))}
                             multiple
                         />
 
