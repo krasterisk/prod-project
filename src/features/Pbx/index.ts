@@ -1,5 +1,6 @@
 export { Endpoints } from './ui/Endpoints/Endpoints/Endpoints'
 export { EndpointCard } from './ui/Endpoints/EndpointCard/EndpointCard'
+export { EndpointEditCard } from './ui/Endpoints/EndpointEditCard/EndpointEditCard'
 export { Contexts } from './ui/Contexts/Contexts/Contexts'
 export { ContextCreateCard } from './ui/Contexts/ContextCreateCard/ContextCreateCard'
 export { ContextSelect } from './ui/Contexts/ContextSelect/ContextSelect'

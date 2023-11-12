@@ -15,6 +15,7 @@ export const EndpointsListHeader = memo((props: EndpointsListHeaderProps) => {
   const {
     className
   } = props
+
   const { t } = useTranslation('endpoints')
 
   return (

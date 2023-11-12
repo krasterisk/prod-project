@@ -6,13 +6,15 @@ interface TableProps<T extends object> {
   data: T[] | undefined
   columns: any[]
   className?: string
+  onEdit?: (id: string) => void
 }
 
 export const Table = <T extends object>(props: TableProps<T>) => {
   const {
     data = undefined!,
     columns,
-    className
+    className,
+    onEdit
   } = props
 
   const table = useReactTable({
@@ -20,6 +22,12 @@ export const Table = <T extends object>(props: TableProps<T>) => {
     columns,
     getCoreRowModel: getCoreRowModel()
   })
+
+  const handleOnEditClick = (id: string) => {
+    if (onEdit) {
+      onEdit(id)
+    }
+  }
 
   return (
         <div className={classNames(cls.table, {}, [className])}>
@@ -42,7 +50,10 @@ export const Table = <T extends object>(props: TableProps<T>) => {
                 </thead>
                 <tbody>
                 {table.getRowModel().rows.map(row => (
-                    <tr key={row.id}>
+                    <tr
+                        key={row.id}
+                        onDoubleClick={() => { handleOnEditClick(row.getValue('id')) }}
+                    >
                         {row.getVisibleCells().map(cell => (
                             <td key={cell.id}>
                                 {flexRender(cell.column.columnDef.cell, cell.getContext())}

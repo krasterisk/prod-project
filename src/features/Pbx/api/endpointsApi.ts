@@ -24,7 +24,7 @@ export const endpointsApi = rtkApi.injectEndpoints({
     //     } catch {}
     //   }
     // }),
-    getEndpoint: build.query<Endpoint, number>({
+    getEndpoint: build.query<Endpoint, string>({
       query: (id) => ({
         url: `/endpoints/${id}`
       })
@@ -34,3 +34,4 @@ export const endpointsApi = rtkApi.injectEndpoints({
 
 export const useEndpoints = endpointsApi.useGetEndpointsQuery
 export const useSetEndpoints = endpointsApi.useSetEndpointsMutation
+export const useEndpoint = endpointsApi.useGetEndpointQuery

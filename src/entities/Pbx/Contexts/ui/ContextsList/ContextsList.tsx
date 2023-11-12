@@ -41,43 +41,45 @@ export const ContextsList = (props: ContextsListProps) => {
   ]
 
   if (isError) {
-    <ErrorGetData />
+        <ErrorGetData/>
   }
 
   if (isLoading) {
     return (
-        <VStack
-            gap={'16'}
-            max
-            className={classNames(cls.NotificationList, {}, [className])}
-        >
-          <Skeleton width='100%' border='8px' height='80px'/>
-          <Skeleton width='100%' border='8px' height='80px'/>
-          <Skeleton width='100%' border='8px' height='80px'/>
-        </VStack>
+            <div>
+                <VStack gap={'16'} max>
+                    <Skeleton width='100%' border='8px' height='80px'/>
+                </VStack>
+
+                <VStack gap={'16'} max>
+                    <Skeleton width='100%' border='8px' height='80px'/>
+                    <Skeleton width='100%' border='8px' height='80px'/>
+                    <Skeleton width='100%' border='8px' height='80px'/>
+                </VStack>
+            </div>
     )
   }
 
   return (
         <div className={classNames(cls.ContextsList, {}, [className])}>
-          <VStack gap={'16'} max className={classNames(cls.ContextsList, {}, [className])}>
-            <Card
-                className={cls.ContextsListHeader}
-                padding={'8'}
-                max
-                border={'partial'}
-            >
-              <ContextsListHeader />
-            </Card>
-            <Card
-                className={cls.EndpointsTable}
-                padding={'24'}
-                max
-                border={'partial'}
-            >
-              <Table data={contexts} columns={contextsColumns}/>
-            </Card>
-          </VStack>
+            <VStack gap={'16'} max className={classNames(cls.ContextsList, {}, [className])}>
+                <Card
+                    className={cls.ContextsListHeader}
+                    padding={'8'}
+                    max
+                    border={'partial'}
+                >
+                    <ContextsListHeader/>
+                </Card>
+                <Card
+                    className={cls.EndpointsTable}
+                    padding={'24'}
+                    max
+                    border={'partial'}
+                >
+                    <Table data={contexts} columns={contextsColumns}/>
+                </Card>
+            </VStack>
         </div>
   )
 }

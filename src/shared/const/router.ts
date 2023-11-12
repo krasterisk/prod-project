@@ -25,7 +25,7 @@ export const getRouteContexts = () => '/contexts'
 export const getRouteSettings = () => '/settings'
 export const getRouteManuals = () => '/manuals'
 export const getRouteManualDetails = (id: string) => `/manuals/${id}`
-export const getRouteManualEdit = (id: string) => `/manuals/${id}/edit`
+export const getRouteManualEdit = (id: string) => `/manuals/${id}`
 export const getRouteManualCreate = () => '/manuals/create'
 export const getRouteEndpointCreate = () => '/endpoints/create'
 export const getRouteContextCreate = () => '/contexts/create'

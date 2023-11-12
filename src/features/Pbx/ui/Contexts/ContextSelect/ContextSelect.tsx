@@ -36,7 +36,7 @@ export const ContextSelect = memo((props: ContextsSelectProps) => {
     value: item.name,
     content: item.name
   }))
-  // todo надо будте сделать при редактировании - исключить сам себя из списка контекстов
+  // todo надо будет сделать при редактировании - исключить сам себя из списка контекстов
   // .filter(item => item.value !== value)
 
   const initValue = !value &&
@@ -46,8 +46,6 @@ export const ContextSelect = memo((props: ContextsSelectProps) => {
     ? contextItems[0].value
     : defaultValue || value
 
-  console.log(initValue)
-
   useEffect(() => {
     if (!value && !defaultValue && contextItems && contextItems.length > 0) {
       onChange?.(contextItems[0].value)
@@ -55,7 +53,6 @@ export const ContextSelect = memo((props: ContextsSelectProps) => {
   }, [contextItems, defaultValue, onChange, value])
 
   const onChangeHandler = useCallback((value: string) => {
-    console.log(value)
     onChange?.(value)
   }, [onChange])
 
