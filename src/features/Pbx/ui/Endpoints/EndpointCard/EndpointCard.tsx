@@ -2,7 +2,7 @@ import React, { memo, useCallback } from 'react'
 import { HStack, VStack } from '@/shared/ui/redesigned/Stack'
 import { Card } from '@/shared/ui/redesigned/Card'
 import { Skeleton } from '@/shared/ui/redesigned/Skeleton'
-import { endpointsApi, useSetEndpoints } from '../../../api/endpointsApi'
+import { endpointsApi, useSetEndpoints, useUpdateEndpoint } from '../../../api/endpointsApi'
 import { Endpoint } from '@/entities/Pbx'
 import { classNames } from '@/shared/lib/classNames/classNames'
 import cls from './EndpointCard.module.scss'
@@ -31,6 +31,7 @@ export const EndpointCard = memo((props: EndpointCardProps) => {
   } = props
 
   const [endpointMutation, { isError, error }] = useSetEndpoints()
+  const [endpointUpdateMutation] = useUpdateEndpoint()
 
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
@@ -55,21 +56,27 @@ export const EndpointCard = memo((props: EndpointCardProps) => {
     handleCreateEndpoint(data)
   }, [handleCreateEndpoint])
 
-  const handleEditEndpoint = useCallback((data: Endpoint) => {
-    endpointMutation([{ ...data }])
-      .unwrap()
-      .then((payload) => {
-        // console.log('fulfilled', payload)
-        dispatch(
-          endpointsApi.util.updateQueryData('getEndpoints', null, (draftEndpoints) => {
-            draftEndpoints.push(payload[0])
-          })
-        )
-        navigate(getRouteEndpoints())
-      })
-      .catch(() => {
-      })
-  }, [dispatch, endpointMutation, navigate])
+  const handleEditEndpoint = useCallback(async (data: Endpoint) => {
+    try {
+      await endpointUpdateMutation(data).unwrap()
+    } finally {
+      navigate(getRouteEndpoints())
+    }
+
+    // .unwrap()
+    // .then((payload) => {
+    //   console.log('fulfilled', payload)
+    //   dispatch(
+    //     endpointsApi.util.updateQueryData('getEndpoints', null, (draftEndpoints) => {
+    //       Object.assign(draftEndpoints, payload)
+    //     })
+    //   )
+    //   navigate(getRouteEndpoints())
+    // })
+    // .catch(() => {
+    //
+    // })
+  }, [endpointUpdateMutation, navigate])
 
   const onEdit = useCallback((data: Endpoint) => {
     handleEditEndpoint(data)

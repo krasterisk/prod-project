@@ -1,7 +1,7 @@
 import { classNames } from '@/shared/lib/classNames/classNames'
 import cls from './EndpointEditCard.module.scss'
 import { useTranslation } from 'react-i18next'
-import React, { memo, useCallback, useState } from 'react'
+import React, { memo, useCallback, useEffect, useState } from 'react'
 import { Card } from '@/shared/ui/redesigned/Card'
 import { HStack, VStack } from '@/shared/ui/redesigned/Stack'
 import { Input } from '@/shared/ui/redesigned/Input'
@@ -58,6 +58,12 @@ export const EndpointEditCard = memo((props: EndpointEditCardProps) => {
       [field]: value
     })
   }
+
+  useEffect(() => {
+    if (data) {
+      setFormFields(data)
+    }
+  }, [data])
 
   if (isError) {
     return (
