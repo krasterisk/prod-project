@@ -35,6 +35,7 @@ export const EndpointEditCard = memo((props: EndpointEditCardProps) => {
   const { data, isError, isLoading, error } = useEndpoint(endpointId!)
 
   const initEndpoint = {
+    id: 'LIST',
     endpoint_id: '',
     allow: '',
     auth_type: 'userpass',

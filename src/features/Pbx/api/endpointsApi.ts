@@ -6,37 +6,42 @@ export const endpointsApi = rtkApi.injectEndpoints({
     getEndpoints: build.query<Endpoint[], null>({
       query: () => ({
         url: '/endpoints'
-      })
+      }),
+      providesTags: (result) =>
+        result
+          ? [
+              ...result.map(({ id }) => ({ type: 'Endpoints', id } as const)),
+              { type: 'Endpoints', id: 'LIST' }
+            ]
+          : [{ type: 'Endpoints', id: 'LIST' }]
     }),
     setEndpoints: build.mutation<Endpoint[], Endpoint[]>({
       query: (arg) => ({
         url: '/endpoints',
         method: 'POST',
         body: arg
-      })
-    }),
-    updateEndpoint: build.mutation<Endpoint, Endpoint>({
-      query: (patch) => ({
-        url: '/endpoints',
-        method: 'PATCH',
-        body: patch
-      })
-      // onQueryStarted ({ id, ...patch }, { dispatch, queryFulfilled }) {
-      //   if (id) {
-      //     console.log(patch)
-      //     const patchResult = dispatch(
-      //       endpointsApi.util.updateQueryData('getEndpoints', null, (draft) => {
-      //         Object.assign(draft, patch)
-      //       })
-      //     )
-      //     queryFulfilled.catch(patchResult.undo)
-      //   }
-      // }
+      }),
+      invalidatesTags: [{ type: 'Endpoints', id: 'LIST' }]
     }),
     getEndpoint: build.query<Endpoint, string>({
-      query: (id) => ({
-        url: `/endpoints/${id}`
-      })
+      query: (id) => `/endpoints/${id}`,
+      providesTags: (result, error, id) => [{ type: 'Endpoints', id }]
+    }),
+    updateEndpoint: build.mutation<Endpoint, Pick<Endpoint, 'id'> & Partial<Endpoint>>({
+      query: ({ id, ...patch }) => ({
+        url: '/endpoints',
+        method: 'PATCH',
+        body: { id, ...patch }
+      }),
+      async onQueryStarted ({ id, ...patch }, { dispatch, queryFulfilled }) {
+        const patchResult = dispatch(
+          endpointsApi.util.updateQueryData('getEndpoint', id, (draft) => {
+            Object.assign(draft, patch)
+          })
+        )
+        queryFulfilled.catch(patchResult.undo)
+      },
+      invalidatesTags: (result, error, { id }) => [{ type: 'Endpoints', id }]
     })
   })
 })

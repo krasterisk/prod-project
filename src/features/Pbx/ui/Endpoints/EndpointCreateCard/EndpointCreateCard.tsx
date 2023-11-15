@@ -34,6 +34,7 @@ export const EndpointCreateCard = memo((props: EndpointCreateCardProps) => {
   const vpbx_user_id = userData?.vpbx_user_id || '0'
 
   const initEndpoint = {
+    id: 'LIST',
     endpoint_id: '',
     allow: '',
     auth_type: 'userpass',
