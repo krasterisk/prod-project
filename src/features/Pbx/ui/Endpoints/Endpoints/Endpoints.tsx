@@ -1,5 +1,5 @@
-import { useEndpoints } from '../../../api/endpointsApi'
-import React from 'react'
+import { useDeleteEndpoint, useEndpoints } from '../../../api/endpointsApi'
+import React, { useCallback } from 'react'
 import { EndpointsList } from '@/entities/Pbx'
 import { ErrorGetData } from '@/entities/ErrorGetData'
 import { useTranslation } from 'react-i18next'
@@ -11,6 +11,12 @@ export const Endpoints = () => {
     isError,
     error
   } = useEndpoints(null)
+
+  const [endpointDeleteMutation] = useDeleteEndpoint()
+
+  const handleDeleteEndpoint = useCallback(async (id: string) => {
+    await endpointDeleteMutation(id).unwrap()
+  }, [endpointDeleteMutation])
 
   const { t } = useTranslation('endpoints')
 

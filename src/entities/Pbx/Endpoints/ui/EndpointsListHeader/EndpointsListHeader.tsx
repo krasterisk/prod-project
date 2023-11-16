@@ -5,53 +5,89 @@ import { memo } from 'react'
 import { Card } from '@/shared/ui/redesigned/Card'
 import { Button } from '@/shared/ui/redesigned/Button'
 import { AppLink } from '@/shared/ui/redesigned/AppLink'
-import { getRouteContexts, getRouteEndpointCreate } from '@/shared/const/router'
+import { getRouteContexts, getRouteEndpointCreate, getRouteEndpointEdit } from '@/shared/const/router'
+import { HStack } from '@/shared/ui/redesigned/Stack'
 
 interface EndpointsListHeaderProps {
   className?: string
+  checkedId?: string
 }
 
 export const EndpointsListHeader = memo((props: EndpointsListHeaderProps) => {
   const {
-    className
+    className,
+    checkedId
   } = props
 
   const { t } = useTranslation('endpoints')
 
   return (
-      <Card
-            className={classNames(cls.EndpointHeader, {}, [className])}
+        <Card
+            className={classNames(cls.EndpointsListHeader, {}, [className])}
             padding={'8'}
             border={'partial'}
+            max
         >
-          <AppLink
-              to={getRouteEndpointCreate()}
-          >
-              <Button
-                  title={t('Создать') ?? ''}
-                  variant={'outline'}>
-                  {t('Создать')}
-              </Button>
-          </AppLink>
-          <AppLink
-              to={getRouteContexts()}
-          >
-              <Button
-                  title={t('Контекcты') ?? ''}
-                  variant={'outline'}>
-                  {t('Контекcты')}
-              </Button>
-          </AppLink>
-          <AppLink
-              to={''}
-          >
-              <Button
-                  title={t('Группы') ?? ''}
-                  variant={'outline'}>
-                  {t('Группы')}
-              </Button>
-          </AppLink>
-
+            <HStack gap={'16'} justify={'start'} max>
+                <AppLink
+                    to={getRouteEndpointCreate()}
+                >
+                    <Button
+                        title={t('Создать') ?? ''}
+                        variant={'outline'}>
+                        {t('Создать')}
+                    </Button>
+                </AppLink>
+                <AppLink
+                    to={getRouteContexts()}
+                >
+                    <Button
+                        title={t('Контекcты') ?? ''}
+                        variant={'outline'}>
+                        {t('Контекcты')}
+                    </Button>
+                </AppLink>
+                <AppLink
+                    to={''}
+                >
+                    <Button
+                        title={t('Группы') ?? ''}
+                        variant={'outline'}>
+                        {t('Группы')}
+                    </Button>
+                </AppLink>
+            </HStack>
+            {checkedId &&
+                <HStack gap={'16'}>
+                    <AppLink
+                        to={getRouteEndpointEdit(checkedId)}
+                    >
+                        <Button
+                            title={t('Изменить') ?? ''}
+                            variant={'outline'}
+                            color={'success'}
+                        >
+                            {t('Изменить')}
+                        </Button>
+                    </AppLink>
+                    <AppLink
+                        to={''}
+                    >
+                        <Button
+                            title={t('Удалить') ?? ''}
+                            variant={'outline'}
+                            color={'error'}
+                            onClick={() => {
+                              if (onDelete) {
+                                onDelete(checkedId)
+                              }
+                            } }
+                        >
+                            {t('Удалить')}
+                        </Button>
+                    </AppLink>
+                </HStack>
+            }
         </Card>
   )
 })

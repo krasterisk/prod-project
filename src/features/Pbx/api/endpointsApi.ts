@@ -42,6 +42,16 @@ export const endpointsApi = rtkApi.injectEndpoints({
         queryFulfilled.catch(patchResult.undo)
       },
       invalidatesTags: (result, error, { id }) => [{ type: 'Endpoints', id }]
+    }),
+    deleteEndpoint: build.mutation<{ success: boolean, id: string }, string>({
+      query (id) {
+        return {
+          url: `endpoints/${id}`,
+          method: 'DELETE'
+        }
+      },
+      // Invalidates all queries that subscribe to this Post `id` only.
+      invalidatesTags: (result, error, id) => [{ type: 'Endpoints', id }]
     })
   })
 })
@@ -50,3 +60,4 @@ export const useEndpoints = endpointsApi.useGetEndpointsQuery
 export const useSetEndpoints = endpointsApi.useSetEndpointsMutation
 export const useEndpoint = endpointsApi.useGetEndpointQuery
 export const useUpdateEndpoint = endpointsApi.useUpdateEndpointMutation
+export const useDeleteEndpoint = endpointsApi.useDeleteEndpointMutation
