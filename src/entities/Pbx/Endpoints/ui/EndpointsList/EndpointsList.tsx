@@ -16,7 +16,8 @@ const EndpointsList = (props: EndpointsListProps) => {
     className,
     isLoading,
     isError,
-    endpoints
+    endpoints,
+    onDelete
   } = props
 
   const { t } = useTranslation('endpoints')
@@ -53,11 +54,6 @@ const EndpointsList = (props: EndpointsListProps) => {
     // navigate(getRouteEndpointEdit(id))
   }, [])
 
-  const handlerOnDelete = useCallback((id: string) => {
-    setCheckedId(id)
-    // navigate(getRouteEndpointEdit(id))
-  }, [])
-
   if (isError) {
     return (
             <ErrorGetData/>
@@ -85,7 +81,7 @@ const EndpointsList = (props: EndpointsListProps) => {
                 max
                 border={'partial'}
             >
-                <EndpointsListHeader checkedId={checkedId} />
+                <EndpointsListHeader checkedId={checkedId} onDelete={onDelete} />
             </Card>
             <Card
                 className={cls.EndpointsTable}

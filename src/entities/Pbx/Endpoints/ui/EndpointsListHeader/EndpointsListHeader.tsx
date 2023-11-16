@@ -1,7 +1,7 @@
 import { classNames } from '@/shared/lib/classNames/classNames'
 import cls from './EndpointsListHeader.module.scss'
 import { useTranslation } from 'react-i18next'
-import { memo } from 'react'
+import { memo, useCallback } from 'react'
 import { Card } from '@/shared/ui/redesigned/Card'
 import { Button } from '@/shared/ui/redesigned/Button'
 import { AppLink } from '@/shared/ui/redesigned/AppLink'
@@ -11,15 +11,23 @@ import { HStack } from '@/shared/ui/redesigned/Stack'
 interface EndpointsListHeaderProps {
   className?: string
   checkedId?: string
+  onDelete?: (id: string) => void
 }
 
 export const EndpointsListHeader = memo((props: EndpointsListHeaderProps) => {
   const {
     className,
-    checkedId
+    checkedId,
+    onDelete
   } = props
 
   const { t } = useTranslation('endpoints')
+
+  const deleteHandler = useCallback(() => {
+    if (onDelete && checkedId) {
+      onDelete(checkedId)
+    }
+  }, [checkedId, onDelete])
 
   return (
         <Card
@@ -77,11 +85,7 @@ export const EndpointsListHeader = memo((props: EndpointsListHeaderProps) => {
                             title={t('Удалить') ?? ''}
                             variant={'outline'}
                             color={'error'}
-                            onClick={() => {
-                              if (onDelete) {
-                                onDelete(checkedId)
-                              }
-                            } }
+                            onClick={deleteHandler}
                         >
                             {t('Удалить')}
                         </Button>

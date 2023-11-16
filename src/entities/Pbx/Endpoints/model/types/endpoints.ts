@@ -16,4 +16,5 @@ export interface EndpointsListProps {
   isLoading?: boolean
   isError?: boolean
   endpoints?: Endpoint[]
+  onDelete?: (id: string) => void
 }

@@ -18,6 +18,10 @@ export const Endpoints = () => {
     await endpointDeleteMutation(id).unwrap()
   }, [endpointDeleteMutation])
 
+  const onDelete = useCallback((id: string) => {
+    handleDeleteEndpoint(id)
+  }, [handleDeleteEndpoint])
+
   const { t } = useTranslation('endpoints')
 
   if (isError) {
@@ -33,6 +37,11 @@ export const Endpoints = () => {
   }
 
   return (
-      <EndpointsList isLoading={isLoading} endpoints={data} isError={isError} />
+      <EndpointsList
+          isLoading={isLoading}
+          endpoints={data}
+          isError={isError}
+          onDelete={onDelete}
+      />
   )
 }
