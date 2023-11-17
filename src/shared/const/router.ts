@@ -1,8 +1,8 @@
 export enum AppRoutes {
   MAIN = 'main',
-  ENDPOINTS = 'endpoints',
   CONTEXTS = 'contexts',
   CONTEXT_CREATE = 'context_create',
+  CONTEXT_EDIT = 'context_edit',
   ABOUT = 'about',
   PROFILE = 'profile',
   ADMIN = 'admin',
@@ -11,8 +11,12 @@ export enum AppRoutes {
   MANUAL_DETAILS = 'manual_details',
   MANUAL_CREATE = 'manuals_create',
   MANUAL_EDIT = 'manual_edit',
+  ENDPOINTS = 'endpoints',
   ENDPOINT_EDIT = 'endpoint_edit',
   ENDPOINT_CREATE = 'endpoint_create',
+  ENDPOINT_GROUPS = 'endpoints',
+  ENDPOINT_GROUPS_EDIT = 'endpoint_edit',
+  ENDPOINT_GROUPS_CREATE = 'endpoint_create',
   FORBIDDEN = 'forbidden',
   ERROR = 'error'
 }
@@ -31,13 +35,15 @@ export const getRouteEndpointCreate = () => '/endpoints/create'
 export const getRouteContextCreate = () => '/contexts/create'
 export const getRouteContextEdit = (id: string) => `/contexts/${id}`
 export const getRouteEndpointEdit = (id: string) => `/endpoints/${id}`
+export const getRouteEndpointGroups = () => '/endpoints/groups'
+export const getRouteEndpointGroupsCreate = () => '/endpoints/groups/create'
+export const getRouteEndpointGroupsEdit = (id: string) => `/endpoints/groups/${id}`
+
 export const getRouteForbidden = () => '/forbidden'
 export const getRouteProfile = (id: string) => `/profile/${id}`
 
 export const AppRouteByPathPattern: Record<string, AppRoutes> = {
   [getRouteMain()]: AppRoutes.MAIN,
-  [getRouteEndpoints()]: AppRoutes.ENDPOINTS,
-  [getRouteContexts()]: AppRoutes.CONTEXTS,
   [getRouteAbout()]: AppRoutes.ABOUT,
   [getRouteProfile(':id')]: AppRoutes.PROFILE,
   [getRouteAdmin()]: AppRoutes.ADMIN,
@@ -46,8 +52,14 @@ export const AppRouteByPathPattern: Record<string, AppRoutes> = {
   [getRouteManualDetails(':id')]: AppRoutes.MANUAL_DETAILS,
   [getRouteManualCreate()]: AppRoutes.MANUAL_CREATE,
   [getRouteManualEdit(':id')]: AppRoutes.MANUAL_EDIT,
+  [getRouteEndpoints()]: AppRoutes.ENDPOINTS,
   [getRouteEndpointEdit(':id')]: AppRoutes.ENDPOINT_EDIT,
   [getRouteEndpointCreate()]: AppRoutes.ENDPOINT_CREATE,
+  [getRouteContexts()]: AppRoutes.CONTEXTS,
   [getRouteContextCreate()]: AppRoutes.CONTEXT_CREATE,
+  [getRouteContextEdit(':id')]: AppRoutes.CONTEXT_EDIT,
+  [getRouteEndpointGroups()]: AppRoutes.ENDPOINT_GROUPS,
+  [getRouteEndpointGroupsEdit(':id')]: AppRoutes.ENDPOINT_GROUPS_EDIT,
+  [getRouteEndpointGroupsCreate()]: AppRoutes.ENDPOINT_GROUPS_CREATE,
   [getRouteForbidden()]: AppRoutes.FORBIDDEN
 }

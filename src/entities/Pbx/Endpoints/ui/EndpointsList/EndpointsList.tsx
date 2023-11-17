@@ -20,9 +20,10 @@ const EndpointsList = (props: EndpointsListProps) => {
     onDelete
   } = props
 
+  const [checkedId, setCheckedId] = useState<string>('')
+
   const { t } = useTranslation('endpoints')
   const columnHelper = createColumnHelper<Endpoint>()
-  const [checkedId, setCheckedId] = useState<string>('')
 
   const endpointsColumns = [
     columnHelper.accessor('id', {

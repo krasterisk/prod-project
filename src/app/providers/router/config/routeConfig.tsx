@@ -22,14 +22,19 @@ import {
   getRouteSettings,
   getRouteEndpointCreate,
   getRouteEndpointEdit,
-  getRouteEndpoints, getRouteContexts, getRouteContextCreate
+  getRouteEndpoints,
+  getRouteContexts,
+  getRouteContextCreate,
+  getRouteContextEdit,
+  getRouteEndpointGroupsCreate,
+  getRouteEndpointGroups, getRouteEndpointGroupsEdit
 } from '@/shared/const/router'
 import { AppRoutesProps } from '@/shared/types/router'
 import {
   EndpointsPage,
   EndpointCreatePage,
   EndpointEditPage,
-  ContextsListPage, ContextCreatePage
+  ContextsListPage, ContextCreatePage, EndpointGroupsCreatePage, EndpointGroupsListPage, EndpointGroupsEditPage
 } from '@/pages/pbx'
 import { SettingPage } from '@/pages/SettingsPage'
 
@@ -63,6 +68,25 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
   [AppRoutes.CONTEXT_CREATE]: {
     path: getRouteContextCreate(),
     element: <ContextCreatePage />,
+    authOnly: false
+  },
+  [AppRoutes.CONTEXT_EDIT]: {
+    path: getRouteContextEdit(':id'),
+    element: <ContextCreatePage />,
+    authOnly: false
+  },
+  [AppRoutes.ENDPOINT_GROUPS]: {
+    path: getRouteEndpointGroups(),
+    element: <EndpointGroupsListPage />
+  },
+  [AppRoutes.ENDPOINT_GROUPS_CREATE]: {
+    path: getRouteEndpointGroupsCreate(),
+    element: <EndpointGroupsCreatePage />,
+    authOnly: false
+  },
+  [AppRoutes.ENDPOINT_GROUPS_EDIT]: {
+    path: getRouteEndpointGroupsEdit(':id'),
+    element: <EndpointGroupsEditPage />,
     authOnly: false
   },
   [AppRoutes.ADMIN]: {
