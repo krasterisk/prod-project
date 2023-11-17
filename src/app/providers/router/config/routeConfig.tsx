@@ -27,14 +27,19 @@ import {
   getRouteContextCreate,
   getRouteContextEdit,
   getRouteEndpointGroupsCreate,
-  getRouteEndpointGroups, getRouteEndpointGroupsEdit
+  getRouteEndpointGroups,
+  getRouteEndpointGroupsEdit
 } from '@/shared/const/router'
 import { AppRoutesProps } from '@/shared/types/router'
 import {
-  EndpointsPage,
   EndpointCreatePage,
   EndpointEditPage,
-  ContextsListPage, ContextCreatePage, EndpointGroupsCreatePage, EndpointGroupsListPage, EndpointGroupsEditPage
+  ContextsListPage,
+  ContextCreatePage,
+  EndpointGroupsCreatePage,
+  EndpointGroupsListPage,
+  EndpointGroupsEditPage,
+  EndpointsPage
 } from '@/pages/pbx'
 import { SettingPage } from '@/pages/SettingsPage'
 
@@ -77,7 +82,8 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
   },
   [AppRoutes.ENDPOINT_GROUPS]: {
     path: getRouteEndpointGroups(),
-    element: <EndpointGroupsListPage />
+    element: <EndpointGroupsListPage />,
+    authOnly: false
   },
   [AppRoutes.ENDPOINT_GROUPS_CREATE]: {
     path: getRouteEndpointGroupsCreate(),

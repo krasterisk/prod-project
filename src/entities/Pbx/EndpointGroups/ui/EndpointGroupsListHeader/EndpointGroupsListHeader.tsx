@@ -5,7 +5,9 @@ import { memo, useCallback } from 'react'
 import { Card } from '@/shared/ui/redesigned/Card'
 import { Button } from '@/shared/ui/redesigned/Button'
 import { AppLink } from '@/shared/ui/redesigned/AppLink'
-import { getRouteEndpointCreate, getRouteEndpointEdit, getRouteEndpoints } from '@/shared/const/router'
+import {
+  getRouteEndpointGroups, getRouteEndpointGroupsEdit
+} from '@/shared/const/router'
 import { HStack } from '@/shared/ui/redesigned/Stack'
 
 interface EndpointGroupsListHeaderProps {
@@ -14,7 +16,7 @@ interface EndpointGroupsListHeaderProps {
   onDelete?: (id: string) => void
 }
 
-export const EndpointsListHeader = memo((props: EndpointGroupsListHeaderProps) => {
+export const EndpointGroupsListHeader = memo((props: EndpointGroupsListHeaderProps) => {
   const {
     className,
     checkedId,
@@ -38,7 +40,7 @@ export const EndpointsListHeader = memo((props: EndpointGroupsListHeaderProps) =
       >
         <HStack gap={'16'} justify={'start'} max>
           <AppLink
-              to={getRouteEndpointCreate()}
+              to={getRouteEndpointGroups()}
           >
             <Button
                 title={t('Создать') ?? ''}
@@ -47,7 +49,7 @@ export const EndpointsListHeader = memo((props: EndpointGroupsListHeaderProps) =
             </Button>
           </AppLink>
           <AppLink
-              to={getRouteEndpoints()}
+              to={getRouteEndpointGroups()}
           >
             <Button
                 title={t('Абоненты') ?? ''}
@@ -59,7 +61,7 @@ export const EndpointsListHeader = memo((props: EndpointGroupsListHeaderProps) =
         {checkedId &&
             <HStack gap={'16'}>
               <AppLink
-                  to={getRouteEndpointEdit(checkedId)}
+                  to={getRouteEndpointGroupsEdit(checkedId)}
               >
                 <Button
                     title={t('Изменить') ?? ''}

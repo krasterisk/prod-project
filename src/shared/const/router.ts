@@ -14,9 +14,9 @@ export enum AppRoutes {
   ENDPOINTS = 'endpoints',
   ENDPOINT_EDIT = 'endpoint_edit',
   ENDPOINT_CREATE = 'endpoint_create',
-  ENDPOINT_GROUPS = 'endpoints',
-  ENDPOINT_GROUPS_EDIT = 'endpoint_edit',
-  ENDPOINT_GROUPS_CREATE = 'endpoint_create',
+  ENDPOINT_GROUPS = 'endpoints_groups',
+  ENDPOINT_GROUPS_EDIT = 'endpoints_group_edit',
+  ENDPOINT_GROUPS_CREATE = 'endpoints_group_create',
   FORBIDDEN = 'forbidden',
   ERROR = 'error'
 }
@@ -35,12 +35,11 @@ export const getRouteEndpointCreate = () => '/endpoints/create'
 export const getRouteContextCreate = () => '/contexts/create'
 export const getRouteContextEdit = (id: string) => `/contexts/${id}`
 export const getRouteEndpointEdit = (id: string) => `/endpoints/${id}`
-export const getRouteEndpointGroups = () => '/endpoints/groups'
-export const getRouteEndpointGroupsCreate = () => '/endpoints/groups/create'
-export const getRouteEndpointGroupsEdit = (id: string) => `/endpoints/groups/${id}`
-
-export const getRouteForbidden = () => '/forbidden'
+export const getRouteEndpointGroups = () => '/endpoints-groups'
+export const getRouteEndpointGroupsCreate = () => '/endpoints-groups/create'
+export const getRouteEndpointGroupsEdit = (id: string) => `/endpoints-groups/${id}`
 export const getRouteProfile = (id: string) => `/profile/${id}`
+export const getRouteForbidden = () => '/forbidden'
 
 export const AppRouteByPathPattern: Record<string, AppRoutes> = {
   [getRouteMain()]: AppRoutes.MAIN,

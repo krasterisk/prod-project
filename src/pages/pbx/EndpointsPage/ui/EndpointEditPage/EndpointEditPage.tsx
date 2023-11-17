@@ -3,7 +3,7 @@ import { Page } from '@/widgets/Page'
 import { VStack } from '@/shared/ui/redesigned/Stack'
 import { EndpointCard } from '@/features/Pbx'
 import { useParams } from 'react-router-dom'
-import { ErrorPage } from '@/pages/ErrorPage'
+import { ErrorPageAsync as ErrorPage } from '../../../../ErrorPage/ui/ErrorPage.async'
 
 export const EndpointEditPage = memo(() => {
   const { id } = useParams<{ id: string }>()

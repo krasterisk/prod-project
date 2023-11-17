@@ -15,6 +15,6 @@ export const rtkApi = createApi({
         return headers
       }
     }),
-  tagTypes: ['Endpoints'],
+  tagTypes: ['Endpoints', 'EndpointGroups'],
   endpoints: (builder) => ({})
 })

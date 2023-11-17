@@ -16,9 +16,9 @@ import {
 interface EndpointGroupsListProps {
   className?: string
   isLoading?: boolean
-  isError
-  endpointGroups
-  onDelete
+  isError?: boolean
+  endpointGroups?: EndpointGroups[]
+  onDelete?: (id: string) => void
 }
 
 export const EndpointGroupsList = memo((props: EndpointGroupsListProps) => {

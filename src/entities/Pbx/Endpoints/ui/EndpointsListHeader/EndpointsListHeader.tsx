@@ -5,7 +5,12 @@ import { memo, useCallback } from 'react'
 import { Card } from '@/shared/ui/redesigned/Card'
 import { Button } from '@/shared/ui/redesigned/Button'
 import { AppLink } from '@/shared/ui/redesigned/AppLink'
-import { getRouteContexts, getRouteEndpointCreate, getRouteEndpointEdit } from '@/shared/const/router'
+import {
+  getRouteContexts,
+  getRouteEndpointCreate,
+  getRouteEndpointEdit,
+  getRouteEndpointGroups
+} from '@/shared/const/router'
 import { HStack } from '@/shared/ui/redesigned/Stack'
 
 interface EndpointsListHeaderProps {
@@ -56,7 +61,7 @@ export const EndpointsListHeader = memo((props: EndpointsListHeaderProps) => {
                     </Button>
                 </AppLink>
                 <AppLink
-                    to={''}
+                    to={getRouteEndpointGroups()}
                 >
                     <Button
                         title={t('Группы') ?? ''}
