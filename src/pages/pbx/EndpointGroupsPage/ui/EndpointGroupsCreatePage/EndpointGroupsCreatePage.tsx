@@ -1,19 +1,14 @@
-import { classNames } from '@/shared/lib/classNames/classNames'
-import cls from './EndpointGroupsCreatePage.module.scss'
-import { memo } from 'react'
+import React, { memo } from 'react'
+import { Page } from '@/widgets/Page'
+import { VStack } from '@/shared/ui/redesigned/Stack'
+import { EndpointGroupsCard } from '@/features/Pbx'
 
-interface EndpointGroupsCreatePageProps {
-  className?: string
-
-}
-
-export const EndpointGroupsCreatePage = memo((props: EndpointGroupsCreatePageProps) => {
-  const {
-    className
-  } = props
+export const EndpointGroupsCreatePage = memo(() => {
   return (
-        <div className={classNames(cls.EndpointGroupsCreatePage, {}, [className])}>
-
-        </div>
+      <Page data-testid={'EndpointsPage'}>
+        <VStack gap='8'>
+          <EndpointGroupsCard />
+        </VStack>
+      </Page>
   )
 })

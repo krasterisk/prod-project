@@ -6,5 +6,6 @@ export { ContextCreateCard } from './ui/Contexts/ContextCreateCard/ContextCreate
 export { ContextSelect } from './ui/Contexts/ContextSelect/ContextSelect'
 export { ContextCard } from './ui/Contexts/ContextCard/ContextCard'
 export { EndpointGroups } from './ui/EndpointGroups/EndpointGroups/EndpointGroups'
+export { EndpointGroupsCard } from './ui/EndpointGroups/EndpointGroupsCard/EndpointGroupsCard'
 export { EndpointGroupsCreateCard } from './ui/EndpointGroups/EndpointGroupsCreateCard/EndpointGroupsCreateCard'
 export { EndpointGroupsEditCard } from './ui/EndpointGroups/EndpointGroupsEditCard/EndpointGroupsEditCard'

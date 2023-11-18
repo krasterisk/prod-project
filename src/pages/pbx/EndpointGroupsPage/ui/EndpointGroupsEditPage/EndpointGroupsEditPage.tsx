@@ -1,19 +1,24 @@
-import { classNames } from '@/shared/lib/classNames/classNames'
-import cls from './EndpointGroupsEditPage.module.scss'
-import { memo } from 'react'
+import React, { memo } from 'react'
+import { Page } from '@/widgets/Page'
+import { VStack } from '@/shared/ui/redesigned/Stack'
+import { EndpointGroupsCard } from '@/features/Pbx'
+import { useParams } from 'react-router-dom'
+import { ErrorPageAsync as ErrorPage } from '../../../../ErrorPage/ui/ErrorPage.async'
 
-interface EndpointGroupsEditPageProps {
-  className?: string
+export const EndpointGroupsEditPage = memo(() => {
+  const { id } = useParams<{ id: string }>()
 
-}
+  if (!id) {
+    return (
+        <ErrorPage />
+    )
+  }
 
-export const EndpointGroupsEditPage = memo((props: EndpointGroupsEditPageProps) => {
-  const {
-    className
-  } = props
   return (
-        <div className={classNames(cls.EndpointGroupsEditPage, {}, [className])}>
-
-        </div>
+      <Page data-testid={'EndpointsPage'}>
+        <VStack gap='8'>
+          <EndpointGroupsCard isEdit endpointGroupId={id} />
+        </VStack>
+      </Page>
   )
 })

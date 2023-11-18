@@ -41,7 +41,6 @@ export const EndpointGroups = () => {
           isLoading={isLoading}
           endpointGroups={data}
           isError={isError}
-          onDelete={onDelete}
       />
   )
 }

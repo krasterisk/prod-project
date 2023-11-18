@@ -10,7 +10,7 @@ export default {
   }
 } as ComponentMeta<typeof EndpointGroupsEditPage>
 
-const Template: ComponentStory<typeof EndpointGroupsEditPage> = (args) => <EndpointGroupsEditPage {...args} />
+const Template: ComponentStory<typeof EndpointGroupsEditPage> = (args) => <EndpointGroupsEditPage />
 
 export const Normal = Template.bind({})
 Normal.args = {}

@@ -12,13 +12,14 @@ import { Table } from '@/shared/ui/redesigned/Table/Table'
 import {
   EndpointGroupsListHeader
 } from '../EndpointGroupsListHeader/EndpointGroupsListHeader'
+import { getRouteEndpointGroupsEdit } from '@/shared/const/router'
+import { useNavigate } from 'react-router-dom'
 
 interface EndpointGroupsListProps {
   className?: string
   isLoading?: boolean
   isError?: boolean
   endpointGroups?: EndpointGroups[]
-  onDelete?: (id: string) => void
 }
 
 export const EndpointGroupsList = memo((props: EndpointGroupsListProps) => {
@@ -26,14 +27,13 @@ export const EndpointGroupsList = memo((props: EndpointGroupsListProps) => {
     className,
     isLoading,
     isError,
-    endpointGroups,
-    onDelete
+    endpointGroups
   } = props
 
   const { t } = useTranslation('endpoints')
   const columnHelper = createColumnHelper<EndpointGroups>()
   const [checkedId, setCheckedId] = useState<string>('')
-
+  const navigate = useNavigate()
   const endpointGroupsColumns = [
     columnHelper.accessor('id', {
       id: 'id',
@@ -52,9 +52,8 @@ export const EndpointGroupsList = memo((props: EndpointGroupsListProps) => {
     })
   ]
   const handlerOnEdit = useCallback((id: string) => {
-    setCheckedId(id)
-    // navigate(getRouteEndpointEdit(id))
-  }, [])
+    navigate(getRouteEndpointGroupsEdit(id))
+  }, [navigate])
 
   if (isError) {
     return (
@@ -83,7 +82,7 @@ export const EndpointGroupsList = memo((props: EndpointGroupsListProps) => {
                 max
                 border={'partial'}
             >
-                <EndpointGroupsListHeader checkedId={checkedId} onDelete={onDelete} />
+                <EndpointGroupsListHeader />
             </Card>
             <Card
                 className={cls.EndpointGroupsTable}
