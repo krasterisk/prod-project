@@ -16,8 +16,8 @@ interface NavbarProps {
 
 export const Navbar = memo(({ className }: NavbarProps) => {
   const { t } = useTranslation()
-  const [isAuthModal, setIsAuthModal] = useState(false)
   const authData = useSelector(getUserAuthData)
+  const [isAuthModal, setIsAuthModal] = useState(false)
 
   const onCloseModal = useCallback(() => {
     setIsAuthModal(false)

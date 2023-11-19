@@ -25,13 +25,13 @@ export const Endpoints = () => {
   const { t } = useTranslation('endpoints')
 
   if (isError) {
+    const errMsg = error && 'data' in error
+      ? String((error.data as { message: string }).message)
+      : ''
+
     return (
         <ErrorGetData
-            text={
-              error && 'data' in error
-                ? String(t((error.data as { message: string }).message))
-                : String(t('Попробуйте обновить страницу'))
-            }
+            text={errMsg}
         />
     )
   }

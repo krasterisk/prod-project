@@ -43,7 +43,8 @@ const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
 
   const onLoginClick = useCallback(() => {
     dispatch(loginByUsername({ username, password }))
-  }, [dispatch, password, username])
+    onSuccess()
+  }, [dispatch, onSuccess, password, username])
 
   return (
         <DynamicModuleLoader
