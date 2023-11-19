@@ -42,8 +42,11 @@ const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
   }, [dispatch])
 
   const onLoginClick = useCallback(() => {
-    dispatch(loginByUsername({ username, password }))
-    onSuccess()
+    const isLogin = dispatch(loginByUsername({ username, password }))
+    console.log(isLogin)
+    if (onSuccess) {
+      onSuccess()
+    }
   }, [dispatch, onSuccess, password, username])
 
   return (

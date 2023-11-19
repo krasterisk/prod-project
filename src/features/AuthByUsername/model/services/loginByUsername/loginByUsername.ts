@@ -29,7 +29,6 @@ ThunkConfig<string>>(
       dispatch(userActions.setToken(response.data))
       return response.data
     } catch (e) {
-      console.log(e)
       return rejectWithValue('error')
     }
   }

@@ -3,7 +3,7 @@ import { Page } from '@/widgets/Page'
 import { VStack } from '@/shared/ui/redesigned/Stack'
 import { Endpoints } from '@/features/Pbx'
 
-const EndpointsPage = memo(() => {
+export const EndpointsPage = memo(() => {
   return (
         <Page data-testid={'EndpointsPage'}>
             <VStack gap='8'>
@@ -13,4 +13,4 @@ const EndpointsPage = memo(() => {
   )
 })
 
-export default EndpointsPage
+// export default EndpointsPage

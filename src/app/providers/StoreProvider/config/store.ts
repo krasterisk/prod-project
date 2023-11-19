@@ -7,6 +7,7 @@ import { $api } from '@/shared/api/api'
 import { scrollSaveReducer } from '@/features/ScrollSave'
 import { rtkApi } from '@/shared/api/rtkApi'
 import { profileReducer } from '@/features/EditableProfileCard'
+import { setupListeners } from '@reduxjs/toolkit/query'
 
 export function createReduxStore (
   initialState?: StateSchema,
@@ -37,6 +38,9 @@ export function createReduxStore (
       }
     }).concat(rtkApi.middleware)
   })
+
+  // enable listener behavior for the store
+  setupListeners(store.dispatch)
 
   // @ts-expect-error
   store.reducerManager = reducerManager
