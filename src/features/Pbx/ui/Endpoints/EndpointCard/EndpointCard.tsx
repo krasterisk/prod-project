@@ -2,7 +2,7 @@ import React, { memo, useCallback } from 'react'
 import { HStack, VStack } from '@/shared/ui/redesigned/Stack'
 import { Card } from '@/shared/ui/redesigned/Card'
 import { Skeleton } from '@/shared/ui/redesigned/Skeleton'
-import { endpointsApi, useSetEndpoints, useUpdateEndpoint } from '../../../api/endpointsApi'
+import { endpointsApi, useDeleteEndpoint, useSetEndpoints, useUpdateEndpoint } from '../../../api/endpointsApi'
 import { Endpoint } from '@/entities/Pbx'
 import { classNames } from '@/shared/lib/classNames/classNames'
 import cls from './EndpointCard.module.scss'
@@ -32,6 +32,7 @@ export const EndpointCard = memo((props: EndpointCardProps) => {
 
   const [endpointMutation, { isError, error }] = useSetEndpoints()
   const [endpointUpdateMutation] = useUpdateEndpoint()
+  const [endpointDeleteMutation] = useDeleteEndpoint()
 
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
@@ -78,13 +79,25 @@ export const EndpointCard = memo((props: EndpointCardProps) => {
     // })
   }, [endpointUpdateMutation, navigate])
 
+  const handleDeleteEndpoint = useCallback(async (id: string) => {
+    try {
+      await endpointDeleteMutation(id).unwrap()
+    } finally {
+      navigate(getRouteEndpoints())
+    }
+  }, [endpointDeleteMutation, navigate])
+
+  const onDelete = useCallback((id: string) => {
+    handleDeleteEndpoint(id)
+  }, [handleDeleteEndpoint])
+
   const onEdit = useCallback((data: Endpoint) => {
     handleEditEndpoint(data)
   }, [handleEditEndpoint])
 
   if (!endpointId && isEdit) {
     return (
-            <ErrorGetData />
+            <ErrorGetData/>
     )
   }
 
@@ -115,6 +128,7 @@ export const EndpointCard = memo((props: EndpointCardProps) => {
                         onEdit={onEdit}
                         isError={isError}
                         endpointId={endpointId}
+                        onDelete={onDelete}
                     />
                   : <EndpointCreateCard
                         onCreate={onCreate}

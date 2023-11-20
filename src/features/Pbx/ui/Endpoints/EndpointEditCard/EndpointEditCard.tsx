@@ -21,13 +21,15 @@ interface EndpointEditCardProps {
   onEdit?: (data: Endpoint) => void
   endpointId?: string
   error?: FetchBaseQueryError | SerializedError | undefined
+  onDelete?: (id: string) => void
 }
 
 export const EndpointEditCard = memo((props: EndpointEditCardProps) => {
   const {
     className,
     onEdit,
-    endpointId
+    endpointId,
+    onDelete
   } = props
 
   const { t } = useTranslation('endpoints')
@@ -87,7 +89,7 @@ export const EndpointEditCard = memo((props: EndpointEditCardProps) => {
 
   return (
             <VStack gap={'8'} max className={classNames(cls.EndpointEditCard, {}, [className])}>
-                <EndpointEditHeader onEdit={editHandler}/>
+                <EndpointEditHeader onEdit={editHandler} onDelete={onDelete} endpointId={endpointId} />
                 {isError
                   ? <ErrorGetData
                         title={t('Ошибка при сохранении абонента') || ''}

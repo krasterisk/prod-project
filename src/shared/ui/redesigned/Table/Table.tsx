@@ -1,7 +1,6 @@
 import { classNames } from '@/shared/lib/classNames/classNames'
 import cls from './Table.module.scss'
 import { flexRender, getCoreRowModel, useReactTable } from '@tanstack/react-table'
-import { useNavigate } from 'react-router-dom'
 
 interface TableProps<T extends object> {
   data: T[] | undefined
@@ -17,8 +16,6 @@ export const Table = <T extends object>(props: TableProps<T>) => {
     className,
     onEdit
   } = props
-
-  const navigate = useNavigate()
 
   const table = useReactTable({
     data,

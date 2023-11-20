@@ -1,4 +1,4 @@
-import { useDeleteEndpoint, useEndpoints } from '../../../api/endpointsApi'
+import { useEndpoints } from '../../../api/endpointsApi'
 import React, { useCallback } from 'react'
 import { EndpointsList } from '@/entities/Pbx'
 import { ErrorGetData } from '@/entities/ErrorGetData'
@@ -11,15 +11,6 @@ export const Endpoints = () => {
     error,
     refetch
   } = useEndpoints(null)
-  const [endpointDeleteMutation] = useDeleteEndpoint()
-
-  const handleDeleteEndpoint = useCallback(async (id: string) => {
-    await endpointDeleteMutation(id).unwrap()
-  }, [endpointDeleteMutation])
-
-  const onDelete = useCallback((id: string) => {
-    handleDeleteEndpoint(id)
-  }, [handleDeleteEndpoint])
 
   const onRefetch = useCallback(() => {
     refetch()
@@ -43,7 +34,6 @@ export const Endpoints = () => {
           isLoading={isLoading}
           endpoints={data}
           isError={isError}
-          onDelete={onDelete}
       />
   )
 }

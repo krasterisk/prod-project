@@ -41,46 +41,54 @@ const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
     dispatch(loginActions.setPassword(value))
   }, [dispatch])
 
-  const onLoginClick = useCallback(() => {
-    const isLogin = dispatch(loginByUsername({ username, password }))
-    console.log(isLogin)
-    if (onSuccess) {
+  const onLoginClick = useCallback(async () => {
+    const login = await dispatch(loginByUsername({ username, password }))
+    if (onSuccess && login.payload !== 'error') {
       onSuccess()
     }
   }, [dispatch, onSuccess, password, username])
 
+  const handleKeypress = useCallback((e: string) => {
+    if (e === 'Enter') {
+      onLoginClick()
+    }
+  }, [onLoginClick])
+
   return (
-        <DynamicModuleLoader
-            removeAfterUnmount
-            reducers={initialReducers}
+    <DynamicModuleLoader
+        removeAfterUnmount
+        reducers={initialReducers}
+    >
+        <VStack
+            className={classNames(cls.LoginForm, {}, [className])} gap={'16'}
+            onKeyDown={(e) => { handleKeypress(e.key) }}
         >
-            <VStack className={classNames(cls.LoginForm, {}, [className])} gap={'16'}>
-                                      <Text title={t('Авторизация')}></Text>
-                                      {error && <Text text={t('Неправильные имя пользователя или пароль')} variant={'error'}/>}
-                                      <Input
-                                          type="text"
-                                          className={cls.input}
-                                          placeholder={t('Имя пользователя') ?? ''}
-                                          onChange={onChangeUsername}
-                                          value={username}
-                                      />
-                                      <Input
-                                          type="text"
-                                          className={cls.input}
-                                          placeholder={t('Пароль') ?? ''}
-                                          onChange={onChangePassword}
-                                          value={password}
-                                      />
-                                      <Button
-                                          variant={'outline'}
-                                          className={cls.loginBtn}
-                                          onClick={onLoginClick}
-                                          disabled={isLoading}
-                                      >
-                                          {t('Вход')}
-                                      </Button>
-                                  </VStack>
-        </DynamicModuleLoader>
+            <Text title={t('Авторизация')}></Text>
+            {error && <Text text={t('Неправильные имя пользователя или пароль')} variant={'error'}/>}
+            <Input
+                type="text"
+                className={cls.input}
+                placeholder={t('Имя пользователя') ?? ''}
+                onChange={onChangeUsername}
+                value={username}
+            />
+            <Input
+                type="text"
+                className={cls.input}
+                placeholder={t('Пароль') ?? ''}
+                onChange={onChangePassword}
+                value={password}
+            />
+            <Button
+                variant={'outline'}
+                className={cls.loginBtn}
+                onClick={() => onLoginClick}
+                disabled={isLoading}
+            >
+                {t('Вход')}
+            </Button>
+        </VStack>
+    </DynamicModuleLoader>
   )
 })
 

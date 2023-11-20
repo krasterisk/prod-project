@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import { useGetContexts } from '../../../api/contextsApi'
 import { ContextsList } from '@/entities/Pbx'
 import { ErrorGetData } from '@/entities/ErrorGetData'
@@ -13,19 +13,25 @@ export const Contexts = () => {
     data,
     isLoading,
     isError,
-    error
+    error,
+    refetch
   } = useGetContexts({ vpbx_user_id })
 
   const { t } = useTranslation('endpoints')
 
+  const onRefetch = useCallback(() => {
+    refetch()
+  }, [refetch])
+
   if (isError) {
+    const errMsg = error && 'data' in error
+      ? String((error.data as { message: string }).message)
+      : ''
+
     return (
         <ErrorGetData
-            text={
-              error && 'data' in error
-                ? String(t((error.data as { message: string }).message))
-                : String(t('Попробуйте обновить страницу'))
-            }
+            text={errMsg}
+            onRefetch={onRefetch}
         />
     )
   }

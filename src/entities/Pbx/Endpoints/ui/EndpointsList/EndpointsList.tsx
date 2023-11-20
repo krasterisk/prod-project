@@ -1,6 +1,6 @@
 import { classNames } from '@/shared/lib/classNames/classNames'
 import cls from './EndpointsList.module.scss'
-import React, { useCallback, useState } from 'react'
+import React, { useCallback } from 'react'
 import { VStack } from '@/shared/ui/redesigned/Stack'
 import { Skeleton } from '@/shared/ui/redesigned/Skeleton'
 import { Card } from '@/shared/ui/redesigned/Card'
@@ -10,6 +10,8 @@ import { EndpointsListHeader } from '../EndpointsListHeader/EndpointsListHeader'
 import { createColumnHelper } from '@tanstack/react-table'
 import { useTranslation } from 'react-i18next'
 import { ErrorGetData } from '@/entities/ErrorGetData'
+import { getRouteEndpointEdit } from '@/shared/const/router'
+import { useNavigate } from 'react-router-dom'
 
 const EndpointsList = (props: EndpointsListProps) => {
   const {
@@ -20,11 +22,9 @@ const EndpointsList = (props: EndpointsListProps) => {
     onDelete
   } = props
 
-  const [checkedId, setCheckedId] = useState<string>('')
-
   const { t } = useTranslation('endpoints')
   const columnHelper = createColumnHelper<Endpoint>()
-
+  const navigate = useNavigate()
   const endpointsColumns = [
     columnHelper.accessor('id', {
       id: 'id',
@@ -51,9 +51,8 @@ const EndpointsList = (props: EndpointsListProps) => {
   ]
 
   const handlerOnEdit = useCallback((id: string) => {
-    setCheckedId(id)
-    // navigate(getRouteEndpointEdit(id))
-  }, [])
+    navigate(getRouteEndpointEdit(id))
+  }, [navigate])
 
   if (isError) {
     return (
@@ -82,7 +81,7 @@ const EndpointsList = (props: EndpointsListProps) => {
                 max
                 border={'partial'}
             >
-                <EndpointsListHeader checkedId={checkedId} onDelete={onDelete} />
+                <EndpointsListHeader />
             </Card>
             <Card
                 className={cls.EndpointsTable}

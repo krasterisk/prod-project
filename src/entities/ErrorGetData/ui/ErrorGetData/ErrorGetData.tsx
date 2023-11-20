@@ -24,7 +24,7 @@ export const ErrorGetData = memo(({ title, text, onRefetch }: ErrorGetDataProps)
       setIsAuthModal(true)
     }
   }, [text])
-
+  console.log(text)
   return (
             <HStack
                 justify={'center'}
@@ -33,7 +33,7 @@ export const ErrorGetData = memo(({ title, text, onRefetch }: ErrorGetDataProps)
                 <Text
                     variant={'error'}
                     title={title || t('Ошибка получения данных!')}
-                    text={t(String(text)) || t('Попробуйте обновить страницу')}
+                    text={t(text || '') || t('Попробуйте обновить страницу')}
                     align={'center'}
                 />
                 {isAuthModal && (

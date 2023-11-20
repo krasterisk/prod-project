@@ -1,7 +1,7 @@
 import { classNames } from '@/shared/lib/classNames/classNames'
 import cls from './EndpointGroupsList.module.scss'
 import { useTranslation } from 'react-i18next'
-import React, { memo, useCallback, useState } from 'react'
+import React, { memo, useCallback } from 'react'
 import { createColumnHelper } from '@tanstack/react-table'
 import { EndpointGroups } from '../../model/types/endpointGroups'
 import { ErrorGetData } from '@/entities/ErrorGetData'
@@ -32,8 +32,8 @@ export const EndpointGroupsList = memo((props: EndpointGroupsListProps) => {
 
   const { t } = useTranslation('endpoints')
   const columnHelper = createColumnHelper<EndpointGroups>()
-  const [checkedId, setCheckedId] = useState<string>('')
   const navigate = useNavigate()
+
   const endpointGroupsColumns = [
     columnHelper.accessor('id', {
       id: 'id',
