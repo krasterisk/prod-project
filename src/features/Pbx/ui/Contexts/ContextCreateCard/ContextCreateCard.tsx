@@ -35,6 +35,7 @@ export const ContextCreateCard = memo((props: ContextCreateCardProps) => {
   const { t } = useTranslation('endpoints')
 
   const initContext = {
+    id: 'LIST',
     name: 'sip-out',
     includes: '',
     description: '',
@@ -90,7 +91,6 @@ export const ContextCreateCard = memo((props: ContextCreateCardProps) => {
                             defaultValue={String(t('Выбрать...'))}
                             multiple
                         />
-
                     </VStack>
                 </HStack>
             </Card>

@@ -18,13 +18,13 @@ const EndpointsList = (props: EndpointsListProps) => {
     className,
     isLoading,
     isError,
-    endpoints,
-    onDelete
+    endpoints
   } = props
 
   const { t } = useTranslation('endpoints')
   const columnHelper = createColumnHelper<Endpoint>()
   const navigate = useNavigate()
+
   const endpointsColumns = [
     columnHelper.accessor('id', {
       id: 'id',

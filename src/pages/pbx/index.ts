@@ -4,6 +4,7 @@ export { EndpointCreatePage } from './EndpointsPage/ui/EndpointCreatePage/Endpoi
 export { EndpointEditPage } from './EndpointsPage/ui/EndpointEditPage/EndpointEditPage'
 export { ContextsListPage } from './ContextsPage/ui/ContextsListPage/ContextsListPage'
 export { ContextCreatePage } from './ContextsPage/ui/ContextCreatePage/ContextCreatePage'
+export { ContextEditPage } from './ContextsPage/ui/ContextEditPage/ContextEditPage'
 export { EndpointGroupsListPage } from './EndpointGroupsPage/ui/EndpointGroupsListPage/EndpointGroupsListPage'
 export { EndpointGroupsCreatePage } from './EndpointGroupsPage/ui/EndpointGroupsCreatePage/EndpointGroupsCreatePage'
 export { EndpointGroupsEditPage } from './EndpointGroupsPage/ui/EndpointGroupsEditPage/EndpointGroupsEditPage'

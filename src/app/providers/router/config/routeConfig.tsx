@@ -39,7 +39,8 @@ import {
   EndpointGroupsCreatePage,
   EndpointGroupsListPage,
   EndpointGroupsEditPage,
-  EndpointsPage
+  EndpointsPage,
+  ContextEditPage
 } from '@/pages/pbx'
 import { SettingPage } from '@/pages/SettingsPage'
 
@@ -77,7 +78,7 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
   },
   [AppRoutes.CONTEXT_EDIT]: {
     path: getRouteContextEdit(':id'),
-    element: <ContextCreatePage />,
+    element: <ContextEditPage />,
     authOnly: false
   },
   [AppRoutes.ENDPOINT_GROUPS]: {

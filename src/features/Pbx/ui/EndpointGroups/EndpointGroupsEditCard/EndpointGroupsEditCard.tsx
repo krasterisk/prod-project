@@ -10,6 +10,8 @@ import { EndpointGroups } from '@/entities/Pbx'
 import { Skeleton } from '@/shared/ui/redesigned/Skeleton'
 import { useEndpointGroup } from '../../../api/endpointGroupsApi'
 import { EndpointGroupsEditHeader } from '../EndpointGroupsEditHeader/EndpointGroupsEditHeader'
+import { useSelector } from 'react-redux'
+import { getUserAuthData } from '@/entities/User'
 
 interface EndpointEditGroupCardProps {
   className?: string
@@ -27,6 +29,8 @@ export const EndpointGroupsEditCard = memo((props: EndpointEditGroupCardProps) =
   } = props
 
   const { t } = useTranslation('endpoints')
+  const userData = useSelector(getUserAuthData)
+  const vpbx_user_id = userData?.vpbx_user_id || '0'
 
   const { data, isError, isLoading, error } = useEndpointGroup(endpointGroupId!)
 
@@ -34,7 +38,7 @@ export const EndpointGroupsEditCard = memo((props: EndpointEditGroupCardProps) =
     id: 'LIST',
     name: '',
     description: '',
-    vpbx_user_id: '0'
+    vpbx_user_id
   }
 
   const [formFields, setFormFields] = useState<EndpointGroups>(data || initEndpointGroup)

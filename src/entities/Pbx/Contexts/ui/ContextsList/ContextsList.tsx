@@ -3,13 +3,15 @@ import cls from './ContextsList.module.scss'
 import { Context, ContextsListProps } from '../../model/types/contexts'
 import { useTranslation } from 'react-i18next'
 import { createColumnHelper } from '@tanstack/react-table'
-import React from 'react'
+import React, { useCallback } from 'react'
 import { ErrorGetData } from '@/entities/ErrorGetData'
 import { VStack } from '@/shared/ui/redesigned/Stack'
 import { Skeleton } from '@/shared/ui/redesigned/Skeleton'
 import { Card } from '@/shared/ui/redesigned/Card'
 import { Table } from '@/shared/ui/redesigned/Table/Table'
 import { ContextsListHeader } from '../ContextsListHeader/ContextsListHeader'
+import { useNavigate } from 'react-router-dom'
+import { getRouteContextEdit } from '@/shared/const/router'
 
 export const ContextsList = (props: ContextsListProps) => {
   const {
@@ -20,10 +22,16 @@ export const ContextsList = (props: ContextsListProps) => {
   } = props
 
   const { t } = useTranslation('endpoints')
+  const navigate = useNavigate()
 
   const columnHelper = createColumnHelper<Context>()
 
   const contextsColumns = [
+    columnHelper.accessor('id', {
+      id: 'id',
+      cell: info => info.getValue(),
+      header: () => t('Id')
+    }),
     columnHelper.accessor('name', {
       id: 'name',
       cell: info => info.getValue(),
@@ -39,6 +47,10 @@ export const ContextsList = (props: ContextsListProps) => {
       cell: info => info.renderValue()
     })
   ]
+
+  const handlerOnEdit = useCallback((id: string) => {
+    navigate(getRouteContextEdit(id))
+  }, [navigate])
 
   if (isError) {
         <ErrorGetData/>
@@ -77,7 +89,11 @@ export const ContextsList = (props: ContextsListProps) => {
                     max
                     border={'partial'}
                 >
-                    <Table data={contexts} columns={contextsColumns}/>
+                    <Table
+                        data={contexts}
+                        columns={contextsColumns}
+                        onEdit={handlerOnEdit}
+                    />
                 </Card>
             </VStack>
         </div>
