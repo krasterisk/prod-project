@@ -9,7 +9,6 @@ export const Contexts = () => {
   const authData = useSelector(getUserAuthData)
   const vpbx_user_id = authData?.vpbx_user_id || '0'
 
-  console.log(vpbx_user_id)
   const {
     data,
     isLoading,

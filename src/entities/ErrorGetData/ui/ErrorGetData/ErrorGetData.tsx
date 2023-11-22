@@ -22,8 +22,9 @@ export const ErrorGetData = memo(({ title, text, onRefetch }: ErrorGetDataProps)
   useEffect(() => {
     if (text === 'TokenExpiredError') {
       setIsAuthModal(true)
+      t(String(text))
     }
-  }, [text])
+  }, [t, text])
   console.log(text)
   return (
             <HStack
@@ -33,7 +34,7 @@ export const ErrorGetData = memo(({ title, text, onRefetch }: ErrorGetDataProps)
                 <Text
                     variant={'error'}
                     title={title || t('Ошибка получения данных!')}
-                    text={t(text || '') || t('Попробуйте обновить страницу')}
+                    text={text || t('Попробуйте обновить страницу')}
                     align={'center'}
                 />
                 {isAuthModal && (

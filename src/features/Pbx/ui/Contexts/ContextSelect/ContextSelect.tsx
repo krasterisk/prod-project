@@ -36,15 +36,16 @@ export const ContextSelect = memo((props: ContextsSelectProps) => {
     value: item.name,
     content: item.name
   }))
+
   // todo надо будет сделать при редактировании - исключить сам себя из списка контекстов
   // .filter(item => item.value !== value)
 
-  const initValue = !value &&
-      !defaultValue &&
-  contextItems &&
-  contextItems?.length > 0
-    ? contextItems[0].value
-    : defaultValue || value
+  // const initValue = !value &&
+  //     !defaultValue &&
+  // contextItems &&
+  // contextItems?.length > 0
+  //   ? contextItems[0].value
+  //   : defaultValue || value
 
   useEffect(() => {
     if (!value && !defaultValue && contextItems && contextItems.length > 0) {
@@ -59,7 +60,7 @@ export const ContextSelect = memo((props: ContextsSelectProps) => {
   const contextProps = {
     className,
     items: contextItems,
-    value: initValue,
+    value: value || defaultValue,
     defaultValue,
     label: String(t(label || 'Контекст')),
     onChange: onChangeHandler,

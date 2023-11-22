@@ -1,4 +1,4 @@
-import { Fragment, ReactNode, useState } from 'react'
+import { Fragment, ReactNode, useEffect, useState } from 'react'
 import { Listbox as HListBox } from '@headlessui/react'
 import { classNames } from '@/shared/lib/classNames/classNames'
 import { HStack } from '../../../../redesigned/Stack'
@@ -44,13 +44,18 @@ export function ListBox<T extends string> (props: ListBoxProps<T>) {
 
   const optionsClasses = [mapDirectionClass[direction], popupCls.menu]
 
-  const initItem = items && !defaultValue && items?.length > 0 && !value ? [items[0].value] : []
+  const initItem = value ? value.split(',') as T[] : (items && items.length > 0 ? [items[0].value] : [])
 
   const [selectedItems, setSelectedItems] = useState<T[]>(initItem)
 
+  useEffect(() => {
+    const newSelectedItems = value ? (value.split(',') as T[]).filter(item => item !== defaultValue) : []
+    setSelectedItems(newSelectedItems)
+  }, [defaultValue, value])
+
   const handleOnChange = (values: T[]) => {
     if (multiple) {
-      setSelectedItems(values)
+      setSelectedItems(values.filter(item => item !== defaultValue))
       onChange?.(values.join(',') as T)
     } else {
       setSelectedItems(values)
@@ -102,14 +107,14 @@ export function ListBox<T extends string> (props: ListBoxProps<T>) {
                                       {
                                         [popupCls.active]: active,
                                         [popupCls.disabled]: item.disabled,
-                                        [popupCls.selected]: selectedItems.length === 0 && item.value === items[0].value ? true : selected
+                                        [popupCls.selected]: selectedItems.includes(item.value)
                                       }
                                     )}
                                 >
                                     {selected &&
                                         <Icon className={cls.checked} Svg={CheckIcon} width={'16'} height={'16'}/>
                                     }
-                                    {!selected && selectedItems.length === 0 && item.value === items[0].value &&
+                                    {selectedItems.includes(item.value) &&
                                         <Icon className={cls.checked} Svg={CheckIcon} width={'16'} height={'16'}/>
                                     }
                                     {item.value}

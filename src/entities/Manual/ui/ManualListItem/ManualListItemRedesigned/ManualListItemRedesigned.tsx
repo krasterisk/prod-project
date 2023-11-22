@@ -30,7 +30,7 @@ export const ManualListItemRedesigned = memo((props: ManualListItemProps) => {
 
   const userInfo = (
         <>
-             <Avatar src={manual.user.avatar} size={32} className={cls.avatar} />
+              <Avatar src={manual.user.avatar} size={32} className={cls.avatar}/>
              <Text bold text={manual.user.username}/>
         </>
   )
