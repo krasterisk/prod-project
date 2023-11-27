@@ -41,14 +41,11 @@ export const ContentList = <T extends object>(props: ContentListProps<T>) => {
   const renderContent = (content: T) => {
     if (componentName === 'endpoints') {
       return (
-          <>
             <EndpointItem
                 endpoint={content as Endpoint}
                 view={view}
-                className={cls.card}
                 target={target}
             />
-          </>
       )
     }
   }

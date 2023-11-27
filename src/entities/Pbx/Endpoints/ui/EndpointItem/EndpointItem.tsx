@@ -28,11 +28,7 @@ export const EndpointItem = memo((props: EndpointItemProps) => {
   } = props
   const { t } = useTranslation()
 
-  const userInfo = (
-        <>
-            <Text bold text={endpoint.username}/>
-        </>
-  )
+  console.log(view)
 
   if (view === 'BIG') {
     return (
@@ -44,7 +40,7 @@ export const EndpointItem = memo((props: EndpointItemProps) => {
             >
                 <VStack max gap={'16'}>
                     <HStack gap={'8'}>
-                        {userInfo}
+                        <Text bold text={endpoint.username}/>
                     </HStack>
                     <Text text={endpoint.id + '. ' + endpoint.endpoint_id} bold className={cls.title}/>
                     <Text text={endpoint.username} size={'s'}/>
@@ -67,7 +63,7 @@ export const EndpointItem = memo((props: EndpointItemProps) => {
 
   return (
         <AppLink
-            data-testid={'ManualListItem'}
+            data-testid={'EndpointItem'}
             target={target}
             className={classNames(cls.EndpointItem, {}, [className, cls[view]])}
             to={getRouteEndpointEdit(endpoint.id)}
@@ -77,7 +73,9 @@ export const EndpointItem = memo((props: EndpointItemProps) => {
                     <Text text={endpoint.id + '. ' + endpoint.endpoint_id} className={cls.title}/>
                     <Text text={endpoint.username} size={'s'}/>
                     <VStack gap={'4'} className={cls.footer} max>
-                        <HStack gap={'4'}>{userInfo}</HStack>
+                        <HStack gap={'4'}>
+                            <Text bold text={endpoint.username}/>
+                        </HStack>
                     </VStack>
                 </VStack>
             </Card>

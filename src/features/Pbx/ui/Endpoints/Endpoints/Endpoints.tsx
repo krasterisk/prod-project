@@ -3,7 +3,11 @@ import React, { useCallback } from 'react'
 import { EndpointsList } from '@/entities/Pbx'
 import { ErrorGetData } from '@/entities/ErrorGetData'
 
-export const Endpoints = () => {
+interface EndpointsProps {
+  className?: string
+}
+
+export const Endpoints = ({ className }: EndpointsProps) => {
   const {
     data,
     isLoading,
@@ -31,6 +35,7 @@ export const Endpoints = () => {
 
   return (
       <EndpointsList
+          className={className}
           isLoading={isLoading}
           endpoints={data}
           isError={isError}

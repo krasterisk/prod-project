@@ -13,7 +13,7 @@ import { getRouteEndpointEdit } from '@/shared/const/router'
 import { useNavigate } from 'react-router-dom'
 import { ContentList } from '@/entities/Content'
 
-const EndpointsList = (props: EndpointsListProps) => {
+export const EndpointsList = (props: EndpointsListProps) => {
   const {
     className,
     isLoading,
@@ -24,6 +24,7 @@ const EndpointsList = (props: EndpointsListProps) => {
   const { t } = useTranslation('endpoints')
   const columnHelper = createColumnHelper<Endpoint>()
   const navigate = useNavigate()
+
   const endpointsColumns = [
     columnHelper.accessor('id', {
       id: 'id',
@@ -82,20 +83,19 @@ const EndpointsList = (props: EndpointsListProps) => {
             >
                 <EndpointsListHeader />
             </Card>
-            <Card
-                className={cls.EndpointsTable}
-                padding={'24'}
-                max
-                border={'partial'}
-            >
                 <ContentList
                 data={endpoints}
                 componentName={'endpoints'}
                 />
-                {/* <Table data={endpoints} columns={endpointsColumns} onEdit={handlerOnEdit}/> */}
-            </Card>
+            {/* <Card */}
+            {/*    className={cls.EndpointsTable} */}
+            {/*    padding={'24'} */}
+            {/*    max */}
+            {/*    border={'partial'} */}
+            {/* > */}
+
+            {/*    <Table data={endpoints} columns={endpointsColumns} onEdit={handlerOnEdit}/> */}
+            {/* </Card> */}
         </VStack>
   )
 }
-
-export default EndpointsList

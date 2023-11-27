@@ -1,8 +1,4 @@
 .SMALL {
-    display: flex; // расположить в одну строку
-    gap: 30px; // отступы
-    flex-wrap: wrap; // Переностиь если не влезло
-
     .card {
         width: 236px;
         height: 350px;

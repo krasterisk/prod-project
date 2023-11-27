@@ -1,4 +1,4 @@
-export { EndpointsListAsync as EndpointsList } from './Endpoints/ui/EndpointsList/EndpointsList.async'
+export { EndpointsList } from './Endpoints/ui/EndpointsList/EndpointsList'
 export { EndpointsListHeader } from './Endpoints/ui/EndpointsListHeader/EndpointsListHeader'
 export type { Endpoint, EndpointsListProps } from './Endpoints/model/types/endpoints'
 export { ContextsList } from './Contexts/ui/ContextsList/ContextsList'

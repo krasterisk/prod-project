@@ -1,6 +1,6 @@
 import React from 'react'
 import { ComponentMeta, ComponentStory } from '@storybook/react'
-import { EndpointsPage } from './EndpointsPage'
+import { EndpointsPageAsync as EndpointsPage } from './EndpointsPage.async'
 
 export default {
   title: 'pages/AdminPage',

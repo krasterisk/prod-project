@@ -30,7 +30,7 @@ export const EndpointsListHeader = memo((props: EndpointsListHeaderProps) => {
             border={'partial'}
             max
         >
-            <HStack gap={'16'} justify={'start'} max>
+            <HStack justify={'start'} max>
                 <AppLink
                     to={getRouteEndpointCreate()}
                 >
