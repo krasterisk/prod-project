@@ -25,7 +25,7 @@ export const ErrorGetData = memo(({ title, text, onRefetch }: ErrorGetDataProps)
       t(String(text))
     }
   }, [t, text])
-  console.log(text)
+
   return (
             <HStack
                 justify={'center'}

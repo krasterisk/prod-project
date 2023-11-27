@@ -23,6 +23,7 @@ const getSkeletons = (view: ManualView) => {
             <ManualListItemSkeleton className={cls.card} key={index} view={view} />
     ))
 }
+
 export const ManualList = memo((props: ManualListProps) => {
   const {
     className,

@@ -4,7 +4,6 @@ import React, { useCallback } from 'react'
 import { VStack } from '@/shared/ui/redesigned/Stack'
 import { Skeleton } from '@/shared/ui/redesigned/Skeleton'
 import { Card } from '@/shared/ui/redesigned/Card'
-import { Table } from '@/shared/ui/redesigned/Table/Table'
 import { Endpoint, EndpointsListProps } from '../../model/types/endpoints'
 import { EndpointsListHeader } from '../EndpointsListHeader/EndpointsListHeader'
 import { createColumnHelper } from '@tanstack/react-table'
@@ -12,6 +11,7 @@ import { useTranslation } from 'react-i18next'
 import { ErrorGetData } from '@/entities/ErrorGetData'
 import { getRouteEndpointEdit } from '@/shared/const/router'
 import { useNavigate } from 'react-router-dom'
+import { ContentList } from '@/entities/Content'
 
 const EndpointsList = (props: EndpointsListProps) => {
   const {
@@ -24,7 +24,6 @@ const EndpointsList = (props: EndpointsListProps) => {
   const { t } = useTranslation('endpoints')
   const columnHelper = createColumnHelper<Endpoint>()
   const navigate = useNavigate()
-
   const endpointsColumns = [
     columnHelper.accessor('id', {
       id: 'id',
@@ -89,7 +88,11 @@ const EndpointsList = (props: EndpointsListProps) => {
                 max
                 border={'partial'}
             >
-                <Table data={endpoints} columns={endpointsColumns} onEdit={handlerOnEdit}/>
+                <ContentList
+                data={endpoints}
+                componentName={'endpoints'}
+                />
+                {/* <Table data={endpoints} columns={endpointsColumns} onEdit={handlerOnEdit}/> */}
             </Card>
         </VStack>
   )

@@ -4,6 +4,7 @@ export interface Endpoint {
   username: string
   password: string
   context: string
+  group_uid?: string
   transport: string
   allow: string
   max_contacts: number
