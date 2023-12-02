@@ -7,6 +7,7 @@ import { useCounterActions } from '../model/slice/counterSlice'
 export const Counter = memo(() => {
   const counterValue = useCounterValue()
   const { t } = useTranslation()
+
   const { decrement, increment, plusFive } = useCounterActions()
 
   const handleInc = () => {

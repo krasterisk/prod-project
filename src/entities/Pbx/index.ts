@@ -7,3 +7,4 @@ export { ContextsListHeader } from './Contexts/ui/ContextsListHeader/ContextsLis
 export { EndpointGroupsList } from './EndpointGroups/ui/EndpointGroupsList/EndpointGroupsList'
 export { EndpointGroupsListHeader } from './EndpointGroups/ui/EndpointGroupsListHeader/EndpointGroupsListHeader'
 export type { EndpointGroups } from './EndpointGroups/model/types/endpointGroups'
+export { EndpointSortField } from './Endpoints/model/consts/consts'

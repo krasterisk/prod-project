@@ -7,3 +7,5 @@ export { ContextEditPage } from './ContextsPage/ui/ContextEditPage/ContextEditPa
 export { EndpointGroupsListPage } from './EndpointGroupsPage/ui/EndpointGroupsListPage/EndpointGroupsListPage'
 export { EndpointGroupsCreatePage } from './EndpointGroupsPage/ui/EndpointGroupsCreatePage/EndpointGroupsCreatePage'
 export { EndpointGroupsEditPage } from './EndpointGroupsPage/ui/EndpointGroupsEditPage/EndpointGroupsEditPage'
+export type { EndpointsPageSchema } from './EndpointsPage/model/types/endpointsPageSchema'
+export { endpointsPageReducer } from './EndpointsPage/model/slice/endpointsPageSlice'

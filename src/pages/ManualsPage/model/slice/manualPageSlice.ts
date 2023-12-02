@@ -9,7 +9,6 @@ import { SortOrder } from '@/shared/types/sort'
 
 const manualsAdapter = createEntityAdapter<Manual>({
   selectId: (manual) => manual.id
-
 })
 
 export const getManuals = manualsAdapter.getSelectors<StateSchema>(

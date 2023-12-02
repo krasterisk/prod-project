@@ -1,3 +1,5 @@
+import { ContentView } from '@/entities/Content'
+
 export interface Endpoint {
   id: string
   endpoint_id: string
@@ -16,6 +18,7 @@ export interface EndpointsListProps {
   className?: string
   isLoading?: boolean
   isError?: boolean
+  view?: ContentView
   endpoints?: Endpoint[]
   onDelete?: (id: string) => void
 }

@@ -40,9 +40,11 @@ export const ContentList = <T extends object>(props: ContentListProps<T>) => {
 
   const renderContent = (content: T) => {
     if (componentName === 'endpoints') {
+      const endpoint = content as Endpoint
       return (
             <EndpointItem
-                endpoint={content as Endpoint}
+                key={endpoint.id}
+                endpoint={endpoint}
                 view={view}
                 target={target}
             />
