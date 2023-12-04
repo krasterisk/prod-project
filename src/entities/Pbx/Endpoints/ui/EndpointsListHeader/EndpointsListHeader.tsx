@@ -26,11 +26,11 @@ export const EndpointsListHeader = memo((props: EndpointsListHeaderProps) => {
   return (
         <Card
             className={classNames(cls.EndpointsListHeader, {}, [className])}
-            padding={'8'}
+            padding={'16'}
             border={'partial'}
             max
         >
-            <HStack justify={'start'} max>
+            <HStack justify={'start'} max gap={'8'}>
                 <AppLink
                     to={getRouteEndpointCreate()}
                 >

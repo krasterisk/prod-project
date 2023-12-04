@@ -1,6 +1,5 @@
 import { classNames } from '@/shared/lib/classNames/classNames'
 import cls from './EndpointItem.module.scss'
-import { useTranslation } from 'react-i18next'
 import { HTMLAttributeAnchorTarget, memo } from 'react'
 import { Endpoint } from '../../model/types/endpoints'
 import { Text } from '@/shared/ui/redesigned/Text'
@@ -26,9 +25,6 @@ export const EndpointItem = memo((props: EndpointItemProps) => {
     view = 'SMALL',
     target
   } = props
-  const { t } = useTranslation()
-
-  console.log(view)
 
   if (view === 'BIG') {
     return (
@@ -47,9 +43,9 @@ export const EndpointItem = memo((props: EndpointItemProps) => {
                         <Text bold text={endpoint.username}/>
                     </HStack>
                     <HStack gap={'8'}>
-                    <Text text={endpoint.endpoint_id} bold className={cls.title}/>
-                    <Text text={endpoint.username} size={'s'}/>
-                    {endpoint.group_uid}
+                        <Text text={endpoint.endpoint_id} bold className={cls.title}/>
+                        <Text text={endpoint.username} size={'s'}/>
+                        {endpoint.group_uid}
                     </HStack>
                 </AppLink>
                 <div className={cls.footer}></div>
@@ -58,14 +54,17 @@ export const EndpointItem = memo((props: EndpointItemProps) => {
   }
 
   return (
-        <AppLink
-            data-testid={'EndpointItem'}
-            target={target}
+        <Card
             className={classNames(cls.EndpointItem, {}, [className, cls[view]])}
-            to={getRouteEndpointEdit(endpoint.id)}
+            border="partial"
+            padding="16"
         >
-            <Card className={cls.card} border="partial" padding="0">
-                <VStack className={cls.info} gap={'4'}>
+            <VStack className={cls.info} gap={'4'}>
+                <AppLink
+                    data-testid={'EndpointItem'}
+                    target={target}
+                    to={getRouteEndpointEdit(endpoint.id)}
+                >
                     <Text bold text={endpoint.username}/>
                     <Text text={endpoint.endpoint_id} className={cls.title}/>
                     <Text text={endpoint.username} size={'s'}/>
@@ -74,8 +73,8 @@ export const EndpointItem = memo((props: EndpointItemProps) => {
                             <Text bold text={endpoint.username}/>
                         </HStack>
                     </VStack>
-                </VStack>
-            </Card>
-        </AppLink>
+                </AppLink>
+            </VStack>
+        </Card>
   )
 })

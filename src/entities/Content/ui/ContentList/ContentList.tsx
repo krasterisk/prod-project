@@ -54,7 +54,7 @@ export const ContentList = <T extends object>(props: ContentListProps<T>) => {
 
   if (!isLoading && !data?.length) {
     return (
-        <div className={classNames(cls.ManualList, {}, [className, cls[view]])}>
+        <div className={classNames(cls.ContentList, {}, [className, cls[view]])}>
           <Text
               size={'xl'}
               text={t('Статьи не найдены')}
@@ -65,10 +65,10 @@ export const ContentList = <T extends object>(props: ContentListProps<T>) => {
 
   return (
       <HStack
-          className={classNames(cls.ManualList, {}, [className, cls[view]])}
           gap={'16'}
           wrap={'wrap'}
-          data-testid={'ManualList'}
+          data-testid={'ContentList'}
+          max
       >
         {data?.length
           ? data.map(renderContent)

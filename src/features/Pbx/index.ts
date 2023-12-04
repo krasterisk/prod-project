@@ -1,4 +1,3 @@
-export { Endpoints } from './ui/Endpoints/Endpoints/Endpoints'
 export { EndpointCard } from './ui/Endpoints/EndpointCard/EndpointCard'
 export { EndpointEditCard } from './ui/Endpoints/EndpointEditCard/EndpointEditCard'
 export { Contexts } from './ui/Contexts/Contexts/Contexts'
