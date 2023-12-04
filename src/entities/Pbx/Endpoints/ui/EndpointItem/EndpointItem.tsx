@@ -36,27 +36,23 @@ export const EndpointItem = memo((props: EndpointItemProps) => {
                 max
                 padding={'24'}
                 data-testid={'ManualListItem'}
+                border="partial"
                 className={classNames(cls.EndpointItem, {}, [className, cls[view]])}
             >
-                <VStack max gap={'16'}>
+                <AppLink
+                    target={target}
+                    to={getRouteEndpointEdit(endpoint.id)}
+                >
                     <HStack gap={'8'}>
                         <Text bold text={endpoint.username}/>
                     </HStack>
-                    <Text text={endpoint.id + '. ' + endpoint.endpoint_id} bold className={cls.title}/>
+                    <HStack gap={'8'}>
+                    <Text text={endpoint.endpoint_id} bold className={cls.title}/>
                     <Text text={endpoint.username} size={'s'}/>
                     {endpoint.group_uid}
-                    <HStack max justify={'between'}>
-                        <AppLink
-                            target={target}
-                            to={getRouteEndpointEdit(endpoint.id)}
-                        >
-                        </AppLink>
                     </HStack>
-                </VStack>
-
-                <div className={cls.footer}>
-
-                </div>
+                </AppLink>
+                <div className={cls.footer}></div>
             </Card>
     )
   }
@@ -70,7 +66,8 @@ export const EndpointItem = memo((props: EndpointItemProps) => {
         >
             <Card className={cls.card} border="partial" padding="0">
                 <VStack className={cls.info} gap={'4'}>
-                    <Text text={endpoint.id + '. ' + endpoint.endpoint_id} className={cls.title}/>
+                    <Text bold text={endpoint.username}/>
+                    <Text text={endpoint.endpoint_id} className={cls.title}/>
                     <Text text={endpoint.username} size={'s'}/>
                     <VStack gap={'4'} className={cls.footer} max>
                         <HStack gap={'4'}>

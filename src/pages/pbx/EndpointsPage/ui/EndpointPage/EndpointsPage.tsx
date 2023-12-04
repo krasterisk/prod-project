@@ -51,7 +51,7 @@ const EndpointsPage = ({ className }: EndpointsPageProps) => {
                 className={classNames(cls.EndpointsPage, {}, [className])}
                 isSaveScroll={true}
             >
-                <Endpoints className={cls.list}/>
+                <Endpoints view={view} className={cls.list}/>
             </Page>
         }
     />

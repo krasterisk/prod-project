@@ -18,7 +18,8 @@ export const EndpointsList = (props: EndpointsListProps) => {
     className,
     isLoading,
     isError,
-    endpoints
+    endpoints,
+    view = 'SMALL'
   } = props
 
   const { t } = useTranslation('endpoints')
@@ -86,6 +87,7 @@ export const EndpointsList = (props: EndpointsListProps) => {
                 <ContentList
                 data={endpoints}
                 componentName={'endpoints'}
+                view={view}
                 />
             {/* <Card */}
             {/*    className={cls.EndpointsTable} */}

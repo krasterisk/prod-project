@@ -11,7 +11,6 @@ import { ErrorPage } from '../../../ErrorPage'
 
 interface ManualInfiniteListProps {
   className?: string
-
 }
 
 export const ManualInfiniteList = memo((props: ManualInfiniteListProps) => {

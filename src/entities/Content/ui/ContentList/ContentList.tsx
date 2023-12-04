@@ -13,7 +13,7 @@ interface ContentListProps<T extends object> {
   className?: string
   data: T[] | undefined
   isLoading?: boolean
-  view?: ContentView
+  view: ContentView
   target?: HTMLAttributeAnchorTarget
   componentName: string
 }
@@ -29,11 +29,11 @@ const getSkeletons = (view: ContentView) => {
 export const ContentList = <T extends object>(props: ContentListProps<T>) => {
   const {
     className,
-    view = 'SMALL',
     data,
     isLoading,
     target,
-    componentName
+    componentName,
+    view
   } = props
 
   const { t } = useTranslation('manuals')
@@ -45,8 +45,8 @@ export const ContentList = <T extends object>(props: ContentListProps<T>) => {
             <EndpointItem
                 key={endpoint.id}
                 endpoint={endpoint}
-                view={view}
                 target={target}
+                view={view}
             />
       )
     }

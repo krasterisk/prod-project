@@ -1,11 +1,19 @@
 import { rtkApi } from '@/shared/api/rtkApi'
 import { Endpoint } from '@/entities/Pbx'
+import { createEntityAdapter } from '@reduxjs/toolkit'
+
+const endpointsAdapter = createEntityAdapter()
+
+const initialState = endpointsAdapter.getInitialState()
 
 export const endpointsApi = rtkApi.injectEndpoints({
   endpoints: (build) => ({
     getEndpoints: build.query<Endpoint[], null>({
       query: () => ({
-        url: '/endpoints'
+        url: '/endpoints',
+        transformResponse: (responseData: Endpoint[]) => {
+          return endpointsAdapter.setAll(initialState, responseData)
+        }
       }),
       providesTags: (result) =>
         result
