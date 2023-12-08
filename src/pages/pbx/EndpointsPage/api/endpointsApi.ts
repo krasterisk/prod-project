@@ -1,8 +1,8 @@
 import { rtkApi } from '@/shared/api/rtkApi'
 import { Endpoint } from '@/entities/Pbx'
-import { createEntityAdapter } from '@reduxjs/toolkit'
+import { createEntityAdapter, createSelector } from '@reduxjs/toolkit'
 
-const endpointsAdapter = createEntityAdapter()
+const endpointsAdapter = createEntityAdapter<Endpoint>()
 
 const initialState = endpointsAdapter.getInitialState()
 
@@ -69,3 +69,18 @@ export const useSetEndpoints = endpointsApi.useSetEndpointsMutation
 export const useEndpoint = endpointsApi.useGetEndpointQuery
 export const useUpdateEndpoint = endpointsApi.useUpdateEndpointMutation
 export const useDeleteEndpoint = endpointsApi.useDeleteEndpointMutation
+
+export const selectEndpointResult = endpointsApi.endpoints.getEndpoints.select(null)
+
+const emptyEndpoints: Endpoint[] = []
+
+export const selectAllEndpoints = createSelector(
+  selectEndpointResult,
+  endpointsResult => endpointsResult?.data ?? emptyEndpoints
+)
+
+export const selectEndpointById = createSelector(
+  selectAllEndpoints,
+  (state: Endpoint, endpointId: string) => endpointId,
+  (endpoints, endpointId) => endpoints.find(endpoint => endpoint.id === endpointId)
+)
