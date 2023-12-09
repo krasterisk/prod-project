@@ -1,7 +1,6 @@
 import { createEntityAdapter, createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { EndpointsPageSchema } from '../../..'
 import { ENDPOINTS_VIEW_LOCALSTORAGE_KEY } from '@/shared/const/localstorage'
-import { SortOrder } from '@/shared/types/sort'
 import { Endpoint, EndpointSortField } from '@/entities/Pbx'
 import { ContentView } from '@/entities/Content'
 
@@ -19,8 +18,8 @@ export const endpointsPageSlice = createSlice({
     hasMore: true,
     // filters
     view: 'SMALL',
+    tab: '',
     _inited: false,
-    order: 'asc',
     sort: EndpointSortField.EXTEN,
     search: ''
   }),
@@ -32,8 +31,8 @@ export const endpointsPageSlice = createSlice({
     setPage: (state, action: PayloadAction<number>) => {
       state.page = action.payload
     },
-    setOrder: (state, action: PayloadAction<SortOrder>) => {
-      state.order = action.payload
+    setTab: (state, action: PayloadAction<string>) => {
+      state.tab = action.payload
     },
     setSort: (state, action: PayloadAction<EndpointSortField>) => {
       state.sort = action.payload

@@ -1,7 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import { ThunkConfig } from '@/app/providers/StoreProvider'
 import { endpointsPageActions } from '../../../model/slice/endpointsPageSlice'
-import { SortOrder } from '@/shared/types/sort'
 import { getEndpointsInited } from '../../selectors/endpointsPageSelectors'
 import { EndpointSortField } from '@/entities/Pbx'
 
@@ -14,13 +13,9 @@ ThunkConfig<string>>(
     const { getState, dispatch } = thunkAPI
     const inited = getEndpointsInited(getState())
     if (!inited) {
-      const orderFromUrl = searchParams.get('order') as SortOrder
       const sortFromUrl = searchParams.get('sort') as EndpointSortField
       const searchFromUrl = searchParams.get('search')
 
-      if (orderFromUrl) {
-        dispatch(endpointsPageActions.setOrder(orderFromUrl))
-      }
       if (sortFromUrl) {
         dispatch(endpointsPageActions.setSort(sortFromUrl))
       }

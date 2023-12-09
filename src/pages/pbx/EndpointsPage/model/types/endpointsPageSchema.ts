@@ -1,5 +1,4 @@
 import { EntityState } from '@reduxjs/toolkit'
-import { SortOrder } from '@/shared/types/sort'
 import { Endpoint, EndpointSortField } from '@/entities/Pbx'
 import { ContentView } from '@/entities/Content'
 
@@ -11,7 +10,7 @@ export interface EndpointsPageSchema extends EntityState<Endpoint> {
   // filters
   view: ContentView
   _inited?: boolean
-  order: SortOrder
+  tab: string
   sort: EndpointSortField
   search: string
 }

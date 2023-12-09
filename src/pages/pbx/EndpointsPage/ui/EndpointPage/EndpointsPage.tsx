@@ -3,7 +3,6 @@ import cls from './EndpointsPage.module.scss'
 import { Page } from '@/widgets/Page'
 import { StickyContentLayout } from '@/shared/layouts/StickyContentLayout'
 import { classNames } from '@/shared/lib/classNames/classNames'
-import { FiltersContainer } from '../../../../ManualsPage/ui/FiltersContainer/FiltersContainer'
 import { ContentViewSelector } from '@/features/ContentViewSelector'
 import { ContentView } from '@/entities/Content'
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch'
@@ -17,6 +16,7 @@ import { useSearchParams } from 'react-router-dom'
 import { useEndpoints } from '../../api/endpointsApi'
 import { ErrorGetData } from '@/entities/ErrorGetData'
 import { EndpointsList } from '@/entities/Pbx'
+import { EndpointFiltersContainer } from '../EndpointFiltersContainer/EndpointFiltersContainer'
 
 interface EndpointsPageProps {
   className?: string
@@ -57,7 +57,7 @@ const EndpointsPage = ({ className }: EndpointsPageProps) => {
 
   const content = <StickyContentLayout
         left={<ContentViewSelector view={view} onViewClick={onChangeView}/>}
-        right={<FiltersContainer/>}
+        right={<EndpointFiltersContainer />}
         content={
             <Page
                 data-testid={'EndpointsPage'}

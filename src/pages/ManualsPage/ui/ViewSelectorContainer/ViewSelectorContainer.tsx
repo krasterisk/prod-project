@@ -1,5 +1,5 @@
 import { memo } from 'react'
-import { ManualViewSelector } from '@/features/ManualViewSelector'
+import { ManualViewSelector } from '@/features/Filters'
 import { useManualFilters } from '../../lib/hooks/useManualFilters'
 
 interface ViewSelectorContainerProps {

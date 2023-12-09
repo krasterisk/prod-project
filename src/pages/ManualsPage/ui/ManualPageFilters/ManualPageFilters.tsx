@@ -3,9 +3,8 @@ import cls from './ManualPageFilters.module.scss'
 import { memo } from 'react'
 
 import { Card } from '@/shared/ui/redesigned/Card'
-import { ManualViewSelector } from '@/features/ManualViewSelector'
-import { ManualTypeTabs } from '@/features/ManualTypeTabs'
-import { ManualSortSelector } from '@/features/ManualSortSelector'
+import { ManualViewSelector, ManualTypeTabs, ManualSortSelector } from '@/features/Filters'
+
 import { useManualFilters } from '../../lib/hooks/useManualFilters'
 import { Input } from '@/shared/ui/redesigned/Input'
 
