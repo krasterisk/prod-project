@@ -22,8 +22,6 @@ export function useEndpointFilters () {
   //   dispatch(fetchManualsList({ replace: true }))
   // }, [dispatch])
 
-  // const debouncedFetchData = useDebounce(fetchData, 500)
-
   const onChangeView = useCallback((view: ContentView) => {
     dispatch(endpointsPageActions.setView(view))
   }, [dispatch])

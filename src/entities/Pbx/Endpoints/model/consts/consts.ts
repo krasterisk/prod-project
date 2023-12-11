@@ -1,5 +1,5 @@
 export enum EndpointSortField {
-  EXTEN = 'exten',
+  EXTEN = 'endpoint_id',
   USERNAME = 'username',
-  GROUP = 'group'
+  GROUP = 'group_uid'
 }

@@ -84,3 +84,12 @@ export const selectEndpointById = createSelector(
   (state: Endpoint, endpointId: string) => endpointId,
   (endpoints, endpointId) => endpoints.find(endpoint => endpoint.id === endpointId)
 )
+
+export const sortEndpointByUserName = createSelector(
+  selectAllEndpoints,
+  (endpoints) => {
+    return endpoints.slice().sort((a, b) => {
+      return a.username.localeCompare(b.username)
+    })
+  }
+)
