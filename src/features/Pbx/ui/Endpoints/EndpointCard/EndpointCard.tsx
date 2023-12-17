@@ -43,7 +43,7 @@ export const EndpointCard = memo((props: EndpointCardProps) => {
       .then((payload) => {
         // console.log('fulfilled', payload)
         dispatch(
-          endpointsApi.util.updateQueryData('getEndpoints', null, (draftEndpoints) => {
+          endpointsApi.util.updateQueryData('getEndpointsAll', null, (draftEndpoints) => {
             draftEndpoints.push(payload[0])
           })
         )

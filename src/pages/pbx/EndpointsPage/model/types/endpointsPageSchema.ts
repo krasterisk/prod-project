@@ -1,6 +1,7 @@
 import { EntityState } from '@reduxjs/toolkit'
 import { Endpoint, EndpointSortField } from '@/entities/Pbx'
 import { ContentView } from '@/entities/Content'
+import { SortOrder } from '@/shared/types/sort'
 
 export interface EndpointsPageSchema extends EntityState<Endpoint> {
   // pagination
@@ -11,6 +12,7 @@ export interface EndpointsPageSchema extends EntityState<Endpoint> {
   view: ContentView
   _inited?: boolean
   tab: string
+  order: SortOrder
   sort: EndpointSortField
   search: string
 }

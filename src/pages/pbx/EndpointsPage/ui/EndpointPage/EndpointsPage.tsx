@@ -11,7 +11,6 @@ import { ErrorGetData } from '@/entities/ErrorGetData'
 import { EndpointsList } from '@/entities/Pbx'
 import { EndpointFiltersContainer } from '../EndpointFiltersContainer/EndpointFiltersContainer'
 import { useEndpointFilters } from '../../lib/hooks/useEndpointFilters'
-import { useSortedAndFilteredData } from '../../lib/hooks/useSortedAndFilteredData'
 
 interface EndpointsPageProps {
   className?: string
@@ -23,34 +22,50 @@ const reducers: ReducersList = {
 
 const EndpointsPage = ({ className }: EndpointsPageProps) => {
   const {
+    page,
+    hasMore,
+    limit,
     view,
+    order,
     onChangeView,
     sort,
-    search
+    search,
+    onChangePage,
+    onChangeHasMore
   } = useEndpointFilters()
 
+  //  const [endpoints, setEndpoints] = useState<Endpoint[]>([])
+
   const {
-    data,
+    data: endpoints,
     isLoading,
     isError,
     error,
     refetch
-  } = useEndpoints(null)
+  } = useEndpoints({ page, limit, sort, search, order })
 
-  const endpoints = useSortedAndFilteredData(data, sort, search)
+  // useEffect(() => {
+  //   if (data?.length) {
+  //     setEndpoints(data)
+  //   }
+  // }, [data])
+
+  //  const endpoints = useSortedAndFilteredData(data, sort, search)
 
   const onRefetch = useCallback(() => {
     refetch()
   }, [refetch])
 
-  console.log(view)
-
   const onLoadNextPart = useCallback(() => {
-    console.log('onLoadNextPart')
-  }, [])
+    if (endpoints?.length) {
+      onChangePage(page + 1)
+      // refetch()
+    }
+    console.log('Current page', page)
+  }, [endpoints, onChangePage, page])
 
   // useInitialEffect(() => {
-  //   dispatch(initEndpointsPage(searchParams))
+  //   dispatch(initEndpointsPage())
   // })
 
   const content = <StickyContentLayout

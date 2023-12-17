@@ -33,6 +33,8 @@ export const Page = (props: PageProps) => {
     (state: StateSchema) => getScrollByPath(state, pathname)
   )
 
+  console.log(scrollPosition)
+
   useInfiniteScroll({
     triggerRef,
     wrapperRef: undefined,

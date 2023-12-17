@@ -1,14 +1,39 @@
 import { rtkApi } from '@/shared/api/rtkApi'
 import { Endpoint } from '@/entities/Pbx'
-import { createEntityAdapter, createSelector } from '@reduxjs/toolkit'
+import { createEntityAdapter } from '@reduxjs/toolkit'
 
 const endpointsAdapter = createEntityAdapter<Endpoint>()
 
 const initialState = endpointsAdapter.getInitialState()
 
+interface QueryArgs {
+  page: number
+  limit: number
+  sort?: string
+  order?: string
+  group?: number
+  search?: string
+}
+
 export const endpointsApi = rtkApi.injectEndpoints({
   endpoints: (build) => ({
-    getEndpoints: build.query<Endpoint[], null>({
+    getEndpoints: build.query<Endpoint[], QueryArgs>({
+      query: (args) => ({
+        url: '/endpoints',
+        params: args,
+        transformResponse: (responseData: Endpoint[]) => {
+          return endpointsAdapter.setAll(initialState, responseData)
+        }
+      }),
+      providesTags: (result) =>
+        result
+          ? [
+              ...result.map(({ id }) => ({ type: 'Endpoints', id } as const)),
+              { type: 'Endpoints', id: 'LIST' }
+            ]
+          : [{ type: 'Endpoints', id: 'LIST' }]
+    }),
+    getEndpointsAll: build.query<Endpoint[], null>({
       query: () => ({
         url: '/endpoints',
         transformResponse: (responseData: Endpoint[]) => {
@@ -65,31 +90,32 @@ export const endpointsApi = rtkApi.injectEndpoints({
 })
 
 export const useEndpoints = endpointsApi.useGetEndpointsQuery
+export const useEndpointsAll = endpointsApi.useGetEndpointsAllQuery
 export const useSetEndpoints = endpointsApi.useSetEndpointsMutation
 export const useEndpoint = endpointsApi.useGetEndpointQuery
 export const useUpdateEndpoint = endpointsApi.useUpdateEndpointMutation
 export const useDeleteEndpoint = endpointsApi.useDeleteEndpointMutation
 
-export const selectEndpointResult = endpointsApi.endpoints.getEndpoints.select(null)
+// export const selectEndpointResult = endpointsApi.endpoints.getEndpoints.select(null)
 
-const emptyEndpoints: Endpoint[] = []
+// const emptyEndpoints: Endpoint[] = []
 
-export const selectAllEndpoints = createSelector(
-  selectEndpointResult,
-  endpointsResult => endpointsResult?.data ?? emptyEndpoints
-)
-
-export const selectEndpointById = createSelector(
-  selectAllEndpoints,
-  (state: Endpoint, endpointId: string) => endpointId,
-  (endpoints, endpointId) => endpoints.find(endpoint => endpoint.id === endpointId)
-)
-
-export const sortEndpointByUserName = createSelector(
-  selectAllEndpoints,
-  (endpoints) => {
-    return endpoints.slice().sort((a, b) => {
-      return a.username.localeCompare(b.username)
-    })
-  }
-)
+// export const selectAllEndpoints = createSelector(
+//   selectEndpointResult,
+//   endpointsResult => endpointsResult?.data ?? emptyEndpoints
+// )
+//
+// export const selectEndpointById = createSelector(
+//   selectAllEndpoints,
+//   (state: Endpoint, endpointId: string) => endpointId,
+//   (endpoints, endpointId) => endpoints.find(endpoint => endpoint.id === endpointId)
+// )
+//
+// export const sortEndpointByUserName = createSelector(
+//   selectAllEndpoints,
+//   (endpoints) => {
+//     return endpoints.slice().sort((a, b) => {
+//       return a.username.localeCompare(b.username)
+//     })
+//   }
+// )
