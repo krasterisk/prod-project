@@ -14,6 +14,7 @@ interface PageProps extends TestsProps {
   className?: string
   children: ReactNode
   onScrollEnd?: () => void
+  onScrollStart?: () => void
   isSaveScroll?: boolean
 }
 
@@ -22,23 +23,25 @@ export const Page = (props: PageProps) => {
     className,
     children,
     onScrollEnd,
+    onScrollStart,
     isSaveScroll = false
   } = props
 
   const wrapperRef = useRef() as MutableRefObject<HTMLDivElement>
-  const triggerRef = useRef() as MutableRefObject<HTMLDivElement>
+  const triggerRefEnd = useRef() as MutableRefObject<HTMLDivElement>
+  const triggerRefStart = useRef() as MutableRefObject<HTMLDivElement>
   const dispatch = useDispatch()
   const { pathname } = useLocation()
   const scrollPosition = useSelector(
     (state: StateSchema) => getScrollByPath(state, pathname)
   )
 
-  console.log(scrollPosition)
-
   useInfiniteScroll({
-    triggerRef,
+    triggerRefEnd,
+    triggerRefStart,
     wrapperRef: undefined,
-    callback: onScrollEnd
+    callbackEnd: onScrollEnd,
+    callbackStart: onScrollStart
   })
 
   useInitialEffect(() => {
@@ -48,8 +51,9 @@ export const Page = (props: PageProps) => {
   })
   const onScroll = useThrottle((e: UIEvent<HTMLDivElement>) => {
     if (isSaveScroll) {
+      const scrollTop = e.currentTarget.scrollTop
       dispatch(scrollSaveActions.setScrollPosition({
-        position: e.currentTarget.scrollTop,
+        position: scrollTop,
         path: pathname
       }))
     }
@@ -66,10 +70,15 @@ export const Page = (props: PageProps) => {
           onScroll={onScroll}
           data-testid={props['data-testid'] ?? 'Page'}
       >
+        {onScrollStart
+          ? (
+                <div className={cls.trigger} ref={triggerRefStart} />
+            )
+          : null}
         {children}
         {onScrollEnd
           ? (
-            <div className={cls.trigger} ref={triggerRef} />
+            <div className={cls.trigger} ref={triggerRefEnd} />
             )
           : null}
       </main>

@@ -1,9 +1,8 @@
-import { EntityState } from '@reduxjs/toolkit'
-import { Endpoint, EndpointSortField } from '@/entities/Pbx'
+import { EndpointSortField } from '@/entities/Pbx'
 import { ContentView } from '@/entities/Content'
 import { SortOrder } from '@/shared/types/sort'
 
-export interface EndpointsPageSchema extends EntityState<Endpoint> {
+export interface EndpointsPageSchema {
   // pagination
   page: number
   limit: number

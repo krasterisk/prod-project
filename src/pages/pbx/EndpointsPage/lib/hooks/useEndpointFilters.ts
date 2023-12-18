@@ -56,7 +56,6 @@ export function useEndpointFilters () {
 
   const onChangeHasMore = useCallback((hasMore: boolean) => {
     dispatch(endpointsPageActions.setHasMore(hasMore))
-    dispatch(endpointsPageActions.setPage(1))
     // debouncedFetchData()
   }, [dispatch])
 

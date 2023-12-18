@@ -19,7 +19,7 @@ interface ContentListProps<T extends object> {
 }
 
 const getSkeletons = (view: ContentView) => {
-  return new Array(view === 'SMALL' ? 9 : 3)
+  return new Array(view === 'SMALL' ? 9 : 4)
     .fill(0)
     .map((item, index) => (
           <ContentListItemSkeleton className={cls.card} key={index} view={view} />
@@ -36,7 +36,7 @@ export const ContentList = <T extends object>(props: ContentListProps<T>) => {
     view
   } = props
 
-  const { t } = useTranslation('manuals')
+  const { t } = useTranslation()
 
   const renderContent = (content: T) => {
     if (componentName === 'endpoints') {
@@ -57,7 +57,7 @@ export const ContentList = <T extends object>(props: ContentListProps<T>) => {
         <div className={classNames(cls.ContentList, {}, [className, cls[view]])}>
           <Text
               size={'xl'}
-              text={t('Статьи не найдены')}
+              text={t('Данные не найдены')}
           />
         </div>
     )

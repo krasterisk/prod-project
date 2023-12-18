@@ -1,36 +1,68 @@
 import { MutableRefObject, useEffect } from 'react'
 
 export interface UseInfiniteScrollOptions {
-  callback?: () => void
-  triggerRef: MutableRefObject<HTMLElement>
+  callbackEnd?: () => void
+  callbackStart?: () => void
+  triggerRefEnd: MutableRefObject<HTMLElement>
+  triggerRefStart: MutableRefObject<HTMLElement>
   wrapperRef?: MutableRefObject<HTMLElement>
 }
 
-export function useInfiniteScroll ({ callback, triggerRef, wrapperRef }: UseInfiniteScrollOptions) {
+export function useInfiniteScroll ({
+  callbackEnd,
+  callbackStart,
+  triggerRefStart,
+  triggerRefEnd,
+  wrapperRef
+}: UseInfiniteScrollOptions) {
   useEffect(() => {
     const wrapperElement = wrapperRef?.current || null
-    const triggerElement = triggerRef.current
-    if (callback) {
-      let observer: IntersectionObserver | null = null
-      const options = {
-        root: wrapperElement,
-        rootMargin: '0px',
-        threshold: 1.0
-      }
+    const triggerEndElement = triggerRefEnd.current
+    const triggerStartElement = triggerRefStart.current
 
-      observer = new IntersectionObserver(([entry]) => {
+    // End observer
+    let observerEnd: IntersectionObserver | null = null
+    const optionsEnd = {
+      root: wrapperElement,
+      rootMargin: '0px',
+      threshold: 1.0
+    }
+
+    if (callbackEnd) {
+      observerEnd = new IntersectionObserver(([entry]) => {
         if (entry.isIntersecting) {
-          callback()
+          callbackEnd()
         }
-      }, options)
+      }, optionsEnd)
 
-      observer.observe(triggerElement)
-      return () => {
-        if (observer && triggerElement) {
-          // eslint-disable-next-line react-hooks/exhaustive-deps
-          observer.unobserve(triggerElement)
+      observerEnd.observe(triggerEndElement)
+    }
+
+    // Start observer
+    let observerStart: IntersectionObserver | null = null
+    const optionsStart = {
+      root: wrapperElement,
+      rootMargin: '0px',
+      threshold: 0.0
+    }
+
+    if (callbackStart) {
+      observerStart = new IntersectionObserver(([entry]) => {
+        if (entry.isIntersecting) {
+          callbackStart()
         }
+      }, optionsStart)
+
+      observerStart.observe(triggerStartElement)
+    }
+
+    return () => {
+      if (observerEnd && triggerEndElement) {
+        observerEnd.unobserve(triggerEndElement)
+      }
+      if (observerStart && triggerStartElement) {
+        observerStart.unobserve(triggerStartElement)
       }
     }
-  }, [callback, triggerRef, wrapperRef])
+  }, [callbackEnd, callbackStart, triggerRefEnd, triggerRefStart, wrapperRef])
 }

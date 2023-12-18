@@ -1,10 +1,9 @@
 import { rtkApi } from '@/shared/api/rtkApi'
 import { Endpoint } from '@/entities/Pbx'
-import { createEntityAdapter } from '@reduxjs/toolkit'
 
-const endpointsAdapter = createEntityAdapter<Endpoint>()
+// const endpointsAdapter = createEntityAdapter<Endpoint>()
 
-const initialState = endpointsAdapter.getInitialState()
+// const initialState = endpointsAdapter.getInitialState()
 
 interface QueryArgs {
   page: number
@@ -20,11 +19,22 @@ export const endpointsApi = rtkApi.injectEndpoints({
     getEndpoints: build.query<Endpoint[], QueryArgs>({
       query: (args) => ({
         url: '/endpoints',
-        params: args,
-        transformResponse: (responseData: Endpoint[]) => {
-          return endpointsAdapter.setAll(initialState, responseData)
-        }
+        params: args
+        // transformResponse: (responseData: Endpoint[]) => {
+        //   return endpointsAdapter.setAll(initialState, responseData)
+        // }
       }),
+      serializeQueryArgs: ({ endpointName }) => {
+        return endpointName
+      },
+      // Always merge incoming data to the cache entry
+      merge: (currentCache, newItems) => {
+        currentCache.push(...newItems)
+      },
+      // Refetch when the page arg changes
+      forceRefetch ({ currentArg, previousArg }) {
+        return currentArg !== previousArg
+      },
       providesTags: (result) =>
         result
           ? [
@@ -35,10 +45,10 @@ export const endpointsApi = rtkApi.injectEndpoints({
     }),
     getEndpointsAll: build.query<Endpoint[], null>({
       query: () => ({
-        url: '/endpoints',
-        transformResponse: (responseData: Endpoint[]) => {
-          return endpointsAdapter.setAll(initialState, responseData)
-        }
+        url: '/endpoints'
+        // transformResponse: (responseData: Endpoint[]) => {
+        //   return endpointsAdapter.setAll(initialState, responseData)
+        // }
       }),
       providesTags: (result) =>
         result

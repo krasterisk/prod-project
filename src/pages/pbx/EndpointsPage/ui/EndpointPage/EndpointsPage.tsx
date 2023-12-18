@@ -1,4 +1,4 @@
-import React, { memo, useCallback } from 'react'
+import React, { memo, useCallback, useState } from 'react'
 import cls from './EndpointsPage.module.scss'
 import { Page } from '@/widgets/Page'
 import { StickyContentLayout } from '@/shared/layouts/StickyContentLayout'
@@ -11,6 +11,9 @@ import { ErrorGetData } from '@/entities/ErrorGetData'
 import { EndpointsList } from '@/entities/Pbx'
 import { EndpointFiltersContainer } from '../EndpointFiltersContainer/EndpointFiltersContainer'
 import { useEndpointFilters } from '../../lib/hooks/useEndpointFilters'
+import { Text } from '@/shared/ui/redesigned/Text'
+import { useTranslation } from 'react-i18next'
+import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch'
 
 interface EndpointsPageProps {
   className?: string
@@ -21,48 +24,55 @@ const reducers: ReducersList = {
 }
 
 const EndpointsPage = ({ className }: EndpointsPageProps) => {
+//  const [endpoints, setEndpoints] = useState<Endpoint[]>([])
+  const [curPage, setCurPage] = useState<number>(1)
+  const { t } = useTranslation('endpoints')
+  const dispatch = useAppDispatch()
+
   const {
     page,
-    hasMore,
     limit,
     view,
     order,
     onChangeView,
     sort,
     search,
+    hasMore,
     onChangePage,
     onChangeHasMore
   } = useEndpointFilters()
-
-  //  const [endpoints, setEndpoints] = useState<Endpoint[]>([])
 
   const {
     data: endpoints,
     isLoading,
     isError,
     error,
+    isFetching,
     refetch
-  } = useEndpoints({ page, limit, sort, search, order })
-
-  // useEffect(() => {
-  //   if (data?.length) {
-  //     setEndpoints(data)
-  //   }
-  // }, [data])
-
-  //  const endpoints = useSortedAndFilteredData(data, sort, search)
+  } = useEndpoints({ page: curPage, limit, sort, search, order })
 
   const onRefetch = useCallback(() => {
     refetch()
   }, [refetch])
 
   const onLoadNextPart = useCallback(() => {
-    if (endpoints?.length) {
-      onChangePage(page + 1)
-      // refetch()
+    if (endpoints && hasMore && !isLoading && !isFetching) {
+      setCurPage(curPage + 1)
+      const isHasMore = endpoints?.length >= limit
+      onChangeHasMore(isHasMore)
+      console.log('End', curPage + 1)
+      console.log('hasMore', hasMore)
+      console.log('endpoints length: ', endpoints.length)
+      console.log('limit: ', limit)
     }
-    console.log('Current page', page)
-  }, [endpoints, onChangePage, page])
+  }, [curPage, endpoints, hasMore, isFetching, isLoading, limit, onChangeHasMore])
+
+  const onLoadPrevPart = useCallback(() => {
+    if (hasMore && !isLoading && !isFetching && curPage > 1) {
+      setCurPage(curPage - 1)
+      console.log('End', curPage - 1)
+    }
+  }, [curPage, hasMore, isFetching, isLoading])
 
   // useInitialEffect(() => {
   //   dispatch(initEndpointsPage())
@@ -75,6 +85,7 @@ const EndpointsPage = ({ className }: EndpointsPageProps) => {
             <Page
                 data-testid={'EndpointsPage'}
                 onScrollEnd={onLoadNextPart}
+                onScrollStart={onLoadPrevPart}
                 className={classNames(cls.EndpointsPage, {}, [className])}
                 isSaveScroll={true}
             >
@@ -102,6 +113,16 @@ const EndpointsPage = ({ className }: EndpointsPageProps) => {
     )
   }
 
+  if (!endpoints?.length) {
+    return (
+        <div className={classNames(cls.ContentList, {}, [className, cls[view]])}>
+          <Text
+              size={'xl'}
+              text={t('Абоненты не найдены')}
+          />
+        </div>
+    )
+  }
   return (
         <DynamicModuleLoader reducers={reducers} removeAfterUnmount={false}>
             {content}

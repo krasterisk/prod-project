@@ -1,30 +1,30 @@
-import { createEntityAdapter, createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { EndpointsPageSchema } from '../../..'
 import { ENDPOINTS_VIEW_LOCALSTORAGE_KEY } from '@/shared/const/localstorage'
-import { Endpoint, EndpointSortField } from '@/entities/Pbx'
+import { EndpointSortField } from '@/entities/Pbx'
 import { ContentView } from '@/entities/Content'
 import { SortOrder } from '@/shared/types/sort'
 
-const endpointsAdapter = createEntityAdapter<Endpoint>({
-  selectId: (endpoint) => endpoint.id
-})
+// const endpointsAdapter = createEntityAdapter<Endpoint>({
+//   selectId: (endpoint) => endpoint.id
+// })
+
+const initialState: EndpointsPageSchema = {
+  page: 1,
+  limit: 9,
+  hasMore: true,
+  // filters
+  view: 'SMALL',
+  tab: '',
+  _inited: false,
+  sort: EndpointSortField.EXTEN,
+  order: 'asc',
+  search: ''
+}
 
 export const endpointsPageSlice = createSlice({
   name: 'endpointsPageSlice',
-  initialState: endpointsAdapter.getInitialState<EndpointsPageSchema>({
-    ids: [],
-    entities: {},
-    page: 1,
-    limit: 4,
-    hasMore: true,
-    // filters
-    view: 'SMALL',
-    tab: '',
-    _inited: false,
-    sort: EndpointSortField.EXTEN,
-    order: 'asc',
-    search: ''
-  }),
+  initialState,
   reducers: {
     setView: (state, action: PayloadAction<ContentView>) => {
       state.view = action.payload
@@ -51,7 +51,7 @@ export const endpointsPageSlice = createSlice({
     initState: (state) => {
       const view = localStorage.getItem(ENDPOINTS_VIEW_LOCALSTORAGE_KEY) as ContentView
       state.view = view
-      state.limit = view === 'BIG' ? 4 : 4
+      state.limit = view === 'BIG' ? 9 : 9
       state._inited = true
     }
   }
