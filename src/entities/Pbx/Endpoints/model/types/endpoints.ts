@@ -1,5 +1,10 @@
 import { ContentView } from '@/entities/Content'
 
+export interface AllEndpoints {
+  count: number
+  rows: Endpoint[]
+}
+
 export interface Endpoint {
   id: string
   endpoint_id: string

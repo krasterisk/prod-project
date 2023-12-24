@@ -14,7 +14,6 @@ interface PageProps extends TestsProps {
   className?: string
   children: ReactNode
   onScrollEnd?: () => void
-  onScrollStart?: () => void
   isSaveScroll?: boolean
 }
 
@@ -23,7 +22,6 @@ export const Page = (props: PageProps) => {
     className,
     children,
     onScrollEnd,
-    onScrollStart,
     isSaveScroll = false
   } = props
 
@@ -36,12 +34,19 @@ export const Page = (props: PageProps) => {
     (state: StateSchema) => getScrollByPath(state, pathname)
   )
 
+  // const throttleScrollEnd = useThrottle(() => {
+  //   onScrollEnd?.()
+  // }, 500)
+  //
+  // const throttleScrollStart = useThrottle(() => {
+  //   onScrollStart?.()
+  // }, 500)
+
   useInfiniteScroll({
     triggerRefEnd,
     triggerRefStart,
     wrapperRef: undefined,
-    callbackEnd: onScrollEnd,
-    callbackStart: onScrollStart
+    callbackEnd: onScrollEnd
   })
 
   useInitialEffect(() => {
@@ -70,11 +75,6 @@ export const Page = (props: PageProps) => {
           onScroll={onScroll}
           data-testid={props['data-testid'] ?? 'Page'}
       >
-        {onScrollStart
-          ? (
-                <div className={cls.trigger} ref={triggerRefStart} />
-            )
-          : null}
         {children}
         {onScrollEnd
           ? (

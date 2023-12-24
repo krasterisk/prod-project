@@ -1,5 +1,5 @@
 import { rtkApi } from '@/shared/api/rtkApi'
-import { Endpoint } from '@/entities/Pbx'
+import { AllEndpoints, Endpoint } from '@/entities/Pbx'
 
 // const endpointsAdapter = createEntityAdapter<Endpoint>()
 
@@ -16,7 +16,7 @@ interface QueryArgs {
 
 export const endpointsApi = rtkApi.injectEndpoints({
   endpoints: (build) => ({
-    getEndpoints: build.query<Endpoint[], QueryArgs>({
+    getEndpoints: build.query<AllEndpoints, QueryArgs>({
       query: (args) => ({
         url: '/endpoints',
         params: args
@@ -29,16 +29,16 @@ export const endpointsApi = rtkApi.injectEndpoints({
       },
       // Always merge incoming data to the cache entry
       merge: (currentCache, newItems) => {
-        currentCache.push(...newItems)
+        currentCache.rows.push(...newItems.rows)
       },
       // Refetch when the page arg changes
       forceRefetch ({ currentArg, previousArg }) {
-        return currentArg !== previousArg
+        return currentArg?.page !== previousArg?.page
       },
       providesTags: (result) =>
-        result
+        result?.rows.length
           ? [
-              ...result.map(({ id }) => ({ type: 'Endpoints', id } as const)),
+              ...result.rows.map(({ id }) => ({ type: 'Endpoints', id } as const)),
               { type: 'Endpoints', id: 'LIST' }
             ]
           : [{ type: 'Endpoints', id: 'LIST' }]

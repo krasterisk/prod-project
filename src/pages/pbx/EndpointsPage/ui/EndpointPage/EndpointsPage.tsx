@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useState } from 'react'
+import React, { memo, useCallback } from 'react'
 import cls from './EndpointsPage.module.scss'
 import { Page } from '@/widgets/Page'
 import { StickyContentLayout } from '@/shared/layouts/StickyContentLayout'
@@ -6,14 +6,12 @@ import { classNames } from '@/shared/lib/classNames/classNames'
 import { ContentViewSelector } from '@/features/ContentViewSelector'
 import { endpointsPageReducer } from '../../model/slice/endpointsPageSlice'
 import { DynamicModuleLoader, ReducersList } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader'
-import { useEndpoints } from '../../api/endpointsApi'
 import { ErrorGetData } from '@/entities/ErrorGetData'
 import { EndpointsList } from '@/entities/Pbx'
 import { EndpointFiltersContainer } from '../EndpointFiltersContainer/EndpointFiltersContainer'
 import { useEndpointFilters } from '../../lib/hooks/useEndpointFilters'
 import { Text } from '@/shared/ui/redesigned/Text'
 import { useTranslation } from 'react-i18next'
-import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch'
 
 interface EndpointsPageProps {
   className?: string
@@ -24,55 +22,23 @@ const reducers: ReducersList = {
 }
 
 const EndpointsPage = ({ className }: EndpointsPageProps) => {
-//  const [endpoints, setEndpoints] = useState<Endpoint[]>([])
-  const [curPage, setCurPage] = useState<number>(1)
   const { t } = useTranslation('endpoints')
-  const dispatch = useAppDispatch()
 
   const {
-    page,
-    limit,
     view,
-    order,
+    isError,
+    isLoading,
+    error,
+    data,
     onChangeView,
-    sort,
-    search,
-    hasMore,
-    onChangePage,
-    onChangeHasMore
+    onRefetch,
+    onLoadNext
   } = useEndpointFilters()
 
-  const {
-    data: endpoints,
-    isLoading,
-    isError,
-    error,
-    isFetching,
-    refetch
-  } = useEndpoints({ page: curPage, limit, sort, search, order })
-
-  const onRefetch = useCallback(() => {
-    refetch()
-  }, [refetch])
-
-  const onLoadNextPart = useCallback(() => {
-    if (endpoints && hasMore && !isLoading && !isFetching) {
-      setCurPage(curPage + 1)
-      const isHasMore = endpoints?.length >= limit
-      onChangeHasMore(isHasMore)
-      console.log('End', curPage + 1)
-      console.log('hasMore', hasMore)
-      console.log('endpoints length: ', endpoints.length)
-      console.log('limit: ', limit)
-    }
-  }, [curPage, endpoints, hasMore, isFetching, isLoading, limit, onChangeHasMore])
-
-  const onLoadPrevPart = useCallback(() => {
-    if (hasMore && !isLoading && !isFetching && curPage > 1) {
-      setCurPage(curPage - 1)
-      console.log('End', curPage - 1)
-    }
-  }, [curPage, hasMore, isFetching, isLoading])
+  const onLoadNextPart = useCallback(async () => {
+    onLoadNext()
+    //    onRefetch()
+  }, [onLoadNext])
 
   // useInitialEffect(() => {
   //   dispatch(initEndpointsPage())
@@ -85,14 +51,13 @@ const EndpointsPage = ({ className }: EndpointsPageProps) => {
             <Page
                 data-testid={'EndpointsPage'}
                 onScrollEnd={onLoadNextPart}
-                onScrollStart={onLoadPrevPart}
                 className={classNames(cls.EndpointsPage, {}, [className])}
                 isSaveScroll={true}
             >
                 <EndpointsList
                     className={className}
                     isLoading={isLoading}
-                    endpoints={endpoints}
+                    endpoints={data?.rows}
                     isError={isError}
                     view={view}
                 />
@@ -113,7 +78,7 @@ const EndpointsPage = ({ className }: EndpointsPageProps) => {
     )
   }
 
-  if (!endpoints?.length) {
+  if (!data?.rows.length) {
     return (
         <div className={classNames(cls.ContentList, {}, [className, cls[view]])}>
           <Text

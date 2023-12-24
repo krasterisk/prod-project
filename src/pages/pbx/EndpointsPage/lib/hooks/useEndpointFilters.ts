@@ -15,6 +15,7 @@ import { endpointsPageActions } from '../../model/slice/endpointsPageSlice'
 import { ContentView } from '@/entities/Content'
 import { EndpointSortField } from '@/entities/Pbx'
 import { SortOrder } from '@/shared/types/sort'
+import { useEndpoints } from '../../api/endpointsApi'
 
 export function useEndpointFilters () {
   const page = useSelector(getEndpointsPageNum)
@@ -28,9 +29,30 @@ export function useEndpointFilters () {
 
   const dispatch = useAppDispatch()
 
-  // const fetchData = useCallback(() => {
-  //   dispatch(fetchManualsList({ replace: true }))
-  // }, [dispatch])
+  const {
+    data,
+    isLoading,
+    isError,
+    error,
+    isFetching,
+    refetch
+  } = useEndpoints({ page, limit, sort, search, order })
+
+  const onRefetch = useCallback(() => {
+    refetch()
+  }, [refetch])
+
+  const onLoadNext = useCallback(() => {
+    if (data && hasMore && !isLoading && !isFetching) {
+      dispatch(endpointsPageActions.setPage(page + 1))
+      const isHasMore = data.count > ((page + 1) * limit)
+      dispatch(endpointsPageActions.setHasMore(isHasMore))
+      console.log('page:', page)
+      console.log('hasMore:', isHasMore)
+      console.log('endpoints length: ', data.rows.length)
+      console.log('limit: ', limit)
+    }
+  }, [data, dispatch, hasMore, isFetching, isLoading, limit, page])
 
   const onChangeView = useCallback((view: ContentView) => {
     dispatch(endpointsPageActions.setView(view))
@@ -80,11 +102,17 @@ export function useEndpointFilters () {
     order,
     tab,
     search,
+    isError,
+    isLoading,
+    error,
+    data,
     onChangeView,
     onChangeSort,
     onChangeTab,
     onChangeSearch,
     onChangeHasMore,
-    onChangePage
+    onChangePage,
+    onRefetch,
+    onLoadNext
   }
 }
