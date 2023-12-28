@@ -7,7 +7,7 @@ import { MutableRefObject, useCallback, useRef } from 'react'
  */
 export function useDebounce (callback: (...args: any[]) => void, delay: number) {
   // eslint-disable-next-line
-    const timer = useRef() as MutableRefObject<any>
+    const timer = useRef<any>() as MutableRefObject<any>
 
   return useCallback((...args: any[]) => {
     if (timer.current) {

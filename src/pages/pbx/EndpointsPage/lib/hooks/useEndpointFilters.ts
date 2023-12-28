@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux'
-import { useCallback } from 'react'
+import { useCallback, useState } from 'react'
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch'
 import {
   getEndpointsHasMore,
@@ -16,6 +16,7 @@ import { ContentView } from '@/entities/Content'
 import { EndpointSortField } from '@/entities/Pbx'
 import { SortOrder } from '@/shared/types/sort'
 import { useEndpoints } from '../../api/endpointsApi'
+import { useDebounce } from '@/shared/lib/hooks/useDebounce/useDebounce'
 
 export function useEndpointFilters () {
   const page = useSelector(getEndpointsPageNum)
@@ -28,6 +29,7 @@ export function useEndpointFilters () {
   const search = useSelector(getEndpointsPageSearch)
 
   const dispatch = useAppDispatch()
+  const [newSearch, setNewSearch] = useState<string>('')
 
   const {
     data,
@@ -36,7 +38,7 @@ export function useEndpointFilters () {
     error,
     isFetching,
     refetch
-  } = useEndpoints({ page, limit, sort, search, order })
+  } = useEndpoints({ page, limit, sort, search: newSearch, order })
 
   const onRefetch = useCallback(() => {
     refetch()
@@ -61,36 +63,32 @@ export function useEndpointFilters () {
   const onChangeSort = useCallback((sort: EndpointSortField) => {
     dispatch(endpointsPageActions.setSort(sort))
     dispatch(endpointsPageActions.setPage(1))
-    //    fetchData()
   }, [dispatch])
+
+  const debouncedSearch = useDebounce((search: string) => { setNewSearch(search) }, 500)
 
   const onChangeSearch = useCallback((search: string) => {
     dispatch(endpointsPageActions.setSearch(search))
     dispatch(endpointsPageActions.setPage(1))
-    // debouncedFetchData()
-  }, [dispatch])
+    debouncedSearch(search)
+  }, [debouncedSearch, dispatch])
 
   const onChangePage = useCallback((page: number) => {
     dispatch(endpointsPageActions.setPage(page))
-    console.log(page)
-    // debouncedFetchData()
   }, [dispatch])
 
   const onChangeHasMore = useCallback((hasMore: boolean) => {
     dispatch(endpointsPageActions.setHasMore(hasMore))
-    // debouncedFetchData()
   }, [dispatch])
 
   const onChangeOrder = useCallback((order: SortOrder) => {
     dispatch(endpointsPageActions.setOrder(order))
     dispatch(endpointsPageActions.setPage(1))
-    // debouncedFetchData()
   }, [dispatch])
 
   const onChangeTab = useCallback((value: string) => {
     dispatch(endpointsPageActions.setTab(value))
     dispatch(endpointsPageActions.setPage(1))
-    //    fetchData()
   }, [dispatch])
 
   return {

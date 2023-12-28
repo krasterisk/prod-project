@@ -33,7 +33,7 @@ export const endpointsApi = rtkApi.injectEndpoints({
       },
       // Refetch when the page arg changes
       forceRefetch ({ currentArg, previousArg }) {
-        return currentArg?.page !== previousArg?.page
+        return JSON.stringify(currentArg) !== JSON.stringify(previousArg)
       },
       providesTags: (result) =>
         result?.rows.length

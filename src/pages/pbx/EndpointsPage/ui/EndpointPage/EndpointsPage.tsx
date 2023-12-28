@@ -10,7 +10,6 @@ import { ErrorGetData } from '@/entities/ErrorGetData'
 import { EndpointsList } from '@/entities/Pbx'
 import { EndpointFiltersContainer } from '../EndpointFiltersContainer/EndpointFiltersContainer'
 import { useEndpointFilters } from '../../lib/hooks/useEndpointFilters'
-import { Text } from '@/shared/ui/redesigned/Text'
 import { useTranslation } from 'react-i18next'
 
 interface EndpointsPageProps {
@@ -78,16 +77,17 @@ const EndpointsPage = ({ className }: EndpointsPageProps) => {
     )
   }
 
-  if (!data?.rows.length) {
-    return (
-        <div className={classNames(cls.ContentList, {}, [className, cls[view]])}>
-          <Text
-              size={'xl'}
-              text={t('Абоненты не найдены')}
-          />
-        </div>
-    )
-  }
+  // if (!data?.rows.length) {
+  //   return (
+  //       <div className={classNames(cls.ContentList, {}, [className, cls[view]])}>
+  //         <Text
+  //             size={'xl'}
+  //             text={t('Абоненты не найдены')}
+  //         />
+  //       </div>
+  //   )
+  // }
+  //
   return (
         <DynamicModuleLoader reducers={reducers} removeAfterUnmount={false}>
             {content}
