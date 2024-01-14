@@ -5,10 +5,10 @@ import { getEndpointsInited } from '../../selectors/endpointsPageSelectors'
 
 export const initEndpointsPage = createAsyncThunk<
 void | never,
-URLSearchParams,
+void | never,
 ThunkConfig<string>>(
   'EndpointsPage/initEndpointsPage',
-  async (searchParams, thunkAPI) => {
+  async (_, thunkAPI) => {
     const { getState, dispatch } = thunkAPI
     const inited = getEndpointsInited(getState())
     if (!inited) {

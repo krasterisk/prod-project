@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react'
-import { useGetContexts } from '../../../api/contextsApi'
+import { useGetContexts } from '../../../../../pages/pbx/ContextsPage/api/contextsApi'
 import { ContextsList } from '@/entities/Pbx'
 import { ErrorGetData } from '@/entities/ErrorGetData'
 import { useSelector } from 'react-redux'

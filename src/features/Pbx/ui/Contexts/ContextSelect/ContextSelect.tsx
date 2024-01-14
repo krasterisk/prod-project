@@ -1,7 +1,7 @@
 import { ListBox } from '@/shared/ui/redesigned/Popups'
 import { memo, useCallback, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useGetContexts } from '../../../api/contextsApi'
+import { useGetContexts } from '../../../../../pages/pbx/ContextsPage/api/contextsApi'
 import { useSelector } from 'react-redux'
 import { getUserAuthData } from '@/entities/User'
 

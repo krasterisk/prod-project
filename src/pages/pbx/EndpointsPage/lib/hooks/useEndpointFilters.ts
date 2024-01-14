@@ -49,10 +49,6 @@ export function useEndpointFilters () {
       dispatch(endpointsPageActions.setPage(page + 1))
       const isHasMore = data.count > ((page + 1) * limit)
       dispatch(endpointsPageActions.setHasMore(isHasMore))
-      console.log('page:', page)
-      console.log('hasMore:', isHasMore)
-      console.log('endpoints length: ', data.rows.length)
-      console.log('limit: ', limit)
     }
   }, [data, dispatch, hasMore, isFetching, isLoading, limit, page])
 

@@ -1,3 +1,8 @@
+export interface AllContexts {
+  count: number
+  rows: Context[]
+}
+
 export interface Context {
   id: string
   name: string

@@ -1,15 +1,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { EndpointsPageSchema } from '../../..'
-import { ENDPOINTS_VIEW_LOCALSTORAGE_KEY } from '@/shared/const/localstorage'
-import { EndpointSortField } from '@/entities/Pbx'
+import { CONTEXTS_VIEW_LOCALSTORAGE_KEY } from '@/shared/const/localstorage'
 import { ContentView } from '@/entities/Content'
 import { SortOrder } from '@/shared/types/sort'
+import { ContextSortField } from '../../../../../entities/Pbx/Contexts/model/consts/consts'
+import { ContextsPageSchema } from '../types/contextsPageSchema'
 
-// const endpointsAdapter = createEntityAdapter<Endpoint>({
-//   selectId: (endpoint) => endpoint.id
-// })
-
-const initialState: EndpointsPageSchema = {
+const initialState: ContextsPageSchema = {
   page: 1,
   limit: 50,
   hasMore: true,
@@ -17,18 +13,18 @@ const initialState: EndpointsPageSchema = {
   view: 'SMALL',
   tab: '',
   _inited: false,
-  sort: EndpointSortField.EXTEN,
+  sort: ContextSortField.NAME,
   order: 'asc',
   search: ''
 }
 
-export const endpointsPageSlice = createSlice({
-  name: 'endpointsPageSlice',
+export const contextsPageSlice = createSlice({
+  name: 'contextsPageSlice',
   initialState,
   reducers: {
     setView: (state, action: PayloadAction<ContentView>) => {
       state.view = action.payload
-      localStorage.setItem(ENDPOINTS_VIEW_LOCALSTORAGE_KEY, action.payload)
+      localStorage.setItem(CONTEXTS_VIEW_LOCALSTORAGE_KEY, action.payload)
     },
     setPage: (state, action: PayloadAction<number>) => {
       state.page = action.payload
@@ -42,14 +38,14 @@ export const endpointsPageSlice = createSlice({
     setTab: (state, action: PayloadAction<string>) => {
       state.tab = action.payload
     },
-    setSort: (state, action: PayloadAction<EndpointSortField>) => {
+    setSort: (state, action: PayloadAction<ContextSortField>) => {
       state.sort = action.payload
     },
     setSearch: (state, action: PayloadAction<string>) => {
       state.search = action.payload
     },
     initState: (state) => {
-      const view = localStorage.getItem(ENDPOINTS_VIEW_LOCALSTORAGE_KEY) as ContentView
+      const view = localStorage.getItem(CONTEXTS_VIEW_LOCALSTORAGE_KEY) as ContentView
       state.view = view
       state.limit = view === 'BIG' ? 25 : 50
       state._inited = true
@@ -58,6 +54,6 @@ export const endpointsPageSlice = createSlice({
 })
 
 export const {
-  actions: endpointsPageActions,
-  reducer: endpointsPageReducer
-} = endpointsPageSlice
+  actions: contextsPageActions,
+  reducer: contextsPageReducer
+} = contextsPageSlice

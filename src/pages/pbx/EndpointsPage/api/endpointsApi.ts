@@ -20,9 +20,6 @@ export const endpointsApi = rtkApi.injectEndpoints({
       query: (args) => ({
         url: '/endpoints',
         params: args
-        // transformResponse: (responseData: Endpoint[]) => {
-        //   return endpointsAdapter.setAll(initialState, responseData)
-        // }
       }),
       serializeQueryArgs: ({ endpointName }) => {
         return endpointName

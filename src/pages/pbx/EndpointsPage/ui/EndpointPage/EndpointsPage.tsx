@@ -10,7 +10,9 @@ import { ErrorGetData } from '@/entities/ErrorGetData'
 import { EndpointsList } from '@/entities/Pbx'
 import { EndpointFiltersContainer } from '../EndpointFiltersContainer/EndpointFiltersContainer'
 import { useEndpointFilters } from '../../lib/hooks/useEndpointFilters'
-import { useTranslation } from 'react-i18next'
+import { useInitialEffect } from '@/shared/lib/hooks/useInitialEffect/useInitialEffect'
+import { initEndpointsPage } from '../../model/service/initEndpointsPage/initEndpointsPage'
+import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch'
 
 interface EndpointsPageProps {
   className?: string
@@ -21,8 +23,6 @@ const reducers: ReducersList = {
 }
 
 const EndpointsPage = ({ className }: EndpointsPageProps) => {
-  const { t } = useTranslation('endpoints')
-
   const {
     view,
     isError,
@@ -33,15 +33,16 @@ const EndpointsPage = ({ className }: EndpointsPageProps) => {
     onRefetch,
     onLoadNext
   } = useEndpointFilters()
+  const dispatch = useAppDispatch()
 
-  const onLoadNextPart = useCallback(async () => {
+  const onLoadNextPart = useCallback(() => {
     onLoadNext()
     //    onRefetch()
   }, [onLoadNext])
 
-  // useInitialEffect(() => {
-  //   dispatch(initEndpointsPage())
-  // })
+  useInitialEffect(() => {
+    dispatch(initEndpointsPage())
+  })
 
   const content = <StickyContentLayout
         left={<ContentViewSelector view={view} onViewClick={onChangeView}/>}

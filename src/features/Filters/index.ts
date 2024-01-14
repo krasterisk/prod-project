@@ -3,3 +3,4 @@ export { EndpointsContextTabs } from './Endpoints/ui/EndpointsContextTabs/Endpoi
 export { ManualSortSelector } from './Manuals/ui/ManualSortSelector/ManualSortSelector'
 export { ManualViewSelector } from './Manuals/ui/ManualViewSelector/ManualViewSelector'
 export { ManualTypeTabs } from './Manuals/ui/ManualTypeTabs/ManualTypeTabs'
+export { ContextsSortSelector } from './Contexts/ui/ContextsSortSelector/ContextsSortSelector'

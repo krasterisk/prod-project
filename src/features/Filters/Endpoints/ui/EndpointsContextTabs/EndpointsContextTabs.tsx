@@ -1,6 +1,6 @@
 import { classNames } from '@/shared/lib/classNames/classNames'
 import { memo, useCallback, useMemo } from 'react'
-import { useGetContexts } from '../../../../Pbx/api/contextsApi'
+import { useGetContexts } from '../../../../../pages/pbx/ContextsPage/api/contextsApi'
 import { TabItem, Tabs } from '@/shared/ui/redesigned/Tabs'
 import { useTranslation } from 'react-i18next'
 
