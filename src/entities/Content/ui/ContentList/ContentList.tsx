@@ -6,8 +6,10 @@ import React, { HTMLAttributeAnchorTarget } from 'react'
 import { Text } from '@/shared/ui/redesigned/Text'
 import { useTranslation } from 'react-i18next'
 import { HStack } from '@/shared/ui/redesigned/Stack'
+import { Context } from '../../../Pbx/Contexts/model/types/contexts'
+import { ContextItem } from '../../../Pbx/Contexts/ui/ContextItem/ContextItem'
 import { EndpointItem } from '../../../Pbx/Endpoints/ui/EndpointItem/EndpointItem'
-import { Endpoint } from '@/entities/Pbx'
+import { Endpoint } from '../../../Pbx/Endpoints/model/types/endpoints'
 
 interface ContentListProps<T extends object> {
   className?: string
@@ -48,6 +50,17 @@ export const ContentList = <T extends object>(props: ContentListProps<T>) => {
                 target={target}
                 view={view}
             />
+      )
+    }
+    if (componentName === 'contexts') {
+      const context = content as Context
+      return (
+          <ContextItem
+              key={context.id}
+              context={context}
+              target={target}
+              view={view}
+          />
       )
     }
   }

@@ -1,8 +1,8 @@
 import { ContentView } from '@/entities/Content'
 import { SortOrder } from '@/shared/types/sort'
-import { ContextSortField } from '@/entities/Pbx'
+import { EndpointGroupsSortField } from '@/entities/Pbx'
 
-export interface ContextsPageSchema {
+export interface EndpointGroupsPageSchema {
   // pagination
   page: number
   limit: number
@@ -12,6 +12,6 @@ export interface ContextsPageSchema {
   _inited?: boolean
   tab: string
   order: SortOrder
-  sort: ContextSortField
+  sort: EndpointGroupsSortField
   search: string
 }

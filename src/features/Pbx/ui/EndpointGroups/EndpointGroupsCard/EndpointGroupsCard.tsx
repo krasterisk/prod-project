@@ -14,7 +14,7 @@ import {
   useDeleteEndpointGroup,
   useSetEndpointGroups,
   useUpdateEndpointGroup
-} from '../../../api/endpointGroupsApi'
+} from '../../../../../pages/pbx/EndpointGroupsPage/api/endpointGroupsApi'
 import { EndpointGroupsCreateCard } from '../EndpointGroupsCreateCard/EndpointGroupsCreateCard'
 import { EndpointGroupsEditCard } from '../EndpointGroupsEditCard/EndpointGroupsEditCard'
 

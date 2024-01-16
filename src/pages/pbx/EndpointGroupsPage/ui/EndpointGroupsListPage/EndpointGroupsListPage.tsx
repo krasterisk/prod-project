@@ -1,14 +1,41 @@
-import React, { memo } from 'react'
-import { Page } from '@/widgets/Page'
-import { VStack } from '@/shared/ui/redesigned/Stack'
-import { EndpointGroups } from '@/features/Pbx'
+import React, { memo, useCallback } from 'react'
+import { useEndpointGroups } from '../../api/endpointGroupsApi'
+import { ErrorGetData } from '@/entities/ErrorGetData'
+import { EndpointGroupsList } from '@/entities/Pbx'
 
-export const EndpointGroupsListPage = memo(() => {
+export const EndpointGroupsListPage = () => {
+  const {
+    data,
+    isLoading,
+    isError,
+    error,
+    refetch
+  } = useEndpointGroups(null)
+
+  const onRefetch = useCallback(() => {
+    refetch()
+  }, [refetch])
+
+  if (isError) {
+    const errMsg = error && 'data' in error
+      ? String((error.data as { message: string }).message)
+      : ''
+
+    return (
+            <ErrorGetData
+                text={errMsg}
+                onRefetch={onRefetch}
+            />
+    )
+  }
+
   return (
-      <Page data-testid={'EndpointGroupPage'}>
-        <VStack gap='8'>
-          <EndpointGroups />
-        </VStack>
-      </Page>
+        <EndpointGroupsList
+            isLoading={isLoading}
+            endpointGroups={data}
+            isError={isError}
+        />
   )
-})
+}
+
+export default memo(EndpointGroupsListPage)

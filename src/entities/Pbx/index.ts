@@ -9,3 +9,4 @@ export { EndpointGroupsListHeader } from './EndpointGroups/ui/EndpointGroupsList
 export type { EndpointGroups } from './EndpointGroups/model/types/endpointGroups'
 export { EndpointSortField } from './Endpoints/model/consts/consts'
 export { ContextSortField } from './Contexts/model/consts/consts'
+export { EndpointGroupsSortField } from './EndpointGroups/model/consts/consts'

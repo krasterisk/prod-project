@@ -23,6 +23,7 @@ export const ContextsListHeader = memo((props: ContextsListHeaderProps) => {
             className={classNames(cls.ContextsListHeader, {}, [className])}
             padding={'8'}
             border={'partial'}
+            max
         >
             <AppLink
                 to={getRouteContextCreate()}

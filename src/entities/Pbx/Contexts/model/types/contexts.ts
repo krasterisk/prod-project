@@ -1,3 +1,5 @@
+import { ContentView } from '@/entities/Content'
+
 export interface AllContexts {
   count: number
   rows: Context[]
@@ -16,4 +18,6 @@ export interface ContextsListProps {
   isLoading?: boolean
   isError?: boolean
   contexts?: Context[]
+  view?: ContentView
+  onDelete?: (id: string) => void
 }

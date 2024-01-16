@@ -59,7 +59,7 @@ export const ContextsListPage = ({ className }: ContextsListPageProps) => {
                     contexts={data?.rows}
                     isLoading={isLoading}
                     isError={isError}
-                    // view={view}
+                    view={view}
                 />
             </Page>
         }

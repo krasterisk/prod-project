@@ -37,7 +37,7 @@ import {
   ContextsListPage,
   ContextCreatePage,
   EndpointGroupsCreatePage,
-  EndpointGroupsListPage,
+  EndpointGroupsPage,
   EndpointGroupsEditPage,
   EndpointsPage,
   ContextEditPage
@@ -83,7 +83,7 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
   },
   [AppRoutes.ENDPOINT_GROUPS]: {
     path: getRouteEndpointGroups(),
-    element: <EndpointGroupsListPage />,
+    element: <EndpointGroupsPage />,
     authOnly: false
   },
   [AppRoutes.ENDPOINT_GROUPS_CREATE]: {
