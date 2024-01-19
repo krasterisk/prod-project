@@ -15,7 +15,7 @@ export const ContextEditPage = memo(() => {
   }
 
   return (
-        <Page data-testid={'EndpointsPage'}>
+        <Page data-testid={'ContextEditPage'}>
             <VStack gap='8'>
                 <ContextCard isEdit contextId={id} />
             </VStack>

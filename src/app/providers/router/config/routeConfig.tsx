@@ -28,7 +28,7 @@ import {
   getRouteContextEdit,
   getRouteEndpointGroupsCreate,
   getRouteEndpointGroups,
-  getRouteEndpointGroupsEdit
+  getRouteEndpointGroupsEdit, getRouteProvisioning, getRouteProvisioningCreate, getRouteProvisioningEdit
 } from '@/shared/const/router'
 import { AppRoutesProps } from '@/shared/types/router'
 import {
@@ -40,7 +40,10 @@ import {
   EndpointGroupsPage,
   EndpointGroupsEditPage,
   EndpointsPage,
-  ContextEditPage
+  ContextEditPage,
+  ProvisioningPage,
+  ProvisioningEditPage,
+  ProvisioningCreatePage
 } from '@/pages/pbx'
 import { SettingPage } from '@/pages/SettingsPage'
 
@@ -94,6 +97,21 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
   [AppRoutes.ENDPOINT_GROUPS_EDIT]: {
     path: getRouteEndpointGroupsEdit(':id'),
     element: <EndpointGroupsEditPage />,
+    authOnly: false
+  },
+  [AppRoutes.PROVISIONING]: {
+    path: getRouteProvisioning(),
+    element: <ProvisioningPage />,
+    authOnly: false
+  },
+  [AppRoutes.PROVISIONING_CREATE]: {
+    path: getRouteProvisioningCreate(),
+    element: <ProvisioningCreatePage />,
+    authOnly: false
+  },
+  [AppRoutes.PROVISIONING_EDIT]: {
+    path: getRouteProvisioningEdit(':id'),
+    element: <ProvisioningEditPage />,
     authOnly: false
   },
   [AppRoutes.ADMIN]: {

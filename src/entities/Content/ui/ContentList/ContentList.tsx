@@ -10,6 +10,8 @@ import { Context } from '../../../Pbx/Contexts/model/types/contexts'
 import { ContextItem } from '../../../Pbx/Contexts/ui/ContextItem/ContextItem'
 import { EndpointItem } from '../../../Pbx/Endpoints/ui/EndpointItem/EndpointItem'
 import { Endpoint } from '../../../Pbx/Endpoints/model/types/endpoints'
+import { EndpointGroups } from '../../../Pbx/EndpointGroups/model/types/endpointGroups'
+import { EndpointGroupItem } from '../../../Pbx/EndpointGroups/ui/EndpointGroupItem/EndpointGroupItem'
 
 interface ContentListProps<T extends object> {
   className?: string
@@ -58,6 +60,17 @@ export const ContentList = <T extends object>(props: ContentListProps<T>) => {
           <ContextItem
               key={context.id}
               context={context}
+              target={target}
+              view={view}
+          />
+      )
+    }
+    if (componentName === 'endpointGroups') {
+      const endpointGroups = content as EndpointGroups
+      return (
+          <EndpointGroupItem
+              key={endpointGroups.id}
+              endpointGroup={endpointGroups}
               target={target}
               view={view}
           />

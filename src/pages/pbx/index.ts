@@ -12,3 +12,7 @@ export type { ContextsPageSchema } from './ContextsPage/model/types/contextsPage
 export type { EndpointGroupsPageSchema } from './EndpointGroupsPage/model/types/endpointGroupsPageSchema'
 export { endpointsPageReducer } from './EndpointsPage/model/slice/endpointsPageSlice'
 export { contextsPageReducer } from './ContextsPage/model/slice/contextsPageSlice'
+export type { ProvisioningPageSchema } from './ProvisioningPage/model/types/provisioningPageSchema'
+export { ProvisioningPageAsync as ProvisioningPage } from './ProvisioningPage/ui/ProvisioningPage/ProvisioningPage.async'
+export { ProvisioningCreatePage } from './ProvisioningPage/ui/ProvisioningCreatePage/ProvisioningCreatePage'
+export { ProvisioningEditPage } from './ProvisioningPage/ui/ProvisioningEditPage/ProvisioningEditPage'

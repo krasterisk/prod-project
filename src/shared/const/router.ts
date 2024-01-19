@@ -17,6 +17,9 @@ export enum AppRoutes {
   ENDPOINT_GROUPS = 'endpoints_groups',
   ENDPOINT_GROUPS_EDIT = 'endpoints_group_edit',
   ENDPOINT_GROUPS_CREATE = 'endpoints_group_create',
+  PROVISIONING_CREATE = 'provisioning_create',
+  PROVISIONING_EDIT = 'provisioning_edit',
+  PROVISIONING = 'provisioning',
   FORBIDDEN = 'forbidden',
   ERROR = 'error'
 }
@@ -38,6 +41,9 @@ export const getRouteEndpointEdit = (id: string) => `/endpoints/${id}`
 export const getRouteEndpointGroups = () => '/endpoints-groups'
 export const getRouteEndpointGroupsCreate = () => '/endpoints-groups/create'
 export const getRouteEndpointGroupsEdit = (id: string) => `/endpoints-groups/${id}`
+export const getRouteProvisioning = () => '/provisioning'
+export const getRouteProvisioningCreate = () => '/provisioning/create'
+export const getRouteProvisioningEdit = (id: string) => `/provisioning/${id}`
 export const getRouteProfile = (id: string) => `/profile/${id}`
 export const getRouteForbidden = () => '/forbidden'
 
@@ -57,6 +63,10 @@ export const AppRouteByPathPattern: Record<string, AppRoutes> = {
   [getRouteContexts()]: AppRoutes.CONTEXTS,
   [getRouteContextCreate()]: AppRoutes.CONTEXT_CREATE,
   [getRouteContextEdit(':id')]: AppRoutes.CONTEXT_EDIT,
+  [getRouteProvisioning()]: AppRoutes.PROVISIONING,
+  [getRouteProvisioningEdit(':id')]: AppRoutes.PROVISIONING_EDIT,
+  [getRouteProvisioningCreate()]: AppRoutes.PROVISIONING_CREATE,
+  [getRouteEndpointGroupsCreate()]: AppRoutes.ENDPOINT_GROUPS_CREATE,
   [getRouteEndpointGroups()]: AppRoutes.ENDPOINT_GROUPS,
   [getRouteEndpointGroupsEdit(':id')]: AppRoutes.ENDPOINT_GROUPS_EDIT,
   [getRouteEndpointGroupsCreate()]: AppRoutes.ENDPOINT_GROUPS_CREATE,

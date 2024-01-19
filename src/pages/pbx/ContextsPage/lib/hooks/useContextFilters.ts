@@ -12,7 +12,6 @@ import {
   getContextsTab
 } from '../../model/selectors/contextsPageSelectors'
 import { ContentView } from '@/entities/Content'
-import { SortOrder } from '@/shared/types/sort'
 import { useGetAllContexts } from '../../api/contextsApi'
 import { useDebounce } from '@/shared/lib/hooks/useDebounce/useDebounce'
 import { contextsPageActions } from '../../model/slice/contextsPageSlice'
@@ -80,10 +79,10 @@ export function useContextFilters () {
     dispatch(contextsPageActions.setHasMore(hasMore))
   }, [dispatch])
 
-  const onChangeOrder = useCallback((order: SortOrder) => {
-    dispatch(contextsPageActions.setOrder(order))
-    dispatch(contextsPageActions.setPage(1))
-  }, [dispatch])
+  // const onChangeOrder = useCallback((order: SortOrder) => {
+  //   dispatch(contextsPageActions.setOrder(order))
+  //   dispatch(contextsPageActions.setPage(1))
+  // }, [dispatch])
 
   const onChangeTab = useCallback((value: string) => {
     dispatch(contextsPageActions.setTab(value))

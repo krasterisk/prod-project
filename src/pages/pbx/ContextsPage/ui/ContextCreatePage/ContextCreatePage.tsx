@@ -5,7 +5,7 @@ import { ContextCard } from '@/features/Pbx'
 
 export const ContextCreatePage = memo(() => {
   return (
-        <Page data-testid={'EndpointsPage'}>
+        <Page data-testid={'ContextCreatePage'}>
             <VStack gap='8'>
                 <ContextCard />
             </VStack>

@@ -8,7 +8,7 @@ import { AppLink } from '@/shared/ui/redesigned/AppLink'
 import {
   getRouteContexts,
   getRouteEndpointCreate,
-  getRouteEndpointGroups
+  getRouteEndpointGroups, getRouteProvisioning
 } from '@/shared/const/router'
 import { HStack } from '@/shared/ui/redesigned/Stack'
 
@@ -56,6 +56,15 @@ export const EndpointsListHeader = memo((props: EndpointsListHeaderProps) => {
                         title={t('Группы') ?? ''}
                         variant={'outline'}>
                         {t('Группы')}
+                    </Button>
+                </AppLink>
+                <AppLink
+                    to={getRouteProvisioning()}
+                >
+                    <Button
+                        title={t('Автонастройка аппаратов') ?? ''}
+                        variant={'outline'}>
+                        {t('Автонастройка')}
                     </Button>
                 </AppLink>
             </HStack>

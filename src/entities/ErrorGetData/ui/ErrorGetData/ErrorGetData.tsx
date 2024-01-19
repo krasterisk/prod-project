@@ -2,6 +2,7 @@ import { useTranslation } from 'react-i18next'
 import React, { memo, useCallback, useEffect, useState } from 'react'
 import { HStack } from '@/shared/ui/redesigned/Stack'
 import { Text } from '@/shared/ui/redesigned/Text'
+// eslint-disable-next-line krasterisk-plugin/layer-imports
 import { LoginModal } from '@/features/AuthByUsername'
 
 interface ErrorGetDataProps {

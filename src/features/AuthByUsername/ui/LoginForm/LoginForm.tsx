@@ -82,7 +82,7 @@ const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
             <Button
                 variant={'outline'}
                 className={cls.loginBtn}
-                onClick={onLoginClick}
+                onClick={() => onLoginClick}
                 disabled={isLoading}
             >
                 {t('Вход')}

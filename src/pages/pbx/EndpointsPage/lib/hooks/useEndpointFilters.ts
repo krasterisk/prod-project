@@ -14,7 +14,6 @@ import {
 import { endpointsPageActions } from '../../model/slice/endpointsPageSlice'
 import { ContentView } from '@/entities/Content'
 import { EndpointSortField } from '@/entities/Pbx'
-import { SortOrder } from '@/shared/types/sort'
 import { useEndpoints } from '../../api/endpointsApi'
 import { useDebounce } from '@/shared/lib/hooks/useDebounce/useDebounce'
 
@@ -77,10 +76,10 @@ export function useEndpointFilters () {
     dispatch(endpointsPageActions.setHasMore(hasMore))
   }, [dispatch])
 
-  const onChangeOrder = useCallback((order: SortOrder) => {
-    dispatch(endpointsPageActions.setOrder(order))
-    dispatch(endpointsPageActions.setPage(1))
-  }, [dispatch])
+  // const onChangeOrder = useCallback((order: SortOrder) => {
+  //   dispatch(endpointsPageActions.setOrder(order))
+  //   dispatch(endpointsPageActions.setPage(1))
+  // }, [dispatch])
 
   const onChangeTab = useCallback((value: string) => {
     dispatch(endpointsPageActions.setTab(value))

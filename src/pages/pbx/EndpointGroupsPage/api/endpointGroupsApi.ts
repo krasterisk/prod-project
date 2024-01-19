@@ -1,5 +1,14 @@
 import { rtkApi } from '@/shared/api/rtkApi'
-import { EndpointGroups } from '@/entities/Pbx'
+import { AllEndpointGroups, EndpointGroups } from '@/entities/Pbx'
+
+interface QueryArgs {
+  vpbx_user_id: string
+  page: number
+  limit: number
+  sort?: string
+  order?: string
+  search?: string
+}
 
 export const endpointGroupsApi = rtkApi.injectEndpoints({
   endpoints: (build) => ({
@@ -11,6 +20,30 @@ export const endpointGroupsApi = rtkApi.injectEndpoints({
         result
           ? [
               ...result.map(({ id }) => ({ type: 'EndpointGroups', id } as const)),
+              { type: 'EndpointGroups', id: 'LIST' }
+            ]
+          : [{ type: 'EndpointGroups', id: 'LIST' }]
+    }),
+    getEndpointsGroupsPage: build.query<AllEndpointGroups, QueryArgs>({
+      query: (args) => ({
+        url: '/endpoints-groups/page',
+        params: args
+      }),
+      serializeQueryArgs: ({ endpointName }) => {
+        return endpointName
+      },
+      // Always merge incoming data to the cache entry
+      merge: (currentCache, newItems) => {
+        currentCache.rows.push(...newItems.rows)
+      },
+      // Refetch when the page arg changes
+      forceRefetch ({ currentArg, previousArg }) {
+        return JSON.stringify(currentArg) !== JSON.stringify(previousArg)
+      },
+      providesTags: (result) =>
+        result?.rows.length
+          ? [
+              ...result.rows.map(({ id }) => ({ type: 'EndpointGroups', id } as const)),
               { type: 'EndpointGroups', id: 'LIST' }
             ]
           : [{ type: 'EndpointGroups', id: 'LIST' }]
@@ -57,6 +90,7 @@ export const endpointGroupsApi = rtkApi.injectEndpoints({
 })
 
 export const useEndpointGroups = endpointGroupsApi.useGetEndpointGroupsQuery
+export const useEndpointGroupsPage = endpointGroupsApi.useGetEndpointsGroupsPageQuery
 export const useSetEndpointGroups = endpointGroupsApi.useSetEndpointGroupsMutation
 export const useEndpointGroup = endpointGroupsApi.useGetEndpointGroupQuery
 export const useUpdateEndpointGroup = endpointGroupsApi.useUpdateEndpointGroupMutation

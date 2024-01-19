@@ -31,7 +31,7 @@ export const contextsApi = rtkApi.injectEndpoints({
     }),
     getAllContexts: build.query<AllContexts, QueryArgs>({
       query: (args) => ({
-        url: '/contexts/pages',
+        url: '/contexts/page',
         params: args
       }),
       serializeQueryArgs: ({ endpointName }) => {

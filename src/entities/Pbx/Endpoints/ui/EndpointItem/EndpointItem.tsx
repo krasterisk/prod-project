@@ -31,7 +31,7 @@ export const EndpointItem = memo((props: EndpointItemProps) => {
             <Card
                 max
                 padding={'24'}
-                data-testid={'ManualListItem'}
+                data-testid={'EndpointItem'}
                 border="partial"
                 className={classNames(cls.EndpointItem, {}, [className, cls[view]])}
             >

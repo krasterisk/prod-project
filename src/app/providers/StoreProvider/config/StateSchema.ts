@@ -10,7 +10,7 @@ import { ManualsPageSchema } from '@/pages/ManualsPage'
 import { ScrollSaveSchema } from '@/features/ScrollSave'
 import { ManualDetailsPageSchema } from '@/pages/ManualDetailsPage'
 import { rtkApi } from '@/shared/api/rtkApi'
-import { ContextsPageSchema, EndpointsPageSchema, EndpointGroupsPageSchema } from '@/pages/pbx'
+import { ContextsPageSchema, EndpointsPageSchema, EndpointGroupsPageSchema, ProvisioningPageSchema } from '@/pages/pbx'
 
 export interface StateSchema {
   counter: CounterSchema
@@ -28,6 +28,7 @@ export interface StateSchema {
   endpointsPage?: EndpointsPageSchema
   contextsPage?: ContextsPageSchema
   endpointGroupsPage?: EndpointGroupsPageSchema
+  provisioningPage?: ProvisioningPageSchema
 }
 
 export type StateSchemaKey = keyof StateSchema
