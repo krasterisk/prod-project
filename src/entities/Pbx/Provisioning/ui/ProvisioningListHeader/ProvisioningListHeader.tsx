@@ -7,8 +7,8 @@ import { Button } from '@/shared/ui/redesigned/Button'
 import { AppLink } from '@/shared/ui/redesigned/AppLink'
 import {
   getRouteContexts,
-  getRouteEndpointCreate,
-  getRouteEndpointGroups
+  getRouteEndpointGroups, getRouteEndpoints,
+  getRouteProvisioningCreate
 } from '@/shared/const/router'
 import { HStack } from '@/shared/ui/redesigned/Stack'
 
@@ -32,12 +32,21 @@ export const ProvisioningListHeader = memo((props: ProvisioningListHeaderProps) 
       >
         <HStack justify={'start'} max gap={'8'}>
           <AppLink
-              to={getRouteEndpointCreate()}
+              to={getRouteProvisioningCreate()}
           >
             <Button
                 title={t('Создать') ?? ''}
                 variant={'outline'}>
               {t('Создать')}
+            </Button>
+          </AppLink>
+          <AppLink
+              to={getRouteEndpoints()}
+          >
+            <Button
+                title={t('Абоненты') ?? ''}
+                variant={'outline'}>
+              {t('Абоненты')}
             </Button>
           </AppLink>
           <AppLink

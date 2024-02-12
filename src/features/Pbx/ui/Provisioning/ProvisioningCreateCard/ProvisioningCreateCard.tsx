@@ -61,7 +61,7 @@ export const ProvisioningCreateCard = memo((props: ProvisioningCreateCardProps) 
         <ProvisioningCreateHeader onCreate={createHandler}/>
         { isError
           ? <ErrorGetData
-                title={t('Ошибка при создании контекста') || ''}
+                title={t('Ошибка при создании шаблона') || ''}
                 text={
                   error && 'data' in error
                     ? String(t((error.data as { message: string }).message))
@@ -82,7 +82,7 @@ export const ProvisioningCreateCard = memo((props: ProvisioningCreateCardProps) 
                   label={t('Файл шаблона') ?? ''}
                   onChange={createChangeHandler('filename')}
                   data-testid={'ProvisionCreateCard.filename'}
-                  value={formFields.description}
+                  value={formFields.filename}
               />
               <Input
                   label={t('Описание шаблона') ?? ''}
