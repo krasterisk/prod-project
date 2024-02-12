@@ -2,9 +2,6 @@ import React, { memo, useCallback } from 'react'
 import { Page } from '@/widgets/Page'
 import { StickyContentLayout } from '@/shared/layouts/StickyContentLayout'
 import { ContentViewSelector } from '@/features/ContentViewSelector'
-
-import { classNames } from '@/shared/lib/classNames/classNames'
-import cls from '../../../EndpointsPage/ui/EndpointPage/EndpointsPage.module.scss'
 import { useContextFilters } from '../../lib/hooks/useContextFilters'
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch'
 import { useInitialEffect } from '@/shared/lib/hooks/useInitialEffect/useInitialEffect'
@@ -52,7 +49,6 @@ export const ContextsListPage = ({ className }: ContextsListPageProps) => {
             <Page
                 data-testid={'ContextsPage'}
                 onScrollEnd={onLoadNextPart}
-                className={classNames(cls.ContextsListPage, {}, [className])}
                 isSaveScroll={true}
             >
                 <ContextsList
