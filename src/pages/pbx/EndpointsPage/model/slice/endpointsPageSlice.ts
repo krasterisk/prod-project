@@ -11,7 +11,7 @@ import { SortOrder } from '@/shared/types/sort'
 
 const initialState: EndpointsPageSchema = {
   page: 1,
-  limit: 50,
+  limit: 25,
   hasMore: true,
   // filters
   view: 'SMALL',
@@ -51,7 +51,7 @@ export const endpointsPageSlice = createSlice({
     initState: (state) => {
       const view = localStorage.getItem(ENDPOINTS_VIEW_LOCALSTORAGE_KEY) as ContentView
       state.view = view
-      state.limit = view === 'BIG' ? 25 : 50
+      state.limit = view === 'BIG' ? 25 : 25
       state._inited = true
     }
   }

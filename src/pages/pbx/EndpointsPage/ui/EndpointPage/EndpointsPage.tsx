@@ -29,16 +29,20 @@ const EndpointsPage = ({ className }: EndpointsPageProps) => {
     isLoading,
     error,
     data,
+    hasMore,
     onChangeView,
     onRefetch,
     onLoadNext
   } = useEndpointFilters()
+
   const dispatch = useAppDispatch()
 
   const onLoadNextPart = useCallback(() => {
-    onLoadNext()
+    if (hasMore) {
+      onLoadNext()
+    }
     //    onRefetch()
-  }, [onLoadNext])
+  }, [hasMore, onLoadNext])
 
   useInitialEffect(() => {
     dispatch(initEndpointsPage())

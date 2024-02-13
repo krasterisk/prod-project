@@ -29,15 +29,18 @@ export const ContextsListPage = ({ className }: ContextsListPageProps) => {
     data,
     onChangeView,
     onRefetch,
+    hasMore,
     onLoadNext
   } = useContextFilters()
 
   const dispatch = useAppDispatch()
 
   const onLoadNextPart = useCallback(() => {
-    onLoadNext()
+    if (hasMore) {
+      onLoadNext()
+    }
     //    onRefetch()
-  }, [onLoadNext])
+  }, [hasMore, onLoadNext])
 
   useInitialEffect(() => {
     dispatch(initContextsPage())

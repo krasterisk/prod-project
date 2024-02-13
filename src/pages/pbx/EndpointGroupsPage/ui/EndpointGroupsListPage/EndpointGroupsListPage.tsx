@@ -34,15 +34,17 @@ export const EndpointGroupsListPage = ({ className }: EndpointGroupsListPageProp
     data,
     onChangeView,
     onRefetch,
+    hasMore,
     onLoadNext
   } = useEndpointGroupsFilters()
 
   const dispatch = useAppDispatch()
 
   const onLoadNextPart = useCallback(() => {
-    onLoadNext()
-    //    onRefetch()
-  }, [onLoadNext])
+    if (hasMore) {
+      onLoadNext()
+    }
+  }, [hasMore, onLoadNext])
 
   useInitialEffect(() => {
     dispatch(initEndpointGroupsPage())

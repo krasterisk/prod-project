@@ -7,7 +7,7 @@ import { ProvisioningPageSchema } from '../types/provisioningPageSchema'
 
 const initialState: ProvisioningPageSchema = {
   page: 1,
-  limit: 50,
+  limit: 25,
   hasMore: true,
   // filters
   view: 'SMALL',
@@ -47,7 +47,7 @@ export const provisioningPageSlice = createSlice({
     initState: (state) => {
       const view = localStorage.getItem(PROVISIONING_VIEW_LOCALSTORAGE_KEY) as ContentView
       state.view = view
-      state.limit = view === 'BIG' ? 25 : 50
+      state.limit = view === 'BIG' ? 25 : 25
       state._inited = true
     }
   }

@@ -47,9 +47,11 @@ export function useEndpointGroupsFilters () {
 
   const onLoadNext = useCallback(() => {
     if (data && hasMore && !isLoading && !isFetching) {
-      dispatch(endpointGroupsPageActions.setPage(page + 1))
       const isHasMore = data.count > ((page + 1) * limit)
       dispatch(endpointGroupsPageActions.setHasMore(isHasMore))
+      if (isHasMore) {
+        dispatch(endpointGroupsPageActions.setPage(page + 1))
+      }
     }
   }, [data, dispatch, hasMore, isFetching, isLoading, limit, page])
 

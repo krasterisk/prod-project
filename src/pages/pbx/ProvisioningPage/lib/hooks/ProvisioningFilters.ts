@@ -46,9 +46,11 @@ export function useProvisioningFilters () {
 
   const onLoadNext = useCallback(() => {
     if (data && hasMore && !isLoading && !isFetching) {
-      dispatch(provisioningPageActions.setPage(page + 1))
       const isHasMore = data.count > ((page + 1) * limit)
       dispatch(provisioningPageActions.setHasMore(isHasMore))
+      if (isHasMore) {
+        dispatch(provisioningPageActions.setPage(page + 1))
+      }
     }
   }, [data, dispatch, hasMore, isFetching, isLoading, limit, page])
 

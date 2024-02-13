@@ -48,9 +48,11 @@ export function useContextFilters () {
 
   const onLoadNext = useCallback(() => {
     if (data && hasMore && !isLoading && !isFetching) {
-      dispatch(contextsPageActions.setPage(page + 1))
       const isHasMore = data.count > ((page + 1) * limit)
       dispatch(contextsPageActions.setHasMore(isHasMore))
+      if (isHasMore) {
+        dispatch(contextsPageActions.setPage(page + 1))
+      }
     }
   }, [data, dispatch, hasMore, isFetching, isLoading, limit, page])
 

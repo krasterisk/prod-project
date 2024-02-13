@@ -29,6 +29,7 @@ const ProvisioningPage = ({ className }: ProvisioningPageProps) => {
     isLoading,
     error,
     data,
+    hasMore,
     onChangeView,
     onRefetch,
     onLoadNext
@@ -36,9 +37,11 @@ const ProvisioningPage = ({ className }: ProvisioningPageProps) => {
   const dispatch = useAppDispatch()
 
   const onLoadNextPart = useCallback(() => {
-    onLoadNext()
+    if (hasMore) {
+      onLoadNext()
+    }
     //    onRefetch()
-  }, [onLoadNext])
+  }, [hasMore, onLoadNext])
 
   useInitialEffect(() => {
     dispatch(initProvisioningPage())

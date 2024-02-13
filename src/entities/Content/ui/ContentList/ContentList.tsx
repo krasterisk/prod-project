@@ -12,6 +12,8 @@ import { EndpointItem } from '../../../Pbx/Endpoints/ui/EndpointItem/EndpointIte
 import { Endpoint } from '../../../Pbx/Endpoints/model/types/endpoints'
 import { EndpointGroups } from '../../../Pbx/EndpointGroups/model/types/endpointGroups'
 import { EndpointGroupItem } from '../../../Pbx/EndpointGroups/ui/EndpointGroupItem/EndpointGroupItem'
+import { ProvisioningItem } from '../../../Pbx/Provisioning/ui/ProvisioningItem/ProvisioningItem'
+import { ProvisionTemplate } from '@/entities/Pbx'
 
 interface ContentListProps<T extends object> {
   className?: string
@@ -71,6 +73,17 @@ export const ContentList = <T extends object>(props: ContentListProps<T>) => {
           <EndpointGroupItem
               key={endpointGroups.id}
               endpointGroup={endpointGroups}
+              target={target}
+              view={view}
+          />
+      )
+    }
+    if (componentName === 'provisioning') {
+      const provisioning = content as ProvisionTemplate
+      return (
+          <ProvisioningItem
+              key={provisioning.id}
+              provisionTemplate={provisioning}
               target={target}
               view={view}
           />

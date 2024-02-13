@@ -28,7 +28,10 @@ import {
   getRouteContextEdit,
   getRouteEndpointGroupsCreate,
   getRouteEndpointGroups,
-  getRouteEndpointGroupsEdit, getRouteProvisioning, getRouteProvisioningCreate, getRouteProvisioningEdit
+  getRouteEndpointGroupsEdit,
+  getRouteProvisioning,
+  getRouteProvisioningCreate,
+  getRouteProvisioningEdit
 } from '@/shared/const/router'
 import { AppRoutesProps } from '@/shared/types/router'
 import {
