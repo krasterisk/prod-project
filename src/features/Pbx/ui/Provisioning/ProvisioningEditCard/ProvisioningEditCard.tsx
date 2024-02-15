@@ -111,7 +111,7 @@ export const ProvisioningEditCard = memo((props: ProvisioningEditCardProps) => {
                             label={t('Файл шаблона') ?? ''}
                             onChange={editChangeHandler('filename')}
                             data-testid={'ProvisioningEditCard.filename'}
-                            value={formFields.description}
+                            value={formFields.filename}
                         />
 
                         <Input

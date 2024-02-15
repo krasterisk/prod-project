@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next'
 import { memo, useCallback } from 'react'
 import { Card } from '@/shared/ui/redesigned/Card'
 import { AppLink } from '@/shared/ui/redesigned/AppLink'
-import { getRouteContexts } from '@/shared/const/router'
+import { getRouteProvisioning } from '@/shared/const/router'
 import { Button } from '@/shared/ui/redesigned/Button'
 import { Text } from '@/shared/ui/redesigned/Text'
 import { HStack } from '@/shared/ui/redesigned/Stack'
@@ -51,7 +51,7 @@ export const ProvisioningEditHeader = memo((props: ProvisioningEditHeaderProps) 
             {t('Удалить')}
           </Button>
           <AppLink
-              to={getRouteContexts()}
+              to={getRouteProvisioning()}
           >
             <Button
                 title={t('Закрыть') ?? ''}
