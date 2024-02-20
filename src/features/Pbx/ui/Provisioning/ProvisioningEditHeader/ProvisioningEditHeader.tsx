@@ -32,44 +32,44 @@ export const ProvisioningEditHeader = memo((props: ProvisioningEditHeaderProps) 
   }, [provisioningId, onDelete])
 
   return (
-      <Card
-          className={classNames(cls.ProvisioningEditHeader, {}, [className])}
-          padding={'8'}
-          border={'partial'}
-          max
-      >
-        <HStack max justify={'start'}>
-          <Text title={t('Редактировать')}/>
-        </HStack>
-        <HStack gap="24">
-          <Button
-              title={t('Удалить') ?? ''}
-              variant={'outline'}
-              color={'error'}
-              onClick={deleteHandler}
-          >
-            {t('Удалить')}
-          </Button>
-          <AppLink
-              to={getRouteProvisioning()}
-          >
-            <Button
-                title={t('Закрыть') ?? ''}
-                variant={'outline'}
-                color={'error'}
-            >
-              {t('Закрыть')}
-            </Button>
-          </AppLink>
-          <Button
-              title={t('Сохранить') ?? ''}
-              variant={'outline'}
-              color={'success'}
-              onClick={onEdit}
-          >
-            {t('Сохранить')}
-          </Button>
-        </HStack>
-      </Card>
+        <Card
+            className={classNames(cls.ProvisioningEditHeader, {}, [className])}
+            padding={'8'}
+            border={'partial'}
+            max
+        >
+            <HStack max justify={'start'}>
+                <Text title={t('Редактировать')}/>
+            </HStack>
+            <HStack gap="24">
+                <Button
+                    title={t('Удалить') ?? ''}
+                    variant={'outline'}
+                    color={'error'}
+                    onClick={deleteHandler}
+                >
+                    {t('Удалить')}
+                </Button>
+                <AppLink
+                    to={getRouteProvisioning()}
+                >
+                    <Button
+                        title={t('Закрыть') ?? ''}
+                        variant={'outline'}
+                        color={'error'}
+                    >
+                        {t('Закрыть')}
+                    </Button>
+                </AppLink>
+                <Button
+                    title={t('Сохранить') ?? ''}
+                    variant={'outline'}
+                    color={'success'}
+                    onClick={onEdit}
+                >
+                    {t('Сохранить')}
+                </Button>
+            </HStack>
+        </Card>
   )
 })

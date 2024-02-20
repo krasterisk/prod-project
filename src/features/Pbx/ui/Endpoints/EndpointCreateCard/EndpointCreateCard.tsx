@@ -14,6 +14,7 @@ import { getUserAuthData } from '@/entities/User'
 import { Endpoint } from '@/entities/Pbx'
 import { FetchBaseQueryError } from '@reduxjs/toolkit/query'
 import { SerializedError } from '@reduxjs/toolkit'
+import { TabsPanel } from '@/shared/ui/redesigned/TabsPanel/TabsPanel'
 
 interface EndpointCreateCardProps {
   className?: string
@@ -75,6 +76,9 @@ export const EndpointCreateCard = memo((props: EndpointCreateCardProps) => {
                 />
               : ''}
             <Card max padding={'8'} border={'partial'}>
+                <TabsPanel index={1} value={1}>
+
+                </TabsPanel>
                 <HStack gap={'24'} max>
                     <VStack gap={'16'}>
                         <Input
