@@ -1,7 +1,6 @@
 import React, { Suspense, useEffect } from 'react'
 import { classNames } from '@/shared/lib/classNames/classNames'
 import { Navbar } from '@/widgets/Navbar'
-import { Sidebar } from '@/widgets/Sidebar'
 import { useDispatch, useSelector } from 'react-redux'
 import { getUserAuthData, getUserMounted, userActions } from '@/entities/User'
 import { AppRouter } from './providers/router'
@@ -10,6 +9,7 @@ import { MainLayout } from '@/shared/layouts/MainLayout'
 import { PageLoader } from '@/widgets/PageLoader'
 import { getTokenAllData } from '@/app/providers/getTokenData/getTokenData'
 import { useAppToolbar } from './lib/useAppToolbar'
+import { Menubar } from '@/widgets/Menubar'
 
 const App = (): any => {
   const dispatch = useDispatch()
@@ -35,7 +35,7 @@ const App = (): any => {
                               <MainLayout
                                   header={<Navbar/>}
                                   content={<AppRouter/>}
-                                  sidebar={<Sidebar/>}
+                                  sidebar={<Menubar/>}
                                   toolbar={toolbar}
                               />
                           </Suspense>
