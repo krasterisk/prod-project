@@ -1,5 +1,5 @@
-.listItem {
-    color: tan;
+.collapsedRedesign {
+    display: none;
 }
 
 .Menubar {
@@ -8,21 +8,11 @@
     height: 100%;
     border-radius: 32px;
     position: relative;
+    padding-top: 20px;
 
     .appLogo {
         padding-top: 20px;
-    }
-
-    .items {
-        margin-top: 40px;
-    }
-
-    .collapseBtn {
-        position: absolute;
-        right: 0;
-        top: 50%;
-        z-index: 10;
-        transform: rotate(90deg);
+        padding-bottom: 20px;
     }
 
     .switchers {
