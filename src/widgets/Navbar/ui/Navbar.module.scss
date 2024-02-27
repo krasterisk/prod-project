@@ -5,13 +5,23 @@
     padding: 20px;
 }
 
+.menuButton {
+    color: var(--text-redesigned);
+}
+
+.themeSwitcher {
+    margin: 0;
+    padding: 0;
+}
+
+.lang {
+    margin: 0;
+    padding: 0;
+}
+
 .links,
 .actions {
     margin-left: auto;
-}
-
-.NavbarRedesigned {
-    padding: 16px;
 }
 
 .mainLink {

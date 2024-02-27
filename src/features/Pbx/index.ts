@@ -10,3 +10,4 @@ export { EndpointGroupsEditCard } from './ui/EndpointGroups/EndpointGroupsEditCa
 export { ProvisioningCard } from './ui/Provisioning/ProvisioningCard/ProvisioningCard'
 export { ProvisioningCreateCard } from './ui/Provisioning/ProvisioningCreateCard/ProvisioningCreateCard'
 export { ProvisioningEditCard } from './ui/Provisioning/ProvisioningEditCard/ProvisioningEditCard'
+export { EndpointMenu } from './ui/Endpoints/EndpointMenu/EndpointMenu'

@@ -1,28 +1,28 @@
-.MainLayout {
+.StickyLayout {
     display: grid;
     grid-template-areas: "left content right";
     grid-template-columns: min-content 1fr min-content;
 }
 
-.left {
-    grid-area: left;
-}
-
 .content {
     grid-area: content;
-    max-width: 1200px;
+
+    // max-width: 1200px;
     justify-self: center;
     padding: 0 16px;
     width: 100%;
+    height: 100%;
 }
 
 .right {
     grid-area: right;
+    justify-self: end;
+    height: 100%;
 }
 
-.left,
-.right {
+.left {
+    grid-area: left;
     position: sticky;
-    top: 32px;
-    height: fit-content;
+    top: 0;
+    height: 100%;
 }

@@ -8,10 +8,10 @@ interface AppLogoProps {
   className?: string
   size?: number
   width?: number
-  heidgth?: number
+  height?: number
 }
 
-export const AppLogo = memo(({ className }: AppLogoProps) => {
+export const AppLogo = memo(({ className, width = 120, height = 50 }: AppLogoProps) => {
   return (
       <HStack
           max
@@ -19,8 +19,8 @@ export const AppLogo = memo(({ className }: AppLogoProps) => {
           className={classNames(cls.appLogoWrapper, {}, [className])}
       >
           <AppSvg
-              width={120}
-              height={50}
+              width={width}
+              height={height}
               fill={'orange'}
               // color="black"
               className={cls.appLogo}

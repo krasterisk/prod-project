@@ -1,13 +1,14 @@
 .menu {
     background: var(--dark-bg-redesigned);
     position: absolute;
-    z-index: 10000;
+    z-index: 999999;
     display: flex;
     flex-direction: column; // размеры пунктов по содержимому
 }
 
 .item {
-    padding: 10px 25px;
+    padding: 8px;
+    text-align: start;
     width: 100%;
     border: none;
     background: none;

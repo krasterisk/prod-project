@@ -1,16 +1,16 @@
 import React from 'react'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
-import { MenubarItem } from './MenubarItem'
+import { MenubarItems } from './MenubarItems'
 
 export default {
   title: 'shared/MenubarItem',
-  component: MenubarItem,
+  component: MenubarItems,
   argTypes: {
     backgroundColor: { control: 'color' }
   }
-} as ComponentMeta<typeof MenubarItem>
+} as ComponentMeta<typeof MenubarItems>
 
-const Template: ComponentStory<typeof MenubarItem> = (args) => <MenubarItem {...args} />
+const Template: ComponentStory<typeof MenubarItems> = (args) => <MenubarItems {...args} />
 
 export const Normal = Template.bind({})
 Normal.args = {}

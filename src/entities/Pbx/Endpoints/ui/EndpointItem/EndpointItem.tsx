@@ -5,10 +5,10 @@ import { Endpoint } from '../../model/types/endpoints'
 import { Text } from '@/shared/ui/redesigned/Text'
 import { HStack, VStack } from '@/shared/ui/redesigned/Stack'
 import { Card } from '@/shared/ui/redesigned/Card'
-
 import { AppLink } from '@/shared/ui/redesigned/AppLink'
 import { getRouteEndpointEdit } from '@/shared/const/router'
 import { ContentView } from '@/entities/Content'
+import { EndpointMenu } from '@/features/Pbx'
 
 interface EndpointItemProps {
   className?: string
@@ -35,19 +35,12 @@ export const EndpointItem = memo((props: EndpointItemProps) => {
                 border="partial"
                 className={classNames(cls.EndpointItem, {}, [className, cls[view]])}
             >
-                <AppLink
-                    target={target}
-                    to={getRouteEndpointEdit(endpoint.id)}
-                >
-                    <HStack gap={'8'}>
-                        <Text bold text={endpoint.username}/>
-                    </HStack>
-                    <HStack gap={'8'}>
-                        <Text text={endpoint.endpoint_id} bold className={cls.title}/>
-                        <Text text={endpoint.username} size={'s'}/>
-                        {endpoint.group_uid}
-                    </HStack>
-                </AppLink>
+                <EndpointMenu id={endpoint.id} className={cls.actions}/>
+                <HStack gap={'4'} justify={'start'} max>
+                    <Text bold text={endpoint.username}/>
+                    <Text text={endpoint.endpoint_id} bold className={cls.title}/>
+                    <Text text={endpoint.group_uid} size={'s'}/>
+                </HStack>
                 <div className={cls.footer}></div>
             </Card>
     )

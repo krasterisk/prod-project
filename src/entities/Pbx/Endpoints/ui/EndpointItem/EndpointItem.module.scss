@@ -1,4 +1,6 @@
 .EndpointItem {
+    position: relative;
+
     &.BIG {
         width: 100%;
     }
@@ -7,4 +9,10 @@
         width: 220px;
         height: 150px;
     }
+}
+
+.actions {
+    position: absolute; /* Это делает .element абсолютно позиционированным внутри .container */
+    top: 0; /* Выравнивание элемента по верхнему краю контейнера */
+    right: 0; /* Выравнивание элемента по правому краю контейнера */
 }

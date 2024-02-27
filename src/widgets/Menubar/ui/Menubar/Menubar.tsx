@@ -1,7 +1,6 @@
 import { classNames } from '@/shared/lib/classNames/classNames'
 import cls from './Menubar.module.scss'
-import React, { memo, useState } from 'react'
-import { useMenubarItems } from '../../model/selectors/getMenubarItems'
+import React, { memo } from 'react'
 
 import { VStack } from '@/shared/ui/redesigned/Stack'
 import { SimpleTreeView, TreeItem } from '@mui/x-tree-view'
@@ -9,10 +8,11 @@ import { MenubarItemType } from '../../model/types/menubar'
 import { AppLink } from '@/shared/ui/redesigned/AppLink'
 import { useTranslation } from 'react-i18next'
 import { useMediaQuery } from '@mui/material'
+import { AppLogo } from '@/shared/ui/redesigned/AppLogo'
+import { MenubarItems } from '../MenubarItems/MenubarItems'
 
 interface MenubarProps {
   className?: string
-
 }
 
 export const Menubar = memo((props: MenubarProps) => {
@@ -20,17 +20,8 @@ export const Menubar = memo((props: MenubarProps) => {
     className
   } = props
 
-  const [collapsed, setCollapsed] = useState(false)
-  const menubarItemList = useMenubarItems()
-  const isMobile = useMediaQuery('(max-width:800px)')
-
-  console.log(isMobile)
-
-  const onToggle = () => {
-    setCollapsed((prev) => !prev)
-  }
-
   const { t } = useTranslation('endpoints')
+  const isMobile = useMediaQuery('(max-width:800px)')
 
   const renderTree = (nodes: MenubarItemType[]) => (
 
@@ -59,12 +50,14 @@ export const Menubar = memo((props: MenubarProps) => {
                 data-testid="menubar"
                 className={classNames(cls.Menubar, {}, [className])}
             >
+                <AppLogo className={cls.appLogo}/>
                 <VStack
                     role="navigation"
                     className={cls.items}
                 >
-                    {renderTree(menubarItemList)}
+                    <MenubarItems openDrawer={false} />
                 </VStack>
+
             </section>
   )
 })

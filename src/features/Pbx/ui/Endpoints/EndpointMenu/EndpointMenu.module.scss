@@ -1,0 +1,12 @@
+.EndpointMenu {
+    padding: 0;
+}
+
+.trigger {
+    margin: 4px;
+    color: var(--hint-redesigned);
+
+    &:hover {
+        color: var(--text-redesigned);
+    }
+}

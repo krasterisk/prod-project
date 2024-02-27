@@ -11,8 +11,9 @@ import { AvatarDropdown } from '@/features/avatarDropdown'
 import { ThemeSwitcher } from '@/entities/ThemeSwitcher'
 import { LangSwitcher } from '@/entities/LangSwitcher'
 import { IconButton, useMediaQuery } from '@mui/material'
-import { AppLogo } from '@/shared/ui/redesigned/AppLogo'
 import MenuIcon from '@mui/icons-material/Menu'
+import { AppLogo } from '@/shared/ui/redesigned/AppLogo'
+import { MenubarItems } from '../../Menubar/ui/MenubarItems/MenubarItems'
 
 interface NavbarProps {
   className?: string
@@ -23,6 +24,11 @@ export const Navbar = memo(({ className }: NavbarProps) => {
   const authData = useSelector(getUserAuthData)
   const [isAuthModal, setIsAuthModal] = useState(false)
   const isMobile = useMediaQuery('(max-width:800px)')
+  const [openDrawer, setOpenDrawer] = React.useState(false)
+
+  const toggleDrawer = (newOpen: boolean) => {
+    setOpenDrawer(newOpen)
+  }
 
   const onCloseModal = useCallback(() => {
     setIsAuthModal(false)
@@ -37,12 +43,24 @@ export const Navbar = memo(({ className }: NavbarProps) => {
             <header className={classNames(cls.Navbar, {}, [className])}>
                 <HStack gap="16" justify={'start'}>
                     {isMobile && (
-                        <IconButton onClick={() => { console.log('icon button click') }} className={cls.menuButton}>
-                            <MenuIcon />
-                        </IconButton>
+                        <>
+                            <IconButton onClick={() => { toggleDrawer(true) }} className={cls.menuButton}>
+                                <MenuIcon />
+                            </IconButton>
+                            <AppLogo
+                                width={60}
+                                height={25}
+                                className={cls.appLogo}
+                            />
+                            <MenubarItems
+                                isMobile={true}
+                                openDrawer={openDrawer}
+                                onDrawerClose={() => { toggleDrawer(false) }}
+                            />
+                        </>
                     )}
-                    <AppLogo size={isMobile ? 100 : 50} className={cls.appLogo}/>
-                    <ThemeSwitcher/>
+
+                    <ThemeSwitcher className={cls.themeSwitcher} />
                     <LangSwitcher
                         short={isMobile}
                         className={cls.lang}

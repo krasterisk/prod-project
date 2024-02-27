@@ -4,9 +4,14 @@
 }
 
 .menu {
-    border-radius: 18px;
-    border: 1px solid var(--accent-redesigned);
+    // border: 1px solid var(--accent-redesigned);
+    border-radius: 4px;
+    box-shadow:
+        rgb(0 0 0 / 20%) 0 5px 5px -3px,
+        rgb(0 0 0 / 14%) 0 8px 10px 1px,
+        rgb(0 0 0 / 12%) 0 3px 14px 2px;
     overflow: hidden;
+    background: var(--bg-redesigned);
 }
 
 .trigger {
@@ -20,7 +25,7 @@
 }
 
 .active {
-    background: var(--bg-redesigned);
+    background: var(--light-bg-redesigned);
 }
 
 .optionsBottomLeft {

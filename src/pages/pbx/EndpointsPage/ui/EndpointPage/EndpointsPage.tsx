@@ -8,7 +8,6 @@ import { endpointsPageReducer } from '../../model/slice/endpointsPageSlice'
 import { DynamicModuleLoader, ReducersList } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader'
 import { ErrorGetData } from '@/entities/ErrorGetData'
 import { EndpointsList } from '@/entities/Pbx'
-import { EndpointFiltersContainer } from '../EndpointFiltersContainer/EndpointFiltersContainer'
 import { useEndpointFilters } from '../../lib/hooks/useEndpointFilters'
 import { useInitialEffect } from '@/shared/lib/hooks/useInitialEffect/useInitialEffect'
 import { initEndpointsPage } from '../../model/service/initEndpointsPage/initEndpointsPage'
@@ -50,7 +49,7 @@ const EndpointsPage = ({ className }: EndpointsPageProps) => {
 
   const content = <StickyContentLayout
         left={<ContentViewSelector view={view} onViewClick={onChangeView}/>}
-        right={<EndpointFiltersContainer />}
+        // right={<EndpointFiltersContainer />}
         content={
             <Page
                 data-testid={'EndpointsPage'}

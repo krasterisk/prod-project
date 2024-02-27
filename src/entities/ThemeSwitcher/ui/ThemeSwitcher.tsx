@@ -13,9 +13,9 @@ export const ThemeSwitcher = memo(({ className }: ThemeSwitcherProps) => {
 
   return (
         <Icon
-                                      Svg={ThemeIcon}
-                                      onClick={toggleTheme}
-                                      clickable
-                                  />
+            Svg={ThemeIcon}
+            onClick={toggleTheme}
+            clickable
+        />
   )
 })
