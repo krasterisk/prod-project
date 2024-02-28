@@ -1,10 +1,10 @@
 <svg
     width="120"
     height="50"
-    viewBox="10 5 100 50"
+    viewBox="0 0 120 50"
     xmlns="http://www.w3.org/2000/svg"
 >
-    <text x="0" y="45" font-size="36" font-family="Arial, sans-serif">
+    <text x="0" y="40" font-size="36" font-family="Arial, sans-serif">
         <tspan fill="black" font-weight="bold">IP PBX</tspan>
     </text>
 </svg>

@@ -1,16 +1,15 @@
 import { classNames } from '@/shared/lib/classNames/classNames'
 import cls from './EndpointsListHeader.module.scss'
 import { useTranslation } from 'react-i18next'
-import { memo } from 'react'
+import React, { memo } from 'react'
 import { Card } from '@/shared/ui/redesigned/Card'
-import { Button } from '@/shared/ui/redesigned/Button'
 import { AppLink } from '@/shared/ui/redesigned/AppLink'
 import {
-  getRouteContexts,
-  getRouteEndpointCreate,
-  getRouteEndpointGroups, getRouteProvisioning
+  getRouteEndpointCreate
 } from '@/shared/const/router'
 import { HStack } from '@/shared/ui/redesigned/Stack'
+import { IconButton } from '@mui/material'
+import PersonAddAlt1Icon from '@mui/icons-material/PersonAddAlt1'
 
 interface EndpointsListHeaderProps {
   className?: string
@@ -34,38 +33,9 @@ export const EndpointsListHeader = memo((props: EndpointsListHeaderProps) => {
                 <AppLink
                     to={getRouteEndpointCreate()}
                 >
-                    <Button
-                        title={t('Создать') ?? ''}
-                        variant={'outline'}>
-                        {t('Создать')}
-                    </Button>
-                </AppLink>
-                <AppLink
-                    to={getRouteContexts()}
-                >
-                    <Button
-                        title={t('Контекcты') ?? ''}
-                        variant={'outline'}>
-                        {t('Контекcты')}
-                    </Button>
-                </AppLink>
-                <AppLink
-                    to={getRouteEndpointGroups()}
-                >
-                    <Button
-                        title={t('Группы') ?? ''}
-                        variant={'outline'}>
-                        {t('Группы')}
-                    </Button>
-                </AppLink>
-                <AppLink
-                    to={getRouteProvisioning()}
-                >
-                    <Button
-                        title={t('Автонастройка аппаратов') ?? ''}
-                        variant={'outline'}>
-                        {t('Автонастройка')}
-                    </Button>
+                    <IconButton>
+                        <PersonAddAlt1Icon className={cls.icon}/>
+                    </IconButton>
                 </AppLink>
             </HStack>
         </Card>

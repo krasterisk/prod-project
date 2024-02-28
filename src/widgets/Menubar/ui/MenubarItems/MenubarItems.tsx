@@ -2,8 +2,6 @@ import React, { memo } from 'react'
 import { MenubarItemType } from '../../model/types/menubar'
 import cls from './MenubarItems.module.scss'
 import { useTranslation } from 'react-i18next'
-import { useSelector } from 'react-redux'
-import { getUserAuthData } from '@/entities/User'
 import { AppLink } from '@/shared/ui/redesigned/AppLink'
 import { SimpleTreeView, TreeItem } from '@mui/x-tree-view'
 import { useMenubarItems } from '../../model/selectors/getMenubarItems'
@@ -24,7 +22,7 @@ export const MenubarItems = memo((props: MenubarItemProps) => {
   } = props
 
   const { t } = useTranslation()
-  const isAuth = useSelector(getUserAuthData)
+  // const isAuth = useSelector(getUserAuthData)
   const menubarItemList = useMenubarItems()
 
   const renderTree = (nodes: MenubarItemType[]) => (

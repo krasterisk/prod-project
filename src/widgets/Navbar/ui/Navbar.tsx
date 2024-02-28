@@ -44,8 +44,8 @@ export const Navbar = memo(({ className }: NavbarProps) => {
                 <HStack gap="16" justify={'start'}>
                     {isMobile && (
                         <>
-                            <IconButton onClick={() => { toggleDrawer(true) }} className={cls.menuButton}>
-                                <MenuIcon />
+                            <IconButton onClick={() => { toggleDrawer(true) }}>
+                                <MenuIcon className={cls.menuButton}/>
                             </IconButton>
                             <AppLogo
                                 width={60}
