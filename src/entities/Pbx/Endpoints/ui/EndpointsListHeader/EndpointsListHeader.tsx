@@ -34,7 +34,7 @@ export const EndpointsListHeader = memo((props: EndpointsListHeaderProps) => {
                     to={getRouteEndpointCreate()}
                 >
                     <IconButton>
-                        <PersonAddAlt1Icon className={cls.icon}/>
+                        <PersonAddAlt1Icon className={cls.icon} fontSize={'large'} />
                     </IconButton>
                 </AppLink>
             </HStack>

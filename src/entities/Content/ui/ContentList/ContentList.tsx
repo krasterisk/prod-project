@@ -5,7 +5,6 @@ import { ContentListItemSkeleton } from './ContentListItemSkeleton'
 import React, { HTMLAttributeAnchorTarget } from 'react'
 import { Text } from '@/shared/ui/redesigned/Text'
 import { useTranslation } from 'react-i18next'
-import { HStack } from '@/shared/ui/redesigned/Stack'
 import { Context } from '../../../Pbx/Contexts/model/types/contexts'
 import { ContextItem } from '../../../Pbx/Contexts/ui/ContextItem/ContextItem'
 import { EndpointItem } from '../../../Pbx/Endpoints/ui/EndpointItem/EndpointItem'
@@ -14,6 +13,7 @@ import { EndpointGroups } from '../../../Pbx/EndpointGroups/model/types/endpoint
 import { EndpointGroupItem } from '../../../Pbx/EndpointGroups/ui/EndpointGroupItem/EndpointGroupItem'
 import { ProvisioningItem } from '../../../Pbx/Provisioning/ui/ProvisioningItem/ProvisioningItem'
 import { ProvisionTemplate } from '@/entities/Pbx'
+import { Card } from '@/shared/ui/redesigned/Card'
 
 interface ContentListProps<T extends object> {
   className?: string
@@ -53,6 +53,7 @@ export const ContentList = <T extends object>(props: ContentListProps<T>) => {
                 endpoint={endpoint}
                 target={target}
                 view={view}
+                className={cls.EndpointItem}
             />
       )
     }
@@ -93,28 +94,27 @@ export const ContentList = <T extends object>(props: ContentListProps<T>) => {
 
   if (!isLoading && !data?.length) {
     return (
-        <div className={classNames(cls.ContentList, {}, [className, cls[view]])}>
+        <Card
+            max
+            padding={'24'}
+            border={'partial'}
+            className={classNames(cls.ContentList, {}, [className, cls[view]])}
+        >
           <Text
               size={'xl'}
               text={t('Данные не найдены')}
           />
-        </div>
+        </Card>
     )
   }
 
   return (
-      <HStack
-          gap={'16'}
-          wrap={'wrap'}
-          data-testid={'ContentList'}
-          max
-      >
+      <div className={classNames(cls.ContentList, {}, [className, cls[view]])}>
         {data?.length
           ? data.map(renderContent)
           : null
         }
         {isLoading && getSkeletons(view)}
-      </HStack>
-
+      </div>
   )
 }

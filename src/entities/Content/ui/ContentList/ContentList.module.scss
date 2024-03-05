@@ -1,15 +1,13 @@
-.card {
-
+.ContentList {
+    padding: 0;
 }
 
-// .BIG {
-//    .card {
-//        margin-bottom: 30px;
-//    }
-// }
+.BIG {
+    width: 100%;
+}
 
-// .SMALL {
-//    display: flex; // расположить в одну строку
-//    gap: 30px; // отступы
-//    flex-wrap: wrap; // Переносить если не влезло
-// }
+.SMALL {
+    display: flex; // расположить в одну строку
+    gap: 16px; // отступы
+    flex-wrap: wrap; // Переносить если не влезло
+}

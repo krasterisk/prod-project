@@ -28,21 +28,18 @@ export const EndpointItem = memo((props: EndpointItemProps) => {
 
   if (view === 'BIG') {
     return (
-            <Card
+            <HStack
+                gap={'16'}
+                justify={'start'}
                 max
-                padding={'24'}
-                data-testid={'EndpointItem'}
-                border="partial"
                 className={classNames(cls.EndpointItem, {}, [className, cls[view]])}
             >
+                <Text bold text={endpoint.username}/>
+                <Text text={endpoint.endpoint_id} bold className={cls.title}/>
+                <Text text={endpoint.group_uid} size={'s'}/>
                 <EndpointMenu id={endpoint.id} className={cls.actions}/>
-                <HStack gap={'4'} justify={'start'} max>
-                    <Text bold text={endpoint.username}/>
-                    <Text text={endpoint.endpoint_id} bold className={cls.title}/>
-                    <Text text={endpoint.group_uid} size={'s'}/>
-                </HStack>
                 <div className={cls.footer}></div>
-            </Card>
+            </HStack>
     )
   }
 
@@ -52,22 +49,27 @@ export const EndpointItem = memo((props: EndpointItemProps) => {
             border="partial"
             padding="16"
         >
-            <VStack className={cls.info} gap={'4'}>
-                <AppLink
-                    data-testid={'EndpointItem'}
-                    target={target}
-                    to={getRouteEndpointEdit(endpoint.id)}
-                >
+            <AppLink
+                data-testid={'EndpointItem'}
+                target={target}
+                to={getRouteEndpointEdit(endpoint.id)}
+            >
+
+                <VStack className={cls.info} gap={'4'}>
                     <Text bold text={endpoint.username}/>
                     <Text text={endpoint.endpoint_id} className={cls.title}/>
                     <Text text={endpoint.username} size={'s'}/>
+                    <EndpointMenu
+                        id={endpoint.id}
+                        className={cls.actions}
+                    />
                     <VStack gap={'4'} className={cls.footer} max>
                         <HStack gap={'4'}>
                             <Text bold text={endpoint.username}/>
                         </HStack>
                     </VStack>
-                </AppLink>
-            </VStack>
+                </VStack>
+            </AppLink>
         </Card>
   )
 })
